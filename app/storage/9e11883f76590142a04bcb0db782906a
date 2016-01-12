@@ -1,0 +1,42 @@
+<?php if( is_category() ): ?>
+	<h1> <?php echo(single_cat_title('', false)); ?></h1>
+<?php elseif( is_tag() ): ?>
+	<h1><?php echo(single_tag_title('', false)); ?></h1>
+<?php elseif( is_author() ): ?>
+	<h1><?php echo(sprintf( __( 'Author: %s', 'photolab' ), '<span class="vcard">' . get_the_author() . '</span>' )); ?></h1>
+<?php elseif( is_day() ): ?>
+	<h1><?php echo(sprintf( __( 'Day: %s', 'photolab' ), '<span>' . get_the_date() . '</span>' )); ?></h1>
+<?php elseif( is_month() ): ?>
+	<h1><?php echo(sprintf( __( 'Month: %s', 'photolab' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'photolab' ) ) . '</span>' )); ?></h1>
+<?php elseif( is_year() ): ?>
+	<h1><?php echo(sprintf( __( 'Year: %s', 'photolab' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'photolab' ) ) . '</span>' )); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-aside' ) ): ?>
+	<h1><?php echo(__( 'Asides', 'photolab' )); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-gallery' ) ): ?>
+	<h1><?php echo(__( 'Galleries', 'photolab')); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-image' ) ): ?>
+	<h1><?php echo(__( 'Images', 'photolab')); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-video' ) ): ?> 
+	<h1><?php echo(__( 'Videos', 'photolab' )); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-quote' ) ): ?>
+	<h1><?php echo(__( 'Quotes', 'photolab' )); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-link' ) ): ?>
+	<h1><?php echo(__( 'Links', 'photolab' )); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-status' ) ): ?>
+	<h1><?php echo(__( 'Statuses', 'photolab' )); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-audio' ) ): ?>
+	<h1><?php echo(__( 'Audios', 'photolab' )); ?></h1>
+<?php elseif( is_tax( 'post_format', 'post-format-chat' ) ): ?>
+	<h1><?php echo(__( 'Chats', 'photolab' )); ?></h1>
+<?php elseif( is_search() ): ?>
+	<h1 class="page-title"><?php echo(sprintf( __( 'Search Results for: %s', 'photolab' ), '<span>' . get_search_query() . '</span>' )); ?></h1>
+<?php elseif( is_single() ): ?>
+	<div class="entry-meta">
+		<?php echo \View\View::make('blocks/posted_on', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+	</div><!-- .entry-meta -->
+	<?php echo(the_title( '<h1 class="entry-title">', '</h1>', false )); ?><?php elseif( is_page() ): ?>
+	<?php echo(the_title( '<h1 class="entry-title">', '</h1>', false )); ?><?php elseif( is_404() ): ?>
+	<h1 class="entry-title"><?php echo(__( 'Error 404', 'photolab' )); ?></h1>
+<?php else: ?> 
+	<h1><?php echo(__( 'Archives', 'photolab' )); ?></h1>
+<?php endif; ?>

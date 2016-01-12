@@ -1,0 +1,18 @@
+<?php if($footer_style != 'minimal'): ?>
+	<?php echo \View\View::make('layouts/sidebar-footer', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+<?php endif; ?>
+	</div><!-- #content -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="container">
+			<div class="site-info">
+				<?php echo($footer); ?>			</div><!-- .site-info -->
+		</div>
+	</footer><!-- #colophon -->
+	<div id="back-top"><a href="#"><div class="dashicons dashicons-arrow-up-alt2"></div></a></div>
+</div><!-- #page -->
+
+<?php wp_footer(); ?>
+
+</body>
+</html>

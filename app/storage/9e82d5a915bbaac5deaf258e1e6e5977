@@ -1,0 +1,11 @@
+<article id="post-<?php echo(get_the_ID()); ?>" class="<?php echo(join( ' ', get_post_class() )); ?> col-md-12">
+
+	<div class="entry-content">
+		<?php echo(MainModel::get_content()); ?>		<?php echo(wp_link_pages( 
+			array(
+				'before' => '<div class="page-links">' . __( 'Pages:', 'photolab' ),
+				'after'  => '</div>',
+				'echo'   => false
+			) 
+		)); ?>	</div><!-- .entry-content -->
+</article><!-- #post-## -->

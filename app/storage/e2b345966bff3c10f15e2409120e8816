@@ -1,0 +1,5 @@
+<?php for($i = 0; $i < count($posts); $i++): ?>
+	<?php $post = $posts[$i]; ?>
+	<?php setup_postdata( $post ); ?>
+	<?php echo \View\View::make( 'contents/'.BlogSettingsModel::getContentName() , \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+<?php endfor; ?>

@@ -1,0 +1,27 @@
+<article id="post-<?php echo(get_the_ID()); ?>" class="<?php echo(join( ' ', get_post_class() )); ?> col-md-12">
+
+	<?php photolab_featured_gallery(); ?>
+
+	<div class="entry-content">
+		<?php if( !$is_show_title_on_header ): ?>
+			<?php echo \View\View::make('blocks/title', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+		<?php endif; ?>
+		<?php echo(get_the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'photolab' ) )); ?>		<?php echo(wp_link_pages( 
+			array(
+				'before' => '<div class="page-links">' . __( 'Pages:', 'photolab' ),
+				'after'  => '</div>',
+				'echo'   => false
+			) 
+		)); ?>	</div><!-- .entry-content -->
+
+	<footer class="entry-footer">
+		<div class="entry-footer-item meta-user"><div class="dashicons dashicons-businessman"></div> <?php the_author_posts_link(); ?></div>
+		<?php if($category_list): ?>
+			<div class="entry-footer-item meta-category"><div class="dashicons dashicons-category"></div> <?php echo($category_list); ?></div>
+		<?php endif; ?>
+		<?php if($tag_list): ?>
+			<div class="entry-footer-item meta-tags"><div class="dashicons dashicons-tag"></div> <?php echo($tag_list); ?></div>
+		<?php endif; ?>
+	</footer><!-- .entry-footer -->
+
+</article><!-- #post-## -->

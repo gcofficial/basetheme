@@ -1,0 +1,8 @@
+<?php echo(MainModel::header()); ?>
+	<div id="primary" class="container">
+		<div class="row">
+			<?php echo($breadcrumbs); ?>			<?php echo \View\View::make('layouts/container-page-'.$sidebar_side_type, \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+		</div><!-- #main -->
+	</div><!-- #primary -->
+
+<?php echo(MainModel::footer()); ?>

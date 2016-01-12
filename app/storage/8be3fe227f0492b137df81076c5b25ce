@@ -1,0 +1,8 @@
+<div class="col-sm-9 right-sidebar">
+<?php if( have_posts() ): ?>
+	<?php echo \View\View::make('layouts/blog-'.$blog_layout_style, \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+	<?php echo($paginate_links); ?><?php else: ?>
+	<?php echo \View\View::make('contents/none', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+<?php endif; ?>
+</div>
+<?php echo \View\View::make('layouts/sidebar', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
