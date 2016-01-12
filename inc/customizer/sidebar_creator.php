@@ -36,3 +36,20 @@ class SidebarCreator extends WP_Customize_Control {
     }
 }
 endif;
+
+/**
+ * Register widget area.
+ *
+ * @link http://codex.wordpress.org/Function_Reference/register_sidebar
+ */
+function sidebar_creator_widgets_init() {
+    $sidebar_creator = SidebarSettingsModel::getSidebarsOptions();
+    if(count($sidebar_creator) && is_array($sidebar_creator))
+    {
+        foreach ($sidebar_creator as $sidebar) 
+        {
+            register_sidebar( $sidebar );
+        }
+    }
+}
+add_action( 'widgets_init', 'sidebar_creator_widgets_init' );

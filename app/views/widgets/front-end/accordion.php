@@ -1,0 +1,13 @@
+{{ $before_widget }}
+@if($title != '')
+	{{ $before_title }}{{ apply_filters( 'widget_title', $title ) }}{{ $after_title }}
+@endif
+@if(count($posts))
+    <div class="accordion">
+    @foreach ($posts as $p)
+        <h3>{{ $p->post_title }}</h3>
+        <div style="display: none;">{{ $p->post_content }}</div>
+    @endforeach
+    </div>
+@endif
+{{ $after_widget }}

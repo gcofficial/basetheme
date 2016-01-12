@@ -58,7 +58,7 @@ class Images{
         foreach ($this->data as $slug => $properties)
         {
             // If no 4th option, stop the loop.
-            if(4 !== count($properties)) break;
+            if(4 !== count($properties)) continue;
 
             // Grab last property
             $show = array_pop($properties);

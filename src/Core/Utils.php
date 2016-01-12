@@ -44,7 +44,7 @@ class Utils{
         $array = (array) $array;
     	if (is_null($key)) return $array;
     	if (array_key_exists($key, $array)) return $array[$key];
-    	return $array;
+    	return $default;
     }
 
     /**
@@ -126,6 +126,8 @@ class Utils{
 
     /**
      * Models path
+     *
+     * @return  string
      */
     public static function models_path()
     {
@@ -133,5 +135,38 @@ class Utils{
             '%s/app/models/',
             get_template_directory()
         );
+    }
+
+    /**
+     * Widget path
+     * 
+     * @return string
+     */
+    public static function widgets_path()
+    {
+        return sprintf(
+            '%s/app/modules/widgets/',
+            get_template_directory()
+        );
+    }
+
+    /**
+     * Instead $GLOBALS['wp_filesystem']->get_contents( $file )
+     * @param  string $url
+     * @return string requres data
+     */
+    public static function get_contents($url) {
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_AUTOREFERER, TRUE);
+        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);       
+
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+        return $data;
     }
 }

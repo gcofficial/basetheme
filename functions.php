@@ -206,15 +206,6 @@ require_once get_template_directory() . '/inc/tools.php';
  * Walkers
  */
 require_once get_template_directory() . '/inc/photolab_walker.php';
-/**
- * Widgets
- */
-require_once get_template_directory() . '/inc/widgets/accordion_widget.php';
-require_once get_template_directory() . '/inc/widgets/flex_slider_widget.php';
-require_once get_template_directory() . '/inc/widgets/instagram_widget.php';
-require_once get_template_directory() . '/inc/widgets/google_plus_widget.php';
-require_once get_template_directory() . '/inc/widgets/advertisement_widget.php';
-
 
 /**
  * Meta Boxes
@@ -231,23 +222,6 @@ require_once get_template_directory() . '/inc/pages/upgrade_to_pro.php';
  * Customizer
  */
 require_once get_template_directory() . '/inc/customizer/sidebar_creator.php';
-
-/**
- * Register widget area.
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function photolab_widgets_init() {
-	$sidebar_creator = SidebarSettingsModel::getSidebarsOptions();
-	if(count($sidebar_creator))
-	{
-		foreach ($sidebar_creator as $sidebar) 
-		{
-			register_sidebar( $sidebar );
-		}
-	}
-}
-add_action( 'widgets_init', 'photolab_widgets_init' );
 
 
 /**

@@ -31,4 +31,11 @@ return [
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	'post-thumbnails',
+	/**
+	 * Jetpack
+	 */
+	'infinite-scroll' => [
+		'container' => 'main',
+		'footer'    => 'page',
+	]
 ];

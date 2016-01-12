@@ -6,6 +6,7 @@ jQuery(document).on(
         var $button = jQuery(this);
         wp.media.editor.send.attachment = function(props, attachment){
             $button.prev('input').val(attachment.sizes[props.size].url);
+            $button.prev('input').trigger('change');
             wp.media.editor.send.attachment = send_attachment_bkp;
         }
         wp.media.editor.open($button);
