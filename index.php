@@ -16,7 +16,7 @@ if(is_404())
 	$result = \View\View::make(
 		'pages/404',
 		[
-			'breadcrumbs' => GeneralSiteSettingsModel::getBreadcrumbs()
+			'breadcrumbs' => GeneralSiteSettingsModel::breadcrumbs()
 		]
 	);
 }
@@ -27,7 +27,7 @@ else if (is_search())
 		[
 			'sidebar_left'  => SidebarSettingsModel::getModeLeft(),
 			'sidebar_right' => SidebarSettingsModel::getModeRight(),
-			'breadcrumbs'   => GeneralSiteSettingsModel::getBreadcrumbs(),
+			'breadcrumbs'   => GeneralSiteSettingsModel::breadcrumbs(),
 		]
 	);
 }
@@ -38,7 +38,7 @@ else if(is_page())
 		[
 			'sidebar_left'  => SidebarSettingsModel::getModeLeft(),
 			'sidebar_right' => SidebarSettingsModel::getModeRight(),
-			'breadcrumbs'   => GeneralSiteSettingsModel::getBreadcrumbs(),
+			'breadcrumbs'   => GeneralSiteSettingsModel::breadcrumbs(),
 		]
 	);
 }
@@ -50,7 +50,7 @@ else if(is_single())
 			'social_post_code' => SocialPostTypes::getSocialPostCode($post),
 			'sidebar_left'     => SidebarSettingsModel::getModeLeft(),
 			'sidebar_right'    => SidebarSettingsModel::getModeRight(),
-			'breadcrumbs'      => GeneralSiteSettingsModel::getBreadcrumbs(),
+			'breadcrumbs'      => GeneralSiteSettingsModel::breadcrumbs(),
 		]
 	);
 }

@@ -1,0 +1,76 @@
+<?php
+// ==============================================================
+// Sorry man, this is not my shit :-|
+// ==============================================================
+?>
+<?php if( !is_front_page() ): ?> 
+    <ul id="<?php echo($breadcrums_id); ?>" class="<?php echo($breadcrums_class); ?>">
+    <li class="item-home"><a class="bread-link bread-home" href="<?php echo(get_home_url()); ?>" title="<?php echo($home_title); ?>"><?php echo($home_title); ?></a></li>
+    <li class="separator separator-home"> <?php echo($separator); ?> </li>
+       
+    <?php if( is_archive() && !is_tax() && !is_category() && !is_tag() ): ?> 
+        <li class="item-current item-archive"><strong class="bread-current bread-archive"><?php echo(post_type_archive_title($prefix, false)); ?></strong></li>
+    <?php elseif( is_archive() && is_tax() && !is_category() && !is_tag() ): ?>
+        <?php if($post_type != 'post'): ?>
+            <li class="item-cat item-custom-post-type-<?php echo($post_type); ?>"><a class="bread-cat bread-custom-post-type-<?php echo($post_type); ?>" href="<?php echo($post_type_archive); ?>" title="<?php echo($post_type_object->labels->name); ?>"><?php echo($post_type_object->labels->name); ?></a></li>
+            <li class="separator"> <?php echo($separator); ?> </li>
+        <?php endif; ?>
+        <li class="item-current item-archive"><strong class="bread-current bread-archive"><?php echo($custom_tax_name); ?></strong></li>
+    <?php elseif( is_single() ): ?> 
+        <?php if($post_type != 'post'): ?>
+            <li class="item-cat item-custom-post-type-<?php echo($post_type); ?>"><a class="bread-cat bread-custom-post-type-<?php echo($post_type); ?>" href="<?php echo($post_type_archive); ?>" title="<?php echo($post_type_object->labels->name); ?>"><?php echo($post_type_object->labels->name); ?></a></li>
+            <li class="separator"> <?php echo($separator); ?> </li>
+        <?php endif; ?>
+        
+        <?php if(!empty($last_category)): ?>
+            <?php if(!empty($category)): ?>
+                <?php foreach($cat_parents as $parents): ?>
+                    <li class="item-cat"><?php echo($parents); ?></li>
+                    <li class="separator"> <?php echo($separator); ?> </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
+            <li class="item-current item-<?php echo($post->ID); ?>"><strong class="bread-current bread-<?php echo($post->ID); ?>" title="<?php echo(get_the_title()); ?>"><?php echo(get_the_title()); ?></strong></li>
+        <?php elseif(!empty($cat_id)): ?>
+            <li class="item-cat item-cat-<?php echo($cat_id); ?> item-cat-<?php echo($cat_nicename); ?>"><a class="bread-cat bread-cat-<?php echo($cat_id); ?> bread-cat-<?php echo($cat_nicename); ?>" href="<?php echo($cat_link); ?>" title="<?php echo($cat_name); ?>"><?php echo($cat_name); ?></a></li>
+            <li class="separator"> <?php echo($separator); ?> </li>
+            <li class="item-current item-<?php echo($post->ID); ?>"><strong class="bread-current bread-<?php echo($post->ID); ?>" title="<?php echo(get_the_title()); ?>"><?php echo(get_the_title()); ?></strong></li>
+        <?php else: ?> 
+            <li class="item-current item-<?php echo($post->ID); ?>"><strong class="bread-current bread-<?php echo($post->ID); ?>" title="<?php echo(get_the_title()); ?>"><?php echo(get_the_title()); ?></strong></li>
+        <?php endif; ?>
+    <?php elseif( is_category() ): ?> 
+        <li class="item-current item-cat"><strong class="bread-current bread-cat"><?php echo(single_cat_title('', false)); ?></strong></li>
+    <?php elseif( is_page() ): ?> 
+        <?php if( $post->post_parent ): ?>
+            <?php foreach( $anc as $ancestor ): ?>
+                <li class="item-parent item-parent-<?php echo($ancestor); ?>"><a class="bread-parent bread-parent-<?php echo($ancestor); ?>" href="<?php echo(get_permalink($ancestor)); ?>" title="<?php echo(get_the_title($ancestor)); ?>"><?php echo(get_the_title($ancestor)); ?></a></li>
+                <li class="separator separator-<?php echo($ancestor); ?>"> <?php echo($separator); ?> </li>
+            <?php endforeach; ?>
+            <li class="item-current item-<?php echo($post->ID); ?>"><strong title="<?php echo(get_the_title()); ?>"> <?php echo(get_the_title()); ?></strong></li>
+        <?php else: ?>
+            <li class="item-current item-<?php echo($post->ID); ?>"><strong class="bread-current bread-<?php echo($post->ID); ?>"> <?php echo(get_the_title()); ?></strong></li>
+        <?php endif; ?>
+    <?php elseif( is_tag() ): ?> 
+        <li class="item-current item-tag-<?php echo($get_term_id); ?> item-tag-<?php echo($get_term_slug); ?>"><strong class="bread-current bread-tag-<?php echo($get_term_id); ?> bread-tag-<?php echo($get_term_slug); ?>"><?php echo($get_term_name); ?></strong></li>
+    <?php elseif( is_day() ): ?> 
+        <li class="item-year item-year-<?php echo(get_the_time('Y')); ?>"><a class="bread-year bread-year-<?php echo(get_the_time('Y')); ?>" href="<?php echo(get_year_link( get_the_time('Y') )); ?>" title="<?php echo(get_the_time('Y')); ?>"><?php echo(get_the_time('Y')); ?> Archives</a></li>
+        <li class="separator separator-<?php echo(get_the_time('Y')); ?>"> <?php echo($separator); ?> </li>
+        <li class="item-month item-month-<?php echo(get_the_time('m')); ?>"><a class="bread-month bread-month-<?php echo(get_the_time('m')); ?>" href="<?php echo(get_month_link( get_the_time('Y'), get_the_time('m') )); ?>" title="<?php echo(get_the_time('M')); ?>"><?php echo(get_the_time('M')); ?> Archives</a></li>
+        <li class="separator separator-<?php echo(get_the_time('m')); ?>"> <?php echo($separator); ?> </li>
+        <li class="item-current item-<?php echo(get_the_time('j')); ?>"><strong class="bread-current bread-<?php echo(get_the_time('j')); ?>"> <?php echo(get_the_time('jS')); ?> <?php echo(get_the_time('M')); ?> Archives</strong></li>
+    <?php elseif( is_month() ): ?> 
+        <li class="item-year item-year-<?php echo(get_the_time('Y')); ?>"><a class="bread-year bread-year-<?php echo(get_the_time('Y')); ?>" href="<?php echo(get_year_link( get_the_time('Y') )); ?>" title="<?php echo(get_the_time('Y')); ?>"><?php echo(get_the_time('Y')); ?> Archives</a></li>
+        <li class="separator separator-<?php echo(get_the_time('Y')); ?>"> <?php echo($separator); ?> </li>
+        <li class="item-month item-month-<?php echo(get_the_time('m')); ?>"><strong class="bread-month bread-month-<?php echo(get_the_time('m')); ?>" title="<?php echo(get_the_time('M')); ?>"><?php echo(get_the_time('M')); ?> Archives</strong></li>
+    <?php elseif( is_year() ): ?> 
+        <li class="item-current item-current-<?php echo(get_the_time('Y')); ?>"><strong class="bread-current bread-current-<?php echo(get_the_time('Y')); ?>" title="<?php echo(get_the_time('Y')); ?>"><?php echo(get_the_time('Y')); ?> Archives</strong></li>
+    <?php elseif( is_author() ): ?> 
+        <li class="item-current item-current-<?php echo($userdata->user_nicename); ?>"><strong class="bread-current bread-current-<?php echo($userdata->user_nicename); ?>" title="<?php echo($userdata->display_name); ?>">Author: <?php echo($userdata->display_name); ?></strong></li>
+    <?php elseif( get_query_var('paged') ): ?> 
+        <li class="item-current item-current-<?php echo(get_query_var('paged')); ?>"><strong class="bread-current bread-current-<?php echo(get_query_var('paged')); ?>" title="Page <?php echo(get_query_var('paged')); ?>"><?php echo(__('Page', 'photolab')); ?> <?php echo(get_query_var('paged')); ?></strong></li>
+    <?php elseif( is_search() ): ?> 
+        <li class="item-current item-current-<?php echo(get_search_query()); ?>"><strong class="bread-current bread-current-<?php echo(get_search_query()); ?>" title="Search results for: <?php echo(get_search_query()); ?>">Search results for: <?php echo(get_search_query()); ?></strong></li>
+    <?php elseif( is_404() ): ?> 
+        <li>Error 404</li>
+    <?php endif; ?>
+    </ul>
+<?php endif; ?>

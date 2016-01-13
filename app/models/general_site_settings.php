@@ -1,5 +1,7 @@
 <?php
 
+Use \View\View;
+
 class GeneralSiteSettingsModel extends OptionsModel{
 
 	/**
@@ -73,27 +75,80 @@ class GeneralSiteSettingsModel extends OptionsModel{
 		return self::getOption('breadcrumbs') == '1';
 	}
 
-	/**
-	 * Get breadcrumbs
-	 * @return string --- HTML code
-	 */
-	public static function getBreadcrumbs()
-	{
-		if(self::getOption('breadcrumbs') != '1') return '';
-		global $post, $wp_query;
-		return Tools::renderView(
-			'breadcrumbs',
-			array(
-				'separator'        => '&gt;',
-				'breadcrums_id'    => 'breadcrumbs',
-				'breadcrums_class' => 'breadcrumbs',
-				'home_title'       => 'Homepage',
-				'custom_taxonomy'  => 'product_cat',
-				'post'             => $post,
-				'wp_query'         => $wp_query,
-			)
-		);
-	}
+		/**
+		 * Breadcrumbs data 
+		 * 
+		 * @return array
+		 */
+		public static function breadcrumbs_data()
+		{
+			global $post, $author;
+			$data = [
+				'separator'         => '&gt;',
+				'breadcrums_id'     => 'breadcrumbs',
+				'breadcrums_class'  => 'breadcrumbs',
+				'home_title'        => 'Homepage',
+				'custom_taxonomy'   => 'product_cat',
+				'post_type'         => get_post_type(),
+				'post_type_object'  => get_post_type_object(get_post_type()),
+				'post_type_archive' => get_post_type_archive_link(get_post_type()),
+				'custom_tax_name'   => get_queried_object()->name,
+				'category'          => get_the_category(),
+			];
+
+			if(!empty($data['category']))
+			{
+				$values = array_values($data['category']);
+				$data['last_category']   = end($values);
+	            $data['get_cat_parents'] = rtrim(get_category_parents($data['last_category']->term_id, true, ','), ',');
+	            $data['cat_parents']     = explode(',', $data['get_cat_parents']);
+			}
+
+			$data['taxonomy_exists'] = taxonomy_exists($data['custom_taxonomy']);
+	        if(empty($data['last_category']) && !empty($data['custom_taxonomy']) && $data['taxonomy_exists']) 
+	        {
+	            $data['taxonomy_terms'] = get_the_terms( $post->ID, $data['custom_taxonomy'] );
+	            $data['cat_id']         = $data['taxonomy_terms'][0]->term_id;
+	            $data['cat_nicename']   = $data['taxonomy_terms'][0]->slug;
+	            $data['cat_link']       = get_term_link($data['taxonomy_terms'][0]->term_id, $data['custom_taxonomy']);
+	            $data['cat_name']       = $data['taxonomy_terms'][0]->name;
+	        }
+	        if($post->post_parent)
+	        {
+	        	$data['anc'] = get_post_ancestors( $post->ID );
+	            $data['anc'] = array_reverse($data['anc']);
+	        }
+	        if(is_tag())
+	        {
+	        	$data['term_id']        = get_query_var('tag_id');
+	        	$data['taxonomy']       = 'post_tag';
+	        	$data['args']           = 'include=' . $term_id;
+	        	$data['terms']          = get_terms( $taxonomy, $args );
+	        	$data['get_term_id']    = $data['terms'][0]->term_id;
+	        	$data['get_term_slug']  = $data['terms'][0]->slug;
+	        	$data['get_term_name']  = $data['terms'][0]->name;
+	        }
+	        if(is_author())
+	        {
+	        	$data['userdata'] = get_userdata( $author );
+	        }
+
+			return $data;
+		}
+
+		/**
+		 * Breadcrumbs HTLM block
+		 * 
+		 * @return string
+		 */
+		public static function breadcrumbs()
+		{
+			if(!self::is_enabled_breadcrumbs()) 
+			{
+				return '';
+			}
+			return View::make('blocks/breadcrumbs', self::breadcrumbs_data());
+		}
 
 	/**
 	 * Get max container size (PX)

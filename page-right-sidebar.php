@@ -10,7 +10,7 @@ echo \View\View::make(
 	'pages/page',
 	[
 		'sidebar_right'     => SidebarSettingsModel::getModeRight(),
-		'breadcrumbs'       => GeneralSiteSettingsModel::getBreadcrumbs(),
+		'breadcrumbs'       => GeneralSiteSettingsModel::breadcrumbs(),
 		'sidebar_side_type' => 'right'
 	]
 );

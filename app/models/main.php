@@ -105,6 +105,7 @@ class MainModel{
 
 	/**
 	 * Get footer
+	 * 
 	 * @return string HTML code footer
 	 */
 	public static function footer()
