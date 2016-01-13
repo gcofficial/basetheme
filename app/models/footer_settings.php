@@ -17,10 +17,7 @@ class FooterSettingsModel extends OptionsModel{
 	 */
 	public static function getCopyright()
 	{
-		return Tools::renderView(
-			'copyright',
-			array( 'copyright' => self::getOption('copyright') ) 
-		);
+		return (string) self::getOption('copyright');
 	}
 
 	/**

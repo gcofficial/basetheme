@@ -6,7 +6,8 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="container">
 			<div class="site-info">
-				<?php echo($footer); ?>			</div><!-- .site-info -->
+				<?php echo \View\View::make('layouts/footer_'.$footer_style, \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+			</div><!-- .site-info -->
 		</div>
 	</footer><!-- #colophon -->
 	<div id="back-top"><a href="#"><div class="dashicons dashicons-arrow-up-alt2"></div></a></div>

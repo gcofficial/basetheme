@@ -1,5 +1,8 @@
 <?php
 
+Use \View\View;
+Use \Core\Utils;
+
 SidebarsMetaBox::init();
 
 class SidebarsMetaBox{
@@ -107,26 +110,36 @@ class SidebarsMetaBox{
 		// Add an nonce field so we can check for it later.
 		wp_nonce_field( 'sidebars', 'sidebars_nonce' );
 		
-		echo Tools::renderView(
-			'sidebars_metabox', 
-			array(
-				'left_select'  => Tools::renderSelectControl(
-					SidebarSettingsModel::getSidebarsForSelect(),
-					array(
-						'name'  => 'sidebar_left',
-						'id'    => 'sidebar_left',
-						'value' => self::getSidebarLeft($post->ID)
-					)
+		echo View::make(
+			'blocks/sidebars_metabox',
+			[
+				'left_select' => View::make(
+					'blocks/select',
+					[
+						'current_value' => self::getSidebarLeft($post->ID),
+						'attributes'    => Utils::array_join(
+							[
+								'name'  => 'sidebar_left',
+								'id'    => 'sidebar_left',
+							]
+						),
+						'values'        => SidebarSettingsModel::getSidebarsForSelect(),
+					]
 				),
-				'right_select' => Tools::renderSelectControl(
-					SidebarSettingsModel::getSidebarsForSelect(),
-					array(
-						'name'  => 'sidebar_right',
-						'id'    => 'sidebar_right',
-						'value' => self::getSidebarRight($post->ID)
-					)
-				)
-			)
+				'right_select' => View::make(
+					'blocks/select',
+					[
+						'current_value' => self::getSidebarRight($post->ID),
+						'attributes'    => Utils::array_join(
+							[
+								'name'  => 'sidebar_right',
+								'id'    => 'sidebar_right',
+							]
+						),
+						'values'        => SidebarSettingsModel::getSidebarsForSelect(),
+					]
+				),
+			]
 		);
 	}
 

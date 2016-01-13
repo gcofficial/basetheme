@@ -48,6 +48,22 @@ class Utils{
     }
 
     /**
+     * Join array to string
+     * @param  array  $arr --- array like 'key' => 'value'
+     * @return string --- joined string
+     */
+    public static function array_join($arr = array())
+    {
+        $arr    = self::array_remove_empty($arr);
+        $result = array();
+        foreach ($arr as $key => $value) 
+        {
+            $result[] = sprintf('%s="%s"', $key, $value);
+        }
+        return implode(' ', $result);
+    }
+
+    /**
      * Get all of the given array except for a specified array of items.
      *
      * @param array $array
@@ -138,7 +154,7 @@ class Utils{
     }
 
     /**
-     * Widget path
+     * Widgets path
      * 
      * @return string
      */
@@ -146,6 +162,19 @@ class Utils{
     {
         return sprintf(
             '%s/app/modules/widgets/',
+            get_template_directory()
+        );
+    }
+
+    /**
+     * Pages path
+     * 
+     * @return string
+     */
+    public static function pages_path()
+    {
+        return sprintf(
+            '%s/app/modules/pages/',
             get_template_directory()
         );
     }

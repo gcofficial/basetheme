@@ -128,21 +128,6 @@ class SidebarSettingsModel extends OptionsModel{
 	}
 
 	/**
-	 * Load sidebar 
-	 * @param  string $sidebar_id --- sidebar id
-	 * @return string             --- html code sidebar
-	 */
-	public static function loadSidebar($sidebar_id)
-	{
-		return Tools::renderView(
-			'sidebar',
-			array(
-				'sidebar_id' => $sidebar_id
-			)
-		);
-	}
-
-	/**
 	 * Get sidebars type
 	 * 
 	 * @return string --- sidebars type

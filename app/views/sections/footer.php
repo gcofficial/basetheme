@@ -6,7 +6,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="container">
 			<div class="site-info">
-				{{ $footer }}
+				@include('layouts/footer_'.$footer_style)
 			</div><!-- .site-info -->
 		</div>
 	</footer><!-- #colophon -->

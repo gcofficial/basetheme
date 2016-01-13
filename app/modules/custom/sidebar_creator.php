@@ -1,6 +1,12 @@
 <?php
+
+namespace Modules\Custom;
+
+Use \View\View;
+
 if( class_exists( 'WP_Customize_Control' ) ):
-class SidebarCreator extends WP_Customize_Control {
+
+class Sidebar_Creator extends \WP_Customize_Control {
 
     /**
      * Add scripts and styles
@@ -23,33 +29,33 @@ class SidebarCreator extends WP_Customize_Control {
      */
     public function render_content() 
     {
-        echo Tools::renderView(
-            'customizer_sidebar_creator_input',
-            array(
+        echo View::make(
+            'blocks/sidebar_creator',
+            [
                 'id'    => 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id ),
                 'class' => 'customize-control customize-control-' . $this->type,
                 'label' => esc_html( $this->label ),
                 'value' => $this->value(),
                 'link'  => $this->get_link()
-            )
+            ]
         );
     }
-}
-endif;
 
-/**
- * Register widget area.
- *
- * @link http://codex.wordpress.org/Function_Reference/register_sidebar
- */
-function sidebar_creator_widgets_init() {
-    $sidebar_creator = SidebarSettingsModel::getSidebarsOptions();
-    if(count($sidebar_creator) && is_array($sidebar_creator))
+    /**
+     * Register widget area.
+     */
+    public static function widgets_init()
     {
-        foreach ($sidebar_creator as $sidebar) 
+        $sidebar_creator = \SidebarSettingsModel::getSidebarsOptions();
+        if(count($sidebar_creator) && is_array($sidebar_creator))
         {
-            register_sidebar( $sidebar );
+            foreach ($sidebar_creator as $sidebar) 
+            {
+                register_sidebar( $sidebar );
+            }
         }
     }
 }
-add_action( 'widgets_init', 'sidebar_creator_widgets_init' );
+
+add_action( 'widgets_init', ['\Modules\Custom\Sidebar_Creator', 'widgets_init'] );
+endif;

@@ -34,7 +34,9 @@ class Configuration{
 			'Menus',
 			'Sidebars',
 			'Supports',
-			'Widgets'
+			'Widgets',
+			'Pages',
+			'Customs',
 		);
 	}
 

@@ -64,6 +64,16 @@ class GeneralSiteSettingsModel extends OptionsModel{
 	}
 
 	/**
+	 * Is enabled breadcrumbs
+	 * 
+	 * @return boolean 
+	 */
+	public static function is_enabled_breadcrumbs()
+	{
+		return self::getOption('breadcrumbs') == '1';
+	}
+
+	/**
 	 * Get breadcrumbs
 	 * @return string --- HTML code
 	 */
@@ -97,13 +107,13 @@ class GeneralSiteSettingsModel extends OptionsModel{
 	}
 
 	/**
-	 * Get page preloader
-	 * @return string --- preloader HTML code
+	 * Is enabled preloader
+	 * 
+	 * @return boolean 
 	 */
-	public static function getPreloader()
+	public static function is_enabled_preloader()
 	{
-		if(self::getOption('page_preloader') != '1') return '';
-		return Tools::renderView('loader');
+		return self::getOption('page_preloader') == '1';
 	}
 
 	/**

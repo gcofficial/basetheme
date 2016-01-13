@@ -363,7 +363,7 @@ if(!function_exists('photolab_add_customizer')) {
 		);
 
 		$wp_customize->add_control( 
-			new SidebarCreator(
+			new \Modules\Custom\Sidebar_Creator(
 				$wp_customize, 
 				'sidebar_settings_sidebar', 
 				array(

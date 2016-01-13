@@ -13,7 +13,10 @@
 <?php wp_head(); ?>
 </head>
 <?php echo($custom_styles); ?><body <?php echo($body_class); ?>>
-<?php echo($preloader); ?><div id="page" class="hfeed site">
+<?php if($is_enabled_preloader): ?>
+	<?php echo \View\View::make('blocks/loader', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+<?php endif; ?>
+<div id="page" class="hfeed site">
 	<?php if(has_nav_menu('top')): ?>
 		<?php echo \View\View::make('blocks/top-menu', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
 	<?php endif; ?>

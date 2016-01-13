@@ -213,16 +213,6 @@ require_once get_template_directory() . '/inc/photolab_walker.php';
 require_once get_template_directory() . '/inc/metaboxes/social_post_types.php';
 require_once get_template_directory() . '/inc/metaboxes/sidebars.php';
 
-/**
- * Theme pages
- */
-require_once get_template_directory() . '/inc/pages/upgrade_to_pro.php';
-
-/**
- * Customizer
- */
-require_once get_template_directory() . '/inc/customizer/sidebar_creator.php';
-
 
 /**
  * Return template part in string

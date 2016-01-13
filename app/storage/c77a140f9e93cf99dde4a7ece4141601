@@ -1,0 +1,5 @@
+<?php if(trim($copyright) != ''): ?>
+	<span class="copyright"><?php echo($copyright); ?></span>
+<?php endif; ?>
+<?php if(has_nav_menu('footer')): ?>
+	<?php echo($menu); ?>	<?php echo($socials); ?><?php endif; ?>

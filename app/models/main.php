@@ -59,7 +59,7 @@ class MainModel{
 			'favicon'              => GeneralSiteSettingsModel::getFavicon(),
 			'touch_icon'           => GeneralSiteSettingsModel::getTouchIcon(),
 			'custom_styles'        => '',
-			'preloader'            => GeneralSiteSettingsModel::getPreloader(),
+			'is_enabled_preloader' => GeneralSiteSettingsModel::is_enabled_preloader(),
 			'logo'                 => GeneralSiteSettingsModel::getLogo(),
 			'socials'              => photolab_social_list( 'header', false ),
 			'disclimer'            => HeaderSettingsModel::getDisclimer(),
@@ -120,8 +120,20 @@ class MainModel{
 	public static function footer_data()
 	{
 		return [
+			'copyright'    => FooterSettingsModel::getCopyright(),
+			'logo'         => FooterSettingsModel::getLogo(),
+			'menu'         => wp_nav_menu( 
+				array( 
+					'theme_location'  => 'footer',
+					'container'       => '', 
+					'container_class' => 'footer-navigation', 
+					'container_id'    => 'site-navigation',
+					'menu_class'      => 'sf-footer-menu',
+					'echo'            => false
+				) 
+			),
+			'socials'      => photolab_social_list( 'footer', false ),
 			'footer_style' => FooterSettingsModel::getStyle(),
-			'footer'       => FooterSettingsModel::getFooter(),
 			'widgets' 	   => FooterSettingsModel::getAllFooterWidgetsHTML(),
 			'columns' 	   => FooterSettingsModel::getColumns(),
 			'css'     	   => FooterSettingsModel::getColumnsCSSClass(),

@@ -16,7 +16,9 @@
 </head>
 {{ $custom_styles }}
 <body {{ $body_class }}>
-{{ $preloader }}
+@if($is_enabled_preloader)
+	@include('blocks/loader')
+@endif
 <div id="page" class="hfeed site">
 	@if(has_nav_menu('top'))
 		@include('blocks/top-menu')
