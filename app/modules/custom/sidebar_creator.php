@@ -15,12 +15,12 @@ class Sidebar_Creator extends \WP_Customize_Control {
     {
         wp_enqueue_script( 
             'sidebar-creator', 
-            get_template_directory_uri().'/js/sidebar-creator.js', 
+           Utils::assets_url().'/js/sidebar-creator.js', 
             array('jquery', 'underscore') 
         );
         wp_enqueue_style( 
             'sidebar-creator', 
-            get_template_directory_uri().'/css/sidebar-creator.css' 
+            Utils::assets_url().'/css/sidebar-creator.css' 
         );
     }
 

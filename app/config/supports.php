@@ -37,5 +37,21 @@ return [
 	'infinite-scroll' => [
 		'container' => 'main',
 		'footer'    => 'page',
-	]
+	],
+	/**
+	 * Custom header setup
+	 */
+	'custom-header' => [
+		'default-image'          => \Core\Utils::assets_url() . '/images/header.jpg',
+		'random-default'         => false,
+		'width'                  => 1920,
+		'height'                 => 585,
+		'flex-height'            => true,
+		'flex-width'             => true,
+		'header-text'            => false,
+		'uploads'                => true,
+		'wp-head-callback'       => '',
+		'admin-head-callback'    => ['\\Modules\\Custom\\Custom_Header', 'style'],
+		'admin-preview-callback' => ['\\Modules\\Custom\\Custom_Header', 'image'],
+	],
 ];

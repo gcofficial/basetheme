@@ -9,7 +9,7 @@ abstract class OptionsModel{
 	 */
 	public static function getOption($key)
 	{
-		return Tools::tryGet($key, static::getAll(), '');
+		return \Core\Utils::array_get(static::getAll(), $key, '');
 	}
 
 	/**

@@ -34,13 +34,13 @@ class Flex_Slider extends \WP_Widget{
 
 		wp_enqueue_script( 
 			'flex-slider', 
-			get_template_directory_uri().'/js/jquery.flexslider-min.js', 
+			Utils::assets_url().'js/jquery.flexslider-min.js', 
 			['jquery']
 		);
 
 		wp_enqueue_script( 
 			'flex-slider-widget', 
-			get_template_directory_uri().'/js/flex-slider-widget.js', 
+			Utils::assets_url().'js/flex-slider-widget.js', 
 			['jquery']
 		);
 
@@ -50,7 +50,7 @@ class Flex_Slider extends \WP_Widget{
 		
 		wp_enqueue_style(
 			'flex-slider',
-			get_template_directory_uri().'/css/flexslider.css'
+			Utils::assets_url().'css/flexslider.css'
 		);
 	}
 

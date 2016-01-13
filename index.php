@@ -47,7 +47,7 @@ else if(is_single())
 	$result = \View\View::make(
 		'pages/single',
 		[
-			'social_post_code' => SocialPostTypes::getSocialPostCode($post),
+			'social_post_code' => \Modules\Custom\Social_Post_Types::getSocialPostCode($post),
 			'sidebar_left'     => SidebarSettingsModel::getModeLeft(),
 			'sidebar_right'    => SidebarSettingsModel::getModeRight(),
 			'breadcrumbs'      => GeneralSiteSettingsModel::breadcrumbs(),

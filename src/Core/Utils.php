@@ -86,6 +86,28 @@ class Utils{
     }
 
     /**
+     * Lave just right keys in array
+     * 
+     * @param  array $right_keys 
+     * @param  array $array      
+     * @return array             
+     */
+    public static function array_leave_right_keys($right_keys, $array)
+    {
+        $right_keys = (array) $right_keys;
+        $array      = (array) $array;
+        
+        if(count($array))
+        {
+            foreach ($array as $key => $value) 
+            {
+                if(!in_array($key, $right_keys)) unset($array[$key]);
+            }
+        }
+        return $array;
+    }
+
+    /**
      * Determine if a given string starts with a given substring.
      *
      * @param string $haystack
@@ -176,6 +198,19 @@ class Utils{
         return sprintf(
             '%s/app/modules/pages/',
             get_template_directory()
+        );
+    }
+
+    /**
+     * Assets URL
+     * 
+     * @return string 
+     */
+    public static function assets_url()
+    {
+        return sprintf(
+            '%s/app/assets/',
+            get_template_directory_uri()
         );
     }
 

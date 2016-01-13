@@ -8,7 +8,7 @@
 			setup_postdata( $post );
 			?>
 			<div class="{{ $column_css_class }}">
-				@include( 'content_'.get_post_format())
+				@include( 'contents/'.BlogSettingsModel::getContentName() )
 			</div>
 				
 		@endif

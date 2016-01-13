@@ -34,7 +34,7 @@ class Accordion extends \WP_Widget{
 		
 		wp_enqueue_script( 
 			'accordion-widget', 
-			get_template_directory_uri().'/js/accordion-widget.js', 
+			Utils::assets_url().'/js/accordion-widget.js', 
 			['jquery']
 		);
 
@@ -44,7 +44,7 @@ class Accordion extends \WP_Widget{
 		
 		wp_enqueue_style(
 			'accordion',
-			get_template_directory_uri().'/css/accordion.css'
+			Utils::assets_url().'/css/accordion.css'
 		);
 	}
 

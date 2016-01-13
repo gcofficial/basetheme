@@ -32,7 +32,7 @@ class Advertisement extends \WP_Widget{
 		wp_enqueue_media();
         wp_enqueue_script(
         	'upload_media_widget', 
-        	get_template_directory_uri().'/js/advertisement.js', 
+        	Utils::assets_url().'/js/advertisement.js', 
         	['jquery']
         );
 	}

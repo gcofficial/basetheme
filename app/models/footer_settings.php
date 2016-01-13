@@ -26,44 +26,7 @@ class FooterSettingsModel extends OptionsModel{
 	 */
 	public static function getLogo()
 	{
-		$result  = '';
-
-		$logo = trim(self::getOption('logo'));
-		if($logo != '')
-		{
-			$result = Tools::renderView(
-				'logo_img',
-				array('img' => $logo)
-			);
-		}
-		return $result;
-	}
-
-	/**
-	 * Get footer HTML code
-	 * @return string --- footer HTML code
-	 */
-	public static function getFooter()
-	{
-		$footer_view = sprintf('footer_%s', self::getStyle());
-		return Tools::renderView(
-			$footer_view,
-			array(
-				'logo'      => self::getLogo(),
-				'copyright' => FooterSettingsModel::getCopyright(),
-				'menu'      => wp_nav_menu( 
-					array( 
-						'theme_location'  => 'footer',
-						'container'       => '', 
-						'container_class' => 'footer-navigation', 
-						'container_id'    => 'site-navigation',
-						'menu_class'      => 'sf-footer-menu',
-						'echo'            => false
-					) 
-				),
-				'socials'   => photolab_social_list( 'footer', false )
-			)
-		);
+		return trim(self::getOption('logo'));
 	}
 
 	/**

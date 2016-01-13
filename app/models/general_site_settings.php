@@ -45,24 +45,7 @@ class GeneralSiteSettingsModel extends OptionsModel{
 	 */
 	public static function getLogo()
 	{
-		$result  = Tools::renderView(
-			'logo_text',
-			array(
-				'name'        => get_bloginfo( 'name' ),
-				'home_url'    => esc_url( home_url( '/' ) ),
-				'description' => get_bloginfo( 'description' )
-			)
-		);
-
-		$logo = trim(self::getOption('logo'));
-		if($logo != '')
-		{
-			$result = Tools::renderView(
-				'logo_img',
-				array('img' => $logo)
-			);
-		}
-		return $result;
+		return (string) trim(self::getOption('logo'));
 	}
 
 	/**
@@ -75,90 +58,79 @@ class GeneralSiteSettingsModel extends OptionsModel{
 		return self::getOption('breadcrumbs') == '1';
 	}
 
-		/**
-		 * Breadcrumbs data 
-		 * 
-		 * @return array
-		 */
-		public static function breadcrumbs_data()
+	/**
+	 * Breadcrumbs data 
+	 * 
+	 * @return array
+	 */
+	public static function breadcrumbs_data()
+	{
+		global $post, $author;
+		$data = [
+			'separator'         => '&gt;',
+			'breadcrums_id'     => 'breadcrumbs',
+			'breadcrums_class'  => 'breadcrumbs',
+			'home_title'        => 'Homepage',
+			'custom_taxonomy'   => 'product_cat',
+			'post_type'         => get_post_type(),
+			'post_type_object'  => get_post_type_object(get_post_type()),
+			'post_type_archive' => get_post_type_archive_link(get_post_type()),
+			'custom_tax_name'   => get_queried_object()->name,
+			'category'          => get_the_category(),
+		];
+
+		if(!empty($data['category']))
 		{
-			global $post, $author;
-			$data = [
-				'separator'         => '&gt;',
-				'breadcrums_id'     => 'breadcrumbs',
-				'breadcrums_class'  => 'breadcrumbs',
-				'home_title'        => 'Homepage',
-				'custom_taxonomy'   => 'product_cat',
-				'post_type'         => get_post_type(),
-				'post_type_object'  => get_post_type_object(get_post_type()),
-				'post_type_archive' => get_post_type_archive_link(get_post_type()),
-				'custom_tax_name'   => get_queried_object()->name,
-				'category'          => get_the_category(),
-			];
-
-			if(!empty($data['category']))
-			{
-				$values = array_values($data['category']);
-				$data['last_category']   = end($values);
-	            $data['get_cat_parents'] = rtrim(get_category_parents($data['last_category']->term_id, true, ','), ',');
-	            $data['cat_parents']     = explode(',', $data['get_cat_parents']);
-			}
-
-			$data['taxonomy_exists'] = taxonomy_exists($data['custom_taxonomy']);
-	        if(empty($data['last_category']) && !empty($data['custom_taxonomy']) && $data['taxonomy_exists']) 
-	        {
-	            $data['taxonomy_terms'] = get_the_terms( $post->ID, $data['custom_taxonomy'] );
-	            $data['cat_id']         = $data['taxonomy_terms'][0]->term_id;
-	            $data['cat_nicename']   = $data['taxonomy_terms'][0]->slug;
-	            $data['cat_link']       = get_term_link($data['taxonomy_terms'][0]->term_id, $data['custom_taxonomy']);
-	            $data['cat_name']       = $data['taxonomy_terms'][0]->name;
-	        }
-	        if($post->post_parent)
-	        {
-	        	$data['anc'] = get_post_ancestors( $post->ID );
-	            $data['anc'] = array_reverse($data['anc']);
-	        }
-	        if(is_tag())
-	        {
-	        	$data['term_id']        = get_query_var('tag_id');
-	        	$data['taxonomy']       = 'post_tag';
-	        	$data['args']           = 'include=' . $term_id;
-	        	$data['terms']          = get_terms( $taxonomy, $args );
-	        	$data['get_term_id']    = $data['terms'][0]->term_id;
-	        	$data['get_term_slug']  = $data['terms'][0]->slug;
-	        	$data['get_term_name']  = $data['terms'][0]->name;
-	        }
-	        if(is_author())
-	        {
-	        	$data['userdata'] = get_userdata( $author );
-	        }
-
-			return $data;
+			$values = array_values($data['category']);
+			$data['last_category']   = end($values);
+            $data['get_cat_parents'] = rtrim(get_category_parents($data['last_category']->term_id, true, ','), ',');
+            $data['cat_parents']     = explode(',', $data['get_cat_parents']);
 		}
 
-		/**
-		 * Breadcrumbs HTLM block
-		 * 
-		 * @return string
-		 */
-		public static function breadcrumbs()
-		{
-			if(!self::is_enabled_breadcrumbs()) 
-			{
-				return '';
-			}
-			return View::make('blocks/breadcrumbs', self::breadcrumbs_data());
-		}
+		$data['taxonomy_exists'] = taxonomy_exists($data['custom_taxonomy']);
+        if(empty($data['last_category']) && !empty($data['custom_taxonomy']) && $data['taxonomy_exists']) 
+        {
+            $data['taxonomy_terms'] = get_the_terms( $post->ID, $data['custom_taxonomy'] );
+            $data['cat_id']         = $data['taxonomy_terms'][0]->term_id;
+            $data['cat_nicename']   = $data['taxonomy_terms'][0]->slug;
+            $data['cat_link']       = get_term_link($data['taxonomy_terms'][0]->term_id, $data['custom_taxonomy']);
+            $data['cat_name']       = $data['taxonomy_terms'][0]->name;
+        }
+        if($post->post_parent)
+        {
+        	$data['anc'] = get_post_ancestors( $post->ID );
+            $data['anc'] = array_reverse($data['anc']);
+        }
+        if(is_tag())
+        {
+        	$data['term_id']        = get_query_var('tag_id');
+        	$data['taxonomy']       = 'post_tag';
+        	$data['args']           = 'include=' . $term_id;
+        	$data['terms']          = get_terms( $taxonomy, $args );
+        	$data['get_term_id']    = $data['terms'][0]->term_id;
+        	$data['get_term_slug']  = $data['terms'][0]->slug;
+        	$data['get_term_name']  = $data['terms'][0]->name;
+        }
+        if(is_author())
+        {
+        	$data['userdata'] = get_userdata( $author );
+        }
+
+		return $data;
+	}
 
 	/**
-	 * Get max container size (PX)
-	 * @return integer --- max container size 
+	 * Breadcrumbs HTLM block
+	 * 
+	 * @return string
 	 */
-	public static function getMaxContainerSize()
+	public static function breadcrumbs()
 	{
-		$max_container_size = self::getOption('max_container_size');
-		if($max_container_size <= 0) $max_container_size = 1170;
-		return $max_container_size;
+		if(!self::is_enabled_breadcrumbs()) 
+		{
+			return '';
+		}
+		return View::make('blocks/breadcrumbs', self::breadcrumbs_data());
 	}
 
 	/**
@@ -173,6 +145,7 @@ class GeneralSiteSettingsModel extends OptionsModel{
 
 	/**
 	 * Get color scheme HEX
+	 * 
 	 * @return string --- color scheme HEX
 	 */
 	public static function getColorScheme()

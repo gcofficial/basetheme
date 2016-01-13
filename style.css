@@ -1049,7 +1049,7 @@ a img {
 10.1 Header
 --------------------------------------------------------------*/
 header.site-header {
-  background: url(images/header-border.gif) center top no-repeat #ffffff;
+  background: url(app/assets/images/header-border.gif) center top no-repeat #ffffff;
   padding: 20px 0 15px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 99;
@@ -3198,4 +3198,12 @@ ul.sf-footer-menu li:last-child:after{
 
 .site-info .centered{
   text-align: center;
+}
+
+.masonry .brick-2{
+  width: 50%;
+}
+
+.masonry .brick-3{
+  width: 33.3333333333333333%;
 }

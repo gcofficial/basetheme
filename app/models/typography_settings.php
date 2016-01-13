@@ -50,60 +50,6 @@ class TypographySettingsModel extends OptionsModel{
 	}
 
 	/**
-	 * Get heading font family
-	 * @return string --- font family
-	 */
-	public static function getHeadingFFamily()
-	{
-		$ff     = trim(self::getOption('heading_font_family'));
-		if($ff != '')
-		{
-			return Tools::renderView(
-				'heading_font_family', 
-				array(
-					'ff'  => self::getFontOption($ff, 'name'),
-					'url' => self::getFontOption($ff, 'url')
-				)
-			);
-		}
-		return '';
-	}
-
-	/**
-	 * Get base font family
-	 * @return string --- font family
-	 */
-	public static function getBaseFFamily()
-	{
-		$ff     = trim(self::getOption('base_font_family'));
-		if($ff != '')
-		{
-			return Tools::renderView(
-				'base_font_family', 
-				array(
-					'ff'  => self::getFontOption($ff, 'name'),
-					'url' => self::getFontOption($ff, 'url')
-				)
-			);
-		}
-		return '';
-	}
-
-	/**
-	 * Get base font size
-	 * @return string --- font size
-	 */
-	public static function getBaseFSize()
-	{
-		return Tools::renderView(
-			'base_font_size', 
-			array(
-				'fs' => self::getOption('base_font_size')
-			)
-		);
-	}
-
-	/**
 	 * Get font option
 	 * @param  string $font   --- font key
 	 * @param  string $option --- option key

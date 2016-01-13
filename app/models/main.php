@@ -56,6 +56,8 @@ class MainModel{
 			'charset'              => get_bloginfo( 'charset' ),
 			'ping_back_url'        => get_bloginfo( 'pingback_url' ),
 			'name'                 => get_bloginfo( 'name' ),
+			'home_url'    		   => esc_url( home_url( '/' ) ),
+			'description' 		   => get_bloginfo( 'description' ),
 			'favicon'              => GeneralSiteSettingsModel::getFavicon(),
 			'touch_icon'           => GeneralSiteSettingsModel::getTouchIcon(),
 			'custom_styles'        => '',

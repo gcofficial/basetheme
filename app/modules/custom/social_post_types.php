@@ -1,8 +1,12 @@
 <?php
 
-SocialPostTypes::init();
+namespace Modules\Custom;
 
-class SocialPostTypes{
+Use \View\View;
+
+Social_Post_Types::init();
+
+class Social_Post_Types{
 
 	/**
 	 * Initialize and add meta box
@@ -11,18 +15,18 @@ class SocialPostTypes{
 	{
 		if ( is_admin() ) 
 		{
-			add_action( 'load-post.php', array('SocialPostTypes', 'getNewClass') );
-			add_action( 'load-post-new.php', array('SocialPostTypes', 'getNewClass') );
+			add_action( 'load-post.php', ['\\Modules\\Custom\\Social_Post_Types', 'getNewClass'] );
+			add_action( 'load-post-new.php', ['\\Modules\\Custom\\Social_Post_Types', 'getNewClass'] );
 		}
 	}
 
 	/**
 	 * Get new class object
-	 * @return SocialPostTypes --- object
+	 * @return Social_Post_Types --- object
 	 */
 	public static function getNewClass()
 	{
-		return new SocialPostTypes();
+		return new Social_Post_Types();
 	}
 
 	/**
@@ -106,10 +110,7 @@ class SocialPostTypes{
 		// Add an nonce field so we can check for it later.
 		wp_nonce_field( 'social_post_types', 'social_post_types_nonce' );
 
-		echo Tools::renderView(
-			'social_post_types_metabox', 
-			array('value' => self::getSocialPostCode($post))
-		);
+		echo View::make('blocks/social_post_types_metabox', ['value' => self::getSocialPostCode($post)]);
 	}
 
 	/**

@@ -1,6 +1,8 @@
 <div class="centered">
 	@if(has_nav_menu('footer'))
-		{{ $logo }}
+		@if($logo != '')
+			<img src="{{ $logo }}" alt="Logo" class="logo-img">
+		@endif
 		{{ $socials }}
 		{{ $menu }}
 	@endif

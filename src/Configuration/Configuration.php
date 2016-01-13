@@ -37,6 +37,7 @@ class Configuration{
 			'Widgets',
 			'Pages',
 			'Customs',
+			'Assets',
 		);
 	}
 

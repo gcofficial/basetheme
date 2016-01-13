@@ -1,11 +1,13 @@
 <?php
 
+namespace Modules\Custom;
+
 Use \View\View;
 Use \Core\Utils;
 
-SidebarsMetaBox::init();
+Sidebars_Meta_Box::init();
 
-class SidebarsMetaBox{
+class Sidebars_Meta_Box{
 
 	/**
 	 * Initialize and add meta box
@@ -14,18 +16,18 @@ class SidebarsMetaBox{
 	{
 		if ( is_admin() ) 
 		{
-			add_action( 'load-post.php', array('SidebarsMetaBox', 'getNewClass') );
-			add_action( 'load-post-new.php', array('SidebarsMetaBox', 'getNewClass') );
+			add_action( 'load-post.php', ['\\Modules\\Custom\\Sidebars_Meta_Box', 'getNewClass'] );
+			add_action( 'load-post-new.php', ['\\Modules\\Custom\\Sidebars_Meta_Box', 'getNewClass'] );
 		}
 	}
 
 	/**
 	 * Get new class object
-	 * @return SidebarsMetaBox --- object
+	 * @return Sidebars_Meta_Box --- object
 	 */
 	public static function getNewClass()
 	{
-		return new SidebarsMetaBox();
+		return new Sidebars_Meta_Box();
 	}
 
 	/**
@@ -123,7 +125,7 @@ class SidebarsMetaBox{
 								'id'    => 'sidebar_left',
 							]
 						),
-						'values'        => SidebarSettingsModel::getSidebarsForSelect(),
+						'values'        => \SidebarSettingsModel::getSidebarsForSelect(),
 					]
 				),
 				'right_select' => View::make(
@@ -136,7 +138,7 @@ class SidebarsMetaBox{
 								'id'    => 'sidebar_right',
 							]
 						),
-						'values'        => SidebarSettingsModel::getSidebarsForSelect(),
+						'values'        => \SidebarSettingsModel::getSidebarsForSelect(),
 					]
 				),
 			]

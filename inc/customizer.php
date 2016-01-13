@@ -30,7 +30,7 @@ add_action( 'customize_controls_enqueue_scripts', 'my_customize_controls_enqueue
 function my_customize_controls_enqueue_scripts() {
 	wp_enqueue_script( 
 		'my-customizer-script', 
-		get_template_directory_uri() . '/js/customizer.js', 
+		Utils::assets_url() . '/js/customizer.js', 
 		array( 'customize-controls' ) 
 	);
 }
@@ -620,25 +620,6 @@ if(!function_exists('photolab_add_customizer')) {
 		);
 
 		$wp_customize->add_setting( 
-			'gss[max_container_size]', 
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field'
-			) 
-		);
-
-		$wp_customize->add_control( 
-			'max_container_size', 
-			array(
-				'label'    => __( 'Max container size (px)', 'photolab' ),
-				'section'  => 'general_site_settings',
-				'settings' => 'gss[max_container_size]',
-				'type'     => 'text'
-			) 
-		);
-
-		$wp_customize->add_setting( 
 			'gss[page_preloader]', 
 			array(
 				'default'           => '',
@@ -1020,26 +1001,6 @@ if(!function_exists('photolab_add_customizer')) {
 		);
 
 		$wp_customize->add_setting( 
-			'typography[heading_font_family]', 
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field'
-			) 
-		);
-
-		$wp_customize->add_control( 
-			'typography_heading_font_family', 
-			array(
-				'label'       => __( 'Heading font family', 'photolab' ),
-				'section'     => 'typography_settings',
-				'settings'    => 'typography[heading_font_family]',
-				'type'        => 'select',
-				'choices'     => TypographySettingsModel::getFontsOption(),
-			) 
-		);
-
-		$wp_customize->add_setting( 
 			'typography[base_font_family]', 
 			array(
 				'default'           => '',
@@ -1056,25 +1017,6 @@ if(!function_exists('photolab_add_customizer')) {
 				'settings'    => 'typography[base_font_family]',
 				'type'        => 'select',
 				'choices'     => TypographySettingsModel::getFontsOption(),
-			) 
-		);
-
-		$wp_customize->add_setting( 
-			'typography[base_font_size]', 
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field'
-			) 
-		);
-
-		$wp_customize->add_control( 
-			'typography_base_font_size', 
-			array(
-				'label'    => __( 'Base font size', 'photolab' ),
-				'section'  => 'typography_settings',
-				'settings' => 'typography[base_font_size]',
-				'type'     => 'text'
 			) 
 		);
 	}

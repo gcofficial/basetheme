@@ -14,7 +14,7 @@
  */
 function photolab_custom_header_setup() {
 	$args = array(
-		'default-image'          => get_template_directory_uri() . '/images/header.jpg',
+		'default-image'          => \Core\Utils::assets_url() . '/images/header.jpg',
 		'random-default'         => false,
 		'width'                  => 1920,
 		'height'                 => 585,

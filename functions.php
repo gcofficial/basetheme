@@ -48,55 +48,6 @@ function photolab_setup() {
 add_action( 'after_setup_theme', 'photolab_setup' );
 
 /**
- * Enqueue scripts and styles.
- */
-function photolab_assets() {
-
-	// Styles
-	global $wp_styles;
-
-	wp_enqueue_style( 'photolab-layout', get_template_directory_uri() . '/css/layout.css', array(), '1.1.0' );
-	wp_enqueue_style( 'photolab-magnific-popup', get_template_directory_uri() . '/css/magnific-popup.css', array(), '1.1.0' );
-	wp_enqueue_style( 'dashicons' );
-	wp_enqueue_style( 'photolab-fonts', photolab_fonts_url(), array(), null );
-	wp_enqueue_style( 'photolab-style', get_stylesheet_uri(), array(), '1.1.0' );
-
-	// layot CSS for old IE
-	$wp_styles->add( 'photolab-layout-ie', get_template_directory_uri() . '/css/layout-ie.css', array(), '1.1.0' );
-	$wp_styles->add_data( 'photolab-layout-ie', 'conditional', 'lte IE 8' );
-	$wp_styles->enqueue( array( 'photolab-layout-ie' ) );
-
-	// Also enqueue Font Awesome for social icons, they are enabelrd in options
-	$options = get_option( 'photolab' );
-	
-	wp_enqueue_style( 'photolab-font-awesome', get_template_directory_uri(). '/css/font-awesome-4.5.0/css/font-awesome.min.css' );
-
-	// Script
-	wp_enqueue_script( 'photolab-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
-	wp_enqueue_script( 'photolab-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
-	wp_enqueue_script( 'photolab-superfish', get_template_directory_uri() . '/js/jquery.superfish.min.js', array('jquery'), '1.4.9', true );
-	wp_enqueue_script( 'photolab-mobilemenu', get_template_directory_uri() . '/js/jquery.mobilemenu.js', array('jquery'), '1.0', true );
-	wp_enqueue_script( 'photolab-sfmenutouch', get_template_directory_uri() . '/js/jquery.sfmenutouch.js', array('jquery'), '1.0', true );
-	wp_enqueue_script( 'photolab-magnific-popup', get_template_directory_uri() . '/js/jquery.magnific-popup.min.js', array('jquery'), '1.0.0', true );
-	wp_enqueue_script( 'photolab-device', get_template_directory_uri() . '/js/device.min.js', array('jquery'), '1.0.2', true );
-	wp_enqueue_script( 'photolab-sticky', get_template_directory_uri() . '/js/jquery.stickyheader.js', array('jquery'), '1.0', true );
-	wp_enqueue_script( 'photolab-custom', get_template_directory_uri() . '/js/custom.js', array('jquery'), '1.0', true );
-	wp_enqueue_script( 'masonry', 'https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js', array('jquery') );
-	
-	wp_localize_script( 
-		'photolab-custom', 
-		'photolab_custom', 
-		array('stickup_menu' => HeaderSettingsModel::getStickupMenu()) 
-	);
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
-
-}
-add_action( 'wp_enqueue_scripts', 'photolab_assets' );
-
-/**
  * Get allowed socials list
  */
 function photolab_allowed_socials() {
@@ -194,129 +145,12 @@ require get_template_directory() . '/inc/extras.php';
 require get_template_directory() . '/inc/customizer.php';
 // Include custom header support
 require get_template_directory() . '/inc/custom-header.php';
-// Jetpack compatibility file
-//require get_template_directory() . '/inc/jetpack.php';
-
-/**
- * Tools
- */
-require_once get_template_directory() . '/inc/tools.php';
 
 /**
  * Walkers
  */
 require_once get_template_directory() . '/inc/photolab_walker.php';
 
-/**
- * Meta Boxes
- */
-require_once get_template_directory() . '/inc/metaboxes/social_post_types.php';
-require_once get_template_directory() . '/inc/metaboxes/sidebars.php';
-
-
-/**
- * Return template part in string
- * @param  string $slug --- template part slug
- * @param  string $name --- tmplate name
- * @return string --- html code
- */
-function getTemplatePartStr( $slug, $name )
-{
-	ob_start();
-	get_template_part( $slug, $name );
-	return ob_get_clean();
-}
-
-/**
- * Loop 
- * @param  string $slug --- slug name
- * @param  string $name --- name
- * @return string       --- html code
- */
-function loop($slug, $name)
-{
-	if(BlogSettingsModel::isMasonryLayout())
-	{
-		return masonryLoop($slug, $name);
-	}
-
-	if(BlogSettingsModel::isGridLayout())
-	{
-		return gridLoop($slug, $name);
-	}
-	return defaultLoop($slug, $name);
-}
-
-/**
- * Grid loop
- * @param  string $slug --- slug name
- * @param  string $name --- name
- * @return string       --- html code
- */
-function gridLoop($slug, $name)
-{
-	global $wp_query;
-	$posts = $wp_query->get_posts();
-	return Tools::renderView(
-		'loop_row_grid',
-		array(
-			'posts'            => $posts,
-			'columns_count'    => BlogSettingsModel::getColumns(),
-			'column_css_class' => BlogSettingsModel::getColumnCSSClass(),
-			'slug'             => $slug,
-			'name'             => $name
-		)
-	);	
-}
-
-/**
- * Masonry loop
- * @param  string $slug --- slug name
- * @param  string $name --- name
- * @return string       --- html code
- */
-function masonryLoop($slug, $name)
-{
-	global $wp_query;
-	$posts = $wp_query->get_posts();
-	return Tools::renderView(
-		'loop_row_masonry',
-		array(
-			'posts'            => $posts,
-			'columns_count'    => BlogSettingsModel::getColumns(),
-			'column_css_class' => BlogSettingsModel::getColumnCSSClass(),
-			'slug'             => $slug,
-			'name'             => $name
-		)
-	);	
-}
-
-/**
- * Default loop
- * @param  string $slug --- slug name
- * @param  string $name --- name
- * @return string       --- html code
- */
-function defaultLoop($slug, $name)
-{
-	global $wp_query;
-	$posts = $wp_query->get_posts();
-	return Tools::renderView(
-		'loop_row',
-		array(
-			'posts'            => $posts,
-			'slug'             => $slug,
-			'name'             => $name
-		)
-	);
-}
-
-// require_once 'src/View/ICompiler.php';
-// require_once 'src/View/Compiler.php';
-// require_once 'src/View/ScoutCompiler.php';
-
-// $scout_compiler = new ScoutCompiler(get_template_directory().'/storage/');
-// $scout_compiler->compile(get_template_directory().'/views/example.php');
 require_once 'src/Core/Autoload.php';
 \Core\App::Start();
 
