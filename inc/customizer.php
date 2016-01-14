@@ -1,4 +1,7 @@
 <?php
+
+Use \Core\Utils;
+Use \View\View;
 /**
  * photolab Theme Customizer
  * 

@@ -6,5 +6,5 @@ return [
 	'Sidebar_Creator',
 	'Social_Post_Types',
 	'Sidebars_Meta_Box',
-	'Custom_Header'
+	//'Custom_Header',
 ];

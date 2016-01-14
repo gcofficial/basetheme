@@ -3,6 +3,7 @@
 namespace Modules\Custom;
 
 Use \View\View;
+Use \Core\Utils;
 
 if( class_exists( 'WP_Customize_Control' ) ):
 
@@ -15,8 +16,8 @@ class Sidebar_Creator extends \WP_Customize_Control {
     {
         wp_enqueue_script( 
             'sidebar-creator', 
-           Utils::assets_url().'/js/sidebar-creator.js', 
-            array('jquery', 'underscore') 
+            Utils::assets_url().'/js/sidebar-creator.js', 
+            ['jquery', 'underscore']
         );
         wp_enqueue_style( 
             'sidebar-creator', 

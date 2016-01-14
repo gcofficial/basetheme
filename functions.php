@@ -144,7 +144,7 @@ require get_template_directory() . '/inc/extras.php';
 // Include customizer
 require get_template_directory() . '/inc/customizer.php';
 // Include custom header support
-require get_template_directory() . '/inc/custom-header.php';
+// require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Walkers
