@@ -1,0 +1,1 @@
+<p class="comment-form-author"><input class="comment-form-input" id="author" name="author" type="text" placeholder="<?php echo($placeholder); ?>" value="<?php echo($value); ?>" size="30"<?php echo($aria_req); ?> /></p>

@@ -1,0 +1,1 @@
+<p class="comment-form-email"><input class="comment-form-input" id="email" name="email" <?php echo($type); ?> placeholder="<?php echo($placeholder); ?>" value="<?php echo($value); ?>" size="30"<?php echo($$aria_req); ?> /></p>

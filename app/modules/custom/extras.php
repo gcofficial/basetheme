@@ -22,12 +22,54 @@ class Extras{
 		add_filter( 'wp_generate_tag_cloud', [$this, 'tag_class'], 10 );
 		add_filter( 'nav_menu_css_class', [$this, 'nav_class'] );
 		add_filter( 'upload_mimes', [$this, 'add_some_mime_types'], 1, 1);
+		add_filter( 'comment_form_default_fields', [$this, 'comment_form_fields'] );
 
 		// ==============================================================
 		// Filters
 		// ==============================================================
 		add_action( 'wp', [$this, 'setup_author'] );
 		add_action( 'photolab_before_post', [$this, 'blog_labels'] );
+	}
+
+	/**
+	 * Modify comment form default fields
+	 */
+	public function comment_form_fields( $fields ) {
+
+		$req       = get_option( 'require_name_email' );
+		$html5     = 'html5';
+		$commenter = wp_get_current_commenter();
+		$aria_req  = ( $req ? " aria-required='true'" : '' );
+
+		$fields = [
+			'author' => View::make(
+				'blocks/comment_form_fields/author',
+				[
+					'placeholder' => __( 'Name', 'photolab' ) . ( $req ? '*' : '' ),
+					'value'       => esc_attr( $commenter['comment_author'] ),
+					'aria_req'    => $aria_req,
+				]
+			),
+			'email'  => View::make(
+				'blocks/comment_form_fields/email',
+				[
+					'type' 		  => ( $html5 ? 'type="email"' : 'type="text"' ),
+					'placeholder' => __( 'Email', 'photolab' ) . ( $req ? '*' : '' ),
+					'value'       => esc_attr(  $commenter['comment_author_email'] ),
+					'aria_req'    => $aria_req,
+				]
+			),
+			'url'    => View::make(
+				'blocks/comment_form_fields/author',
+				[
+					'type' => ( $html5 ? 'type="url"' : 'type="text"' ),
+					'placeholder' => __( 'Website', 'photolab' ),
+					'value'       => esc_attr( $commenter['comment_author_url'] ),
+				]
+			),
+		];
+
+		return $fields;
 	}
 
 	/**

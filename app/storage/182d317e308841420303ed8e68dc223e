@@ -1,0 +1,34 @@
+<?php if( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type ): ?>
+	<li id="comment-<?php echo(get_comment_ID()); ?>" <?php echo(comment_class( '', null, null, false )); ?>>
+		<div class="comment-body">
+			<?php echo(__( 'Pingback:', 'photolab' )); ?> <?php echo(get_comment_author_link()); ?> <?php edit_comment_link( __( 'Edit', 'photolab' ), '<span class="edit-link">', '</span>' ); ?>
+		</div>
+	<?php else: ?>
+	<li id="comment-<?php echo(get_comment_ID()); ?>" <?php echo(comment_class( empty( $args['has_children'] ) ? '' : 'parent', null, null, false )); ?>>
+		<article id="div-comment-<?php echo(get_comment_ID()); ?>" class="comment-body">
+			<div class="comment-author-thumb">
+				<?php echo(get_avatar( $comment, 70 )); ?>			</div><!-- .comment-author -->
+			<div class="comment-content">
+				<div class="comment-meta">
+					<div class="comment_author"><?php echo(get_comment_author_link()); ?></div>
+					<time datetime="<?php echo(get_comment_time( 'c' )); ?>">
+						<?php echo(human_time_diff( get_comment_time('U'), current_time('timestamp') ) . ' ' . __( 'ago', 'photolab' )); ?>					</time>
+				</div>
+				<?php if( '0' == $comment->comment_approved ): ?>
+					<p class="comment-awaiting-moderation"><?php echo(__( 'Your comment is awaiting moderation.', 'photolab' )); ?></p>
+				<?php endif; ?>
+				<?php comment_text(); ?>
+				<?php echo(get_comment_reply_link( 
+						array_merge( 
+							$args, 
+							[
+								'add_below' => 'div-comment',
+								'depth'     => $depth,
+								'max_depth' => $args['max_depth'],
+								'before'    => '<div class="reply">',
+								'after'     => '</div>',
+							] 
+						) 
+					)); ?>			</div><!-- .comment-content -->
+		</article><!-- .comment-body -->
+<?php endif; ?>

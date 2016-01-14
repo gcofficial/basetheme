@@ -17,7 +17,7 @@
 					[
 						'style'      => 'ol',
 						'short_ping' => true,
-						//'callback'   => 'photolab_comment',
+						'callback'   => ['\\Modules\\Custom\\Comments', 'comment'],
 						'echo'       => false
 					]
 				)
