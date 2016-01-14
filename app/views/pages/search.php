@@ -8,7 +8,7 @@
 				<?php the_post(); ?>
 				@include('contents/content')
 			@endwhile
-			<?php photolab_paging_nav(); ?>
+			{{ $paginate_links }}
 		@else
 			@include('contents/none')
 		@endif

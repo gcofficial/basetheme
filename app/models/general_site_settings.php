@@ -66,6 +66,7 @@ class GeneralSiteSettingsModel extends OptionsModel{
 	public static function breadcrumbs_data()
 	{
 		global $post, $author;
+		$qo = get_queried_object();
 		$data = [
 			'separator'         => '&gt;',
 			'breadcrums_id'     => 'breadcrumbs',
@@ -75,9 +76,13 @@ class GeneralSiteSettingsModel extends OptionsModel{
 			'post_type'         => get_post_type(),
 			'post_type_object'  => get_post_type_object(get_post_type()),
 			'post_type_archive' => get_post_type_archive_link(get_post_type()),
-			'custom_tax_name'   => get_queried_object()->name,
 			'category'          => get_the_category(),
+			'post'              => $post,
 		];
+		if($qo != null)
+		{
+			$data['custom_tax_name'] = $qo->name;
+		}
 
 		if(!empty($data['category']))
 		{
@@ -96,10 +101,13 @@ class GeneralSiteSettingsModel extends OptionsModel{
             $data['cat_link']       = get_term_link($data['taxonomy_terms'][0]->term_id, $data['custom_taxonomy']);
             $data['cat_name']       = $data['taxonomy_terms'][0]->name;
         }
-        if($post->post_parent)
+        if($post != null)
         {
-        	$data['anc'] = get_post_ancestors( $post->ID );
-            $data['anc'] = array_reverse($data['anc']);
+        	if($post->post_parent)
+        	{
+        		$data['anc'] = get_post_ancestors( $post->ID );
+        	    $data['anc'] = array_reverse($data['anc']);
+        	}	
         }
         if(is_tag())
         {

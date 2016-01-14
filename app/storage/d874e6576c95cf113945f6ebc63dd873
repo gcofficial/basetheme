@@ -6,8 +6,7 @@
 				<?php the_post(); ?>
 				<?php echo \View\View::make('contents/content', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
 			<?php endwhile; ?>
-			<?php photolab_paging_nav(); ?>
-		<?php else: ?>
+			<?php echo($paginate_links); ?>		<?php else: ?>
 			<?php echo \View\View::make('contents/none', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
 		<?php endif; ?>
 

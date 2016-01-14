@@ -1,0 +1,17 @@
+<section class="no-results not-found col-md-12">
+	<header class="page-header">
+		<h2 class="page-title"><?php echo(__( 'Nothing Found', 'photolab' )); ?></h2>
+	</header><!-- .page-header -->
+
+	<div class="page-content">
+		<?php if( is_home() && current_user_can( 'publish_posts' ) ): ?> 
+			<p><?php echo(sprintf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'photolab' ), esc_url( admin_url( 'post-new.php' ) ) )); ?></p>
+
+		<?php elseif( is_search() ): ?>
+			<p><?php echo(__( 'Sorry, but nothing matched your search terms. Please try again with some different keywords.', 'photolab' )); ?> </p>
+			<?php echo($search_form); ?>		<?php else: ?>
+			<p><?php echo(__( 'It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps searching can help.', 'photolab' )); ?></p>
+			<?php echo($search_form); ?>		<?php endif; ?>
+	</div><!-- .page-content -->
+</section><!-- .no-results -->
+gurievcreative@gmail.com

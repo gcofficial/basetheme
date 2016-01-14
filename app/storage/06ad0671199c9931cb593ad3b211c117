@@ -4,7 +4,7 @@
 	<?php the_post(); ?>
 	<?php echo \View\View::make('contents/single', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
 	<?php if( comments_open() || '0' != get_comments_number() ): ?>
-		<?php echo \View\View::make('blocks/comments', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+		<?php comments_template('/app/modules/custom/comments.php'); ?>
 	<?php endif; ?>
 <?php endwhile; ?>
 </div>

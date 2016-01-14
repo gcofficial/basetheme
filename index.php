@@ -25,9 +25,10 @@ else if (is_search())
 	$result = \View\View::make(
 		'pages/search',
 		[
-			'sidebar_left'  => SidebarSettingsModel::getModeLeft(),
-			'sidebar_right' => SidebarSettingsModel::getModeRight(),
-			'breadcrumbs'   => GeneralSiteSettingsModel::breadcrumbs(),
+			'sidebar_left'   => SidebarSettingsModel::getModeLeft(),
+			'sidebar_right'  => SidebarSettingsModel::getModeRight(),
+			'breadcrumbs'    => GeneralSiteSettingsModel::breadcrumbs(),
+			'paginate_links' => BlogSettingsModel::getPaginateLinks(),
 		]
 	);
 }

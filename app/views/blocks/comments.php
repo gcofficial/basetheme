@@ -1,7 +1,6 @@
 @if ( !post_password_required() ) 
 
 <div id="comments" class="comments-area">
-
 	@if ( have_comments() ) 
 		<h3 class="post-meta-title"><span>{{ __( 'Comments on', 'photolab' ) }} {{ the_title( '"', '"', false ) }}</span></h3>
 
@@ -18,7 +17,7 @@
 					[
 						'style'      => 'ol',
 						'short_ping' => true,
-						'callback'   => 'photolab_comment',
+						//'callback'   => 'photolab_comment',
 						'echo'       => false
 					]
 				)

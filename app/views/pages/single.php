@@ -1,8 +1,3 @@
-<?php
-echo '<pre>';
-var_dump($sidebar_side_type);
-echo '</pre>';
-?>
 {{ MainModel::header() }}
 	<div id="primary" class="container">
 		<div class="row">

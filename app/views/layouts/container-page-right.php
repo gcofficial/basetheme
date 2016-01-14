@@ -3,7 +3,7 @@
 		<?php the_post(); ?>
 		@include('contents/page')
 		@if ( comments_open() || '0' != get_comments_number() )
-			@include('blocks/comments')
+			<?php comments_template('/app/modules/custom/comments.php'); ?>
 		@endif
 	@endwhile
 </div>
