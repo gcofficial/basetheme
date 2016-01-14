@@ -63,7 +63,14 @@ class MainModel{
 			'custom_styles'        => '',
 			'is_enabled_preloader' => GeneralSiteSettingsModel::is_enabled_preloader(),
 			'logo'                 => GeneralSiteSettingsModel::getLogo(),
-			'socials'              => photolab_social_list( 'header', false ),
+			'socials'              => View::make(
+				'blocks/socials', 
+				[
+					'socials' => SocialSettingsModel::get_all_socials(),
+					'where'   => 'header',
+				]
+			),
+			'socials_show_header'  => SocialSettingsModel::is_show_header(),
 			'disclimer'            => HeaderSettingsModel::getDisclimer(),
 			'search_box'           => HeaderSettingsModel::getSearchBox(),
 			'header_style_layout'  => HeaderSettingsModel::getHeaderStyle(),
@@ -110,7 +117,7 @@ class MainModel{
 	 */
 	public static function footer()
 	{
-		return \View\View::make( 'sections/footer', MainModel::footer_data()	);
+		return \View\View::make( 'sections/footer', MainModel::footer_data() );
 	}
 
 	/**
@@ -133,7 +140,14 @@ class MainModel{
 					'echo'            => false
 				) 
 			),
-			'socials'      => photolab_social_list( 'footer', false ),
+			'socials'              => View::make(
+				'blocks/socials', 
+				[
+					'socials' => SocialSettingsModel::get_all_socials(),
+					'where'   => 'footer',
+				]
+			),
+			'socials_show_footer'  => SocialSettingsModel::is_show_footer(),
 			'footer_style' => FooterSettingsModel::getStyle(),
 			'widgets' 	   => FooterSettingsModel::getAllFooterWidgetsHTML(),
 			'columns' 	   => FooterSettingsModel::getColumns(),

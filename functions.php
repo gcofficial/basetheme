@@ -48,46 +48,6 @@ function photolab_setup() {
 add_action( 'after_setup_theme', 'photolab_setup' );
 
 /**
- * Get allowed socials list
- */
-function photolab_allowed_socials() {
-
-	$socials = array(
-		'facebook' => array(
-			'label' => __( 'Facebook', 'photolab' ),
-			'icon'  => 'fa-facebook-official'
-		),
-		'twitter' => array(
-			'label' => __( 'Twitter', 'photolab' ),
-			'icon'  => 'fa-twitter'
-		),
-		'google-plus' => array(
-			'label' => __( 'Google+', 'photolab' ),
-			'icon'  => 'fa-google-plus'
-		),
-		'instagram' => array(
-			'label' => __( 'Instagram', 'photolab' ),
-			'icon'  => 'fa-instagram'
-		),
-		'linkedin' => array(
-			'label' => __( 'LinkedIn', 'photolab' ),
-			'icon'  => 'fa-linkedin'
-		),
-		'dribbble' => array(
-			'label' => __( 'Dribbble', 'photolab' ),
-			'icon'  => 'fa-dribbble'
-		),
-		'youtube' => array(
-			'label' => __( 'YouTube', 'photolab' ),
-			'icon'  => 'fa-youtube'
-		)
-	);
-
-	return apply_filters( 'photolab_allowed_socials', $socials );
-
-}
-
-/**
  * Include Google fonts
  */
 function photolab_fonts_url() {

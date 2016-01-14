@@ -139,7 +139,7 @@ class Extras{
 				}
 				if ( $label ) 
 				{
-					echo View::make('blog_labels', ['label' => $label]);
+					echo View::make('blocks/blog_labels', ['label' => $label]);
 				}
 			}
 		} 
@@ -155,7 +155,7 @@ class Extras{
 				}
 				if ( $label ) 
 				{
-					echo View::make('blog_labels', ['label' => $label]);
+					echo View::make('blocks/blog_labels', ['label' => $label]);
 				}
 			}
 		}

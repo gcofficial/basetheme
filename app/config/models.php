@@ -13,4 +13,5 @@ return [
 	\Core\Utils::models_path().'footer_settings.php',
 	\Core\Utils::models_path().'blog_settings.php',
 	\Core\Utils::models_path().'typography_settings.php',
+	\Core\Utils::models_path().'social_settings.php',
 ];

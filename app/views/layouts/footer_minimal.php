@@ -3,5 +3,7 @@
 @endif
 @if(has_nav_menu('footer'))
 	{{ $menu }}
-	{{ $socials }}
+	@if($socials_show_footer)
+		{{ $socials }}
+	@endif
 @endif

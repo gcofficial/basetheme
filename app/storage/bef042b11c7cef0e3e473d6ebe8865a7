@@ -13,7 +13,9 @@
 			</div>
 		</div>
 		<div class="row">
-			<?php echo($socials); ?>		</div>
+			<?php if($socials_show_header): ?>
+				<?php echo($socials); ?>			<?php endif; ?>
+		</div>
 		<div class="row">
 			<div class="clear">
 				<div class="main-nav-wrap">

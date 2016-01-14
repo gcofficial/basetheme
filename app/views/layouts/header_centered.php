@@ -13,7 +13,9 @@
 			</div>
 		</div>
 		<div class="row">
-			{{ $socials }}
+			@if($socials_show_header)
+				{{ $socials }}
+			@endif
 		</div>
 		<div class="row">
 			<div class="clear">

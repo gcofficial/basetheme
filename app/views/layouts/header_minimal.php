@@ -15,7 +15,9 @@
 			</div>
 			<div class="col-md-8">
 				<div class="clear">
-					{{ $socials }}
+					@if($socials_show_header)
+						{{ $socials }}
+					@endif
 				</div>
 			</div>
 		</div>

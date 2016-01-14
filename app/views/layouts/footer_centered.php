@@ -3,7 +3,9 @@
 		@if($logo != '')
 			<img src="{{ $logo }}" alt="Logo" class="logo-img">
 		@endif
-		{{ $socials }}
+		@if($socials_show_footer)
+			{{ $socials }}
+		@endif
 		{{ $menu }}
 	@endif
 	@if(trim($copyright) != '')

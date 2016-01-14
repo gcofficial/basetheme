@@ -96,7 +96,7 @@ class Customizer{
 
 		/* Socials section */
 		$wp_customize->add_section( 
-			'photolab_socials', 
+			'social_settings', 
 			[
 				'title'    => __( 'Socials Settings', 'photolab' ),
 				'priority' => 40
@@ -105,7 +105,7 @@ class Customizer{
 
 		/* Socials position */
 		$wp_customize->add_setting( 
-			'photolab_socials_position_header', 
+			'social_settings[header]', 
 			[
 				'default'           => '',
 				'type'              => 'option',
@@ -113,7 +113,7 @@ class Customizer{
 			] 
 		);
 		$wp_customize->add_setting( 
-			'photolab_socials_position_footer', 
+			'social_settings[footer]', 
 			[
 				'default'           => '',
 				'type'              => 'option',
@@ -121,33 +121,32 @@ class Customizer{
 			] 
 		);
 		$wp_customize->add_control( 
-			'photolab_socials_position_header', 
+			'social_settings_header', 
 			[
 				'label'    => __( 'Show social links in header', 'photolab' ),
-				'section'  => 'photolab_socials',
-				'settings' => 'photolab_socials_position_header',
+				'section'  => 'social_settings',
+				'settings' => 'social_settings[header]',
 				'type'     => 'checkbox'
 			] 
 		);
 		$wp_customize->add_control( 
-			'photolab_socials_position_footer', 
+			'social_settings_footer', 
 			[
 				'label'    => __( 'Show social links in footer', 'photolab' ),
-				'section'  => 'photolab_socials',
-				'settings' => 'photolab_socials_position_footer',
+				'section'  => 'social_settings',
+				'settings' => 'social_settings[footer]',
 				'type'     => 'checkbox'
 			] 
 		);
 
 		/* Social links */
-		$allowed_socials = photolab_allowed_socials();
-		foreach ( $allowed_socials as $social_id => $social_data ) 
+		foreach ( \SocialSettingsModel::get_allowed() as $social_id => $social_data ) 
 		{
 			$name  = $social_id . '_url';
 			$label = isset( $social_data['label'] ) ? $social_data['label'] : false;
 
 			$wp_customize->add_setting( 
-				'photolab[' . $name . ']', 
+				'social_settings[' . $name . ']', 
 				[
 					'default'           => '',
 					'type'              => 'option',
@@ -158,8 +157,8 @@ class Customizer{
 				'photolab_' . $name , 
 				[
 					'label'    => sprintf( __( '%s url', 'photolab' ), $label ),
-					'section'  => 'photolab_socials',
-					'settings' => 'photolab[' . $name . ']',
+					'section'  => 'social_settings',
+					'settings' => 'social_settings[' . $name . ']',
 					'type'     => 'text'
 				] 
 			);
