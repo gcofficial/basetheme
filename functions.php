@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 Use \View\View;
 Use \Core\Utils;
 
@@ -139,17 +139,6 @@ function photolab_fonts_url() {
 
 // Additional template tags
 require get_template_directory() . '/inc/template-tags.php';
-// Additional functions
-require get_template_directory() . '/inc/extras.php';
-// Include customizer
-require get_template_directory() . '/inc/customizer.php';
-// Include custom header support
-// require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Walkers
- */
-require_once get_template_directory() . '/inc/photolab_walker.php';
 
 require_once 'src/Core/Autoload.php';
 \Core\App::Start();

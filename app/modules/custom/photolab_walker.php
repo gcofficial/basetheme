@@ -1,6 +1,8 @@
 <?php
 
-class PhotolabWalker extends Walker_Nav_Menu {
+namespace Modules\Custom;
+
+class Photolab_Walker extends \Walker_Nav_Menu {
 	/**
 	 * What the class handles.
 	 *
@@ -8,7 +10,7 @@ class PhotolabWalker extends Walker_Nav_Menu {
 	 * @since 3.0.0
 	 * @var string
 	 */
-	public $tree_type = array( 'post_type', 'taxonomy', 'custom' );
+	public $tree_type = [ 'post_type', 'taxonomy', 'custom' ];
 
 	/**
 	 * Database fields to use.
@@ -18,7 +20,7 @@ class PhotolabWalker extends Walker_Nav_Menu {
 	 * @todo Decouple this.
 	 * @var array
 	 */
-	public $db_fields = array( 'parent' => 'menu_item_parent', 'id' => 'db_id' );
+	public $db_fields = [ 'parent' => 'menu_item_parent', 'id' => 'db_id' ];
 
 	/**
 	 * Starts the list before the elements are added.
@@ -101,7 +103,7 @@ class PhotolabWalker extends Walker_Nav_Menu {
 
 		$output .= $indent . '<li' . $id . $class_names .'>';
 
-		$atts = array();
+		$atts = [];
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
 		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
 		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
@@ -146,7 +148,7 @@ class PhotolabWalker extends Walker_Nav_Menu {
 			$item_output .= '</a>';
 			if($depth == 0)
 			{
-				if(HeaderSettingsModel::getTitleAttributes())
+				if(\HeaderSettingsModel::getTitleAttributes())
 				{
 					$item_output .= sprintf('<span class="title-attributes">%s</span>', $item->post_excerpt);
 				}	

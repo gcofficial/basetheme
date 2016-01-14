@@ -64,7 +64,12 @@ class MiscModel extends OptionsModel{
 	 */
 	public static function getBlogButton()
 	{
-		return (string) self::getOption('blog_btn');
+		$blog_btn = (string) self::getOption('blog_btn');
+		if($blog_btn == '')
+		{
+			$blog_btn = __( "Read More", "photolab" );	
+		}
+		return $blog_btn;
 	}
 	
 }

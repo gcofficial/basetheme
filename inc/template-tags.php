@@ -289,7 +289,7 @@ function photolab_excerpt() {
  * photolab readmore btn
  */
 function photolab_read_more() {
-	$btn_text = photolab_get_option( 'blog_btn', __( "Read More", "photolab" ) );
+	$btn_text = \MiscModel::getBlogButton();
 	if ( !$btn_text ) {
 		return;
 	}

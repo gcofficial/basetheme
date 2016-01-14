@@ -81,8 +81,7 @@ class MainModel{
 					'container_class' => 'main-navigation', 
 					'container_id'    => 'site-navigation',
 					'menu_class'      => 'sf-menu', 
-					'fallback_cb'     => 'photolab_page_menu',
-					'walker'          => new PhotolabWalker(),
+					'walker'          => new \Modules\Custom\Photolab_Walker(),
 					'echo'            => false,
 				] 
 			),
@@ -93,8 +92,7 @@ class MainModel{
 					'container_class' => 'top-navigation', 
 					'container_id'    => 'site-navigation',
 					'menu_class'      => 'sf-top-menu', 
-					'fallback_cb'     => 'photolab_page_menu',
-					'walker'          => new PhotolabWalker(),
+					'walker'          => new \Modules\Custom\Photolab_Walker(),
 					'echo'            => false,
 				] 
 			)

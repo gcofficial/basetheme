@@ -19,7 +19,6 @@ class Autoload{
 	public function autoloader($class)
 	{
 		$class_path = self::getClassPath($class);
-
 		if(file_exists($class_path))
 		{
 			require_once $class_path;
