@@ -14,7 +14,7 @@
 
 			
 			<div class="entry-content">
-			<?php photolab_featured_gallery(); ?>
+			<?php \Modules\Custom\Gallery::featured_gallery(); ?>
 			</div><!-- .entry-content -->
 
 		</div><!-- .entry-wrapper -->

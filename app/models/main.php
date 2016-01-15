@@ -154,4 +154,96 @@ class MainModel{
 			'css'     	   => FooterSettingsModel::getColumnsCSSClass(),
 		];
 	}
+
+	/**
+	 * Include Google fonts
+	 */
+	public static function fonts_url()
+	{
+		$fonts_url = '';
+
+		$locale = get_locale();
+
+		$cyrillic_locales = array( 'ru_RU', 'mk_MK', 'ky_KY', 'bg_BG', 'sr_RS', 'uk', 'bel' );
+
+		/* Translators: If there are characters in your language that are not
+		* supported by Lora, translate this to 'off'. Do not translate
+		* into your own language.
+		*/
+		$libre = _x( 'on', 'Libre Baskerville font: on or off', 'photolab' );
+
+		/* Translators: If there are characters in your language that are not
+		* supported by Open Sans, translate this to 'off'. Do not translate
+		* into your own language.
+		*/
+		$open_sans = _x( 'on', 'Open Sans font: on or off', 'photolab' );
+
+		if ( 'off' !== $libre || 'off' !== $open_sans ) 
+		{
+			$font_families = array();
+
+			if ( 'off' !== $libre ) 
+			{
+				$font_families[] = 'Libre Baskerville:400,700,400italic';
+			}
+
+			if ( 'off' !== $open_sans ) 
+			{
+				$font_families[] = 'Open Sans:300,400,700,400italic,700italic';
+			}
+
+			$query_args = [
+				'family' => urlencode( implode( '|', $font_families ) ),
+				'subset' => urlencode( 'latin,latin-ext' ),
+			];
+
+			if ( in_array($locale, $cyrillic_locales) ) 
+			{
+				$query_args['subset'] = urlencode( 'latin,latin-ext,cyrillic' );
+			}
+
+			$fonts_url = add_query_arg( $query_args, '//fonts.googleapis.com/css' );
+		}
+
+		return $fonts_url;
+	}
+
+	/**
+	 * Get image for image post format
+	 */
+	public static function image_post() 
+	{
+		if ( has_post_thumbnail() ) 
+		{
+			$thumb_id      = get_post_thumbnail_id();
+			$fullsize_img  = wp_get_attachment_url( $thumb_id );
+			$cropped_image = wp_get_attachment_image( $thumb_id , 'fullwidth-thumbnail' );
+		} 
+		else 
+		{
+			$attachments = get_children( 
+				[
+					'post_parent'    => get_the_id(),
+					'posts_per_page' => 1,
+					'post_status'    => 'inherit',
+					'post_type'      => 'attachment',
+					'post_mime_type' => 'image',
+				] 
+			);
+			if ( $attachments && is_array( $attachments ) ) 
+			{
+				$img_id        = $attachments[0]->ID;
+				$fullsize_img  = wp_get_attachment_url( $img_id );
+				$cropped_image = wp_get_attachment_image( $img_id , 'fullwidth-thumbnail' );
+			}
+		}
+		echo View::make(
+			'blocks/image_post',
+			[
+				'fullsize_img'  => $fullsize_img,
+				'cropped_image' => $cropped_image,
+
+			]
+		);
+	}
 }

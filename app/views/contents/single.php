@@ -1,6 +1,6 @@
 <article id="post-{{ get_the_ID() }}" class="{{ join( ' ', get_post_class() ) }} col-md-12">
 
-	<?php photolab_featured_gallery(); ?>
+	<?php \Modules\Custom\Gallery::featured_gallery(); ?>
 
 	<div class="entry-content">
 		@if( !$is_show_title_on_header )

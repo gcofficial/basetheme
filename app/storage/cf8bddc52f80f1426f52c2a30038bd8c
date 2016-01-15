@@ -1,0 +1,2 @@
+<div class="gall-row <?php echo(esc_attr( $item_class )); ?>">
+	<?php echo(implode('', $items)); ?></div>

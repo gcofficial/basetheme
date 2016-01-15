@@ -1,6 +1,6 @@
 <article id="post-<?php echo(get_the_ID()); ?>" class="<?php echo(join( ' ', get_post_class() )); ?> col-md-12">
 
-	<?php photolab_featured_gallery(); ?>
+	<?php \Modules\Custom\Gallery::featured_gallery(); ?>
 
 	<div class="entry-content">
 		<?php if( !$is_show_title_on_header ): ?>

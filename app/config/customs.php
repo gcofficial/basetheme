@@ -1,6 +1,6 @@
 <?php
 /**
- * Load custom modules
+ * Load custom modules from app/modules/customs
  */
 return [
 	'Sidebar_Creator',
@@ -9,4 +9,5 @@ return [
 	'Photolab_Walker',
 	'Customizer',
 	'Extras',
+	'Gallery',
 ];

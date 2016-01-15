@@ -1,0 +1,1 @@
+<div class="gall-img-wrap <?php echo(esc_attr( $class )); ?>"><a href="<?php echo(esc_url( $fullsize_img )); ?>" class="lightbox-gallery"><?php echo($cropped_image); ?><span class="img-mask"></span></a></div>

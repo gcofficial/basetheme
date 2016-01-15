@@ -29,6 +29,28 @@ class Extras{
 		// ==============================================================
 		add_action( 'wp', [$this, 'setup_author'] );
 		add_action( 'photolab_before_post', [$this, 'blog_labels'] );
+		add_action( 'after_setup_theme', [$this, 'setup'] );
+	}
+
+	/**
+	 * Sets up theme defaults and registers support for various WordPress features.
+	 *
+	 * Note that this function is hooked into the after_setup_theme hook, which
+	 * runs before the init hook. The init hook is too late for some features, such
+	 * as indicating support for post thumbnails.
+	 */
+	public function setup()
+	{
+		/*
+		 * Make theme available for translation.
+		 * Translations can be filed in the /languages/ directory.
+		 * If you're building a theme based on photolab, use a find and replace
+		 * to change 'photolab' to the name of your theme in all the template files
+		 */
+		load_theme_textdomain( 'photolab', get_template_directory() . '/languages' );
+
+		// Add editor styling
+		add_editor_style( 'editor-style.css' );
 	}
 
 	/**

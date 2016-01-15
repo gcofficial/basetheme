@@ -19,7 +19,7 @@ return [
 		['photolab-layout', \Core\Utils::assets_url().'css/layout.css', [], '1.1.0' ],
 		['photolab-magnific-popup', \Core\Utils::assets_url() . 'css/magnific-popup.css', [], '1.1.0'],
 		['dashicons'],
-		['photolab-fonts', photolab_fonts_url(), [], null],
+		['photolab-fonts', MainModel::fonts_url(), [], null],
 		['photolab-style', get_stylesheet_uri(), [], '1.1.0'],
 		['photolab-font-awesome', \Core\Utils::assets_url(). 'css/font-awesome-4.5.0/css/font-awesome.min.css', []],
 		['photolab-layout-ie', \Core\Utils::assets_url() . 'css/layout-ie.css', [], '1.1.0']
