@@ -6,7 +6,10 @@ var SidebarCreator = {
 	 */
 	get: function(id){
 		var val = jQuery(id + ' input').val();
-		if(val == '') return {};
+		if(val === '') 
+		{
+			return {};
+		}
 		return JSON.parse(val);
 	},
 
@@ -16,8 +19,10 @@ var SidebarCreator = {
 	 * @param {string} obj --- json
 	 */
 	set: function(id, obj){
-		if(obj.constructor == Object)
+		if(obj.constructor === Object)
+		{
 			jQuery(id + ' input').val(JSON.stringify(obj));
+		}
 	},
 
 	/**
@@ -37,7 +42,6 @@ var SidebarCreator = {
 	 */
 	sertialize: function($obj){
 		var result = [];
-		console.log($obj);
 		$obj.find('.sidebars-input').each(
 			function(){
 				result.push(jQuery(this).val());
@@ -74,7 +78,6 @@ var SidebarCreator = {
 	 */
 	change: function($obj){
 		var json = JSON.stringify(SidebarCreator.sertialize($obj));
-		console.log(json);
 		jQuery($obj).find('.main-input').val(json);
 		jQuery($obj).find('.main-input').trigger('change');
 	}
