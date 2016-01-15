@@ -7,11 +7,11 @@ jQuery(document).on(
 		jQuery(this).next('div').addClass('active');
 		jQuery('.accordion div:not(".active")').hide();
 		jQuery('.accordion div.active').slideToggle( 
-			"fast", 
+			'fast', 
 			function(){
 				jQuery('.accordion div:visible').prev('h3').addClass('visible');		
 			} 
 		);
-		
+		e.preventDefault();
 	}
 );
