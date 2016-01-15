@@ -2,6 +2,17 @@
     "preset": "wordpress",
     "fileExtensions": [ ".js" ],
     "excludeFiles": [
-        "",
+        "app/assets/js/jquery.flexslider.js",
+        "app/assets/js/jquery.magnific-popup.js",
+        "app/assets/js/device.min.js",
+        "app/assets/js/jquery.flexslider-min.js",
+        "app/assets/js/jquery.magnific-popup.min.js",
+        "app/assets/js/jquery.mobilemenu.js",
+        "app/assets/js/jquery.stickyheader.js",
+        "app/assets/js/jquery.superfish.js",
+        "app/assets/js/jquery.superfish.min.js",
+        "app/assets/js/unminified/device.js",
+        "app/assets/js/unminified/jquery.magnific-popup.js",
+        "app/assets/js/unminified/jquery.superfish.js",
     ]
 }
