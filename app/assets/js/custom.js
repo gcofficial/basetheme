@@ -4,7 +4,7 @@
  */
 
 function getWindowHeight() {
-    var myWidth = 0, myHeight = 0;
+    var myHeight = 0;
     if( typeof( window.innerWidth ) === 'number' ) 
     {
         //Non-IE
@@ -21,7 +21,7 @@ function getWindowHeight() {
         myHeight = document.body.clientHeight;
     }
 
-    return myHeight
+    return myHeight;
 }
 
 (function($) {
@@ -35,7 +35,7 @@ function getWindowHeight() {
 
         if(!device.mobile() && !device.tablet() && !device.ipod()){
 
-            if(photolab_custom.stickup_menu == '1')
+            if(photolab_custom.stickup_menu === '1')
             {
                 // sticky header
                 jQuery('.site-header').tmStickUp({
@@ -47,9 +47,9 @@ function getWindowHeight() {
 
             // pages and posts header image parallax
             $('.page-header-wrap').each(function(){
-                var coefficient = (photolab_custom.stickup_menu != '1') ? 6.3 : 1.7;
+                var coefficient = (photolab_custom.stickup_menu !== '1') ? 6.3 : 1.7;
                 var $bgobj = $(this).find('img'),
-                    window_height = parseInt(getWindowHeight()),
+                    window_height = parseInt(getWindowHeight(), radix),
                     element_pos = $bgobj.offset(),
                     element_top = parseInt(element_pos.top),
                     //buffer = Math.floor(element_top / window_height);
