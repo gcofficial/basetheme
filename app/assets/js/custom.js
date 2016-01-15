@@ -28,6 +28,8 @@ function getWindowHeight() {
 
     $(window).load(function() {
 
+        var yPos = 0;
+
         if(jQuery('.loader-wrapper').length > 0)
         {
             jQuery('.loader-wrapper').delay(1000).fadeOut();
@@ -56,9 +58,9 @@ function getWindowHeight() {
                     visible_scroll = parseInt($(window).scrollTop(), 10) - buffer;
                 if ( visible_scroll > 0 ) {
                     if ( window_height > element_top ) {
-                        var yPos = ($(window).scrollTop() / coefficient);
+                        yPos = ($(window).scrollTop() / coefficient);
                     } else {
-                        var yPos = (visible_scroll / coefficient);
+                        yPos = (visible_scroll / coefficient);
                     }
                     var coords = yPos + 'px';
                     $bgobj.css({ top: coords });
@@ -85,7 +87,7 @@ function getWindowHeight() {
             // home page header image parallax
             $('.home .header-image-box img').each(function(){
 
-                var coefficient = (photolab_custom.stickup_menu != '1') ? 5.5 : 1.3;
+                var coefficient = (photolab_custom.stickup_menu !== '1') ? 5.5 : 1.3;
                 var $bgobj = $(this),
                     window_height = parseInt(getWindowHeight(), 10),
                     element_pos = $bgobj.offset(),
@@ -98,20 +100,20 @@ function getWindowHeight() {
                 {
                     if ( window_height > element_top ) 
                     {
-                        var yPos = ($(window).scrollTop() / coefficient);
+                        yPos = ($(window).scrollTop() / coefficient);
                     } 
                     else 
                     {
-                        var yPos = (visible_scroll / coefficient);
+                        yPos = (visible_scroll / coefficient);
                     }
                     //var coords = yPos + 'px';
                     $bgobj.css({
-                        "-moz-transform": "translateY(" + yPos + "px)",
-                        "-webkit-transform": "translateY(" + yPos + "px)",
-                        "-o-transform": "translateY(" + yPos + "px)",
-                        "-ms-transform": "translateY(" + yPos + "px)",
-                        "transform": "translateY(" + yPos + "px)"
-                    })
+                        '-moz-transform': 'translateY(' + yPos + 'px)',
+                        '-webkit-transform': 'translateY(' + yPos + 'px)',
+                        '-o-transform': 'translateY(' + yPos + 'px)',
+                        '-ms-transform': 'translateY(' + yPos + 'px)',
+                        'transform': 'translateY(' + yPos + 'px)'
+                    });
                 }
                 $(window).scroll(function() {
                     var element_pos = $bgobj.offset(),
@@ -122,9 +124,9 @@ function getWindowHeight() {
                    
                     if ( visible_scroll > 0) {
                         if ( window_height > element_top ) {
-                            var yPos = ($(window).scrollTop() / coefficient);
+                            yPos = ($(window).scrollTop() / coefficient);
                         } else {
-                            var yPos = (visible_scroll / coefficient);
+                            yPos = (visible_scroll / coefficient);
                         }
                         //var coords = yPos + 'px';
                         $bgobj.css({
