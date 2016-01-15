@@ -37,7 +37,7 @@ function getWindowHeight() {
 
         if(!window.device.mobile() && !window.device.tablet() && !window.device.ipod()){
 
-            if(photolab_custom.stickup_menu === '1')
+            if(window.photolab_custom.stickup_menu === '1')
             {
                 // sticky header
                 jQuery('.site-header').tmStickUp({
@@ -49,7 +49,7 @@ function getWindowHeight() {
 
             // pages and posts header image parallax
             $('.page-header-wrap').each(function(){
-                var coefficient = (photolab_custom.stickup_menu !== '1') ? 6.3 : 1.7;
+                var coefficient = (window.photolab_custom.stickup_menu !== '1') ? 6.3 : 1.7;
                 var $bgobj = $(this).find('img'),
                     window_height = parseInt(getWindowHeight(), 10),
                     element_pos = $bgobj.offset(),
@@ -87,7 +87,7 @@ function getWindowHeight() {
             // home page header image parallax
             $('.home .header-image-box img').each(function(){
 
-                var coefficient = (photolab_custom.stickup_menu !== '1') ? 5.5 : 1.3;
+                var coefficient = (window.photolab_custom.stickup_menu !== '1') ? 5.5 : 1.3;
                 var $bgobj = $(this),
                     window_height = parseInt(getWindowHeight(), 10),
                     element_pos = $bgobj.offset(),
@@ -235,12 +235,10 @@ jQuery(document).on(
 
 jQuery( '#top-bar-search-button' ).on({
     focus: function() {
-        console.log('focus');
         jQuery( '#top-bar-search-form' ).parent().addClass( 'adminbar-focused' );
     }, 
     blur: function() 
     {
-        console.log('blur');
         jQuery( '#top-bar-search-form' ).parent().removeClass( 'adminbar-focused' );
     }
 });
