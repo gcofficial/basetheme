@@ -30,17 +30,12 @@ function getWindowHeight() {
 
         var yPos = 0;
 
-        if(typeof(device) === 'undefined')
-        {
-            var device = {};
-        }
-
         if(jQuery('.loader-wrapper').length > 0)
         {
             jQuery('.loader-wrapper').delay(1000).fadeOut();
         }
 
-        if(!device.mobile() && !device.tablet() && !device.ipod()){
+        if(!window.device.mobile() && !window.device.tablet() && !window.device.ipod()){
 
             if(photolab_custom.stickup_menu === '1')
             {
