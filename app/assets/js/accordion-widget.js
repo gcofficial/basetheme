@@ -1,5 +1,5 @@
 jQuery(document).on( 
-	'click',
+    'click',
 	'.accordion h3',
 	function(e){
 		jQuery( '.accordion h3' ).removeClass( 'visible' );
