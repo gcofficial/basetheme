@@ -1,6 +1,6 @@
 jQuery(document).on(
-    "click", 
-    ".upload_image_button",  
+    'click', 
+    '.upload_image_button',  
     function(e){
         var send_attachment_bkp = wp.media.editor.send.attachment;
         var $button = jQuery(this);
@@ -8,8 +8,8 @@ jQuery(document).on(
             $button.prev('input').val(attachment.sizes[props.size].url);
             $button.prev('input').trigger('change');
             wp.media.editor.send.attachment = send_attachment_bkp;
-        }
+        };
         wp.media.editor.open($button);
-        return false;
+        e.preventDefault();
     }
 );
