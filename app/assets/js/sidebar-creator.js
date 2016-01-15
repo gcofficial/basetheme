@@ -59,7 +59,7 @@ var SidebarCreator = {
 		jQuery('.sidebar-creator').each(
 			function(){
 				var values = SidebarCreator.get('#' + jQuery(this).attr('id'));
-				if(values.constructor == Array)
+				if(values.constructor === Array)
 				{
 					for(var i = 0; i < values.length; i++)
 					{
