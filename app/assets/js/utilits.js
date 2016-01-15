@@ -1,12 +1,23 @@
 function wheel(event) {
-    if (event.wheelDelta) window.delta = event.wheelDelta / 90;
-    else if (event.detail) window.delta = -event.detail / 3;
+    if (event.wheelDelta) 
+    {
+        window.delta = event.wheelDelta / 90;
+    }
+    else if 
+    {
+        (event.detail) window.delta = -event.detail / 3;
+    }
     handle();
-    if (event.preventDefault) event.preventDefault();
+    if (event.preventDefault) 
+    {
+        event.preventDefault();
+    }
     event.returnValue = false;
 }
 
 function handle() {
+    var time = 330;
+    var distance = 100;
     jQuery('html, body').stop().animate({
         scrollTop: jQuery(window).scrollTop() - (distance * window.delta)
     }, time);
@@ -19,9 +30,6 @@ jQuery(window).load(function(){
         }
 
         window.onmousewheel = document.onmousewheel = wheel;
-
-        var time = 330;
-        var distance = 100;
     }
 });
 function checkBrowser(){
