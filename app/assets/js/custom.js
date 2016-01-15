@@ -49,12 +49,11 @@ function getWindowHeight() {
             $('.page-header-wrap').each(function(){
                 var coefficient = (photolab_custom.stickup_menu !== '1') ? 6.3 : 1.7;
                 var $bgobj = $(this).find('img'),
-                    window_height = parseInt(getWindowHeight(), radix),
+                    window_height = parseInt(getWindowHeight(), 10),
                     element_pos = $bgobj.offset(),
-                    element_top = parseInt(element_pos.top),
-                    //buffer = Math.floor(element_top / window_height);
+                    element_top = parseInt(element_pos.top, 10),
                     buffer = Math.floor(element_top - window_height),
-                    visible_scroll = parseInt($(window).scrollTop()) - buffer;
+                    visible_scroll = parseInt($(window).scrollTop(), 10) - buffer;
                 if ( visible_scroll > 0 ) {
                     if ( window_height > element_top ) {
                         var yPos = ($(window).scrollTop() / coefficient);
@@ -66,10 +65,10 @@ function getWindowHeight() {
                 }
                 $(window).scroll(function() {
                     var element_pos = $bgobj.offset(),
-                        element_top = parseInt(element_pos.top),
+                        element_top = parseInt(element_pos.top, 10),
                         //buffer = Math.floor(element_top / window_height);
                         buffer = Math.floor(element_top - window_height),
-                        visible_scroll = parseInt($(window).scrollTop()) - buffer;
+                        visible_scroll = parseInt($(window).scrollTop(), 10) - buffer;
                    
                     if ( visible_scroll > 0 ) {
                         if ( window_height > element_top ) {
@@ -88,12 +87,12 @@ function getWindowHeight() {
 
                 var coefficient = (photolab_custom.stickup_menu != '1') ? 5.5 : 1.3;
                 var $bgobj = $(this),
-                    window_height = parseInt(getWindowHeight()),
+                    window_height = parseInt(getWindowHeight(), 10),
                     element_pos = $bgobj.offset(),
-                    element_top = parseInt(element_pos.top),
+                    element_top = parseInt(element_pos.top, 10),
                     //buffer = Math.floor(element_top / window_height);
                     buffer = Math.floor(element_top - window_height),
-                    visible_scroll = parseInt($(window).scrollTop()) - buffer;
+                    visible_scroll = parseInt($(window).scrollTop(), 10) - buffer;
 
                 if ( visible_scroll > 0) 
                 {
@@ -116,10 +115,10 @@ function getWindowHeight() {
                 }
                 $(window).scroll(function() {
                     var element_pos = $bgobj.offset(),
-                        element_top = parseInt(element_pos.top),
+                        element_top = parseInt(element_pos.top, 10),
                         //buffer = Math.floor(element_top / window_height);
                         buffer = Math.floor(element_top - window_height),
-                        visible_scroll = parseInt($(window).scrollTop()) - buffer;
+                        visible_scroll = parseInt($(window).scrollTop(), 10) - buffer;
                    
                     if ( visible_scroll > 0) {
                         if ( window_height > element_top ) {
