@@ -27,11 +27,11 @@ jQuery(document).on(
 
 		ctrlToggle(
 			jQuery('#customize-control-disclimer_text'),
-			val != 0
+			val !== 0
 		);
 		ctrlToggle(
 			jQuery('#customize-control-search_box'),
-			val != 0
+			val !== 0
 		);
 	}
 );
@@ -47,7 +47,7 @@ jQuery(document).on(
 
 		ctrlToggle(
 			jQuery('#customize-control-columns'),
-			val == 'grid' || val == 'masonry'
+			val === 'grid' || val === 'masonry'
 		);
 	}
 );
@@ -61,8 +61,8 @@ jQuery(document).on(
 	function(){
 		var val = jQuery(this).val();
 
-		ctrlToggle(jQuery('#customize-control-footer_logo'), val == 'centered');
-		ctrlToggle(jQuery('#customize-control-footer_columns'), val == 'default' || val == 'centered');
+		ctrlToggle(jQuery('#customize-control-footer_logo'), val === 'centered');
+		ctrlToggle(jQuery('#customize-control-footer_columns'), val === 'default' || val === 'centered');
 	}
 );
 
@@ -77,23 +77,23 @@ jQuery(document).ready(
 
 		ctrlToggle(
 			jQuery('#customize-control-footer_logo'), 
-			footer_style == 'centered'
+			footer_style === 'centered'
 		);
 		ctrlToggle(
 			jQuery('#customize-control-footer_columns'), 
-			footer_style == 'default' || footer_style == 'centered'
+			footer_style === 'default' || footer_style === 'centered'
 		);	
 		ctrlToggle(
 			jQuery('#customize-control-columns'),
-			layout_style == 'grid' || layout_style == 'masonry'
+			layout_style === 'grid' || layout_style === 'masonry'
 		);
 		ctrlToggle(
 			jQuery('#customize-control-disclimer_text'),
-			top_menu != 0
+			top_menu !== 0
 		);
 		ctrlToggle(
 			jQuery('#customize-control-search_box'),
-			top_menu != 0
+			top_menu !== 0
 		);
 	}
 );
