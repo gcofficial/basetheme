@@ -3,9 +3,9 @@ function wheel(event) {
     {
         window.delta = event.wheelDelta / 90;
     }
-    else if 
+    else if (event.detail)
     {
-        (event.detail) window.delta = -event.detail / 3;
+         window.delta = -event.detail / 3;
     }
     handle();
     if (event.preventDefault) 
