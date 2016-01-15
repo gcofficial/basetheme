@@ -30,6 +30,11 @@ function getWindowHeight() {
 
         var yPos = 0;
 
+        if(typeof(device) === 'undefined')
+        {
+            var device = {};
+        }
+
         if(jQuery('.loader-wrapper').length > 0)
         {
             jQuery('.loader-wrapper').delay(1000).fadeOut();
@@ -74,9 +79,9 @@ function getWindowHeight() {
                    
                     if ( visible_scroll > 0 ) {
                         if ( window_height > element_top ) {
-                            var yPos = ($(window).scrollTop() / coefficient);
+                            yPos = ($(window).scrollTop() / coefficient);
                         } else {
-                            var yPos = (visible_scroll / coefficient);
+                            yPos = (visible_scroll / coefficient);
                         }
                         var coords = yPos + 'px';
                         $bgobj.css({ top: coords });
@@ -130,12 +135,12 @@ function getWindowHeight() {
                         }
                         //var coords = yPos + 'px';
                         $bgobj.css({
-                            "-moz-transform": "translateY(" + yPos + "px)",
-                            "-webkit-transform": "translateY(" + yPos + "px)",
-                            "-o-transform": "translateY(" + yPos + "px)",
-                            "-ms-transform": "translateY(" + yPos + "px)",
-                            "transform": "translateY(" + yPos + "px)"
-                        })
+                            '-moz-transform': 'translateY(' + yPos + 'px)',
+                            '-webkit-transform': 'translateY(' + yPos + 'px)',
+                            '-o-transform': 'translateY(' + yPos + 'px)',
+                            '-ms-transform': 'translateY(' + yPos + 'px)',
+                            'transform': 'translateY(' + yPos + 'px)'
+                        });
                     }
                 });
             });
@@ -160,7 +165,7 @@ function getWindowHeight() {
 		}
 
 		});
-	})
+	});
 
     jQuery(document).ready(function($) {
         var $container = $('#masonry');
@@ -168,8 +173,8 @@ function getWindowHeight() {
            itemSelector: '.brick'
         });
         // init popup galleries for gallery post format featured galleries
-        $(".post-featured-gallery").each(function(index, el) {
-            $('#' + $(this).data("gall-id") + ' .lightbox-gallery').magnificPopup({
+        $('.post-featured-gallery').each(function() {
+            $('#' + $(this).data('gall-id') + ' .lightbox-gallery').magnificPopup({
                 type: 'image',
                 gallery:{
                     enabled:true
@@ -182,12 +187,12 @@ function getWindowHeight() {
                     duration: 300, // duration of the effect, in milliseconds
                     easing: 'ease-in-out', // CSS transition easing function 
 
-                    // The "opener" function should return the element from which popup will be zoomed in
+                    // The 'opener' function should return the element from which popup will be zoomed in
                     // and to which popup will be scaled down
                     // By defailt it looks for an image tag:
                     opener: function(openerElement) {
                         // openerElement is the element on which popup was initialized, in this case its <a> tag
-                        // you don't need to add "opener" option if this code matches your needs, it's defailt one.
+                        // you don't need to add 'opener' option if this code matches your needs, it's defailt one.
                         return openerElement.is('img') ? openerElement : openerElement.find('img');
                     }
                 }
@@ -215,7 +220,7 @@ function getWindowHeight() {
     jQuery(document).ready(function($) {
         $('ul.sf-menu').superfish();
 
-        var ismobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i)
+        var ismobile = navigator.userAgent.match(/(iPad)|(iPhone)|(iPod)|(android)|(webOS)/i);
         if(ismobile){
             jQuery('.main-navigation > ul').sftouchscreen();
         }
