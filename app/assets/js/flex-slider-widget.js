@@ -1,9 +1,9 @@
 jQuery(document).ready(
 	function(){
 		jQuery('.flexslider').flexslider({ 
-			animation: "slide",
-			prevText: "",
-			nextText: "",
+			animation: 'slide',
+			prevText: '',
+			nextText: ''
 		});
 	}
 );
