@@ -15,7 +15,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options
-	 * 
+	 *
 	 * @return array --- all options
 	 */
 	public static function get_all() {
@@ -24,7 +24,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Get blog layout style
-	 * 
+	 *
 	 * @return string --- blog layout style
 	 */
 	public static function getLayoutStyle() {
@@ -38,7 +38,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all allowed footer styles
-	 * 
+	 *
 	 * @return array --- all allowed footer sytles
 	 */
 	public static function getAllowedStyles() {
@@ -51,7 +51,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Get layout columns
-	 * 
+	 *
 	 * @return integer --- layout columns
 	 */
 	public static function getColumns() {
@@ -62,7 +62,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Get column CSS class
-	 * 
+	 *
 	 * @return string --- column CSS class
 	 */
 	public static function getColumnCSSClass() {
@@ -75,7 +75,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Get brick percent width
-	 * 
+	 *
 	 * @return float --- percent width
 	 */
 	public static function getBrickWidth() {
@@ -88,7 +88,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Is default layout ?
-	 * 
+	 *
 	 * @return boolean --- true if succes | false if not
 	 */
 	public static function isDefaultLayout() {
@@ -97,7 +97,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Is grid layout ?
-	 * 
+	 *
 	 * @return boolean --- true if succes | false if not
 	 */
 	public static function isGridLayout() {
@@ -106,7 +106,7 @@ class Blog_Settings_Model extends Options_Model{
 
 	/**
 	 * Is masonry layout ?
-	 * 
+	 *
 	 * @return boolean --- true if succes | false if not
 	 */
 	public static function isMasonryLayout() {

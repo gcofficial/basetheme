@@ -14,7 +14,7 @@ class General_Site_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options
-	 * 
+	 *
 	 * @return array --- all options
 	 */
 	public static function get_all() {
@@ -23,7 +23,7 @@ class General_Site_Settings_Model extends Options_Model{
 
 	/**
 	 * Get favicon HTML code
-	 * 
+	 *
 	 * @return string --- favicon HTML code
 	 */
 	public static function getFavicon() {
@@ -37,7 +37,7 @@ class General_Site_Settings_Model extends Options_Model{
 
 	/**
 	 * Get touch icon HTML code
-	 * 
+	 *
 	 * @return string --- touch icon HTML code
 	 */
 	public static function getTouchIcon() {
@@ -51,7 +51,7 @@ class General_Site_Settings_Model extends Options_Model{
 
 	/**
 	 * Get site logo HTML code
-	 * 
+	 *
 	 * @return string --- site logo HTML code
 	 */
 	public static function getLogo() {

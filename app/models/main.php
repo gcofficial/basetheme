@@ -41,7 +41,7 @@ class Main_Model {
 
 	/**
 	 * Get header
-	 * 
+	 *
 	 * @return string HTML code header
 	 */
 	public static function header() {
