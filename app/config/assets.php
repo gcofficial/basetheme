@@ -18,7 +18,7 @@ return [
 		[ 'masonry', 'https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.min.js', [ 'jquery' ] ],
 	],
 	'styles'  => [
-		[ 'photolab-layout', \Core\Utils::assets_url().'css/layout.css', [], '1.1.0'  ],
+		[ 'photolab-layout', \Core\Utils::assets_url().'css/layout.css', [], '1.1.0' ],
 		[ 'photolab-magnific-popup', \Core\Utils::assets_url() . 'css/magnific-popup.css', [], '1.1.0' ],
 		[ 'dashicons' ],
 		[ 'photolab-fonts', MainModel::fonts_url(), [], null ],
@@ -28,17 +28,17 @@ return [
 	],
 	'localize' => [
 		[
-			'photolab-custom', 
-			'photolab_custom', 
+			'photolab-custom',
+			'photolab_custom',
 			[ 'stickup_menu' => HeaderSettingsModel::getStickupMenu() ],
 		],
 		[
 			'photolab-layout-ie',
-			'conditional', 
+			'conditional',
 			'lte IE 8',
 		],
 	],
-	'custom'  => [
+	'custom' => [
 		
 	],
 ];
