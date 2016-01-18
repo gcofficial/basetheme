@@ -1,6 +1,8 @@
 <?php
 /**
  * Load models
+ *
+ * @package photolab
  */
 return [
 	\Core\Utils::models_path().'main.php',

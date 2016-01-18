@@ -3,6 +3,8 @@
  * Register all widgets
  *
  * Type some WP_Widget classes 
+ *
+ * @package photolab
  */
 return [
 	'Accordion',

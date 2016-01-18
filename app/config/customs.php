@@ -1,6 +1,8 @@
 <?php
 /**
  * Load custom modules from app/modules/customs
+ *
+ * @package photolab
  */
 return [
 	'Sidebar_Creator',

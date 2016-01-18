@@ -1,6 +1,8 @@
 <?php
 /**
  * Register all nav menus
+ *
+ * @package photolab
  */
 return [
 	'top'    => __( 'Top Menu', 'photolab' ),

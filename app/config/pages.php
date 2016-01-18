@@ -1,6 +1,8 @@
 <?php
 /**
  * Add theme pages
+ *
+ * @package photolab
  */
 return [
 	'Upgrade_To_Pro' => [

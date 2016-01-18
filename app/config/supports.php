@@ -1,6 +1,8 @@
 <?php
 /**
  * Install all supports
+ *
+ * @package photolab
  */
 
 return [

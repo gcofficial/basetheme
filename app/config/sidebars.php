@@ -1,6 +1,8 @@
 <?php
 /**
  * Install all sidebars
+ *
+ * @package photolab
  */
 
 return [

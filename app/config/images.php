@@ -1,6 +1,8 @@
 <?php
 /**
  * Load all image sizes
+ *
+ * @package photolab
  */
 return [
 	'fullwidth-thumbnail' => [ 1040, 385, true ],
