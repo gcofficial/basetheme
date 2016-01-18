@@ -13,7 +13,6 @@ abstract class Options_Model {
 	/**
 	 * Get single option by key
 	 *
-	 * @param string $key --- option key.
 	 * @return mixed --- option type.
 	 */
 	public static function get_option( $key ) {
