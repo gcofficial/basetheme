@@ -12,6 +12,7 @@ class Typography_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options
+	 * 
 	 * @return array all options.
 	 */
 	public static function get_all() {
@@ -20,6 +21,7 @@ class Typography_Settings_Model extends Options_Model{
 
 	/**
 	 * Get allowed fonts with all options
+	 * 
 	 * @return array all allowed fonts.
 	 */
 	public static function getAllowedFontsWith() {
@@ -57,6 +59,7 @@ class Typography_Settings_Model extends Options_Model{
 
 	/**
 	 * Get font option
+	 * 
 	 * @param  string $font font key.
 	 * @param  string $option option key.
 	 * @return string font option.
@@ -71,6 +74,7 @@ class Typography_Settings_Model extends Options_Model{
 
 	/**
 	 * Get fonts option
+	 * 
 	 * @param  string $option option key.
 	 * @return string array with font key => option value.
 	 */
@@ -85,6 +89,7 @@ class Typography_Settings_Model extends Options_Model{
 
 	/**
 	 * Get text color HEX
+	 * 
 	 * @return string text color HEX.
 	 */
 	public static function getTextColor() {
@@ -97,6 +102,7 @@ class Typography_Settings_Model extends Options_Model{
 
 	/**
 	 * Get text H1 color HEX
+	 * 
 	 * @param string $num H tag number.
 	 * @return string text H1 color HEX.
 	 */

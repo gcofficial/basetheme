@@ -12,6 +12,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options
+	 * 
 	 * @return array --- all options
 	 */
 	public static function get_all() {
@@ -20,6 +21,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get stickup menu checkbox value
+	 * 
 	 * @return boolean --- true or false
 	 */
 	public static function getStickupMenu() {
@@ -28,6 +30,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get show title on header checkbox value
+	 * 
 	 * @return boolean --- true or false
 	 */
 	public static function is_show_title_on_header() {
@@ -36,6 +39,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get enable/disable flag title attributes
+	 * 
 	 * @return boolean --- enabled or disabled
 	 */
 	public static function getTitleAttributes() {
@@ -44,6 +48,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get enable/disable flag search box
+	 * 
 	 * @return boolean --- enabled or disabled
 	 */
 	public static function getSearchBox() {
@@ -52,6 +57,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get disclimer text HTML code
+	 * 
 	 * @return string --- disclimer text HTML code
 	 */
 	public static function getDisclimer() {
@@ -60,6 +66,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get current header style
+	 * 
 	 * @return string --- header style
 	 */
 	public static function getHeaderStyle() {
@@ -73,6 +80,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all allowed header styles
+	 * 
 	 * @return array --- all allowed header sytles
 	 */
 	public static function getAllowedHeaderStyles() {
@@ -105,6 +113,7 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Add title to content
+	 * 
 	 * @param string $content html code.
 	 */
 	public static function add_title_to_content( $content ) {

@@ -12,6 +12,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options
+	 * 
 	 * @return array --- all options
 	 */
 	public static function get_all() {
@@ -20,6 +21,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get mode left
+	 * 
 	 * @return string --- mode left
 	 */
 	public static function getModeLeft() {
@@ -28,6 +30,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get mode right
+	 * 
 	 * @return string --- mode right
 	 */
 	public static function getModeRight() {
@@ -36,6 +39,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get sidebars
+	 * 
 	 * @return string --- json string or empty
 	 */
 	public static function getSidebars() {
@@ -44,6 +48,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get sidebars in array
+	 * 
 	 * @return array --- sidebars array
 	 */
 	public static function getSidebarsArray() {
@@ -52,6 +57,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get sidebars with options
+	 * 
 	 * @return array --- sidebars with options
 	 */
 	public static function getSidebarsOptions() {
@@ -77,6 +83,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get sidebar id from name
+	 * 
 	 * @param  string $name --- sidebar name.
 	 * @return string       --- sidebar id.
 	 */
@@ -86,6 +93,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get registered sidebars for select control.
+	 * 
 	 * @return array registered sidebars.
 	 */
 	public static function getSidebarsForSelect() {
@@ -101,6 +109,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get left sidebar id
+	 * 
 	 * @return string left sidebar id.
 	 */
 	public static function getLeftSidebarID() {
@@ -115,6 +124,7 @@ class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get right sidebar id
+	 * 
 	 * @return string --- right sidebar id.
 	 */
 	public static function getRightSidebarID() {

@@ -12,6 +12,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options
+	 * 
 	 * @return array --- all options
 	 */
 	public static function get_all() {
@@ -20,6 +21,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get copyright text
+	 * 
 	 * @return string --- copyright HTML code
 	 */
 	public static function getCopyright() {
@@ -28,6 +30,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get site logo HTML code
+	 * 
 	 * @return string --- site logo HTML code
 	 */
 	public static function getLogo() {
@@ -36,6 +39,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get current footer style
+	 * 
 	 * @return string --- footer style
 	 */
 	public static function getStyle() {
@@ -49,6 +53,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all allowed footer styles
+	 * 
 	 * @return array --- all allowed footer sytles
 	 */
 	public static function getAllowedStyles() {
@@ -61,6 +66,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get columns number
+	 * 
 	 * @return integer --- columns number
 	 */
 	public static function getColumns() {
@@ -72,6 +78,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get columns css class
+	 * 
 	 * @return string --- css class
 	 */
 	public static function getColumnsCSSClass() {
@@ -86,6 +93,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all footer widgets id
+	 * 
 	 * @return array --- all footer widgets id
 	 */
 	public static function getAllFooterWidgetsID() {
@@ -99,6 +107,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all footer widgets
+	 * 
 	 * @return array --- widgets
 	 */
 	public static function getAllFooterWidgets() {
@@ -118,6 +127,7 @@ class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all footer widgets HTML in on array
+	 * 
 	 * @return array --- all footer widgets HTML in on array
 	 */
 	public static function getAllFooterWidgetsHTML() {

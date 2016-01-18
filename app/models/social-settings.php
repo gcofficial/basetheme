@@ -12,6 +12,7 @@ class Social_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options
+	 * 
 	 * @return array --- all options
 	 */
 	public static function get_all() {
