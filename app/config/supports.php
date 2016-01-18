@@ -8,16 +8,16 @@
 return [
 	'title-tag',
 	// Add default posts and comments RSS feed links to head.
-	'automatic-feed-links', 
-	// Enable support for Post Formats.
+	'automatic-feed-links',
+	// Enable support for Post Formats
 	'post-formats' => [ 'aside', 'image', 'gallery', 'video', 'quote', 'link' ],
 	// Setup the WordPress core custom background feature.
-	'custom-background' => apply_filters( 
-		'photolab_custom_background_args', 
+	'custom-background' => apply_filters(
+		'photolab_custom_background_args',
 		[
 			'default-color' => 'ffffff',
 			'default-image' => '',
-		] 
+		]
 	),
 	// Enable support for HTML5 markup.
 	'html5' => [
@@ -27,12 +27,14 @@ return [
 		'gallery',
 		'caption',
 	],
+
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
 	'post-thumbnails',
+
 	/**
 	 * Jetpack
 	 */
@@ -40,6 +42,7 @@ return [
 		'container' => 'main',
 		'footer'    => 'page',
 	],
+
 	/**
 	 * Custom header setup
 	 */
@@ -53,7 +56,7 @@ return [
 		'header-text'            => false,
 		'uploads'                => true,
 		'wp-head-callback'       => '',
-		'admin-head-callback'    => ['\\Modules\\Custom\\Custom_Header', 'style'],
-		'admin-preview-callback' => ['\\Modules\\Custom\\Custom_Header', 'image'],
+		'admin-head-callback'    => [ '\\Modules\\Custom\\Custom_Header', 'style' ],
+		'admin-preview-callback' => [ '\\Modules\\Custom\\Custom_Header', 'image' ],
 	],
 ];
