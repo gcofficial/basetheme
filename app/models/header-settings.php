@@ -113,8 +113,6 @@ class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Add title to content
-	 *
-	 * @param string $content html code.
 	 */
 	public static function add_title_to_content( $content ) {
 		$custom_content = '';
