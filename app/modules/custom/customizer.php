@@ -509,7 +509,7 @@ class Customizer {
 				'settings' => 'header_settings[show_title_on_header]',
 				'type'     => 'checkbox',
 				'priority' => 4,
-				'std'      => '1',
+				'std'	   => '1',
 			]
 		);
 
