@@ -83,7 +83,7 @@ class View {
 	/**
 	 * Get view path
 	 * 		
-	 * @param  string $filename file name
+	 * @param type $filename file name
 	 * @return string view path
 	 */
 	public static function get_view_path($filename)
@@ -99,7 +99,7 @@ class View {
 	 * Build a view instance. This is the 1st method called
      * when defining a View.
      * 
-	 * @param  string $view The view name.
+	 * @param type $view The view name.
 	 * @param  array $datas Passed data to the view.
 	 * @return string Compiled view
 	 */
@@ -130,7 +130,7 @@ class View {
 	/**
 	 * Render view
 	 * 	
-	 * @param  string $view_path storage view path
+	 * @param type $view_path storage view path
 	 * @param  array $data include data
 	 * @return rendered html
 	 */

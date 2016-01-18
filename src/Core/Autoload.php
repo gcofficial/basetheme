@@ -27,7 +27,7 @@ class Autoload{
 
 	/**
 	 * Get class path from class called name
-	 * @param  string $class --- class called name
+	 * @param type $class --- class called name
 	 * @return string        --- class path
 	 */
 	public static function getClassPath($class)

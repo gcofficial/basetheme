@@ -44,7 +44,7 @@ class Configuration{
 	/**
 	 * Make class path from class name
 	 * 
-	 * @param  string $class_name 
+	 * @param type $class_name 
 	 * @return string class path
 	 */
 	public static function get_class_path($class_name)

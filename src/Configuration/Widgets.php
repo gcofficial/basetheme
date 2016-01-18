@@ -47,7 +47,7 @@ class Widgets{
 	/**
 	 * Get class path
 	 * 
-	 * @param  string $class class name
+	 * @param type $class class name
 	 * @return string widget path
 	 */
 	public function path($class)

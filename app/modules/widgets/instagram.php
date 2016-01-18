@@ -21,8 +21,8 @@ class Instagram extends \WP_Widget{
 
 	/**
 	 * Get user id by user name
-	 * @param  string $user_name --- user name
-	 * @param  string $client_id --- client id
+	 * @param type $user_name --- user name
+	 * @param type $client_id --- client id
 	 * @return integer --- user id
 	 */
 	public function getUserID($user_name, $client_id = '')
@@ -52,7 +52,7 @@ class Instagram extends \WP_Widget{
 	/**
 	 * Get posts with thumbnails
 	 * @param  integer $number_posts --- number posts
-	 * @param  string $post_types --- post type
+	 * @param type $post_types --- post type
 	 * @return array --- posts with thumbnails $post->image
 	 */
 	public function getPostsWithImages($id = '189003872', $client_id = '', $number_posts = 1)
@@ -85,7 +85,7 @@ class Instagram extends \WP_Widget{
 	/**
 	 * Sanitize client id
 	 * 
-	 * @param  string $client_id
+	 * @param type $client_id
 	 * @return string sanitized client id
 	 */
 	public function sanitize_client_id($client_id = '')

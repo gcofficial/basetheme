@@ -35,8 +35,8 @@ class Utils{
      * Try get value by key from array
      * 	
      * @param  array $array 
-     * @param  string $key 
-     * @param  string $default default value
+     * @param type $key 
+     * @param type $default default value
      * @return mixed value by key
      */
     public static function array_get($array, $key, $default = '')
@@ -216,7 +216,7 @@ class Utils{
 
     /**
      * Instead $GLOBALS['wp_filesystem']->get_contents( $file )
-     * @param  string $url
+     * @param type $url
      * @return string requres data
      */
     public static function get_contents($url) {
