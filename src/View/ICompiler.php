@@ -6,7 +6,7 @@ interface ICompiler {
     /**
      * Compile the view at the given path.
      *
-     * @param string $path
+     * @param type $path
      * @return void
      */
     public function compile($path);

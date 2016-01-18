@@ -13,7 +13,7 @@ abstract class Compiler {
     /**
      * Define children compiler constructor.
      *
-     * @param string $storage
+     * @param type $storage
      */
     public function __construct($storage = null)
     {
@@ -23,7 +23,7 @@ abstract class Compiler {
     /**
      * Check if a compiled view is expired or not.
      *
-     * @param string $path
+     * @param type $path
      * @return bool
      */
     public function isExpired($path)
@@ -44,7 +44,7 @@ abstract class Compiler {
     /**
      * Return the compiled view path.
      *
-     * @param string $path The original view path.
+     * @param type $path The original view path.
      * @return string
      */
     public function getCompiledPath($path)

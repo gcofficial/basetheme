@@ -208,8 +208,8 @@ class Extras {
 	/**
 	 * Filters wp_title to print a neat <title> tag based on what is being viewed.
 	 *
-	 * @param string $title Default title text for current view.
-	 * @param string $sep Optional separator.
+	 * @param type $title Default title text for current view.
+	 * @param type $sep Optional separator.
 	 * @return string The filtered title.
 	 */
 	public function wp_title( $title, $sep ) {

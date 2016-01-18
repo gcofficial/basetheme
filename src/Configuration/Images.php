@@ -85,7 +85,7 @@ class Images{
      * Clean the image slug for display.
      * Remove '-', '_' and set first character to uppercase.
      *
-     * @param string $text The text to clean.
+     * @param type $text The text to clean.
      * @return string
      */
     protected function label($text)

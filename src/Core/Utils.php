@@ -110,8 +110,8 @@ class Utils{
     /**
      * Determine if a given string starts with a given substring.
      *
-     * @param string $haystack
-     * @param string|array $needles
+     * @param type $haystack
+     * @param type|array $needles
      * @return bool
      */
     public static function starts_with($haystack, $needles)
