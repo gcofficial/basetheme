@@ -28,7 +28,7 @@ else if (is_search())
 			'sidebar_left'   => SidebarSettingsModel::getModeLeft(),
 			'sidebar_right'  => SidebarSettingsModel::getModeRight(),
 			'breadcrumbs'    => GeneralSiteSettingsModel::breadcrumbs(),
-			'paginate_links' => BlogSettingsModel::getPaginateLinks(),
+			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
 		]
 	);
 }
@@ -60,7 +60,7 @@ else
 	$result = \View\View::make(
 		'pages/index',
 		[
-			'paginate_links' => BlogSettingsModel::getPaginateLinks(),
+			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
 			'posts'          => $GLOBALS['wp_query']->get_posts()
 		]
 	);

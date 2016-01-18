@@ -1,5 +1,5 @@
 @for($i = 0; $i < count($posts); $i++)
 	<?php $post = $posts[$i]; ?>
 	<?php setup_postdata( $post ); ?>
-	@include( 'contents/'.BlogSettingsModel::getContentName() )
+	@include( 'contents/'.Blog_Settings_Model::getContentName() )
 @endfor

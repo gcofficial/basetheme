@@ -2,7 +2,7 @@
 /**
  * Register all widgets
  *
- * Type some WP_Widget classes 
+ * Type some WP_Widget classes
  *
  * @package photolab
  */

@@ -8,7 +8,7 @@
 			setup_postdata( $post );
 			?>
 			<div class="<?php echo($column_css_class); ?>">
-				<?php echo \View\View::make( 'contents/'.BlogSettingsModel::getContentName() , \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+				<?php echo \View\View::make( 'contents/'.Blog_Settings_Model::getContentName() , \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
 			</div>
 				
 		<?php endif; ?>

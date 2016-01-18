@@ -5,7 +5,7 @@
 	setup_postdata( $post );
 	?>
 	<div class="brick brick-{{ $columns_count }}">
-		@include( 'contents/'.BlogSettingsModel::getContentName() )
+		@include( 'contents/'.Blog_Settings_Model::getContentName() )
 	</div>
 @endfor
 </div>

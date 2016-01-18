@@ -8,7 +8,7 @@
 			setup_postdata( $post );
 			?>
 			<div class="{{ $column_css_class }}">
-				@include( 'contents/'.BlogSettingsModel::getContentName() )
+				@include( 'contents/'.Blog_Settings_Model::getContentName() )
 			</div>
 				
 		@endif

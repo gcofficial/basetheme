@@ -145,7 +145,7 @@ class SidebarSettingsModel extends OptionsModel{
 			'lr1'  => 'right',
 			'l1r1' => 'leftright',
 		);	
-		if(!BlogSettingsModel::isDefaultLayout())
+		if(!Blog_Settings_Model::isDefaultLayout())
 		{
 			$values['l1r1'] = 'left';
 		}
