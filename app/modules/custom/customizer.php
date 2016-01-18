@@ -62,7 +62,8 @@ class Customizer {
 
 	/**
 	 * Sanitize content for allowed HTML tags for post content.
-	 * @param  string $input content.
+	 *
+	 * @param type $input content.
 	 * @return string sanitized content.
 	 */
 	public function sanitize_html( $input ) {
@@ -71,6 +72,7 @@ class Customizer {
 
 	/**
 	 * Front End Customizer
+	 *
 	 * @param  WP_Customize_Manager $wp_customize Theme Customizer object.
 	 * @return void
 	 */
