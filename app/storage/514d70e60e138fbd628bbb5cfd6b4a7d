@@ -1,7 +1,0 @@
-<p>
-	<label for="sidebar_left"> <?php echo(__( 'Sidebar left', 'photolab' )); ?>: </label>
-	<?php echo($left_select); ?></p>
-<p>
-	<label for="sidebar_right"> <?php echo(__( 'Sidebar right', 'photolab' )); ?>: </label>
-	<?php echo($right_select); ?> 
-</p>

@@ -1,6 +1,6 @@
 <?php
 
-class SocialSettingsModel extends OptionsModel{
+class Social_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options

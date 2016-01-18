@@ -47,7 +47,7 @@ class Sidebar_Creator extends \WP_Customize_Control {
      */
     public static function widgets_init()
     {
-        $sidebar_creator = \SidebarSettingsModel::getSidebarsOptions();
+        $sidebar_creator = \Sidebar_Settings_Model::getSidebarsOptions();
         if(count($sidebar_creator) && is_array($sidebar_creator))
         {
             foreach ($sidebar_creator as $sidebar) 

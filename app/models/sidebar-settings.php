@@ -1,6 +1,6 @@
 <?php
 
-class SidebarSettingsModel extends OptionsModel{
+class Sidebar_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options

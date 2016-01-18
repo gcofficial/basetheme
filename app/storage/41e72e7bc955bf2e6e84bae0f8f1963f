@@ -1,2 +1,0 @@
-<div class="post-featured-gallery" id="featured-gallery-<?php echo($post_id); ?>" data-gall-id="featured-gallery-<?php echo($post_id); ?>">
-	<?php echo(implode('', $rows)); ?></div>

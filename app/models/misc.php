@@ -1,6 +1,6 @@
 <?php
 
-class MiscModel extends OptionsModel{
+class Misc_Model extends Options_Model{
 
 	/**
 	 * Get all options

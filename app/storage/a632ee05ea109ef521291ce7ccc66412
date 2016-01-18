@@ -1,8 +1,0 @@
-<p>
-	<label for="<?php echo($field_id_title); ?>"><?php echo(__( 'Title:', 'photolab' )); ?></label> 
-	<input class="widefat" id="<?php echo($field_id_title); ?>" name="<?php echo($field_name_title); ?>" type="text" value="<?php echo(esc_attr( $title )); ?>">
-</p>
-<p>
-	<label for="<?php echo($field_id_page_id); ?>"><?php echo(__( 'Page id:', 'photolab' )); ?></label> 
-	<input class="widefat" id="<?php echo($field_id_page_id); ?>" name="<?php echo($field_name_page_id); ?>" type="text" value="<?php echo(esc_attr( $page_id )); ?>">
-</p>

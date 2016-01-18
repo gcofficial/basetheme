@@ -152,7 +152,7 @@ class Extras{
 		elseif ( is_sticky() ) 
 		{
 			$photolab_first_sticky = get_the_id();
-			$label = \MiscModel::getFeaturedLabel();
+			$label = \Misc_Model::getFeaturedLabel();
 			if ( $wp_query->is_home() && $wp_query->is_main_query() ) 
 			{
 				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) 
@@ -168,7 +168,7 @@ class Extras{
 		else 
 		{
 			$photolab_first_post = get_the_id();
-			$label = \MiscModel::getBlogLabel();
+			$label = \Misc_Model::getBlogLabel();
 			if ( $wp_query->is_home() && $wp_query->is_main_query() ) 
 			{
 				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) 

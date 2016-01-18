@@ -16,7 +16,7 @@ if(is_404())
 	$result = \View\View::make(
 		'pages/404',
 		[
-			'breadcrumbs' => GeneralSiteSettingsModel::breadcrumbs()
+			'breadcrumbs' => General_SiteSettings_Model::breadcrumbs()
 		]
 	);
 }
@@ -25,9 +25,9 @@ else if (is_search())
 	$result = \View\View::make(
 		'pages/search',
 		[
-			'sidebar_left'   => SidebarSettingsModel::getModeLeft(),
-			'sidebar_right'  => SidebarSettingsModel::getModeRight(),
-			'breadcrumbs'    => GeneralSiteSettingsModel::breadcrumbs(),
+			'sidebar_left'   => Sidebar_Settings_Model::getModeLeft(),
+			'sidebar_right'  => Sidebar_Settings_Model::getModeRight(),
+			'breadcrumbs'    => General_SiteSettings_Model::breadcrumbs(),
 			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
 		]
 	);
@@ -37,9 +37,9 @@ else if(is_page())
 	$result = \View\View::make(
 		'pages/page',
 		[
-			'sidebar_left'  => SidebarSettingsModel::getModeLeft(),
-			'sidebar_right' => SidebarSettingsModel::getModeRight(),
-			'breadcrumbs'   => GeneralSiteSettingsModel::breadcrumbs(),
+			'sidebar_left'  => Sidebar_Settings_Model::getModeLeft(),
+			'sidebar_right' => Sidebar_Settings_Model::getModeRight(),
+			'breadcrumbs'   => General_SiteSettings_Model::breadcrumbs(),
 		]
 	);
 }
@@ -49,9 +49,9 @@ else if(is_single())
 		'pages/single',
 		[
 			'social_post_code' => \Modules\Custom\Social_Post_Types::getSocialPostCode($post),
-			'sidebar_left'     => SidebarSettingsModel::getModeLeft(),
-			'sidebar_right'    => SidebarSettingsModel::getModeRight(),
-			'breadcrumbs'      => GeneralSiteSettingsModel::breadcrumbs(),
+			'sidebar_left'     => Sidebar_Settings_Model::getModeLeft(),
+			'sidebar_right'    => Sidebar_Settings_Model::getModeRight(),
+			'breadcrumbs'      => General_SiteSettings_Model::breadcrumbs(),
 		]
 	);
 }

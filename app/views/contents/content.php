@@ -4,9 +4,9 @@
 	<div class="entry-wrapper">
 		<span class="entry-border"><div class="dashicons dashicons-editor-alignleft"></div></span>
 		@if ( has_post_thumbnail() )
-			<figure class="featured-thumbnail {{ esc_attr( MiscModel::getBlogImage() ) }}">
+			<figure class="featured-thumbnail {{ esc_attr( Misc_Model::getBlogImage() ) }}">
 				<a href="{{ get_permalink() }}">
-					{{ get_the_post_thumbnail( get_the_ID(), MiscModel::getBlogImage() ) }}
+					{{ get_the_post_thumbnail( get_the_ID(), Misc_Model::getBlogImage() ) }}
 					<span class="img-mask"></span>
 				</a>
 			</figure>

@@ -2,7 +2,7 @@
 
 Use \View\View;
 
-class GeneralSiteSettingsModel extends OptionsModel{
+class General_SiteSettings_Model extends Options_Model{
 
 	/**
 	 * Get all options

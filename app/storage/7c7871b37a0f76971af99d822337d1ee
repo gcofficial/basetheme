@@ -1,5 +1,0 @@
-<div class="centered">
-	<?php if(has_nav_menu('footer')): ?>
-		<?php echo($logo); ?>		<?php echo($socials); ?>		<?php echo($menu); ?>	<?php endif; ?>
-	<?php echo($copyright); ?></div>
-

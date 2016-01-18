@@ -1,4 +1,4 @@
-{{ MainModel::header() }}
+{{ Main_Model::header() }}
 
 	<div id="primary" class="container">
 		<div class="row">
@@ -16,5 +16,5 @@
 		</div>
 	</div><!-- #primary -->
 
-{{ MainModel::footer() }}
+{{ Main_Model::footer() }}
 

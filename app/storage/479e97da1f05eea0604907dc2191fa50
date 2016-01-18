@@ -1,2 +1,0 @@
-<?php echo($copyright); ?><?php if(has_nav_menu('footer')): ?>
-	<?php echo($menu); ?>	<?php echo($socials); ?><?php endif; ?>

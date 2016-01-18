@@ -28,7 +28,7 @@ return [
 		'name'          => __( 'Footer Widget Area', 'photolab' ),
 		'id'            => 'footer',
 		'description'   => '',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s '.FooterSettingsModel::getColumnsCSSClass().' col-sm-6">',
+		'before_widget' => '<aside id="%1$s" class="widget %2$s '.Footer_Settings_Model::getColumnsCSSClass().' col-sm-6">',
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',

@@ -1,6 +1,6 @@
 <?php
 
-class TypographySettingsModel extends OptionsModel{
+class Typography_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options

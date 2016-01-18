@@ -140,7 +140,7 @@ class Customizer{
 		);
 
 		/* Social links */
-		foreach ( \SocialSettingsModel::get_allowed() as $social_id => $social_data ) 
+		foreach ( \Social_Settings_Model::get_allowed() as $social_id => $social_data ) 
 		{
 			$name  = $social_id . '_url';
 			$label = isset( $social_data['label'] ) ? $social_data['label'] : false;
@@ -1093,7 +1093,7 @@ class Customizer{
 				'section'     => 'typography_settings',
 				'settings'    => 'typography[base_font_family]',
 				'type'        => 'select',
-				'choices'     => \TypographySettingsModel::getFontsOption(),
+				'choices'     => \Typography_Settings_Model::getFontsOption(),
 			] 
 		);
 	}

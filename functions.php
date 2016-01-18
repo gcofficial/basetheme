@@ -8,7 +8,7 @@ function photolab_init()
 	// ==============================================================
 	// Global view variables declaration
 	// ==============================================================
-	View::addData(MainModel::main());
+	View::addData(Main_Model::main());
 }
 
 /**

@@ -9,8 +9,8 @@
 echo \View\View::make(
 	'pages/page',
 	[
-		'sidebar_right'     => SidebarSettingsModel::getModeRight(),
-		'breadcrumbs'       => GeneralSiteSettingsModel::breadcrumbs(),
+		'sidebar_right'     => Sidebar_Settings_Model::getModeRight(),
+		'breadcrumbs'       => General_SiteSettings_Model::breadcrumbs(),
 		'sidebar_side_type' => 'right'
 	]
 );

@@ -1,6 +1,6 @@
 <?php
 
-abstract class OptionsModel{
+abstract class Options_Model{
 
 	/**
 	 * Get single option by key

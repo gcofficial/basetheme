@@ -1,6 +1,6 @@
 <?php
 
-class FooterSettingsModel extends OptionsModel{
+class Footer_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options

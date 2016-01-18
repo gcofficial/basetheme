@@ -1,14 +1,14 @@
 <?php
 /**
- * Blog setting model class
+ * Blog setting model
  *
  * @package photolab
  */
 
 /**
- * Blog settings model
+ * Blog settings model сlass
  */
-class Blog_Settings_Model extends OptionsModel{
+class Blog_Settings_Model extends Options_Model{
 	const LAYOUT_DEFAULT = 'default';
 	const LAYOUT_GRID    = 'grid';
 	const LAYOUT_MASONRY = 'masonry';

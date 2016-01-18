@@ -3,7 +3,7 @@
 Use \View\View;
 Use \Core\Utils;
 
-class MainModel{
+class Main_Model{
 
 	/**
 	 * Main data for view
@@ -15,12 +15,12 @@ class MainModel{
 		return [
 			'TDU'               => get_template_directory_uri(),
 			'search_form'       => View::make('blocks/search_form'),
-			'sidebar_side_type' => SidebarSettingsModel::get_sidebar_side_type(),
+			'sidebar_side_type' => Sidebar_Settings_Model::get_sidebar_side_type(),
 			'wp_query'          => Utils::array_get($GLOBALS, 'wp_query', null),
 			'post'              => Utils::array_get($GLOBALS, 'post', null),
 			'blog_layout_style' => Blog_Settings_Model::getLayoutStyle(),
-			'blog_content'      => MiscModel::getBlogContent(),
-			'read_more_button'  => MiscModel::getBlogButton(),
+			'blog_content'      => Misc_Model::getBlogContent(),
+			'read_more_button'  => Misc_Model::getBlogButton(),
 			'columns_count'     => Blog_Settings_Model::getColumns(),
 			'column_css_class'  => Blog_Settings_Model::getColumnCSSClass(),
 			'category_list'     => get_the_category_list( __( ', ', 'photolab' ) ),
@@ -29,7 +29,7 @@ class MainModel{
 			'wp_register'  		=> wp_register('<li>', '</li>', false),
 			'wp_loginout'  		=> wp_loginout('', false),
 			'wp_meta'      		=> Utils::echoToVar(function(){ wp_meta(); }),
-			'is_show_title_on_header' => HeaderSettingsModel::is_show_title_on_header(),
+			'is_show_title_on_header' => Header_Settings_Model::is_show_title_on_header(),
 		];
 	}
 
@@ -39,7 +39,7 @@ class MainModel{
 	 */
 	public static function header()
 	{
-		return \View\View::make( 'sections/header', MainModel::header_data() );
+		return \View\View::make( 'sections/header', Main_Model::header_data() );
 	}
 
 	/**
@@ -58,26 +58,26 @@ class MainModel{
 			'name'                 => get_bloginfo( 'name' ),
 			'home_url'    		   => esc_url( home_url( '/' ) ),
 			'description' 		   => get_bloginfo( 'description' ),
-			'favicon'              => GeneralSiteSettingsModel::getFavicon(),
-			'touch_icon'           => GeneralSiteSettingsModel::getTouchIcon(),
+			'favicon'              => General_SiteSettings_Model::getFavicon(),
+			'touch_icon'           => General_SiteSettings_Model::getTouchIcon(),
 			'custom_styles'        => '',
-			'is_enabled_preloader' => GeneralSiteSettingsModel::is_enabled_preloader(),
-			'logo'                 => GeneralSiteSettingsModel::getLogo(),
+			'is_enabled_preloader' => General_SiteSettings_Model::is_enabled_preloader(),
+			'logo'                 => General_SiteSettings_Model::getLogo(),
 			'socials'              => View::make(
 				'blocks/socials', 
 				[
-					'socials' => SocialSettingsModel::get_all_socials(),
+					'socials' => Social_Settings_Model::get_all_socials(),
 					'where'   => 'header',
 				]
 			),
-			'socials_show_header'  => SocialSettingsModel::is_show_header(),
-			'disclimer'            => HeaderSettingsModel::getDisclimer(),
-			'search_box'           => HeaderSettingsModel::getSearchBox(),
-			'header_style_layout'  => HeaderSettingsModel::getHeaderStyle(),
-			'header_layout_view'   => sprintf('header_%s', HeaderSettingsModel::getHeaderStyle()),
+			'socials_show_header'  => Social_Settings_Model::is_show_header(),
+			'disclimer'            => Header_Settings_Model::getDisclimer(),
+			'search_box'           => Header_Settings_Model::getSearchBox(),
+			'header_style_layout'  => Header_Settings_Model::getHeaderStyle(),
+			'header_layout_view'   => sprintf('header_%s', Header_Settings_Model::getHeaderStyle()),
 			'header_image'         => get_header_image(),
 			'header_slogan'        => get_option( 'photolab_header_slogan' ),
-			'header_class'         => HeaderSettingsModel::getHeaderClass(),
+			'header_class'         => Header_Settings_Model::getHeaderClass(),
 			'static_class'         => empty( get_header_image() ) ? 'static' : 'absolute',
 			'term_description'     => term_description(),
 			'welcome_message'      => get_option( 'photolab' ),
@@ -117,7 +117,7 @@ class MainModel{
 	 */
 	public static function footer()
 	{
-		return \View\View::make( 'sections/footer', MainModel::footer_data() );
+		return \View\View::make( 'sections/footer', Main_Model::footer_data() );
 	}
 
 	/**
@@ -128,8 +128,8 @@ class MainModel{
 	public static function footer_data()
 	{
 		return [
-			'copyright'    => FooterSettingsModel::getCopyright(),
-			'logo'         => FooterSettingsModel::getLogo(),
+			'copyright'    => Footer_Settings_Model::getCopyright(),
+			'logo'         => Footer_Settings_Model::getLogo(),
 			'menu'         => wp_nav_menu( 
 				array( 
 					'theme_location'  => 'footer',
@@ -143,15 +143,15 @@ class MainModel{
 			'socials'              => View::make(
 				'blocks/socials', 
 				[
-					'socials' => SocialSettingsModel::get_all_socials(),
+					'socials' => Social_Settings_Model::get_all_socials(),
 					'where'   => 'footer',
 				]
 			),
-			'socials_show_footer'  => SocialSettingsModel::is_show_footer(),
-			'footer_style' => FooterSettingsModel::getStyle(),
-			'widgets' 	   => FooterSettingsModel::getAllFooterWidgetsHTML(),
-			'columns' 	   => FooterSettingsModel::getColumns(),
-			'css'     	   => FooterSettingsModel::getColumnsCSSClass(),
+			'socials_show_footer'  => Social_Settings_Model::is_show_footer(),
+			'footer_style' => Footer_Settings_Model::getStyle(),
+			'widgets' 	   => Footer_Settings_Model::getAllFooterWidgetsHTML(),
+			'columns' 	   => Footer_Settings_Model::getColumns(),
+			'css'     	   => Footer_Settings_Model::getColumnsCSSClass(),
 		];
 	}
 

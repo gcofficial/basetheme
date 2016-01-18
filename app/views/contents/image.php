@@ -13,7 +13,7 @@
 				{{ the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>', false ) }}
 			</header><!-- .entry-header -->
 
-			<?php MainModel::image_post(); ?>
+			<?php Main_Model::image_post(); ?>
 
 			<div class="entry-content">
 				@if( 'excerpt' == $blog_content )

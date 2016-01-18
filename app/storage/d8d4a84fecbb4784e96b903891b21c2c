@@ -1,5 +1,0 @@
-<div id="<?php echo($sidebar_left); ?>" class="widget-area col-sm-3" role="complementary">
-	<?php if( ! dynamic_sidebar( $sidebar_left ) ): ?>
-		<?php echo \View\View::make('layouts/sidebar-no-active', \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
-	<?php endif; ?>
-</div><!-- #secondary -->

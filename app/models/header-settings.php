@@ -1,6 +1,6 @@
 <?php
 
-class HeaderSettingsModel extends OptionsModel{
+class Header_Settings_Model extends Options_Model{
 
 	/**
 	 * Get all options
@@ -94,7 +94,7 @@ class HeaderSettingsModel extends OptionsModel{
 			'header-type-'.rand(1, 8),
 		);
 
-		if(!HeaderSettingsModel::is_show_title_on_header())
+		if(!Header_Settings_Model::is_show_title_on_header())
 		{
 			array_push($classes, 'invisibility');
 		}
