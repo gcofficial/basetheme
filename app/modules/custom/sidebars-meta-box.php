@@ -29,6 +29,7 @@ class Sidebars_Meta_Box {
 
 	/**
 	 * Get new class object
+	 *
 	 * @return Sidebars_Meta_Box --- object
 	 */
 	public static function get_new_class() {
@@ -153,6 +154,7 @@ class Sidebars_Meta_Box {
 
 	/**
 	 * Get sidebar left
+	 *
 	 * @param  object $post_id post.
 	 * @return string       --- sidebar left
 	 */
@@ -166,6 +168,7 @@ class Sidebars_Meta_Box {
 
 	/**
 	 * Get sidebar right
+	 *
 	 * @param  object $post_id post.
 	 * @return string       --- sidebar right
 	 */
