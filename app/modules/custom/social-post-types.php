@@ -28,7 +28,7 @@ class Social_Post_Types {
 
 	/**
 	 * Get new class object
-	 * 
+	 *
 	 * @return Social_Post_Types --- object
 	 */
 	public static function get_new_class() {
@@ -122,7 +122,7 @@ class Social_Post_Types {
 
 	/**
 	 * Get social post code
-	 * 
+	 *
 	 * @param  type $post object.
 	 * @return string social post code
 	 */
