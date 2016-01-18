@@ -1,10 +1,18 @@
 <?php
+/**
+ * Advertisement widget module file
+ *
+ * @package photolab
+ */
 
 namespace Modules\Widgets;
 
-Use \Core\Utils;
-Use \View\View;
+use \Core\Utils;
+use \View\View;
 
+/**
+ * Advertisement widget module class
+ */
 class Advertisement extends \WP_Widget{
 
 	/**
@@ -13,28 +21,27 @@ class Advertisement extends \WP_Widget{
 	public function __construct() {
 		parent::__construct(
 			'advertisement_widget',
-			__('Advertisement widget', 'photolab'),
-			['description' => __('Advertisement Widget', 'photolab')]
+			__( 'Advertisement widget', 'photolab' ),
+			[ 'description' => __( 'Advertisement Widget', 'photolab' ) ]
 		);
 
 		// ==============================================================
 		// Actions
 		// ==============================================================
-		add_action('admin_enqueue_scripts', array($this, 'uploadScripts'));
-		add_action('customize_controls_enqueue_scripts', array($this, 'uploadScripts'));
+		add_action( 'admin_enqueue_scripts', array( $this, 'uploadScripts' ) );
+		add_action( 'customize_controls_enqueue_scripts', array( $this, 'uploadScripts' ) );
 	}
 
 	/**
 	 * Upload some scripts to admin and customize
 	 */
-	public function uploadScripts()
-	{
+	public function uploadScripts() {
 		wp_enqueue_media();
-        wp_enqueue_script(
-        	'upload_media_widget', 
-        	Utils::assets_url().'/js/advertisement.js', 
-        	['jquery']
-        );
+		wp_enqueue_script(
+			'upload_media_widget',
+			Utils::assets_url().'/js/advertisement.js',
+			[ 'jquery' ]
+		);
 	}
 
 	/**
@@ -45,17 +52,16 @@ class Advertisement extends \WP_Widget{
 	 * @param array $args     Widget arguments.
 	 * @param array $instance Saved values from database.
 	 */
-	public function widget( $args, $instance ) 
-	{
+	public function widget( $args, $instance ) {
 		echo View::make(
 			'widgets/front-end/advertisement',
 			[
-				'image' => Utils::array_get($instance, 'image'),
+				'image' => Utils::array_get( $instance, 'image' ),
 				'before_widget' => $args['before_widget'],
 				'before_title'  => $args['before_widget'],
 				'after_title'   => $args['after_title'],
 				'after_widget'  => $args['after_widget'],
-				'title'         => Utils::array_get($instance, 'title'),
+				'title'         => Utils::array_get( $instance, 'title' ),
 			]
 		);
 	}
@@ -71,12 +77,12 @@ class Advertisement extends \WP_Widget{
 		echo View::make(
 			'widgets/back-end/advertisement',
 			[
-				'title' 			  => Utils::array_get($instance, 'title', __('Widget Image', 'photolab')),
-				'image' 			  => Utils::array_get($instance, 'image'),
-				'field_id_title'      => $this->get_field_id('title'),
-				'field_name_title'    => $this->get_field_name('title'),
-				'field_id_image'      => $this->get_field_id('image'),
-				'field_name_image'    => $this->get_field_name('image'),
+				'title' 			  => Utils::array_get( $instance, 'title', __( 'Widget Image', 'photolab' ) ),
+				'image' 			  => Utils::array_get( $instance, 'image' ),
+				'field_id_title'      => $this->get_field_id( 'title' ),
+				'field_name_title'    => $this->get_field_name( 'title' ),
+				'field_id_image'      => $this->get_field_id( 'image' ),
+				'field_name_image'    => $this->get_field_name( 'image' ),
 			]
 		);
 	}
@@ -91,13 +97,11 @@ class Advertisement extends \WP_Widget{
 	 *
 	 * @return array Updated safe values to be saved.
 	 */
-	public function update( $new_instance, $old_instance ) 
-	{
+	public function update( $new_instance, $old_instance ) {
 		$instance            = array();
 		$instance['title']   = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 		$instance['image'] = $new_instance['image'];
 
 		return $instance;
 	}
-
 }
