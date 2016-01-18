@@ -6,7 +6,7 @@ class Sidebar_Settings_Model extends Options_Model{
 	 * Get all options
 	 * @return array --- all options
 	 */
-	public static function getAll()
+	public static function get_all()
 	{
 		return (array) get_option('sidebar_settings');
 	}
@@ -17,7 +17,7 @@ class Sidebar_Settings_Model extends Options_Model{
 	 */
 	public static function getModeLeft()
 	{
-		return self::getOption('mode_left');
+		return self::get_option('mode_left');
 	}
 
 	/**
@@ -26,7 +26,7 @@ class Sidebar_Settings_Model extends Options_Model{
 	 */
 	public static function getModeRight()
 	{
-		return self::getOption('mode_right');
+		return self::get_option('mode_right');
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Sidebar_Settings_Model extends Options_Model{
 	 */
 	public static function getSidebars()
 	{
-		return (string) self::getOption('sidebars');
+		return (string) self::get_option('sidebars');
 	}
 
 	/**

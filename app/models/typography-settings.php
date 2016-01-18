@@ -6,7 +6,7 @@ class Typography_Settings_Model extends Options_Model{
 	 * Get all options
 	 * @return array --- all options
 	 */
-	public static function getAll()
+	public static function get_all()
 	{
 		return (array) get_option('typography');
 	}
@@ -84,7 +84,7 @@ class Typography_Settings_Model extends Options_Model{
 	 */
 	public static function getTextColor()
 	{
-		$color = trim(self::getOption('color_text'));
+		$color = trim(self::get_option('color_text'));
 		if($color == '') $color = '#000';
 		return  $color;
 	}
@@ -96,7 +96,7 @@ class Typography_Settings_Model extends Options_Model{
 	 */
 	public static function getH($num)
 	{
-		$color = trim(self::getOption('color_h' . $num));
+		$color = trim(self::get_option('color_h' . $num));
 		if($color == '') $color = '#333';
 		return  $color;
 	}

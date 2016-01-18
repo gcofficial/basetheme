@@ -17,7 +17,7 @@ class Blog_Settings_Model extends Options_Model{
 	 * Get all options
 	 * @return array --- all options
 	 */
-	public static function getAll() {
+	public static function get_all() {
 		return ( array ) get_option( 'bs' );
 	}
 
@@ -27,7 +27,7 @@ class Blog_Settings_Model extends Options_Model{
 	 */
 	public static function getLayoutStyle() {
 		$allowed_styles = self::getAllowedStyles();
-		$style 			= ( string ) self::getOption( 'layout_style' );
+		$style 			= ( string ) self::get_option( 'layout_style' );
 		if ( in_array( $style, $allowed_styles ) ) {
 			return $style;
 		}
@@ -51,7 +51,7 @@ class Blog_Settings_Model extends Options_Model{
 	 * @return integer --- layout columns
 	 */
 	public static function getColumns() {
-		$columns = min( 3, self::getOption( 'columns' ) );
+		$columns = min( 3, self::get_option( 'columns' ) );
 		$columns = max( 2, $columns );
 		return $columns;
 	}

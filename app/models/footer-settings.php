@@ -14,7 +14,7 @@ class Footer_Settings_Model extends Options_Model{
 	 * Get all options
 	 * @return array --- all options
 	 */
-	public static function getAll() {
+	public static function get_all() {
 		return (array) get_option( 'fs' );
 	}
 
@@ -23,7 +23,7 @@ class Footer_Settings_Model extends Options_Model{
 	 * @return string --- copyright HTML code
 	 */
 	public static function getCopyright() {
-		return (string) self::getOption( 'copyright' );
+		return (string) self::get_option( 'copyright' );
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Footer_Settings_Model extends Options_Model{
 	 * @return string --- site logo HTML code
 	 */
 	public static function getLogo() {
-		return trim( self::getOption( 'logo' ) );
+		return trim( self::get_option( 'logo' ) );
 	}
 
 	/**
@@ -40,7 +40,7 @@ class Footer_Settings_Model extends Options_Model{
 	 */
 	public static function getStyle() {
 		$allowed_styles = self::getAllowedStyles();
-		$style 			= ( string ) self::getOption( 'footer_style' );
+		$style 			= ( string ) self::get_option( 'footer_style' );
 		if ( in_array( $style, $allowed_styles ) ) {
 			return $style;
 		}
@@ -64,7 +64,7 @@ class Footer_Settings_Model extends Options_Model{
 	 * @return integer --- columns number
 	 */
 	public static function getColumns() {
-		$columns = ( int ) self::getOption( 'columns' );
+		$columns = ( int ) self::get_option( 'columns' );
 		$columns = max( 2, $columns );
 		$columns = min( 4, $columns );
 		return $columns;

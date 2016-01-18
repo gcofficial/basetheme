@@ -15,7 +15,7 @@ class Misc_Model extends Options_Model{
 	 *
 	 * @return array --- all options
 	 */
-	public static function getAll() {
+	public static function get_all() {
 		return (array) get_option( 'misc' );
 	}
 
@@ -25,7 +25,7 @@ class Misc_Model extends Options_Model{
 	 * @return string
 	 */
 	public static function getFeaturedLabel() {
-		return (string) self::getOption( 'featured_label' );
+		return (string) self::get_option( 'featured_label' );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class Misc_Model extends Options_Model{
 	 * @return string
 	 */
 	public static function getBlogLabel() {
-		return (string) self::getOption( 'blog_label' );
+		return (string) self::get_option( 'blog_label' );
 	}
 
 	/**
@@ -44,7 +44,7 @@ class Misc_Model extends Options_Model{
 	 */
 	public static function getBlogContent() {
 		$allowed = [ 'excerpt', 'full' ];
-		$content = (string) self::getOption( 'blog_content' );
+		$content = (string) self::get_option( 'blog_content' );
 		if ( in_array( $content, $allowed ) ) {
 			return $content;
 		}
@@ -57,7 +57,7 @@ class Misc_Model extends Options_Model{
 	 * @return string
 	 */
 	public static function getBlogImage() {
-		$blog_image = (string) self::getOption( 'blog_image' );
+		$blog_image = (string) self::get_option( 'blog_image' );
 		return '' != $blog_image ? $blog_image : 'post-thumbnail';
 	}
 
@@ -67,7 +67,7 @@ class Misc_Model extends Options_Model{
 	 * @return string
 	 */
 	public static function getBlogButton() {
-		$blog_btn = (string) self::getOption( 'blog_btn' );
+		$blog_btn = (string) self::get_option( 'blog_btn' );
 		if ( '' == $blog_btn ) {
 			$blog_btn = __( 'Read More', 'photolab' );
 		}

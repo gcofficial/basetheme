@@ -14,7 +14,7 @@ class Header_Settings_Model extends Options_Model{
 	 * Get all options
 	 * @return array --- all options
 	 */
-	public static function getAll() {
+	public static function get_all() {
 		return (array) get_option( 'header_settings' );
 	}
 
@@ -23,7 +23,7 @@ class Header_Settings_Model extends Options_Model{
 	 * @return boolean --- true or false
 	 */
 	public static function getStickupMenu() {
-		return (bool) self::getOption( 'stickup_menu' );
+		return (bool) self::get_option( 'stickup_menu' );
 	}
 
 	/**
@@ -31,7 +31,7 @@ class Header_Settings_Model extends Options_Model{
 	 * @return boolean --- true or false
 	 */
 	public static function is_show_title_on_header() {
-		return (bool) self::getOption( 'show_title_on_header' );
+		return (bool) self::get_option( 'show_title_on_header' );
 	}
 
 	/**
@@ -39,7 +39,7 @@ class Header_Settings_Model extends Options_Model{
 	 * @return boolean --- enabled or disabled
 	 */
 	public static function getTitleAttributes() {
-		return (bool) self::getOption( 'title_attributes' );
+		return (bool) self::get_option( 'title_attributes' );
 	}
 
 	/**
@@ -47,7 +47,7 @@ class Header_Settings_Model extends Options_Model{
 	 * @return boolean --- enabled or disabled
 	 */
 	public static function getSearchBox() {
-		return (bool) self::getOption( 'search_box' );
+		return (bool) self::get_option( 'search_box' );
 	}
 
 	/**
@@ -55,7 +55,7 @@ class Header_Settings_Model extends Options_Model{
 	 * @return string --- disclimer text HTML code
 	 */
 	public static function getDisclimer() {
-		return (string) self::getOption( 'disclimer_text' );
+		return (string) self::get_option( 'disclimer_text' );
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Header_Settings_Model extends Options_Model{
 	 */
 	public static function getHeaderStyle() {
 		$allowed_header_styles = self::getAllowedHeaderStyles();
-		$header_style = (string) self::getOption( 'header_style' );
+		$header_style = (string) self::get_option( 'header_style' );
 		if ( in_array( $header_style, $allowed_header_styles ) ) {
 			return $header_style;
 		}

@@ -6,7 +6,7 @@ class Social_Settings_Model extends Options_Model{
 	 * Get all options
 	 * @return array --- all options
 	 */
-	public static function getAll()
+	public static function get_all()
 	{
 		return (array) get_option('social_settings');
 	}
@@ -18,7 +18,7 @@ class Social_Settings_Model extends Options_Model{
 	 */
 	public static function is_show_header()
 	{
-		return self::getOption('header') != '';
+		return self::get_option('header') != '';
 	}
 
 	/**
@@ -28,7 +28,7 @@ class Social_Settings_Model extends Options_Model{
 	 */
 	public static function is_show_footer()
 	{
-		return self::getOption('footer') != '';
+		return self::get_option('footer') != '';
 	}
 
 	/**
@@ -43,7 +43,7 @@ class Social_Settings_Model extends Options_Model{
 
 		foreach ($allowed as $key => $properties) 
 		{
-			$option = (string) self::getOption(sprintf('%s_url', $key));
+			$option = (string) self::get_option(sprintf('%s_url', $key));
 			$option = trim($option);
 
 			if($option != '')

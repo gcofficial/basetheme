@@ -16,7 +16,7 @@ class General_Site_Settings_Model extends Options_Model{
 	 * Get all options
 	 * @return array --- all options
 	 */
-	public static function getAll() {
+	public static function get_all() {
 		return (array) get_option( 'gss' );
 	}
 
@@ -26,7 +26,7 @@ class General_Site_Settings_Model extends Options_Model{
 	 */
 	public static function getFavicon() {
 		$result  = '';
-		$favicon = trim( self::getOption( 'favicon' ) );
+		$favicon = trim( self::get_option( 'favicon' ) );
 		if ( '' != $favicon ) {
 			$result = sprintf( '<link rel="icon" type="image/png" href="%s" />', $favicon );
 		}
@@ -39,7 +39,7 @@ class General_Site_Settings_Model extends Options_Model{
 	 */
 	public static function getTouchIcon() {
 		$result = '';
-		$touch_icon = trim( self::getOption( 'touch_icon' ) );
+		$touch_icon = trim( self::get_option( 'touch_icon' ) );
 		if ( '' != $touch_icon ) {
 			$result = sprintf( '<link rel="apple-touch-icon" href="%s"/>', $touch_icon );
 		}
@@ -51,7 +51,7 @@ class General_Site_Settings_Model extends Options_Model{
 	 * @return string --- site logo HTML code
 	 */
 	public static function getLogo() {
-		return (string) trim( self::getOption( 'logo' ) );
+		return (string) trim( self::get_option( 'logo' ) );
 	}
 
 	/**
@@ -60,7 +60,7 @@ class General_Site_Settings_Model extends Options_Model{
 	 * @return boolean
 	 */
 	public static function is_enabled_breadcrumbs() {
-		return '1' == self::getOption( 'breadcrumbs' );
+		return '1' == self::get_option( 'breadcrumbs' );
 	}
 
 	/**
@@ -142,7 +142,7 @@ class General_Site_Settings_Model extends Options_Model{
 	 * @return boolean
 	 */
 	public static function is_enabled_preloader() {
-		return '1' == self::getOption( 'page_preloader' );
+		return '1' == self::get_option( 'page_preloader' );
 	}
 
 	/**
@@ -151,7 +151,7 @@ class General_Site_Settings_Model extends Options_Model{
 	 * @return string --- color scheme HEX
 	 */
 	public static function getColorScheme() {
-		$color = trim( self::getOption( 'color_scheme' ) );
+		$color = trim( self::get_option( 'color_scheme' ) );
 		if ( '' == $color ) {
 			$color = '#222';
 		}

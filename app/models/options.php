@@ -1,23 +1,28 @@
 <?php
+/**
+ * Options model file
+ *
+ * @package photolab
+ */
 
-abstract class Options_Model{
+/**
+ * Options model abstract class
+ */
+abstract class Options_Model {
 
 	/**
 	 * Get single option by key
-	 * @param  string $key --- option key
-	 * @return mixed --- option type
+	 * @param  string $key --- option key.
+	 * @return mixed --- option type.
 	 */
-	public static function getOption($key)
-	{
-		return \Core\Utils::array_get(static::getAll(), $key, '');
+	public static function get_option( $key ) {
+		return \Core\Utils::array_get( static::get_all(), $key, '' );
 	}
 
 	/**
 	 * Get all options
-	 * @return array --- all options
 	 */
-	public static function getAll()
-	{
-		die('It must be ovverided!');
+	public static function get_all() {
+		die( 'It must be ovverided!' );
 	}
 }
