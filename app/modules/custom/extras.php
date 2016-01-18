@@ -1,35 +1,42 @@
 <?php
+/**
+ * Extras module file
+ *
+ * @package photolab
+ */
 
 namespace Modules\Custom;
 
-Use \View\View;
-Use \Core\Utils;
+use \View\View;
+use \Core\Utils;
 
-class Extras{
+/**
+ * Extras module class
+ */
+class Extras {
 
 	/**
 	 * Extras class constructor
 	 */
-	public function __construct()
-	{
+	public function __construct() {
 		// ==============================================================
 		// Actions
 		// ==============================================================
-		add_filter( 'wp_page_menu_args', [$this, 'page_menu_args'] );
-		add_filter( 'body_class', [$this, 'body_classes'] );
-		add_filter( 'wp_title', [$this, 'wp_title'], 10, 2 );
-		add_filter( 'excerpt_length', [$this, 'excerpt_length'], 99 );
-		add_filter( 'wp_generate_tag_cloud', [$this, 'tag_class'], 10 );
-		add_filter( 'nav_menu_css_class', [$this, 'nav_class'] );
-		add_filter( 'upload_mimes', [$this, 'add_some_mime_types'], 1, 1);
-		add_filter( 'comment_form_default_fields', [$this, 'comment_form_fields'] );
+		add_filter( 'wp_page_menu_args', [ $this, 'page_menu_args' ] );
+		add_filter( 'body_class', [ $this, 'body_classes' ] );
+		add_filter( 'wp_title', [ $this, 'wp_title' ], 10, 2 );
+		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 99 );
+		add_filter( 'wp_generate_tag_cloud', [ $this, 'tag_class' ], 10 );
+		add_filter( 'nav_menu_css_class', [ $this, 'nav_class' ] );
+		add_filter( 'upload_mimes', [ $this, 'add_some_mime_types' ], 1, 1 );
+		add_filter( 'comment_form_default_fields', [ $this, 'comment_form_fields' ] );
 
 		// ==============================================================
 		// Filters
 		// ==============================================================
-		add_action( 'wp', [$this, 'setup_author'] );
-		add_action( 'photolab_before_post', [$this, 'blog_labels'] );
-		add_action( 'after_setup_theme', [$this, 'setup'] );
+		add_action( 'wp', [ $this, 'setup_author' ] );
+		add_action( 'photolab_before_post', [ $this, 'blog_labels' ] );
+		add_action( 'after_setup_theme', [ $this, 'setup' ] );
 	}
 
 	/**
@@ -39,8 +46,7 @@ class Extras{
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	public function setup()
-	{
+	public function setup() {
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
@@ -77,7 +83,7 @@ class Extras{
 				[
 					'type' 		  => ( $html5 ? 'type="email"' : 'type="text"' ),
 					'placeholder' => __( 'Email', 'photolab' ) . ( $req ? '*' : '' ),
-					'value'       => esc_attr(  $commenter['comment_author_email'] ),
+					'value'       => esc_attr( $commenter['comment_author_email'] ),
 					'aria_req'    => $aria_req,
 				]
 			),
@@ -96,10 +102,10 @@ class Extras{
 
 	/**
 	 * Add some mime types
-	 * @param array $mime_types --- mime types
+	 *
+	 * @param array $mime_types mime types.
 	 */
-	public function add_some_mime_types($mime_types)
-	{
+	public function add_some_mime_types( $mime_types ) {
 	    $mime_types['svg'] = 'image/svg+xml';
 	    return $mime_types;
 	}
@@ -107,77 +113,60 @@ class Extras{
 	/**
 	 * Add random class to nav items in primary menu (for hover effect)
 	 */
-	public function nav_class( $classes ) 
-	{
-		$classes[] = 'item-type-' . rand(1, 8);
+	public function nav_class( $classes ) {
+		$classes[] = 'item-type-' . rand( 1, 8 );
 		return $classes;
 	}
 
 	/**
 	 * Add random class to tag cloud links (for hover effect)
 	 */
-	public function tag_class( $return ) 
-	{
+	public function tag_class( $return ) {
 		return preg_replace_callback(
-			'|(tag-link-)|', 
-			[$this, 'gener_random_class'], 
+			'|(tag-link-)|',
+			[ $this, 'gener_random_class' ],
 			$return
 		);
 	}
 
 	/**
 	 * Generate random css class
-	 * @param  array $matches preg matches
+	 *
+	 * @param array $matches preg matches.
 	 * @return string
 	 */
-	public function gener_random_class($matches) 
-	{
-		return 'term-type-' . rand(1, 8) . ' ' . $matches[0];
+	public function gener_random_class( $matches ) {
+		return 'term-type-' . rand( 1, 8 ) . ' ' . $matches[0];
 	}
 
 	/**
 	 * Add featured label and label before blog
 	 */
-	public function blog_labels() 
-	{
+	public function blog_labels() {
 		global $photolab_first_sticky, $photolab_first_post, $wp_query;
-		if ( is_sticky() && $photolab_first_sticky ) 
-		{
+		if ( is_sticky() && $photolab_first_sticky ) {
 			return;
-		} 
-		elseif ( !is_sticky() && $photolab_first_post ) 
-		{
+		} elseif ( ! is_sticky() && $photolab_first_post ) {
 			return;
-		} 
-		elseif ( is_sticky() ) 
-		{
+		} elseif ( is_sticky() ) {
 			$photolab_first_sticky = get_the_id();
 			$label = \Misc_Model::getFeaturedLabel();
-			if ( $wp_query->is_home() && $wp_query->is_main_query() ) 
-			{
-				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) 
-				{
+			if ( $wp_query->is_home() && $wp_query->is_main_query() ) {
+				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) {
 					return;
 				}
-				if ( $label ) 
-				{
-					echo View::make('blocks/blog_labels', ['label' => $label]);
+				if ( $label ) {
+					echo View::make( 'blocks/blog_labels', [ 'label' => $label ] );
 				}
 			}
-		} 
-		else 
-		{
+		} else {
 			$photolab_first_post = get_the_id();
 			$label = \Misc_Model::getBlogLabel();
-			if ( $wp_query->is_home() && $wp_query->is_main_query() ) 
-			{
-				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) 
-				{
+			if ( $wp_query->is_home() && $wp_query->is_main_query() ) {
+				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) {
 					return;
-				}
-				if ( $label ) 
-				{
-					echo View::make('blocks/blog_labels', ['label' => $label]);
+				} if ( $label ) {
+					echo View::make( 'blocks/blog_labels', [ 'label' => $label ] );
 				}
 			}
 		}
@@ -186,8 +175,7 @@ class Extras{
 	/**
 	 * Increase default excerpt length
 	 */
-	public function excerpt_length( $length ) 
-	{
+	public function excerpt_length( $length ) {
 		return 100;
 	}
 
@@ -197,8 +185,7 @@ class Extras{
 	 * @param array $args Configuration arguments.
 	 * @return array
 	 */
-	public function page_menu_args( $args ) 
-	{
+	public function page_menu_args( $args ) {
 		$args['show_home'] = true;
 		return $args;
 	}
@@ -209,11 +196,9 @@ class Extras{
 	 * @param array $classes Classes for the body element.
 	 * @return array
 	 */
-	public function body_classes( $classes ) 
-	{
+	public function body_classes( $classes ) {
 		// Adds a class of group-blog to blogs with more than 1 published author.
-		if ( is_multi_author() ) 
-		{
+		if ( is_multi_author() ) {
 			$classes[] = 'group-blog';
 		}
 
@@ -227,8 +212,7 @@ class Extras{
 	 * @param string $sep Optional separator.
 	 * @return string The filtered title.
 	 */
-	public function wp_title( $title, $sep ) 
-	{
+	public function wp_title( $title, $sep ) {
 		if ( is_feed() ) {
 			return $title;
 		}
@@ -245,8 +229,7 @@ class Extras{
 		}
 
 		// Add a page number if necessary:
-		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) 
-		{
+		if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
 			$title .= " $sep " . sprintf( __( 'Page %s', 'photolab' ), max( $paged, $page ) );
 		}
 
@@ -265,8 +248,7 @@ class Extras{
 	 * @global WP_Query $wp_query WordPress Query object.
 	 * @return void
 	 */
-	public function setup_author() 
-	{
+	public function setup_author() {
 		global $wp_query;
 
 		if ( $wp_query->is_author() && isset( $wp_query->post ) ) {
