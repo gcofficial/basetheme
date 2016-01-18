@@ -1,23 +1,29 @@
 <?php
+/**
+ * Sidebars MetaBox module file
+ *
+ * @package photolab
+ */
 
 namespace Modules\Custom;
 
-Use \View\View;
-Use \Core\Utils;
+use \View\View;
+use \Core\Utils;
 
 Sidebars_Meta_Box::init();
 
-class Sidebars_Meta_Box{
+/**
+ * Sidebars_Meta_box module class
+ */
+class Sidebars_Meta_Box {
 
 	/**
 	 * Initialize and add meta box
 	 */
-	public static function init()
-	{
-		if ( is_admin() ) 
-		{
-			add_action( 'load-post.php', ['\\Modules\\Custom\\Sidebars_Meta_Box', 'getNewClass'] );
-			add_action( 'load-post-new.php', ['\\Modules\\Custom\\Sidebars_Meta_Box', 'getNewClass'] );
+	public static function init() {
+		if ( is_admin() ) {
+			add_action( 'load-post.php', [ '\\Modules\\Custom\\Sidebars_Meta_Box', 'get_new_class' ] );
+			add_action( 'load-post-new.php', [ '\\Modules\\Custom\\Sidebars_Meta_Box', 'get_new_class' ] );
 		}
 	}
 
@@ -25,8 +31,7 @@ class Sidebars_Meta_Box{
 	 * Get new class object
 	 * @return Sidebars_Meta_Box --- object
 	 */
-	public static function getNewClass()
-	{
+	public static function get_new_class() {
 		return new Sidebars_Meta_Box();
 	}
 
@@ -34,21 +39,20 @@ class Sidebars_Meta_Box{
 	 * Hook into the appropriate actions when the class is constructed.
 	 */
 	public function __construct() {
-		add_action( 'add_meta_boxes', array( $this, 'addMetaBox' ) );
+		add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
 		add_action( 'save_post', array( $this, 'save' ) );
 	}
 
 	/**
 	 * Adds the meta box container.
 	 */
-	public function addMetaBox( $post_type ) {
-		$post_types = array('post', 'page');
-		if ( in_array( $post_type, $post_types )) 
-		{
+	public function add_meta_box( $post_type ) {
+		$post_types = array( 'post', 'page' );
+		if ( in_array( $post_type, $post_types ) ) {
 			add_meta_box(
 				'sidebars_metabox',
 				__( 'Sidebars ( you can choose your own sidebar for this page )', 'photolab' ),
-				array( $this, 'renderMetaBoxContent' ),
+				array( $this, 'render_meta_box_content' ),
 				$post_type,
 				'advanced',
 				'high'
@@ -62,38 +66,41 @@ class Sidebars_Meta_Box{
 	 * @param int $post_id The ID of the post being saved.
 	 */
 	public function save( $post_id ) {
-	
 		/*
 		 * We need to verify this came from the our screen and with proper authorization,
 		 * because save_post can be triggered at other times.
 		 */
 
 		// Check if our nonce is set.
-		if ( ! isset( $_POST['sidebars_nonce'] ) ) return $post_id;
+		if ( ! isset( $_POST['sidebars_nonce'] ) ) {
+			return $post_id;
+		}
 
 		$nonce = $_POST['sidebars_nonce'];
 
 		// Verify that the nonce is valid.
-		if ( ! wp_verify_nonce( $nonce, 'sidebars' ) ) return $post_id;
+		if ( ! wp_verify_nonce( $nonce, 'sidebars' ) ) {
+			return $post_id;
+		}
 
 		// If this is an autosave, our form has not been submitted,
 		// so we don't want to do anything.
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return $post_id;
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+			return $post_id;
+		}
 
 		// Check the user's permissions.
-		if ( 'page' == $_POST['post_type'] ) 
-		{
-			if ( ! current_user_can( 'edit_page', $post_id ) ) return $post_id;
-		} 
-		else 
-		{
-			if ( ! current_user_can( 'edit_post', $post_id ) ) return $post_id;
+		if ( 'page' == $_POST['post_type'] ) {
+			if ( ! current_user_can( 'edit_page', $post_id ) ) {
+				return $post_id;
+			}
+		} else {
+			if ( ! current_user_can( 'edit_post', $post_id ) ) {
+				return $post_id;
+			}
 		}
 
 		/* OK, its safe for us to save the data now. */
-
-		// Sanitize the user input.
-		
 		$sidebar_left  = $_POST['sidebar_left'];
 		$sidebar_right = $_POST['sidebar_right'];
 		// Update the meta field.
@@ -107,18 +114,17 @@ class Sidebars_Meta_Box{
 	 *
 	 * @param WP_Post $post The post object.
 	 */
-	public function renderMetaBoxContent( $post ) 
-	{
+	public function render_meta_box_content( $post ) {
 		// Add an nonce field so we can check for it later.
 		wp_nonce_field( 'sidebars', 'sidebars_nonce' );
-		
+
 		echo View::make(
 			'blocks/sidebars_metabox',
 			[
 				'left_select' => View::make(
 					'blocks/select',
 					[
-						'current_value' => self::getSidebarLeft($post->ID),
+						'current_value' => self::get_sidebar_left( $post->ID ),
 						'attributes'    => Utils::array_join(
 							[
 								'name'  => 'sidebar_left',
@@ -131,7 +137,7 @@ class Sidebars_Meta_Box{
 				'right_select' => View::make(
 					'blocks/select',
 					[
-						'current_value' => self::getSidebarRight($post->ID),
+						'current_value' => self::get_sidebar_right( $post->ID ),
 						'attributes'    => Utils::array_join(
 							[
 								'name'  => 'sidebar_right',
@@ -147,29 +153,27 @@ class Sidebars_Meta_Box{
 
 	/**
 	 * Get sidebar left
-	 * @param  object $post --- post
+	 * @param  object $post_id post.
 	 * @return string       --- sidebar left
 	 */
-	public static function getSidebarLeft($post_id)
-	{
-		return (string) get_post_meta( 
-			$post_id, 
-			'sidebar_left', 
-			true 
+	public static function get_sidebar_left( $post_id ) {
+		return (string) get_post_meta(
+			$post_id,
+			'sidebar_left',
+			true
 		);
 	}
 
 	/**
 	 * Get sidebar right
-	 * @param  object $post --- post
+	 * @param  object $post_id post.
 	 * @return string       --- sidebar right
 	 */
-	public static function getSidebarRight($post_id)
-	{
-		return (string) get_post_meta( 
-			$post_id, 
-			'sidebar_right', 
-			true 
+	public static function get_sidebar_right( $post_id ) {
+		return (string) get_post_meta(
+			$post_id,
+			'sidebar_right',
+			true
 		);
 	}
 }
