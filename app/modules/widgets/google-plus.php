@@ -1,10 +1,18 @@
 <?php
+/**
+ * Google plus widget module file
+ *
+ * @package photolab
+ */
 
 namespace Modules\Widgets;
 
-Use \Core\Utils;
-Use \View\View;
+use \Core\Utils;
+use \View\View;
 
+/**
+ * Google plus class
+ */
 class Google_Plus extends \WP_Widget{
 
 	/**
@@ -13,8 +21,8 @@ class Google_Plus extends \WP_Widget{
 	public function __construct() {
 		parent::__construct(
 			'google_plus_widget',
-			__('Google plus widget', 'photolab'),
-			['description' => __('Google plus Widget', 'photolab')]
+			__( 'Google plus widget', 'photolab' ),
+			[ 'description' => __( 'Google plus Widget', 'photolab' ) ]
 		);
 	}
 
@@ -26,8 +34,7 @@ class Google_Plus extends \WP_Widget{
 	 * @param array $args     Widget arguments.
 	 * @param array $instance Saved values from database.
 	 */
-	public function widget( $args, $instance ) 
-	{
+	public function widget( $args, $instance ) {
 		echo View::make(
 			'widgets/front-end/google_plus',
 			[
@@ -35,8 +42,8 @@ class Google_Plus extends \WP_Widget{
 				'before_title'  => $args['before_widget'],
 				'after_title'   => $args['after_title'],
 				'after_widget'  => $args['after_widget'],
-				'title'         => Utils::array_get($instance, 'title'),
-				'page_id'       => Utils::array_get($instance, 'page_id'),
+				'title'         => Utils::array_get( $instance, 'title' ),
+				'page_id'       => Utils::array_get( $instance, 'page_id' ),
 			]
 		);
 	}
@@ -52,12 +59,12 @@ class Google_Plus extends \WP_Widget{
 		echo View::make(
 			'widgets/back-end/google_plus',
 			[
-				'title'              => Utils::array_get($instance, 'title'),
-				'page_id'            => Utils::array_get($instance, 'page_id'),
-				'field_id_title'     => $this->get_field_id('title'),
-				'field_name_title'   => $this->get_field_name('title'),
-				'field_id_page_id'   => $this->get_field_id('page_id'),
-				'field_name_page_id' => $this->get_field_name('page_id'),
+				'title'              => Utils::array_get( $instance, 'title' ),
+				'page_id'            => Utils::array_get( $instance, 'page_id' ),
+				'field_id_title'     => $this->get_field_id( 'title' ),
+				'field_name_title'   => $this->get_field_name( 'title' ),
+				'field_id_page_id'   => $this->get_field_id( 'page_id' ),
+				'field_name_page_id' => $this->get_field_name( 'page_id' ),
 			]
 		);
 	}
@@ -72,13 +79,11 @@ class Google_Plus extends \WP_Widget{
 	 *
 	 * @return array Updated safe values to be saved.
 	 */
-	public function update( $new_instance, $old_instance ) 
-	{
+	public function update( $new_instance, $old_instance ) {
 		$instance            = array();
 		$instance['title']   = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 		$instance['page_id'] = $new_instance['page_id'];
 
 		return $instance;
 	}
-
 }
