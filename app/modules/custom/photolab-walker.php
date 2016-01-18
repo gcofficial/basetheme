@@ -1,7 +1,15 @@
 <?php
+/**
+ * Photolab walker module file
+ *
+ * @package photolab
+ */
 
 namespace Modules\Custom;
 
+/**
+ * Photolab_Walker class
+ */
 class Photolab_Walker extends \Walker_Nav_Menu {
 	/**
 	 * What the class handles.
@@ -29,12 +37,12 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param type $output Passed by reference. Used to append additional content.
-	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 * @param type  $output Passed by reference. Used to append additional content.
+	 * @param int   $depth Depth of menu item. Used for padding.
+	 * @param array $args An array of arguments. @see wp_nav_menu().
 	 */
 	public function start_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
+		$indent = str_repeat( "\t", $depth );
 		$output .= "\n$indent<ul class=\"sub-menu\">\n";
 	}
 
@@ -45,12 +53,12 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param type $output Passed by reference. Used to append additional content.
-	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 * @param type  $output Passed by reference. Used to append additional content.
+	 * @param int   $depth  Depth of menu item. Used for padding.
+	 * @param array $args   An array of arguments. @see wp_nav_menu().
 	 */
 	public function end_lvl( &$output, $depth = 0, $args = array() ) {
-		$indent = str_repeat("\t", $depth);
+		$indent = str_repeat( "\t", $depth );
 		$output .= "$indent</ul>\n";
 	}
 
@@ -61,10 +69,10 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param type $output Passed by reference. Used to append additional content.
+	 * @param type   $output Passed by reference. Used to append additional content.
 	 * @param object $item   Menu item data object.
 	 * @param int    $depth  Depth of menu item. Used for padding.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 * @param array  $args   An array of arguments. @see wp_nav_menu().
 	 * @param int    $id     Current item ID.
 	 */
 	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
@@ -93,7 +101,7 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 		 * @since 3.0.1
 		 * @since 4.1.0 The `$depth` parameter was added.
 		 *
-		 * @param type $menu_id The ID that is applied to the menu item's `<li>` element.
+		 * @param type   $menu_id The ID that is applied to the menu item's `<li>` element.
 		 * @param object $item    The current menu item.
 		 * @param array  $args    An array of {@see wp_nav_menu()} arguments.
 		 * @param int    $depth   Depth of menu item. Used for padding.
@@ -138,26 +146,21 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 		}
 
 		$item_output = '';
-		if(is_object($args))
-		{
+		if ( is_object( $args ) ) {
 			$item_output = $args->before;
 			$item_output .= '<a'. $attributes .'>';
 
 			/** This filter is documented in wp-includes/post-template.php */
 			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
 			$item_output .= '</a>';
-			if($depth == 0)
-			{
-				if(\Header_Settings_Model::getTitleAttributes())
-				{
-					$item_output .= sprintf('<span class="title-attributes">%s</span>', $item->post_excerpt);
-				}	
+			if ( 0 == $depth  ) {
+				if ( \Header_Settings_Model::getTitleAttributes() ) {
+					$item_output .= sprintf( '<span class="title-attributes">%s</span>', $item->post_excerpt );
+				}
 			}
-			
+
 			$item_output .= $args->after;
 		}
-
-		
 
 		/**
 		 * Filter a menu item's starting output.
@@ -168,7 +171,7 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 		 *
 		 * @since 3.0.0
 		 *
-		 * @param type $item_output The menu item's starting HTML output.
+		 * @param type   $item_output The menu item's starting HTML output.
 		 * @param object $item        Menu item data object.
 		 * @param int    $depth       Depth of menu item. Used for padding.
 		 * @param array  $args        An array of {@see wp_nav_menu()} arguments.
@@ -183,13 +186,12 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 	 *
 	 * @since 3.0.0
 	 *
-	 * @param type $output Passed by reference. Used to append additional content.
+	 * @param type   $output Passed by reference. Used to append additional content.
 	 * @param object $item   Page data object. Not used.
 	 * @param int    $depth  Depth of page. Not Used.
-	 * @param array  $args   An array of arguments. @see wp_nav_menu()
+	 * @param array  $args   An array of arguments. @see wp_nav_menu().
 	 */
 	public function end_el( &$output, $item, $depth = 0, $args = array() ) {
 		$output .= "</li>\n";
 	}
-
-} // Walker_Nav_Menu
+}
