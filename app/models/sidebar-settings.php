@@ -84,8 +84,8 @@ class Sidebar_Settings_Model extends Options_Model{
 	/**
 	 * Get sidebar id from name
 	 *
-	 * @param string $name sidebar name.
-	 * @return sidebar id.
+	 * @param $name sidebar name.
+	 * @return string sidebar id.
 	 */
 	public static function getSidebarID( $name ) {
 		return str_replace( ' ', '_', strtolower( $name ) );
