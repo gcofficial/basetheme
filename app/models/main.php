@@ -58,11 +58,11 @@ class Main_Model{
 			'name'                 => get_bloginfo( 'name' ),
 			'home_url'    		   => esc_url( home_url( '/' ) ),
 			'description' 		   => get_bloginfo( 'description' ),
-			'favicon'              => General_SiteSettings_Model::getFavicon(),
-			'touch_icon'           => General_SiteSettings_Model::getTouchIcon(),
+			'favicon'              => General_Site_Settings_Model::getFavicon(),
+			'touch_icon'           => General_Site_Settings_Model::getTouchIcon(),
 			'custom_styles'        => '',
-			'is_enabled_preloader' => General_SiteSettings_Model::is_enabled_preloader(),
-			'logo'                 => General_SiteSettings_Model::getLogo(),
+			'is_enabled_preloader' => General_Site_Settings_Model::is_enabled_preloader(),
+			'logo'                 => General_Site_Settings_Model::getLogo(),
 			'socials'              => View::make(
 				'blocks/socials', 
 				[
