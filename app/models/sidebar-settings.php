@@ -84,7 +84,7 @@ class Sidebar_Settings_Model extends Options_Model{
 	/**
 	 * Get sidebar id from name
 	 *
-	 * @param $name sidebar name.
+	 * @param type $name sidebar name.
 	 * @return string sidebar id.
 	 */
 	public static function getSidebarID( $name ) {
