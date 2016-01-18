@@ -38,7 +38,5 @@ return [
 			'lte IE 8',
 		],
 	],
-	'custom' => [
-		
-	],
+	'custom' => [],
 ];
