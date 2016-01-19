@@ -11,17 +11,14 @@
  * @package photolab
  */
 
-if(is_404())
-{
+if ( is_404() ) {
 	$result = \View\View::make(
 		'pages/404',
 		[
-			'breadcrumbs' => General_Site_Settings_Model::breadcrumbs()
+			'breadcrumbs' => General_Site_Settings_Model::breadcrumbs(),
 		]
 	);
-}
-else if (is_search()) 
-{
+} else if ( is_search() ) {
 	$result = \View\View::make(
 		'pages/search',
 		[
@@ -31,9 +28,7 @@ else if (is_search())
 			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
 		]
 	);
-}
-else if(is_page())
-{
+} else if ( is_page() ) {
 	$result = \View\View::make(
 		'pages/page',
 		[
@@ -42,29 +37,24 @@ else if(is_page())
 			'breadcrumbs'   => General_Site_Settings_Model::breadcrumbs(),
 		]
 	);
-}
-else if(is_single())
-{
+} else if ( is_single() ) {
 	$result = \View\View::make(
 		'pages/single',
 		[
-			'social_post_code' => \Modules\Custom\Social_Post_Types::getSocialPostCode($post),
+			'social_post_code' => \Modules\Custom\Social_Post_Types::getSocialPostCode( $post ),
 			'sidebar_left'     => Sidebar_Settings_Model::getModeLeft(),
 			'sidebar_right'    => Sidebar_Settings_Model::getModeRight(),
 			'breadcrumbs'      => General_Site_Settings_Model::breadcrumbs(),
 		]
 	);
-}
-else
-{
+} else {
 	$result = \View\View::make(
 		'pages/index',
 		[
 			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
-			'posts'          => $GLOBALS['wp_query']->get_posts()
+			'posts'          => $GLOBALS['wp_query']->get_posts(),
 		]
 	);
 }
 
 echo $result;
-
