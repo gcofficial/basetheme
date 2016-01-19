@@ -13,7 +13,7 @@ add_action( 'init', 'photolab_init' );
  * Photolab theme init
  */
 function photolab_init() {
-	View::addData( Main_Model::main() );
+	View::add_data( Main_Model::main() );
 }
 
 /**
