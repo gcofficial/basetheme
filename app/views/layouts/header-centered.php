@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<header id="masthead" class="site-header centered" role="banner">
+?><header id="masthead" class="site-header centered" role="banner">
 	<div class="container">
 		<div class="row">
 			<div class="site-branding">

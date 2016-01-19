@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<div id="masonry" class="masonry">
+?><div id="masonry" class="masonry">
 @for($i = 0; $i < count($posts); $i++)
 	<?php
 	$post = $posts[$i];

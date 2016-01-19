@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<div class="top-menu">
+?><div class="top-menu">
 	@if($disclimer != '')
 		<span class="disclimer">{{ $disclimer }}</span>
 	@endif

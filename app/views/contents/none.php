@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<section class="no-results not-found col-md-12">
+?><section class="no-results not-found col-md-12">
 	<header class="page-header">
 		<h2 class="page-title">{{ __( 'Nothing Found', 'photolab' ) }}</h2>
 	</header><!-- .page-header -->

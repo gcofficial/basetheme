@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<article id="post-{{ get_the_ID() }}" class="{{ join( ' ', get_post_class() ) }} col-md-12">
+?><article id="post-{{ get_the_ID() }}" class="{{ join( ' ', get_post_class() ) }} col-md-12">
 
 	<div class="entry-content">
 		@if( !$is_show_title_on_header )

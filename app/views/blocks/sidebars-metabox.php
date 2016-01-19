@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<p>
+?><p>
 	<label for="sidebar_left"> {{ __( 'Sidebar left', 'photolab' ) }}: </label>
 	{{ $left_select }}
 </p>

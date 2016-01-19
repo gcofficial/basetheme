@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<?php do_action( 'photolab_before_post' ); ?>
+?><?php do_action( 'photolab_before_post' ); ?>
 <article id="post-{{ get_the_ID() }}" class="{{ join( ' ', get_post_class() ) }}">
 
 	<div class="entry-wrapper">

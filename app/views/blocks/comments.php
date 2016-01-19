@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-@if ( !post_password_required() ) 
+?>@if ( !post_password_required() ) 
 
 <div id="comments" class="comments-area">
 	@if ( have_comments() ) 

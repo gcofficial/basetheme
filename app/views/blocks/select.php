@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<select {{ $attributes }}>
+?><select {{ $attributes }}>
 	@foreach ($values as $key => $value) 
 		<option value="{{ $key }}" {{ selected($current_value, $key, false) }}>{{ $value }}</option>
 	@endforeach

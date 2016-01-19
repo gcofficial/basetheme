@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-@include('layouts/sidebar-left')
+?>@include('layouts/sidebar-left')
 <div class="col-sm-6">
 	@while ( have_posts() )
 		<?php the_post(); ?>

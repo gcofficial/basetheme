@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<?php do_action( 'photolab_before_post' ); ?>
+?><?php do_action( 'photolab_before_post' ); ?>
 <article id="post-{{ get_the_ID() }}" class="{{ join( ' ', get_post_class() ) }} col-md-12">
 	<div class="entry-wrapper">
 		<span class="entry-border"><div class="dashicons dashicons-format-gallery"></div></span>

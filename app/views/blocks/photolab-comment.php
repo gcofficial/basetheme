@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-@if ( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type )
+?>@if ( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type )
 	<li id="comment-{{ get_comment_ID() }}" {{ comment_class( '', null, null, false ) }}>
 		<div class="comment-body">
 			{{ __( 'Pingback:', 'photolab' ) }} {{ get_comment_author_link() }} <?php edit_comment_link( __( 'Edit', 'photolab' ), '<span class="edit-link">', '</span>' ); ?>

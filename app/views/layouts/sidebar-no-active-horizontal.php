@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<aside id="search" class="widget widget_search col-md-4">
+?><aside id="search" class="widget widget_search col-md-4">
 	{{ $search_form }}
 </aside>
 

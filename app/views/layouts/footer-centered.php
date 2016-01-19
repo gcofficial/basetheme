@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<div class="centered">
+?><div class="centered">
 	@if(has_nav_menu('footer'))
 		@if($logo != '')
 			<img src="{{ $logo }}" alt="Logo" class="logo-img">

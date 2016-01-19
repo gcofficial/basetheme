@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<div class="col-sm-9 right-sidebar">
+?><div class="col-sm-9 right-sidebar">
 {{ $social_post_code }}
 @while ( have_posts() )
 	<?php the_post(); ?>

@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<div class="footer-widgets">
+?><div class="footer-widgets">
 	<div class="container">
 		<div class="row">
 		@if(is_active_sidebar('footer' ))

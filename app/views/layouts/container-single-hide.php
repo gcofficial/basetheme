@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-{{ $social_post_code }}
+?>{{ $social_post_code }}
 @while ( have_posts() )
 	<?php the_post(); ?>
 	@include('contents/single')

@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-@include('layouts/sidebar')
+?>@include('layouts/sidebar')
 <div class="col-sm-6">
 @if ( have_posts() )
 	@include('layouts/blog-'.$blog_layout_style)

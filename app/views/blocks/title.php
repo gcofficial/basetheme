@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-@if ( is_category() )
+?>@if ( is_category() )
 	<h1> {{ single_cat_title('', false) }}</h1>
 @elseif ( is_tag() )
 	<h1>{{ single_tag_title('', false) }}</h1>

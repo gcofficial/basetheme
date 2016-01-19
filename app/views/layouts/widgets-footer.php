@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-@if(count($widgets) > 0 && $columns > 0)
+?>@if(count($widgets) > 0 && $columns > 0)
 	@for($i = 0; $i < count($widgets); $i+=$columns)
 		<div class="row">
 		@for ($x=0; $x < $columns; $x++) 

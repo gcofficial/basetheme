@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-@if(trim($copyright) != '')
+?>@if(trim($copyright) != '')
 	<span class="copyright">{{ $copyright }}</span>
 @endif
 @if(has_nav_menu('footer'))

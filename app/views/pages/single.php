@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-{{ Main_Model::header() }}
+?>{{ Main_Model::header() }}
 	<div id="primary" class="container">
 		<div class="row">
 		{{ $breadcrumbs }}

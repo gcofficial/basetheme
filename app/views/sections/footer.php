@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-@if($footer_style != 'minimal')
+?>@if($footer_style != 'minimal')
 	@include('layouts/sidebar-footer')
 @endif
 	</div><!-- #content -->

@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<div class="col-sm-9 right-sidebar">
+?><div class="col-sm-9 right-sidebar">
 	@while ( have_posts() )
 		<?php the_post(); ?>
 		@include('contents/page')

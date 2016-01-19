@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<li id="{{ esc_attr( $id ) }}" class="{{ esc_attr( $class ) }} sidebar-creator">
+?><li id="{{ esc_attr( $id ) }}" class="{{ esc_attr( $class ) }} sidebar-creator">
 	<label>
 		<span class="customize-control-title">{{ $label }}</span>
 		<input type="hidden" class="main-input" value="{{ $value }}" {{ $link }}>

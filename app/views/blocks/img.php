@@ -4,5 +4,4 @@
  *
  * @package photolab
  */
-?>
-<img {{ $attrubutes }}>
+?><img {{ $attrubutes }}>

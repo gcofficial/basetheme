@@ -4,8 +4,7 @@
  *
  * @package photolab
  */
-?>
-<div class="loader-wrapper">
+?><div class="loader-wrapper">
 	<div class="sk-circle">
 		<div class="sk-circle1 sk-child"></div>
 		<div class="sk-circle2 sk-child"></div>
