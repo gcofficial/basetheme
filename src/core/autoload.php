@@ -10,7 +10,7 @@ namespace Core;
 /**
  * Autoload class
  */
-class Autoload{
+class Autoload {
 
 	/**
 	 * Framework class constructor
@@ -26,7 +26,7 @@ class Autoload{
 	 * @return void
 	 */
 	public function autoloader( $class ) {
-		$class_path = self::getClassPath( $class );
+		$class_path = self::get_class_path( $class );
 		if ( file_exists( $class_path ) ) {
 			require_once $class_path;
 		}
@@ -38,7 +38,7 @@ class Autoload{
 	 * @param type $class --- class called name.
 	 * @return string        --- class path
 	 */
-	public static function getClassPath( $class ) {
+	public static function get_class_path( $class ) {
 		$file_name  = strtolower( $class );
 		$file_name  = str_replace( '_', '-', $file_name );
 		$class_path = str_replace( '\\', DIRECTORY_SEPARATOR, $file_name );
