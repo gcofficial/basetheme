@@ -107,7 +107,7 @@ class View {
 	{
 		$__data = array_merge(static::$data, $__data);
 		$__path = self::get_view_path($view);
-		$scout_compiler = new ScoutCompiler(self::get_storage_folder_path());
+		$scout_compiler = new Scout_Compiler(self::get_storage_folder_path());
 		if($scout_compiler->isExpired($__path))
 		{
 			$scout_compiler->compile($__path);

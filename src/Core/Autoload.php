@@ -32,7 +32,10 @@ class Autoload{
 	 */
 	public static function getClassPath($class)
 	{
-		$class_path = str_replace('\\', DIRECTORY_SEPARATOR, $class);
+		$file_name  = strtolower($class);
+		$file_name  = str_replace('_', '-', $file_name);
+		$class_path = str_replace('\\', DIRECTORY_SEPARATOR, $file_name);
+
 		return sprintf('%s/src/%s.php', get_template_directory(), $class_path);
 	}
 }

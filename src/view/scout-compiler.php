@@ -4,7 +4,7 @@ namespace View;
 use \Core\Utils as Utils;
 Use \View\View as View;
 
-class ScoutCompiler extends Compiler implements ICompiler {
+class Scout_Compiler extends Compiler implements ICompiler {
 
     /**
      * The original view path.
