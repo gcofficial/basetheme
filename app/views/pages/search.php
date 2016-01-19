@@ -23,4 +23,3 @@
 	</div><!-- #primary -->
 
 {{ Main_Model::footer() }}
-

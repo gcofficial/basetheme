@@ -5,9 +5,9 @@
  * @package photolab
  */
 ?><div id="masonry" class="masonry">
-@for($i = 0; $i < count($posts); $i++)
+@for ( $i = 0; $i < count( $posts ); $i++ )
 	<?php
-	$post = $posts[$i];
+	$post = $posts[ $i ];
 	setup_postdata( $post );
 	?>
 	<div class="brick brick-{{ $columns_count }}">
