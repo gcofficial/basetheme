@@ -1,4 +1,11 @@
-<header id="masthead" class="site-header minimal" role="banner">
+<?php
+/**
+ * Layouts/Header default view
+ *
+ * @package photolab
+ */
+?>
+<header id="masthead" class="site-header" role="banner">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4">
@@ -18,13 +25,11 @@
 					@if($socials_show_header)
 						{{ $socials }}
 					@endif
+					<div class="main-nav-wrap">
+					{{ $main_menu }}
+					</div><!-- #site-navigation -->
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="main-nav-wrap">
-			{{ $main_menu }}
-			</div><!-- #site-navigation -->
 		</div>
 	</div>
 </header><!-- #masthead -->

@@ -1,3 +1,10 @@
+<?php
+/**
+ * Contents/Content view
+ *
+ * @package photolab
+ */
+?>
 <?php do_action( 'photolab_before_post' ); ?>
 <article id="post-{{ get_the_ID() }}" class="{{ join( ' ', get_post_class() ) }} col-md-12">
 
@@ -15,7 +22,7 @@
 			<header class="entry-header">
 				@if ( 'post' == get_post_type() )
 					<div class="entry-meta">
-						@include('blocks/posted_on')
+						@include('blocks/posted-on')
 					</div><!-- .entry-meta -->
 				@endif
 				{{ the_title( sprintf( '<h2 class="entry-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>', false ) }}
@@ -44,7 +51,7 @@
 				@endif
 			</div><!-- .entry-content -->
 			@endif
-			@include('blocks/read_more_button')
+			@include('blocks/read-more-button')
 
 		</div><!-- .entry-wrapper -->
 		<div class="clear"></div>

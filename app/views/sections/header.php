@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+/**
+ * Sections/Header view
+ *
+ * @package photolab
+ */
+?><!DOCTYPE html>
 <html {{ $language_attributes }}>
 <head>
 <meta charset="{{ $charset }}">
@@ -82,7 +88,7 @@
 						<h1 class="page-title">{{ sprintf( __( 'Search Results for: %s', 'photolab' ), '<span>' . get_search_query() . '</span>' ) }}</h1>
 					@elseif ( is_single() )
 						<div class="entry-meta">
-							@include('blocks/posted_on')
+							@include('blocks/posted-on')
 						</div><!-- .entry-meta -->
 						{{ the_title( '<h1 class="entry-title">', '</h1>', false ) }}
 					@elseif ( is_page() )

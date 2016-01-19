@@ -1,4 +1,10 @@
-@include('layouts/sidebar_left')
+<?php
+/**
+ * Layouts/Container single left and right sidebars view
+ *
+ * @package photolab
+ */
+?>@include('layouts/sidebar-left')
 <div class="col-sm-6">
 {{ $social_post_code }}
 @while ( have_posts() )
@@ -9,4 +15,4 @@
 	@endif
 @endwhile
 </div>
-@include('layouts/sidebar_right')
+@include('layouts/sidebar-right')

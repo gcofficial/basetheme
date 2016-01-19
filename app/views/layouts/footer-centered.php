@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Footer centered view
+ *
+ * @package photolab
+ */
+?>
 <div class="centered">
 	@if(has_nav_menu('footer'))
 		@if($logo != '')

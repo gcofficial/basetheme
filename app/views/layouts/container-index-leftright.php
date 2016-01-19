@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Container index left and right sidebars view
+ *
+ * @package photolab
+ */
+?>
 @include('layouts/sidebar')
 <div class="col-sm-6">
 @if ( have_posts() )

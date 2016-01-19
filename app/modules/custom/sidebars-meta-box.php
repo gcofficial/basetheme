@@ -120,7 +120,7 @@ class Sidebars_Meta_Box {
 		wp_nonce_field( 'sidebars', 'sidebars_nonce' );
 
 		echo View::make(
-			'blocks/sidebars_metabox',
+			'blocks/sidebars-metabox',
 			[
 				'left_select' => View::make(
 					'blocks/select',

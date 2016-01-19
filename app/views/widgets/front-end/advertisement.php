@@ -1,4 +1,10 @@
-{{ $before_widget }}
+<?php
+/**
+ * Widgets/Front end/Advertisement view
+ *
+ * @package photolab
+ */
+?>{{ $before_widget }}
 @if($title != '')
 	{{ $before_title }}{{ apply_filters( 'widget_title', $title ) }}{{ $after_title }}
 @endif

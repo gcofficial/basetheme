@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Container single hide sidebar view
+ *
+ * @package photolab
+ */
+?>
 {{ $social_post_code }}
 @while ( have_posts() )
 	<?php the_post(); ?>

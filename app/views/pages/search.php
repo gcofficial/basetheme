@@ -1,3 +1,10 @@
+<?php
+/**
+ * Pages/Search view
+ *
+ * @package photolab
+ */
+?>
 {{ Main_Model::header() }}
 
 	<div id="primary" class="container">

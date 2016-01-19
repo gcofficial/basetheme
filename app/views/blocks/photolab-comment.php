@@ -1,3 +1,10 @@
+<?php
+/**
+ * Photolab comment view
+ *
+ * @package photolab
+ */
+?>
 @if ( 'pingback' == $comment->comment_type || 'trackback' == $comment->comment_type )
 	<li id="comment-{{ get_comment_ID() }}" {{ comment_class( '', null, null, false ) }}>
 		<div class="comment-body">
@@ -21,9 +28,9 @@
 				@endif
 				<?php comment_text(); ?>
 				{{
-					get_comment_reply_link( 
-						array_merge( 
-							$args, 
+					get_comment_reply_link(
+						array_merge(
+							$args,
 							[
 								'add_below' => 'div-comment',
 								'depth'     => $depth,

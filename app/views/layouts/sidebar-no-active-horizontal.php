@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Sidebar No active horizontal view
+ *
+ * @package photolab
+ */
+?>
 <aside id="search" class="widget widget_search col-md-4">
 	{{ $search_form }}
 </aside>

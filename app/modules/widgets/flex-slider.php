@@ -105,7 +105,7 @@ class Flex_Slider extends \WP_Widget{
 	 */
 	public function widget( $args, $instance ) {
 		echo View::make(
-			'widgets/front-end/flex_slider',
+			'widgets/front-end/flex-slider',
 			[
 				'before_widget' => $args['before_widget'],
 				'before_title'  => $args['before_widget'],
@@ -129,7 +129,7 @@ class Flex_Slider extends \WP_Widget{
 	 */
 	public function form( $instance ) {
 		echo View::make(
-			'widgets/back-end/flex_slider',
+			'widgets/back-end/flex-slider',
 			[
 				'title'               => Utils::array_get( $instance, 'title' ),
 				'post_ids'            => Utils::array_get( $instance, 'post_ids' ),

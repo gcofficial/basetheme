@@ -1,3 +1,10 @@
+<?php
+/**
+ * Contents/Qoute view
+ *
+ * @package photolab
+ */
+?>
 <?php do_action( 'photolab_before_post' ); ?>
 <article id="post-{{ get_the_ID() }}" class="{{ join( ' ', get_post_class() ) }} col-md-12">
 
@@ -7,7 +14,7 @@
 			<header class="entry-header">
 				@if ( 'post' == get_post_type() )
 					<div class="entry-meta">
-						@include('blocks/posted_on')
+						@include('blocks/posted-on')
 					</div><!-- .entry-meta -->
 				@endif
 			</header><!-- .entry-header -->

@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Container page hide sidebar view
+ *
+ * @package photolab
+ */
+?>
 @while ( have_posts() )
 	<?php the_post(); ?>
 	@include('contents/page')

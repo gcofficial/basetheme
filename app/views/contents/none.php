@@ -1,3 +1,10 @@
+<?php
+/**
+ * Contents/None view
+ *
+ * @package photolab
+ */
+?>
 <section class="no-results not-found col-md-12">
 	<header class="page-header">
 		<h2 class="page-title">{{ __( 'Nothing Found', 'photolab' ) }}</h2>
@@ -16,4 +23,3 @@
 		@endif
 	</div><!-- .page-content -->
 </section><!-- .no-results -->
-gurievcreative@gmail.com

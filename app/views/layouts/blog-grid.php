@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Blog grid view
+ *
+ * @package photolab
+ */
+?>
 @for($i = 0; $i < count($posts); $i+=$columns_count)
 	<div class="row">
 	@for($x = 0; $x < $columns_count; $x++)

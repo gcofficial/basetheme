@@ -1,3 +1,10 @@
+<?php
+/**
+ * Sections/Footer view
+ *
+ * @package photolab
+ */
+?>
 @if($footer_style != 'minimal')
 	@include('layouts/sidebar-footer')
 @endif
@@ -6,7 +13,7 @@
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="container">
 			<div class="site-info">
-				@include('layouts/footer_'.$footer_style)
+				@include('layouts/footer-'.$footer_style)
 			</div><!-- .site-info -->
 		</div>
 	</footer><!-- #colophon -->

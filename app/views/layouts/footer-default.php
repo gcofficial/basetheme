@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Footer default view
+ *
+ * @package photolab
+ */
+?>
 @if(trim($copyright) != '')
 	<span class="copyright">{{ $copyright }}</span>
 @endif

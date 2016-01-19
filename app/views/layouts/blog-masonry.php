@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Blog masonry view
+ *
+ * @package photolab
+ */
+?>
 <div id="masonry" class="masonry">
 @for($i = 0; $i < count($posts); $i++)
 	<?php

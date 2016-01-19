@@ -1,3 +1,10 @@
+<?php
+/**
+ * Comments view
+ *
+ * @package photolab
+ */
+?>
 @if ( !post_password_required() ) 
 
 <div id="comments" class="comments-area">
@@ -30,21 +37,20 @@
 			<div class="nav-next">{{ get_next_comments_link( __( 'Newer Comments &rarr;', 'photolab' ) ) }}</div>
 		</nav><!-- #comment-nav-below -->
 		@endif
-
 	@endif
 
 	@if ( ! comments_open() && '0' != get_comments_number() && post_type_supports( get_post_type(), 'comments' ) ) 
 		<p class="no-comments">{{ __( 'Comments are closed.', 'photolab' ) }}</p>
 	@endif
 
-	<?php 
-		comment_form( 
+	<?php
+		comment_form(
 			[
 				'comment_field'  => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="' . __( 'Comment*', 'photolab' ) . '" aria-required="true"></textarea></p>',
 				'title_reply'    => '<span>' . __( 'Leave a Reply', 'photolab' ) . '</span>',
-				'title_reply_to' => '<span>' . __( 'Leave a Reply to %s', 'photolab' ) . '</span>'
-			] 
-		); 
+				'title_reply_to' => '<span>' . __( 'Leave a Reply to %s', 'photolab' ) . '</span>',
+			]
+		);
 	?>
 
 </div><!-- #comments -->

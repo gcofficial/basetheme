@@ -11,7 +11,7 @@ return [
 		'edit_theme_options',
 		'welcome.php',
 		function(){
-			echo \View\View::make( 'pages/about_photolab' );
+			echo \View\View::make( 'pages/about-photolab' );
 		},
 	],
 ];

@@ -30,7 +30,7 @@ class Comments {
 	public static function comment( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
 		echo View::make(
-			'blocks/photolab_comment',
+			'blocks/photolab-comment',
 			[
 				'comment' => $comment,
 				'args'    => $args,

@@ -20,7 +20,7 @@ class Main_Model {
 	public static function main() {
 		return [
 			'TDU'               => get_template_directory_uri(),
-			'search_form'       => View::make( 'blocks/search_form' ),
+			'search_form'       => View::make( 'blocks/search-form' ),
 			'sidebar_side_type' => Sidebar_Settings_Model::get_sidebar_side_type(),
 			'wp_query'          => Utils::array_get( $GLOBALS, 'wp_query', null ),
 			'post'              => Utils::array_get( $GLOBALS, 'post', null ),
@@ -79,7 +79,7 @@ class Main_Model {
 			'disclimer'            => Header_Settings_Model::getDisclimer(),
 			'search_box'           => Header_Settings_Model::getSearchBox(),
 			'header_style_layout'  => Header_Settings_Model::getHeaderStyle(),
-			'header_layout_view'   => sprintf( 'header_%s', Header_Settings_Model::getHeaderStyle() ),
+			'header_layout_view'   => sprintf( 'header-%s', Header_Settings_Model::getHeaderStyle() ),
 			'header_image'         => get_header_image(),
 			'header_slogan'        => get_option( 'photolab_header_slogan' ),
 			'header_class'         => Header_Settings_Model::getHeaderClass(),
@@ -233,7 +233,7 @@ class Main_Model {
 			}
 		}
 		echo View::make(
-			'blocks/image_post',
+			'blocks/image-post',
 			[
 				'fullsize_img'  => $fullsize_img,
 				'cropped_image' => $cropped_image,

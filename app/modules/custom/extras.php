@@ -156,7 +156,7 @@ class Extras {
 					return;
 				}
 				if ( $label ) {
-					echo View::make( 'blocks/blog_labels', [ 'label' => $label ] );
+					echo View::make( 'blocks/blog-labels', [ 'label' => $label ] );
 				}
 			}
 		} else {
@@ -166,7 +166,7 @@ class Extras {
 				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) {
 					return;
 				} if ( $label ) {
-					echo View::make( 'blocks/blog_labels', [ 'label' => $label ] );
+					echo View::make( 'blocks/blog-labels', [ 'label' => $label ] );
 				}
 			}
 		}

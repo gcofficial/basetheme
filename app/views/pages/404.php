@@ -1,3 +1,10 @@
+<?php
+/**
+ * Pages/404 view
+ *
+ * @package photolab
+ */
+?>
 {{ Main_Model::header() }}
 
 	<div id="primary" class="container">

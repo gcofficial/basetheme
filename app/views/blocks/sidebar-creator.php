@@ -1,3 +1,10 @@
+<?php
+/**
+ * Blocks/Sidebar creator view
+ *
+ * @package photolab
+ */
+?>
 <li id="{{ esc_attr( $id ) }}" class="{{ esc_attr( $class ) }} sidebar-creator">
 	<label>
 		<span class="customize-control-title">{{ $label }}</span>

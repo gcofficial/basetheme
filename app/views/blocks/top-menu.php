@@ -1,3 +1,10 @@
+<?php
+/**
+ * Blocks/Top menu view
+ *
+ * @package photolab
+ */
+?>
 <div class="top-menu">
 	@if($disclimer != '')
 		<span class="disclimer">{{ $disclimer }}</span>

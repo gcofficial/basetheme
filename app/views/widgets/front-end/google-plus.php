@@ -1,6 +1,12 @@
-{{ $before_widget }}
+<?php
+/**
+ * Widgets/Front end/Google plus view
+ *
+ * @package photolab
+ */
+?>{{ $before_widget }}
 @if($title != '')
-    {{ $before_title }}{{ apply_filters( 'widget_title', $title ) }}{{ $after_title }}
+	{{ $before_title }}{{ apply_filters( 'widget_title', $title ) }}{{ $after_title }}
 @endif
 @if((int) $page_id > 0)
 	<script src="https://apis.google.com/js/platform.js" async defer>

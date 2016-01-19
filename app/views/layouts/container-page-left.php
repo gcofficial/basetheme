@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Container page left view
+ *
+ * @package photolab
+ */
+?>
 <div class="col-sm-9 right-sidebar">
 	@while ( have_posts() )
 		<?php the_post(); ?>
@@ -7,4 +14,4 @@
 		@endif
 	@endwhile
 </div>
-@include('layouts/sidebar_left')
+@include('layouts/sidebar-left')

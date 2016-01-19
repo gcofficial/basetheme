@@ -1,7 +1,10 @@
 <?php
-// ==============================================================
-// Sorry man, this is not my shit :-|
-// ==============================================================
+/**
+ * Breadcrumbs view
+ * Sorry man, this is not my shit :-|
+ *
+ * @package photolab
+ */
 ?>
 @if ( !is_front_page() ) 
     <ul id="{{ $breadcrums_id }}" class="{{ $breadcrums_class }}">

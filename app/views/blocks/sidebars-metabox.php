@@ -1,3 +1,10 @@
+<?php
+/**
+ * Blocks/Sidebars Metabox view
+ *
+ * @package photolab
+ */
+?>
 <p>
 	<label for="sidebar_left"> {{ __( 'Sidebar left', 'photolab' ) }}: </label>
 	{{ $left_select }}

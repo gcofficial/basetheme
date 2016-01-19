@@ -1,3 +1,10 @@
+<?php
+/**
+ * Layouts/Header centerd view
+ *
+ * @package photolab
+ */
+?>
 <header id="masthead" class="site-header centered" role="banner">
 	<div class="container">
 		<div class="row">

@@ -37,7 +37,7 @@ class Sidebar_Creator extends \WP_Customize_Control {
 	 */
 	public function render_content() {
 		echo View::make(
-			'blocks/sidebar_creator',
+			'blocks/sidebar-creator',
 			[
 				'id'    => 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id ),
 				'class' => 'customize-control customize-control-' . $this->type,
