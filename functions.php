@@ -1,21 +1,25 @@
-﻿<?php
-Use \View\View;
-Use \Core\Utils;
+<?php
+/**
+ * Functions file
+ *
+ * @package photolab
+ */
 
-add_action('init', 'photolab_init');
-function photolab_init()
-{
-	// ==============================================================
-	// Global view variables declaration
-	// ==============================================================
-	View::addData(Main_Model::main());
+use \View\View;
+use \Core\Utils;
+
+add_action( 'init', 'photolab_init' );
+/**
+ * Photolab theme init
+ */
+function photolab_init() {
+	View::addData( Main_Model::main() );
 }
 
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
-if ( ! isset( $content_width ) ) 
-{
+if ( ! isset( $content_width ) ) {
 	$content_width = 1140; /* pixels */
 }
 
