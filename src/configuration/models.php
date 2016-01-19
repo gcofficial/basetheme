@@ -1,23 +1,30 @@
 <?php
+/**
+ * Configuration models engine class file
+ *
+ * @package photolab
+ */
 
 namespace Configuration;
 
-class Models{
+/**
+ * Models class
+ */
+class Models {
 
 	/**
-     * The image sizes.
-     *
-     * @var array
-     */
-    protected $data = [];
+	 * The image sizes.
+	 *
+	 * @var array
+	 */
+	protected $data = [];
 
-    /**
-     * Models class constructor
-     * 
-     * @param array $data 
-     */
-	public function __construct(array $data)
-	{
+	/**
+	 * Models class constructor
+	 *
+	 * @param array $data engine data.
+	 */
+	public function __construct( array $data ) {
 		$this->data = $data;
 		$this->load();
 	}
@@ -25,13 +32,10 @@ class Models{
 	/**
 	 * Load classes
 	 */
-	public function load()
-	{
-		foreach ($this->data as $path) 
-		{
-			if(file_exists($path))
-			{
-				require_once($path);
+	public function load() {
+		foreach ( $this->data as $path ) {
+			if ( file_exists( $path ) ) {
+				require_once( $path );
 			}
 		}
 	}
