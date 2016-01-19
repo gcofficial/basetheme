@@ -1,43 +1,46 @@
 <?php
+/**
+ * Configuration wigets engine class file
+ *
+ * @package photolab
+ */
 
 namespace Configuration;
 
-class Widgets{
+/**
+ * Widgets class
+ */
+class Widgets {
 
 	/**
-     * The image sizes.
-     *
-     * @var array
-     */
-    protected $data = [];
+	 * The image sizes.
+	 *
+	 * @var array
+	 */
+	protected $data = [];
 
-    /**
-     * Widgets class constructor
-     * 
-     * @param array $data 
-     */
-	public function __construct(array $data)
-	{
+	/**
+	 * Widgets class constructor
+	 *
+	 * @param array $data engine data.
+	 */
+	public function __construct( array $data ) {
 		$this->data = $data;
-		add_action('widgets_init', [$this, 'load']);
+		add_action( 'widgets_init', [ $this, 'load' ] );
 	}
 
 	/**
 	 * Load classes
 	 */
-	public function load()
-	{
-		foreach ($this->data as $class) 
-		{
+	public function load() {
+		foreach ( $this->data as $class ) {
 			$class_name = 'Modules\\Widgets\\'.$class;
-			$path = $this->path(str_replace('_', '-', $class));
-			
-			if(file_exists($path))
-			{
-				require_once($path);
-				
-				if(class_exists($class_name))
-				{
+			$path = $this->path( str_replace( '_', '-', $class ) );
+
+			if ( file_exists( $path ) ) {
+				require_once( $path );
+
+				if ( class_exists( $class_name ) ) {
 					register_widget( $class_name );
 				}
 			}
@@ -46,16 +49,15 @@ class Widgets{
 
 	/**
 	 * Get class path
-	 * 
-	 * @param type $class class name
+	 *
+	 * @param type $class class name.
 	 * @return string widget path
 	 */
-	public function path($class)
-	{
+	public function path( $class ) {
 		return sprintf(
 			'%s%s.php',
 			\Core\Utils::widgets_path(),
-			strtolower($class)
+			strtolower( $class )
 		);
 	}
 }
