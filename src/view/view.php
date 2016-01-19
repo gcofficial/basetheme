@@ -102,6 +102,7 @@ class View {
 
 	/**
 	 * Check view exists
+	 *
 	 * @return boolean true if exists | false if not
 	 */
 	public static function exists( $view = '' ) {
