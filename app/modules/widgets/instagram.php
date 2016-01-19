@@ -62,9 +62,9 @@ class Instagram extends \WP_Widget{
 	/**
 	 * Get posts with thumbnails
 	 *
-	 * @param  type    $id user id.
-	 * @param  type    $client_id client id api.
-	 * @param  integer $number_posts number posts.
+	 * @param  type $id user id.
+	 * @param  type $client_id client id api.
+	 * @param  type $number_posts number posts.
 	 * @return array posts with thumbnails $post->image
 	 */
 	public function getPostsWithImages( $id = '189003872', $client_id = '', $number_posts = 1 ) {
