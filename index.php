@@ -41,7 +41,7 @@ if ( is_404() ) {
 	$result = \View\View::make(
 		'pages/single',
 		[
-			'social_post_code' => \Modules\Custom\Social_Post_Types::getSocialPostCode( $post ),
+			'social_post_code' => \Modules\Custom\Social_Post_Types::get_social_post_code( $post ),
 			'sidebar_left'     => Sidebar_Settings_Model::getModeLeft(),
 			'sidebar_right'    => Sidebar_Settings_Model::getModeRight(),
 			'breadcrumbs'      => General_Site_Settings_Model::breadcrumbs(),
