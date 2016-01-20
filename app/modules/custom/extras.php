@@ -88,6 +88,7 @@ class Extras {
 					'type' => ( $html5 ? 'type="url"' : 'type="text"' ),
 					'placeholder' => __( 'Website', 'photolab' ),
 					'value'       => esc_attr( $commenter['comment_author_url'] ),
+					'aria_req'    => $aria_req,
 				)
 			),
 		);
