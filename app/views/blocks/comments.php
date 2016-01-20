@@ -20,12 +20,12 @@
 		<ol class="comment-list">
 			{{
 				wp_list_comments( 
-					[
+					array(
 						'style'      => 'ol',
 						'short_ping' => true,
-						'callback'   => ['\\Modules\\Custom\\Comments', 'comment'],
+						'callback'   => array('Comments', 'comment'),
 						'echo'       => false
-					]
+					)
 				)
 			}}
 		</ol><!-- .comment-list -->
@@ -44,11 +44,11 @@
 
 	<?php
 		comment_form(
-			[
+			array(
 				'comment_field'  => '<p class="comment-form-comment"><textarea id="comment" name="comment" cols="45" rows="8" placeholder="' . __( 'Comment*', 'photolab' ) . '" aria-required="true"></textarea></p>',
 				'title_reply'    => '<span>' . __( 'Leave a Reply', 'photolab' ) . '</span>',
 				'title_reply_to' => '<span>' . __( 'Leave a Reply to %s', 'photolab' ) . '</span>',
-			]
+			)
 		);
 	?>
 

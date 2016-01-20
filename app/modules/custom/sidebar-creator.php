@@ -10,7 +10,7 @@ if ( class_exists( 'WP_Customize_Control' ) ) :
 /**
  * Sidebar_Creator module class
  */
-class Sidebar_Creator extends \WP_Customize_Control {
+class Sidebar_Creator extends WP_Customize_Control {
 
 	/**
 	 * Add scripts and styles
@@ -56,5 +56,5 @@ class Sidebar_Creator extends \WP_Customize_Control {
 	}
 }
 
-add_action( 'widgets_init', [ 'Sidebar_Creator', 'widgets_init' ] );
+add_action( 'widgets_init', array( 'Sidebar_Creator', 'widgets_init' ) );
 endif;

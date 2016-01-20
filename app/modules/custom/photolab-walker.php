@@ -8,7 +8,7 @@
 /**
  * Photolab_Walker class
  */
-class Photolab_Walker extends \Walker_Nav_Menu {
+class Photolab_Walker extends Walker_Nav_Menu {
 	/**
 	 * What the class handles.
 	 *
@@ -16,7 +16,7 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 	 * @since 3.0.0
 	 * @var string
 	 */
-	public $tree_type = [ 'post_type', 'taxonomy', 'custom' ];
+	public $tree_type = array( 'post_type', 'taxonomy', 'custom' );
 
 	/**
 	 * Database fields to use.
@@ -26,7 +26,7 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 	 * @todo Decouple this.
 	 * @var array
 	 */
-	public $db_fields = [ 'parent' => 'menu_item_parent', 'id' => 'db_id' ];
+	public $db_fields = array( 'parent' => 'menu_item_parent', 'id' => 'db_id' );
 
 	/**
 	 * Starts the list before the elements are added.

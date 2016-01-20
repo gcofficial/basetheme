@@ -56,7 +56,7 @@ return array(
 		'header-text'            => false,
 		'uploads'                => true,
 		'wp-head-callback'       => '',
-		'admin-head-callback'    => array( '\\Modules\\Custom\\Custom_Header', 'style' ),
-		'admin-preview-callback' => array( '\\Modules\\Custom\\Custom_Header', 'image' ),
+		'admin-head-callback'    => array( 'Custom_Header', 'style' ),
+		'admin-preview-callback' => array( 'Custom_Header', 'image' ),
 	),
 );

@@ -17,21 +17,21 @@ class Extras {
 		// ==============================================================
 		// Actions
 		// ==============================================================
-		add_filter( 'wp_page_menu_args', [ $this, 'page_menu_args' ] );
-		add_filter( 'body_class', [ $this, 'body_classes' ] );
-		add_filter( 'wp_title', [ $this, 'wp_title' ], 10, 2 );
-		add_filter( 'excerpt_length', [ $this, 'excerpt_length' ], 99 );
-		add_filter( 'wp_generate_tag_cloud', [ $this, 'tag_class' ], 10 );
-		add_filter( 'nav_menu_css_class', [ $this, 'nav_class' ] );
-		add_filter( 'upload_mimes', [ $this, 'add_some_mime_types' ], 1, 1 );
-		add_filter( 'comment_form_default_fields', [ $this, 'comment_form_fields' ] );
+		add_filter( 'wp_page_menu_args', array( $this, 'page_menu_args' ) );
+		add_filter( 'body_class', array( $this, 'body_classes' ) );
+		add_filter( 'wp_title', array( $this, 'wp_title' ], 10, ) );
+		add_filter( 'excerpt_length', array( $this, 'excerpt_length' ], 9) );
+		add_filter( 'wp_generate_tag_cloud', array( $this, 'tag_class' ], 1) );
+		add_filter( 'nav_menu_css_class', array( $this, 'nav_class' ) );
+		add_filter( 'upload_mimes', array( $this, 'add_some_mime_types' ], 1, ) );
+		add_filter( 'comment_form_default_fields', array( $this, 'comment_form_fields' ) );
 
 		// ==============================================================
 		// Filters
 		// ==============================================================
-		add_action( 'wp', [ $this, 'setup_author' ] );
-		add_action( 'photolab_before_post', [ $this, 'blog_labels' ] );
-		add_action( 'after_setup_theme', [ $this, 'setup' ] );
+		add_action( 'wp', array( $this, 'setup_author' ) );
+		add_action( 'photolab_before_post', array( $this, 'blog_labels' ) );
+		add_action( 'after_setup_theme', array( $this, 'setup' ) );
 	}
 
 	/**
@@ -67,28 +67,28 @@ class Extras {
 		$fields = [
 			'author' => View::make(
 				'blocks/comment_form_fields/author',
-				[
+				array(
 					'placeholder' => __( 'Name', 'photolab' ) . ( $req ? '*' : '' ),
 					'value'       => esc_attr( $commenter['comment_author'] ),
 					'aria_req'    => $aria_req,
-				]
+				)
 			),
 			'email'  => View::make(
 				'blocks/comment_form_fields/email',
-				[
+				array(
 					'type' 		  => ( $html5 ? 'type="email"' : 'type="text"' ),
 					'placeholder' => __( 'Email', 'photolab' ) . ( $req ? '*' : '' ),
 					'value'       => esc_attr( $commenter['comment_author_email'] ),
 					'aria_req'    => $aria_req,
-				]
+				)
 			),
 			'url'    => View::make(
 				'blocks/comment_form_fields/author',
-				[
+				array(
 					'type' => ( $html5 ? 'type="url"' : 'type="text"' ),
 					'placeholder' => __( 'Website', 'photolab' ),
 					'value'       => esc_attr( $commenter['comment_author_url'] ),
-				]
+				)
 			),
 		];
 
@@ -119,7 +119,7 @@ class Extras {
 	public function tag_class( $return ) {
 		return preg_replace_callback(
 			'|(tag-link-)|',
-			[ $this, 'gener_random_class' ],
+			array( $this, 'gener_random_class' ),
 			$return
 		);
 	}
@@ -151,7 +151,7 @@ class Extras {
 					return;
 				}
 				if ( $label ) {
-					echo View::make( 'blocks/blog-labels', [ 'label' => $label ] );
+					echo View::make( 'blocks/blog-labels', array( 'label' => $label ) );
 				}
 			}
 		} else {
@@ -161,7 +161,7 @@ class Extras {
 				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) {
 					return;
 				} if ( $label ) {
-					echo View::make( 'blocks/blog-labels', [ 'label' => $label ] );
+					echo View::make( 'blocks/blog-labels', array( 'label' => $label ) );
 				}
 			}
 		}

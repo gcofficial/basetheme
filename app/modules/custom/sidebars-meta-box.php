@@ -17,8 +17,8 @@ class Sidebars_Meta_Box {
 	 */
 	public static function init() {
 		if ( is_admin() ) {
-			add_action( 'load-post.php', [ '\\Modules\\Custom\\Sidebars_Meta_Box', 'get_new_class' ] );
-			add_action( 'load-post-new.php', [ '\\Modules\\Custom\\Sidebars_Meta_Box', 'get_new_class' ] );
+			add_action( 'load-post.php', array( 'Sidebars_Meta_Box', 'get_new_class' ) );
+			add_action( 'load-post-new.php', array( 'Sidebars_Meta_Box', 'get_new_class' ) );
 		}
 	}
 
@@ -116,34 +116,34 @@ class Sidebars_Meta_Box {
 
 		echo View::make(
 			'blocks/sidebars-metabox',
-			[
+			array(
 				'left_select' => View::make(
 					'blocks/select',
-					[
+					array(
 						'current_value' => self::get_sidebar_left( $post->ID ),
 						'attributes'    => Utils::array_join(
-							[
+							array(
 								'name'  => 'sidebar_left',
 								'id'    => 'sidebar_left',
-							]
+							)
 						),
 						'values'        => \Sidebar_Settings_Model::getSidebarsForSelect(),
-					]
+					)
 				),
 				'right_select' => View::make(
 					'blocks/select',
-					[
+					array(
 						'current_value' => self::get_sidebar_right( $post->ID ),
 						'attributes'    => Utils::array_join(
-							[
+							array(
 								'name'  => 'sidebar_right',
 								'id'    => 'sidebar_right',
-							]
+							)
 						),
 						'values'        => \Sidebar_Settings_Model::getSidebarsForSelect(),
-					]
+					)
 				),
-			]
+			)
 		);
 	}
 

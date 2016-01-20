@@ -17,8 +17,8 @@ class Social_Post_Types {
 	 */
 	public static function init() {
 		if ( is_admin() ) {
-			add_action( 'load-post.php', array( '\\Modules\\Custom\\Social_Post_Types', 'get_new_class' ) );
-			add_action( 'load-post-new.php', array( '\\Modules\\Custom\\Social_Post_Types', 'get_new_class' ) );
+			add_action( 'load-post.php', array( 'Social_Post_Types', 'get_new_class' ) );
+			add_action( 'load-post-new.php', array( 'Social_Post_Types', 'get_new_class' ) );
 		}
 	}
 

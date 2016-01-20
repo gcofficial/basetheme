@@ -26,11 +26,11 @@ class Comments {
 		$GLOBALS['comment'] = $comment;
 		echo View::make(
 			'blocks/photolab-comment',
-			[
+			array(
 				'comment' => $comment,
 				'args'    => $args,
 				'depth'   => $depth,
-			]
+			)
 		);
 	}
 }
