@@ -309,7 +309,7 @@ class Customizer {
 			array(
 				'default'           => 'excerpt',
 				'type'              => 'option',
-				'sanitize_callback' => [ $this, 'sanitize_select' ],
+				'sanitize_callback' => array( $this, 'sanitize_select' ),
 			)
 		);
 		$wp_customize->add_control(
