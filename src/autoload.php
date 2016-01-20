@@ -16,6 +16,10 @@ class Autoload {
 	 */
 	private static $classes = array();
 
+	/**
+	 * Autoload class constructor
+	 * @param array $folders autoload folders list.
+	 */
 	public function __construct( $folders = array() ) {
 		self::$classes = self::get_all_classes_paths( $folders );
 		spl_autoload_register( array( __CLASS__, 'autoload' ) );
@@ -30,8 +34,7 @@ class Autoload {
 		$class = strtolower( $class );
 		$class = str_replace( '_', '-', $class );
 
-		if( array_key_exists( $class, self::$classes ) )
-		{
+		if ( array_key_exists( $class, self::$classes ) ) {
 			require self::$classes[ $class ];
 		}
 	}
@@ -45,7 +48,7 @@ class Autoload {
 		$result = array();
 		$paths  = self::get_all_paths( $folders );
 
-		if ( count( $paths ) ){
+		if ( count( $paths ) ) {
 			foreach ( $paths as $file ) {
 				$class = substr( basename( $file ), 0, -4 );
 				$result[ $class ] = $file;
