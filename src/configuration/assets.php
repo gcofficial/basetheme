@@ -14,7 +14,7 @@ class Assets {
 	 *
 	 * @var array
 	 */
-	protected $data = [];
+	protected $data = array();
 
 	/**
 	 * Assets class constructor

@@ -15,7 +15,7 @@ class Customs {
 	 *
 	 * @var array
 	 */
-	protected $data = [];
+	protected $data = array();
 
 	/**
 	 * Widgets class constructor

@@ -61,7 +61,7 @@ class Sidebar_Settings_Model extends Options_Model{
 	 * @return array --- sidebars with options
 	 */
 	public static function getSidebarsOptions() {
-		$res = [];
+		$res = array();
 		$arr = self::getSidebarsArray();
 		if ( count( $arr ) ) {
 			foreach ( $arr as $key => $value ) {

@@ -14,7 +14,7 @@ class Sidebars {
 	 *
 	 * @var array
 	 */
-	protected $data = [];
+	protected $data = array();
 
 	/**
 	 * Sidebars class constructor

@@ -14,7 +14,7 @@ class Supports {
 	 *
 	 * @var array
 	 */
-	protected $data = [];
+	protected $data = array();
 
 	/**
 	 * Supports class constructor

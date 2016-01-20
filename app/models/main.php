@@ -51,6 +51,7 @@ class Main_Model {
 	 * @return array
 	 */
 	public static function header_data() {
+		$static_class = empty( get_header_image() ) ? 'static' : 'absolute';
 		$header = array(
 			'allowedtags'          => $GLOBALS['allowedtags'],
 			'language_attributes'  => get_language_attributes(),
@@ -80,7 +81,7 @@ class Main_Model {
 			'header_image'         => get_header_image(),
 			'header_slogan'        => get_option( 'photolab_header_slogan' ),
 			'header_class'         => Header_Settings_Model::getHeaderClass(),
-			'static_class'         => empty( get_header_image() ) ? 'static' : 'absolute',
+			'static_class'         => $static_class,
 			'term_description'     => term_description(),
 			'welcome_message'      => get_option( 'photolab' ),
 			'main_menu'            => wp_nav_menu(

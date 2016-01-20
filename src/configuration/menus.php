@@ -14,7 +14,7 @@ class Menus {
 	 *
 	 * @var array
 	 */
-	protected $data = [];
+	protected $data = array();
 
 	/**
 	 * Menus class constructor
@@ -34,7 +34,7 @@ class Menus {
 	 */
 	public function install() {
 		if ( is_array( $this->data ) && ! empty( $this->data ) ) {
-			$locations = [];
+			$locations = array();
 
 			foreach ( $this->data as $slug => $desc ) {
 				$locations[ $slug ] = $desc;

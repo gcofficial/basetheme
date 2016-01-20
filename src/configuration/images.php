@@ -14,7 +14,7 @@ class Images {
 	 *
 	 * @var array
 	 */
-	protected $data = [];
+	protected $data = array();
 
 	/**
 	 * Images class constructor
@@ -60,7 +60,7 @@ class Images {
 	 * @return array
 	 */
 	public function add_images_to_drop_down_list( array $sizes ) {
-		$new = [];
+		$new = array();
 
 		foreach ( $this->data as $slug => $properties ) {
 			// If no 4th option, stop the loop.

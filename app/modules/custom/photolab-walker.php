@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-namespace Modules\Custom;
-
 /**
  * Photolab_Walker class
  */
@@ -111,7 +109,7 @@ class Photolab_Walker extends \Walker_Nav_Menu {
 
 		$output .= $indent . '<li' . $id . $class_names .'>';
 
-		$atts = [];
+		$atts = array();
 		$atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
 		$atts['target'] = ! empty( $item->target )     ? $item->target     : '';
 		$atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';

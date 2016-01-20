@@ -5,10 +5,6 @@
  * @package photolab
  */
 
-namespace Modules\Custom;
-
-use View;
-
 Social_Post_Types::init();
 
 /**
@@ -21,8 +17,8 @@ class Social_Post_Types {
 	 */
 	public static function init() {
 		if ( is_admin() ) {
-			add_action( 'load-post.php', [ '\\Modules\\Custom\\Social_Post_Types', 'get_new_class' ] );
-			add_action( 'load-post-new.php', [ '\\Modules\\Custom\\Social_Post_Types', 'get_new_class' ] );
+			add_action( 'load-post.php', array( '\\Modules\\Custom\\Social_Post_Types', 'get_new_class' ) );
+			add_action( 'load-post-new.php', array( '\\Modules\\Custom\\Social_Post_Types', 'get_new_class' ) );
 		}
 	}
 

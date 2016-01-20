@@ -15,7 +15,7 @@ class Models {
 	 *
 	 * @var array
 	 */
-	protected $data = [];
+	protected $data = array();
 
 	/**
 	 * Models class constructor

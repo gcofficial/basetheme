@@ -44,7 +44,7 @@ class Social_Settings_Model extends Options_Model{
 	 */
 	public static function get_all_socials() {
 		$allowed     = self::get_allowed();
-		$social_urls = [];
+		$social_urls = array();
 
 		foreach ( $allowed as $key => $properties ) {
 			$option = (string) self::get_option( sprintf( '%s_url', $key ) );

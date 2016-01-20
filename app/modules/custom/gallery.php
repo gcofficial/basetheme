@@ -5,11 +5,6 @@
  * @package photolab
  */
 
-namespace Modules\Custom;
-
-use View;
-use Utils;
-
 /**
  * Fuck that shit!!!
  * When we have time, it will be necessary
@@ -36,11 +31,11 @@ class Gallery {
 		if ( $fullsize_img  && $cropped_image ) {
 			return View::make(
 				'blocks/gall-img',
-				[
+				array(
 					'class'         => $class,
 					'fullsize_img'  => $fullsize_img,
 					'cropped_image' => $cropped_image,
-				]
+				)
 			);
 		}
 		return false;
@@ -62,10 +57,10 @@ class Gallery {
 		$img_ids_chunks = array_chunk( $img_ids, 3 );
 		$num_items = count( $img_ids_chunks );
 		$i = 0;
-		$rows = [];
+		$rows = array();
 
 		foreach ( $img_ids_chunks as $sub_ids ) {
-			$items = [];
+			$items = array();
 			$item_class = 'item-left';
 			if ( 0 == ( ( $i + 1 ) % 2 ) ) {
 				$item_class = 'item-right';
@@ -102,10 +97,10 @@ class Gallery {
 					$rows,
 					View::make(
 						'blocks/gall-row',
-						[
+						array(
 							'item_class' => 'last '.$item_class,
 							'items'      => $items,
-						]
+						)
 					)
 				);
 			} else {
@@ -125,20 +120,20 @@ class Gallery {
 					$rows,
 					View::make(
 						'blocks/gall-row',
-						[
+						array(
 							'item_class' => $item_class,
 							'items'      => $items,
-						]
+						)
 					)
 				);
 			}
 		}
 		echo View::make(
 			'blocks/gall',
-			[
+			array(
 				'rows'    => $rows,
 				'post_id' => $post_id,
-			]
+			)
 		);
 
 	}
@@ -160,13 +155,13 @@ class Gallery {
 			self::get_featured_gallery_html( $img_ids );
 		} else {
 			$attachments = get_children(
-				[
+				array(
 					'post_parent'    => $post_id,
 					'posts_per_page' => 3,
 					'post_status'    => 'inherit',
 					'post_type'      => 'attachment',
 					'post_mime_type' => 'image',
-				]
+				)
 			);
 
 			if ( $attachments && is_array( $attachments ) ) {

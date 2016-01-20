@@ -5,11 +5,6 @@
  * @package photolab
  */
 
-namespace Modules\Custom;
-
-use View;
-use Utils;
-
 if ( class_exists( 'WP_Customize_Control' ) ) :
 
 /**

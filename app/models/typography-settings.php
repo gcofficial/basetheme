@@ -79,7 +79,7 @@ class Typography_Settings_Model extends Options_Model{
 	 * @return string array with font key => option value.
 	 */
 	public static function getFontsOption( $option = 'name' ) {
-		$result = [];
+		$result = array();
 		$fonts  = self::getAllowedFontsWith();
 		foreach ( $fonts as $key => $font ) {
 			$result[ $key ] = $font[ $option ];

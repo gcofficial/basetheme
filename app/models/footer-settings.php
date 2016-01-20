@@ -57,11 +57,11 @@ class Footer_Settings_Model extends Options_Model{
 	 * @return array --- all allowed footer sytles
 	 */
 	public static function getAllowedStyles() {
-		return [
+		return array(
 			'default',
 			'minimal',
 			'centered',
-		];
+		);
 	}
 
 	/**

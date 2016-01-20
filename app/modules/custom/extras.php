@@ -5,11 +5,6 @@
  * @package photolab
  */
 
-namespace Modules\Custom;
-
-use View;
-use Utils;
-
 /**
  * Extras module class
  */
