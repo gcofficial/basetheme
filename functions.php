@@ -1,10 +1,12 @@
 <?php
 /**
- * SOme doc
+ * Photolab function file
+ * 
+ * @package photolab
  */
 
 /**
- * Some new doc
+ * Autoload all classes
  */
 require_once 'src/autoload.php';
 new Autoload(
