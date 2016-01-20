@@ -5,15 +5,10 @@
  * @package photolab
  */
 
-namespace Modules\Widgets;
-
-use Utils;
-use View;
-
 /**
  * Instagram widget class
  */
-class Instagram extends \WP_Widget{
+class Instagram extends WP_Widget{
 
 	const CLIENT_ID = '1515b124cf42481db64cacfb96132345';
 	/**
@@ -23,7 +18,7 @@ class Instagram extends \WP_Widget{
 		parent::__construct(
 			'instagram_widget',
 			__( 'Instagram widget', 'photolab' ),
-			[ 'description' => __( 'Instagram recent photos Widget', 'photolab' ) ]
+			array( 'description' => __( 'Instagram recent photos Widget', 'photolab' ) )
 		);
 	}
 
@@ -126,14 +121,14 @@ class Instagram extends \WP_Widget{
 
 		echo View::make(
 			'widgets/front-end/instagram',
-			[
+			array(
 				'before_widget' => $args['before_widget'],
 				'before_title'  => $args['before_widget'],
 				'after_title'   => $args['after_title'],
 				'after_widget'  => $args['after_widget'],
 				'title'         => Utils::array_get( $instance, 'title' ),
 				'images'        => $this->getPostsWithImages( $user_id, $instance['client_id'], $number_posts ),
-			]
+			)
 		);
 	}
 
@@ -147,7 +142,7 @@ class Instagram extends \WP_Widget{
 	public function form( $instance ) {
 		echo View::make(
 			'widgets/back-end/instagram',
-			[
+			array(
 				'title'                   => Utils::array_get( $instance, 'title' ),
 				'user'                    => Utils::array_get( $instance, 'user' ),
 				'number_posts'            => Utils::array_get( $instance, 'number_posts' ),
@@ -160,7 +155,7 @@ class Instagram extends \WP_Widget{
 				'field_name_number_posts' => $this->get_field_name( 'number_posts' ),
 				'field_id_client_id'      => $this->get_field_id( 'client_id' ),
 				'field_name_client_id'    => $this->get_field_name( 'client_id' ),
-			]
+			)
 		);
 	}
 

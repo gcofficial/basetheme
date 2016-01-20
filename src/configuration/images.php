@@ -36,7 +36,7 @@ class Images {
 		$this->add_images();
 
 		// Add sizes to the media attachment settings dropdown list.
-		add_filter( 'image_size_names_choose', [ $this, 'add_images_to_drop_down_list' ] );
+		add_filter( 'image_size_names_choose', array( $this, 'add_images_to_drop_down_list' ) );
 
 		return $this;
 	}
@@ -93,6 +93,6 @@ class Images {
 	 * @return string
 	 */
 	protected function label( $text ) {
-		return ucwords( str_replace( [ '-', '_' ], ' ', $text ) );
+		return ucwords( str_replace( array( '-', '_' ), ' ', $text ) );
 	}
 }

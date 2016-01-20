@@ -24,7 +24,7 @@ class Widgets {
 	 */
 	public function __construct( array $data ) {
 		$this->data = $data;
-		add_action( 'widgets_init', [ $this, 'load' ] );
+		add_action( 'widgets_init', array( $this, 'load' ) );
 	}
 
 	/**
@@ -32,7 +32,7 @@ class Widgets {
 	 */
 	public function load() {
 		foreach ( $this->data as $class ) {
-			$class_name = 'Modules\\Widgets\\'.$class;
+			$class_name = $class;
 			$path = $this->path( str_replace( '_', '-', $class ) );
 
 			if ( file_exists( $path ) ) {

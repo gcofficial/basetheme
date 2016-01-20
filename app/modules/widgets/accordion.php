@@ -5,15 +5,10 @@
  * @package photolab
  */
 
-namespace Modules\Widgets;
-
-use Utils;
-use View;
-
 /**
  * Accordion widget class
  */
-class Accordion extends \WP_Widget{
+class Accordion extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
@@ -22,13 +17,13 @@ class Accordion extends \WP_Widget{
 		parent::__construct(
 			'accordion_widget',
 			__( 'Accordion widget', 'photolab' ),
-			[ 'description' => __( 'Accordion Widget', 'photolab' ) ]
+			array( 'description' => __( 'Accordion Widget', 'photolab' ) )
 		);
 
 		// ==============================================================
 		// Actions
 		// ==============================================================
-		add_action( 'wp_enqueue_scripts', [ $this, 'scripts_and_styles' ] );
+		add_action( 'wp_enqueue_scripts', array( $this, 'scripts_and_styles' ) );
 	}
 
 	/**
@@ -41,7 +36,7 @@ class Accordion extends \WP_Widget{
 		wp_enqueue_script(
 			'accordion-widget',
 			Utils::assets_url().'/js/accordion-widget.js',
-			[ 'jquery' ]
+			array( 'jquery' )
 		);
 
 		/**
@@ -62,13 +57,13 @@ class Accordion extends \WP_Widget{
 	 */
 	public function getPosts( $post_ids, $category ) {
 		return get_posts(
-			[
+			array(
 				'numberposts'     => -1,
 				'include'         => $post_ids,
 				'category'        => $category,
 				'post_type'       => 'post',
 				'post_status'     => 'publish',
-			]
+			)
 		);
 	}
 
@@ -83,7 +78,7 @@ class Accordion extends \WP_Widget{
 	public function widget( $args, $instance ) {
 		echo View::make(
 			'widgets/front-end/accordion',
-			[
+			array(
 				'before_widget' => $args['before_widget'],
 				'before_title'  => $args['before_widget'],
 				'after_title'   => $args['after_title'],
@@ -93,7 +88,7 @@ class Accordion extends \WP_Widget{
 					Utils::array_get( $instance, 'post_ids' ),
 					Utils::array_get( $instance, 'category' )
 				),
-			]
+			)
 		);
 	}
 
@@ -107,7 +102,7 @@ class Accordion extends \WP_Widget{
 	public function form( $instance ) {
 		echo View::make(
 			'widgets/back-end/accordion',
-			[
+			array(
 				'title'               => Utils::array_get( $instance, 'title' ),
 				'post_ids'            => Utils::array_get( $instance, 'post_ids' ),
 				'category'            => Utils::array_get( $instance, 'category' ),
@@ -118,7 +113,7 @@ class Accordion extends \WP_Widget{
 				'field_id_category'   => $this->get_field_id( 'category' ),
 				'field_name_category' => $this->get_field_name( 'category' ),
 				'dropdown_categories' => wp_dropdown_categories(
-					[
+					array(
 						'show_option_all'    => '',
 						'show_option_none'   => 'All',
 						'option_none_value'  => '',
@@ -139,9 +134,9 @@ class Accordion extends \WP_Widget{
 						'taxonomy'           => 'category',
 						'hide_if_empty'      => false,
 						'value_field'	     => 'term_id',
-					]
+					)
 				),
-			]
+			)
 		);
 	}
 

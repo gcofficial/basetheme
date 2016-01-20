@@ -23,7 +23,7 @@ class Supports {
 	 */
 	public function __construct( array $data ) {
 		$this->data = $data;
-		add_action( 'init', [ $this, 'install' ] );
+		add_action( 'init', array( $this, 'install' ) );
 	}
 
 	/**

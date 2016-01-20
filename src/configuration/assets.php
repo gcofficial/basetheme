@@ -26,7 +26,7 @@ class Assets {
 			$this->get_allowed_keys(),
 			$data
 		);
-		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue' ] );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ) );
 	}
 
 	/**
@@ -35,7 +35,7 @@ class Assets {
 	 * @return array
 	 */
 	public function get_allowed_keys() {
-		return [ 'scripts', 'styles', 'localize', 'custom' ];
+		return array( 'scripts', 'styles', 'localize', 'custom' );
 	}
 
 	/**
@@ -59,7 +59,7 @@ class Assets {
 	 * @return void
 	 */
 	public function scripts( $scripts ) {
-		$defaults = [ '', false, [], false, false ];
+		$defaults = array( '', false, array(), false, false );
 		if ( is_array( $scripts ) && count( $scripts ) ) {
 			foreach ( $scripts as $script ) {
 				list( $handle, $src, $deps, $ver, $in_footer ) = array_merge( $script, $defaults );
@@ -75,7 +75,7 @@ class Assets {
 	 * @return void
 	 */
 	public function styles( $styles ) {
-		$defaults = [ '', false, [], false, 'all' ];
+		$defaults = array( '', false, array(), false, 'all' );
 		if ( is_array( $styles ) && count( $styles ) ) {
 			foreach ( $styles as $style ) {
 				list( $handle, $src, $deps, $ver, $media ) = array_merge( $style, $defaults );

@@ -5,15 +5,10 @@
  * @package photolab
  */
 
-namespace Modules\Widgets;
-
-use Utils;
-use View;
-
 /**
  * Advertisement widget module class
  */
-class Advertisement extends \WP_Widget{
+class Advertisement extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
@@ -22,7 +17,7 @@ class Advertisement extends \WP_Widget{
 		parent::__construct(
 			'advertisement_widget',
 			__( 'Advertisement widget', 'photolab' ),
-			[ 'description' => __( 'Advertisement Widget', 'photolab' ) ]
+			array( 'description' => __( 'Advertisement Widget', 'photolab' ) )
 		);
 
 		// ==============================================================
@@ -40,7 +35,7 @@ class Advertisement extends \WP_Widget{
 		wp_enqueue_script(
 			'upload_media_widget',
 			Utils::assets_url().'/js/advertisement.js',
-			[ 'jquery' ]
+			array( 'jquery' )
 		);
 	}
 
@@ -55,14 +50,14 @@ class Advertisement extends \WP_Widget{
 	public function widget( $args, $instance ) {
 		echo View::make(
 			'widgets/front-end/advertisement',
-			[
+			array(
 				'image' => Utils::array_get( $instance, 'image' ),
 				'before_widget' => $args['before_widget'],
 				'before_title'  => $args['before_widget'],
 				'after_title'   => $args['after_title'],
 				'after_widget'  => $args['after_widget'],
 				'title'         => Utils::array_get( $instance, 'title' ),
-			]
+			)
 		);
 	}
 
@@ -76,14 +71,14 @@ class Advertisement extends \WP_Widget{
 	public function form( $instance ) {
 		echo View::make(
 			'widgets/back-end/advertisement',
-			[
+			array(
 				'title' 			  => Utils::array_get( $instance, 'title', __( 'Widget Image', 'photolab' ) ),
 				'image' 			  => Utils::array_get( $instance, 'image' ),
 				'field_id_title'      => $this->get_field_id( 'title' ),
 				'field_name_title'    => $this->get_field_name( 'title' ),
 				'field_id_image'      => $this->get_field_id( 'image' ),
 				'field_name_image'    => $this->get_field_name( 'image' ),
-			]
+			)
 		);
 	}
 

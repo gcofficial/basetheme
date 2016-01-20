@@ -5,15 +5,10 @@
  * @package photolab
  */
 
-namespace Modules\Widgets;
-
-use Utils;
-use View;
-
 /**
  * Flex_Slider module class
  */
-class Flex_Slider extends \WP_Widget{
+class Flex_Slider extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
@@ -22,13 +17,13 @@ class Flex_Slider extends \WP_Widget{
 		parent::__construct(
 			'flex_slider_widget',
 			__( 'Flex slider widget', 'photolab' ),
-			[ 'description' => __( 'Flex Slider Widget', 'photolab' ) ]
+			array( 'description' => __( 'Flex Slider Widget', 'photolab' ) )
 		);
 
 		// ==============================================================
 		// Actions
 		// ==============================================================
-		add_action( 'wp_enqueue_scripts', [ $this, 'scripts_and_styles' ] );
+		add_action( 'wp_enqueue_scripts', array( $this, 'scripts_and_styles' ) );
 	}
 
 	/**
@@ -41,13 +36,13 @@ class Flex_Slider extends \WP_Widget{
 		wp_enqueue_script(
 			'flex-slider',
 			Utils::assets_url().'js/jquery.flexslider-min.js',
-			[ 'jquery' ]
+			array( 'jquery' )
 		);
 
 		wp_enqueue_script(
 			'flex-slider-widget',
 			Utils::assets_url().'js/flex-slider-widget.js',
-			[ 'jquery' ]
+			array( 'jquery' )
 		);
 
 		/**
@@ -106,7 +101,7 @@ class Flex_Slider extends \WP_Widget{
 	public function widget( $args, $instance ) {
 		echo View::make(
 			'widgets/front-end/flex-slider',
-			[
+			array(
 				'before_widget' => $args['before_widget'],
 				'before_title'  => $args['before_widget'],
 				'after_title'   => $args['after_title'],
@@ -116,7 +111,7 @@ class Flex_Slider extends \WP_Widget{
 					Utils::array_get( $instance, 'post_ids' ),
 					Utils::array_get( $instance, 'category' )
 				),
-			]
+			)
 		);
 	}
 
@@ -130,7 +125,7 @@ class Flex_Slider extends \WP_Widget{
 	public function form( $instance ) {
 		echo View::make(
 			'widgets/back-end/flex-slider',
-			[
+			array(
 				'title'               => Utils::array_get( $instance, 'title' ),
 				'post_ids'            => Utils::array_get( $instance, 'post_ids' ),
 				'category'            => Utils::array_get( $instance, 'category' ),
@@ -141,7 +136,7 @@ class Flex_Slider extends \WP_Widget{
 				'field_id_category'   => $this->get_field_id( 'category' ),
 				'field_name_category' => $this->get_field_name( 'category' ),
 				'dropdown_categories' => wp_dropdown_categories(
-					[
+					array(
 						'show_option_all'    => '',
 						'show_option_none'   => 'All',
 						'option_none_value'  => '',
@@ -162,9 +157,9 @@ class Flex_Slider extends \WP_Widget{
 						'taxonomy'           => 'category',
 						'hide_if_empty'      => false,
 						'value_field'	     => 'term_id',
-					]
+					)
 				),
-			]
+			)
 		);
 	}
 

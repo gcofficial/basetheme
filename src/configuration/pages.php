@@ -24,7 +24,7 @@ class Pages {
 	 */
 	public function __construct( array $data ) {
 		$this->data = $data;
-		add_action( 'admin_menu', [ $this, 'load' ] );
+		add_action( 'admin_menu', array( $this, 'load' ) );
 	}
 
 	/**
@@ -32,7 +32,7 @@ class Pages {
 	 */
 	public function load() {
 		foreach ( $this->data as $class => $properties ) {
-			$class_name = 'Modules\\Pages\\'.$class;
+			$class_name = $class;
 			$path = $this->path( $class );
 
 			if ( file_exists( $path ) ) {
