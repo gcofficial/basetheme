@@ -1,0 +1,127 @@
+<?php
+/**
+ * Sections/Header view
+ *
+ * @package photolab
+ */
+?><!DOCTYPE html>
+<html <?php echo($language_attributes); ?>>
+<head>
+<meta charset="<?php echo($charset); ?>">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title><?php echo(wp_title( '|', false, 'right' )); ?></title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="<?php echo($ping_back_url); ?>">
+<?php echo($favicon); ?><?php echo($touch_icon); ?><!--[if lt IE 9]>
+<script src="<?php echo($TDU); ?>/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+<?php wp_head(); ?>
+</head>
+<?php echo($custom_styles); ?><body <?php echo($body_class); ?>>
+<?php if($is_enabled_preloader): ?>
+	<?php echo View::make('blocks/loader', Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+<?php endif; ?>
+<div id="page" class="hfeed site">
+	<?php if(has_nav_menu('top')): ?>
+		<?php echo View::make('blocks/top-menu', Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+	<?php endif; ?>
+	<?php echo View::make('layouts/'.$header_layout_view, Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+	<div class="header-image-box">
+	<?php if( is_front_page() ): ?>
+		<?php if( $header_image ): ?>
+			<img src="<?php echo($header_image); ?>" alt="<?php echo(get_bloginfo( 'name' )); ?>">
+		<?php endif; ?>
+		<?php if( $header_slogan && $header_image ): ?>
+			<div class="header-slogan <?php echo(esc_attr( $static_class )); ?>"><?php echo($header_slogan); ?></div>
+		<?php endif; ?>
+	<?php else: ?>
+		<div class="page-header-wrap">
+		<?php if( is_singular() ): ?> 
+			<?php if( has_post_thumbnail() ): ?> 
+				<?php echo(get_the_post_thumbnail( get_the_id(), 'full' )); ?>			<?php elseif( $header_image ): ?> 
+				<img src="<?php echo(esc_url( $header_image )); ?>" alt="<?php echo(get_bloginfo( 'name' )); ?>">
+			<?php endif; ?>
+		<?php else: ?> 
+			<?php if( $header_image ): ?> 
+				<img src="<?php echo(esc_url( $header_image )); ?>" alt="<?php echo(get_bloginfo( 'name' )); ?>">
+			<?php endif; ?>
+		<?php endif; ?>
+			<div class="container">
+				<div class="<?php echo(esc_attr( $header_class )); ?>">
+					
+					<?php if( is_category() ): ?>
+						<h1><?php echo(single_cat_title('', false)); ?></h1>
+					<?php elseif( is_tag() ): ?> 
+						<h1><?php echo(single_tag_title('', false)); ?></h1>
+					<?php elseif( is_author() ): ?> 
+						<h1><?php echo(sprintf( __( 'Author: %s', 'photolab' ), '<span class="vcard">' . get_the_author() . '</span>' )); ?></h1>
+					<?php elseif( is_day() ): ?>
+						<h1><?php echo(sprintf( __( 'Day: %s', 'photolab' ), '<span>' . get_the_date() . '</span>' )); ?></h1>
+					<?php elseif( is_month() ): ?>
+						<h1><?php echo(sprintf( __( 'Month: %s', 'photolab' ), '<span>' . get_the_date( _x( 'F Y', 'monthly archives date format', 'photolab' ) ) . '</span>' )); ?></h1>
+					<?php elseif( is_year() ): ?>
+						<h1><?php echo(sprintf( __( 'Year: %s', 'photolab' ), '<span>' . get_the_date( _x( 'Y', 'yearly archives date format', 'photolab' ) ) . '</span>' )); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-aside' ) ): ?>
+						<h1><?php echo(__( 'Asides', 'photolab' )); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-gallery' ) ): ?> 
+						<h1><?php echo(__( 'Galleries', 'photolab')); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-image' ) ): ?>
+						<h1><?php echo(__( 'Images', 'photolab')); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-video' ) ): ?>
+						<h1><?php echo(__( 'Videos', 'photolab' )); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-quote' ) ): ?>
+						<h1><?php echo(__( 'Quotes', 'photolab' )); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-link' ) ): ?>
+						<h1><?php echo(__( 'Links', 'photolab' )); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-status' ) ): ?>
+						<h1><?php echo(__( 'Statuses', 'photolab' )); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-audio' ) ): ?>
+						<h1><?php echo(__( 'Audios', 'photolab' )); ?></h1>
+					<?php elseif( is_tax( 'post_format', 'post-format-chat' ) ): ?>
+						<h1><?php echo(__( 'Chats', 'photolab' )); ?></h1>
+					<?php elseif( is_search() ): ?>
+						<h1 class="page-title"><?php echo(sprintf( __( 'Search Results for: %s', 'photolab' ), '<span>' . get_search_query() . '</span>' )); ?></h1>
+					<?php elseif( is_single() ): ?>
+						<div class="entry-meta">
+							<?php echo View::make('blocks/posted-on', Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+						</div><!-- .entry-meta -->
+						<?php echo(the_title( '<h1 class="entry-title">', '</h1>', false )); ?>					<?php elseif( is_page() ): ?>
+						<?php echo(the_title( '<h1 class="entry-title">', '</h1>', false )); ?>					<?php elseif( is_404() ): ?>
+						<h1 class="entry-title"><?php echo(__( 'Error 404', 'photolab' )); ?></h1>
+					<?php else: ?>
+						<h1><?php echo(__( 'Archives', 'photolab' )); ?></h1>
+					<?php endif; ?>
+
+					<?php if( ! empty( $term_description ) ): ?>
+						<div class="taxonomy-description"><?php echo($term_description); ?></div>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	</div>
+	<?php if( is_front_page() ): ?>
+		<?php if( ! empty($data) AND ! ($wp_query->is_paged && $wp_query->query['paged'] > 1) ): ?> 
+		<?php endif; ?>	
+
+		<div class="container">
+			<div class="welcome_message row">
+				<?php if( isset($welcome_message['welcome_label']) ): ?>
+					<div class="col-md-12"><h3 class="message_label"><span><?php echo(wp_kses( $welcome_message['welcome_label'], $allowedtags )); ?></span></h3></div>
+				<?php endif; ?>
+				<?php if( isset($welcome_message['welcome_img']) ): ?> 
+					<div class="col-md-5"><img src="<?php echo(esc_url( $welcome_message['welcome_img'] )); ?>" alt="<?php echo(esc_attr( $alt_mess )); ?>"></div>
+				<?php endif; ?>
+				<div class="message_content col-md-7">
+					<?php if( isset($welcome_message['welcome_title']) ): ?>
+						<h2 class="message_title"><?php echo(wp_kses( $welcome_message['welcome_title'], $allowedtags )); ?></h2>
+					<?php endif; ?>
+					<?php if( isset($welcome_message['welcome_message']) ): ?>
+						<p><?php echo(wp_kses( $welcome_message['welcome_message'], $allowedtags )); ?></p>
+					<?php endif; ?>
+				</div>
+			</div>
+		</div>
+	<?php endif; ?>
+	<div id="content" class="site-content">

@@ -6,7 +6,7 @@
  * @package photolab
  */
 
-echo \View\View::make(
+echo View::make(
 	'pages/page',
 	[
 		'sidebar_left'      => Sidebar_Settings_Model::getModeLeft(),

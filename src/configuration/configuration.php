@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-namespace Configuration;
-
 /**
  * Configuration class
  */
@@ -19,9 +17,9 @@ class Configuration {
 		$allowed_classes = self::get_allowed_config_classes();
 		foreach ( $allowed_classes as $class_name ) {
 			$path  = self::get_class_path( $class_name );
-			$class = sprintf( '\\Configuration\\%s', $class_name );
+
 			if ( file_exists( $path ) ) {
-				new $class( include( $path ) );
+				new $class_name( include( $path ) );
 			}
 		}
 	}

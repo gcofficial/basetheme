@@ -1,0 +1,12 @@
+<?php
+/**
+ * Layouts/Sidebar second view
+ *
+ * @package photolab
+ */
+?><div id="secondary" class="widget-area col-sm-3" role="complementary">
+	<?php if( ! dynamic_sidebar( 'sidebar-2' ) ): ?>
+		<?php echo View::make('layouts/sidebar-no-active', Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>
+	<?php endif; ?>
+</div><!-- #secondary -->
+

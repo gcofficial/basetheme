@@ -5,9 +5,6 @@
  * @package photolab
  */
 
-use \View\View;
-use \Core\Utils;
-
 /**
  * Main model class
  */
@@ -45,7 +42,7 @@ class Main_Model {
 	 * @return string HTML code header
 	 */
 	public static function header() {
-		return \View\View::make( 'sections/header', Main_Model::header_data() );
+		return View::make( 'sections/header', Main_Model::header_data() );
 	}
 
 	/**
@@ -121,7 +118,7 @@ class Main_Model {
 	 * @return string HTML code footer
 	 */
 	public static function footer() {
-		return \View\View::make( 'sections/footer', Main_Model::footer_data() );
+		return View::make( 'sections/footer', Main_Model::footer_data() );
 	}
 
 	/**

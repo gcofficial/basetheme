@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-namespace View;
-
 /**
  * Abstract Compiler class
  */

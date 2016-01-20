@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-namespace Configuration;
-
 /**
  * Assets class
  */
@@ -24,7 +22,7 @@ class Assets {
 	 * @param array $data assets data.
 	 */
 	public function __construct( array $data ) {
-		$this->data = \Core\Utils::array_leave_right_keys(
+		$this->data = Utils::array_leave_right_keys(
 			$this->get_allowed_keys(),
 			$data
 		);

@@ -5,8 +5,15 @@
  * @package photolab
  */
 
-use \View\View;
-use \Core\Utils;
+require_once 'src/autoload.php';
+new Autoload(
+	array(
+		'configuration',
+		'core',
+		'view',
+	)
+);
+Configuration::load();
 
 add_action( 'init', 'photolab_init' );
 /**
@@ -23,6 +30,4 @@ if ( ! isset( $content_width ) ) {
 	$content_width = 1140; /* pixels */
 }
 
-require_once 'src/Core/Autoload.php';
-\Core\App::Start();
 

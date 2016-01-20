@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-namespace Configuration;
-
 /**
  * Page class
  */
@@ -57,7 +55,7 @@ class Pages {
 	public function path( $class ) {
 		return sprintf(
 			'%s%s.php',
-			\Core\Utils::pages_path(),
+			Utils::pages_path(),
 			strtolower( $class )
 		);
 	}

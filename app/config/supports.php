@@ -47,7 +47,7 @@ return [
 	 * Custom header setup
 	 */
 	'custom-header' => [
-		'default-image'          => \Core\Utils::assets_url() . '/images/header.jpg',
+		'default-image'          => Utils::assets_url() . '/images/header.jpg',
 		'random-default'         => false,
 		'width'                  => 1920,
 		'height'                 => 585,

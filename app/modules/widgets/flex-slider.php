@@ -7,8 +7,8 @@
 
 namespace Modules\Widgets;
 
-use \Core\Utils;
-use \View\View;
+use Utils;
+use View;
 
 /**
  * Flex_Slider module class

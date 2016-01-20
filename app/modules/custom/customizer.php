@@ -7,8 +7,8 @@
 
 namespace Modules\Custom;
 
-use \View\View;
-use \Core\Utils;
+use View;
+use Utils;
 
 /**
  * Customize class

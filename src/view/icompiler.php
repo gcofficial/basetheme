@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-namespace View;
-
 /**
  * ICompiler interfac
  */

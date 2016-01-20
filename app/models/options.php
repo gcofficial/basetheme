@@ -16,7 +16,7 @@ abstract class Options_Model {
 	 * @return mixed --- option type.
 	 */
 	public static function get_option( $key ) {
-		return \Core\Utils::array_get( static::get_all(), $key, '' );
+		return Utils::array_get( static::get_all(), $key, '' );
 	}
 
 	/**

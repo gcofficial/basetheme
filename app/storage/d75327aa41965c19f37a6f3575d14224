@@ -1,0 +1,32 @@
+<?php
+/**
+ * Layouts/Header centerd view
+ *
+ * @package photolab
+ */
+?><header id="masthead" class="site-header centered" role="banner">
+	<div class="container">
+		<div class="row">
+			<div class="site-branding">
+				<?php if($logo != ''): ?>
+					<img src="<?php echo($logo); ?>" alt="Logo" class="logo-img">
+				<?php else: ?>
+					<h1 class="site-title"><a href="<?php echo($home_url); ?>" rel="home"><?php echo($name); ?></a></h1>
+					<?php if( $description ): ?>
+						<div class="site-description"><?php echo($description); ?></div>
+					<?php endif; ?>
+				<?php endif; ?>
+			</div>
+		</div>
+		<div class="row">
+			<?php if($socials_show_header): ?>
+				<?php echo($socials); ?>			<?php endif; ?>
+		</div>
+		<div class="row">
+			<div class="clear">
+				<div class="main-nav-wrap">
+				<?php echo($main_menu); ?>				</div><!-- #site-navigation -->
+			</div>
+		</div>
+	</div>
+</header><!-- #masthead -->

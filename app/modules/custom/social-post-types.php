@@ -7,7 +7,7 @@
 
 namespace Modules\Custom;
 
-use \View\View;
+use View;
 
 Social_Post_Types::init();
 

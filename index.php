@@ -12,14 +12,14 @@
  */
 
 if ( is_404() ) {
-	$result = \View\View::make(
+	$result = View::make(
 		'pages/404',
 		[
 			'breadcrumbs' => General_Site_Settings_Model::breadcrumbs(),
 		]
 	);
 } else if ( is_search() ) {
-	$result = \View\View::make(
+	$result = View::make(
 		'pages/search',
 		[
 			'sidebar_left'   => Sidebar_Settings_Model::getModeLeft(),
@@ -29,7 +29,7 @@ if ( is_404() ) {
 		]
 	);
 } else if ( is_page() ) {
-	$result = \View\View::make(
+	$result = View::make(
 		'pages/page',
 		[
 			'sidebar_left'  => Sidebar_Settings_Model::getModeLeft(),
@@ -38,7 +38,7 @@ if ( is_404() ) {
 		]
 	);
 } else if ( is_single() ) {
-	$result = \View\View::make(
+	$result = View::make(
 		'pages/single',
 		[
 			'social_post_code' => \Modules\Custom\Social_Post_Types::get_social_post_code( $post ),
@@ -48,7 +48,7 @@ if ( is_404() ) {
 		]
 	);
 } else {
-	$result = \View\View::make(
+	$result = View::make(
 		'pages/index',
 		[
 			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),

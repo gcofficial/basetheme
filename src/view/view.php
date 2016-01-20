@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-namespace View;
-
 /**
  * View class
  */
@@ -95,7 +93,7 @@ class View {
 		if ( $scout_compiler->is_expired( $__path ) ) {
 			$scout_compiler->compile( $__path );
 		}
-		$storage_view_path = $scout_compiler->getCompiledPath( $__path );
+		$storage_view_path = $scout_compiler->get_compiled_path( $__path );
 
 		return self::render_view( $storage_view_path, (array) $__data );
 	}

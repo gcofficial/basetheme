@@ -1,0 +1,13 @@
+<?php
+/**
+ * Blocks/Top menu view
+ *
+ * @package photolab
+ */
+?><div class="top-menu">
+	<?php if($disclimer != ''): ?>
+		<span class="disclimer"><?php echo($disclimer); ?></span>
+	<?php endif; ?>
+	<?php if($search_box): ?>
+		<?php echo($search_form); ?>	<?php endif; ?>
+	<?php echo($top_menu); ?></div>

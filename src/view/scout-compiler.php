@@ -5,11 +5,6 @@
  * @package photolab
  */
 
-namespace View;
-
-use \Core\Utils as Utils;
-use \View\View as View;
-
 /**
  * Scout_Compiler class
  */
@@ -62,7 +57,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 
 		if ( ! is_null( $this->storage ) ) {
 			// Store the compiled view.
-			file_put_contents( $this->getCompiledPath( $this->getPath() ), $content );
+			file_put_contents( $this->get_compiled_path( $this->getPath() ), $content );
 		}
 	}
 
@@ -284,7 +279,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 			$expression = substr( $expression, 1, -1 );
 		}
 
-		return "<?php echo \View\View::make($expression, \Core\Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>";
+		return "<?php echo View::make($expression, Utils::array_except(get_defined_vars(), array('__data', '__path'))); ?>";
 	}
 
 	/**

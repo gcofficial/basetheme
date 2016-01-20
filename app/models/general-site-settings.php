@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-use \View\View;
-
 /**
  * General site settings model class
  */

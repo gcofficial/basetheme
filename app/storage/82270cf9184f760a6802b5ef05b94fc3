@@ -1,0 +1,9 @@
+<?php
+/**
+ * Blocks/Read more button view
+ *
+ * @package photolab
+ */
+?><?php if($read_more_button != ''): ?>
+<a href="<?php echo(esc_url( get_permalink() )); ?>" class="btn btn-animated"><?php echo(esc_attr( $read_more_button )); ?></a>
+<?php endif; ?>

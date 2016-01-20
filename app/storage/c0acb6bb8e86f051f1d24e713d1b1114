@@ -1,0 +1,14 @@
+<?php
+/**
+ * Widgets/Front end/Advertisement view
+ *
+ * @package photolab
+ */
+?><?php echo($before_widget); ?><?php if($title != ''): ?>
+	<?php echo($before_title); ?><?php echo(apply_filters( 'widget_title', $title )); ?><?php echo($after_title); ?><?php endif; ?>
+<?php if(trim($image) != ''): ?>
+	<img src="<?php echo($image); ?>" alt="image">
+<?php else: ?>
+	<span class="none">Image not found!</span>
+<?php endif; ?>
+<?php echo($after_widget); ?>

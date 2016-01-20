@@ -7,8 +7,8 @@
 
 namespace Modules\Custom;
 
-use \View\View;
-use \Core\Utils;
+use View;
+use Utils;
 
 /**
  * Fuck that shit!!!
@@ -34,7 +34,7 @@ class Gallery {
 		$fullsize_img  = wp_get_attachment_url( $id );
 		$cropped_image = wp_get_attachment_image( $id, $size );
 		if ( $fullsize_img  && $cropped_image ) {
-			return \View\View::make(
+			return View::make(
 				'blocks/gall-img',
 				[
 					'class'         => $class,
@@ -100,7 +100,7 @@ class Gallery {
 				}
 				array_push(
 					$rows,
-					\View\View::make(
+					View::make(
 						'blocks/gall-row',
 						[
 							'item_class' => 'last '.$item_class,
@@ -123,7 +123,7 @@ class Gallery {
 
 				array_push(
 					$rows,
-					\View\View::make(
+					View::make(
 						'blocks/gall-row',
 						[
 							'item_class' => $item_class,
@@ -133,7 +133,7 @@ class Gallery {
 				);
 			}
 		}
-		echo \View\View::make(
+		echo View::make(
 			'blocks/gall',
 			[
 				'rows'    => $rows,

@@ -5,8 +5,6 @@
  * @package photolab
  */
 
-namespace Configuration;
-
 /**
  * Widgets class
  */
@@ -56,7 +54,7 @@ class Widgets {
 	public function path( $class ) {
 		return sprintf(
 			'%s%s.php',
-			\Core\Utils::widgets_path(),
+			Utils::widgets_path(),
 			strtolower( $class )
 		);
 	}
