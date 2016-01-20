@@ -128,18 +128,26 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	 * @return string
 	 */
 	protected function compileStatements( $content ) {
+		return preg_replace_callback(
+			'/\B@(\w+)([ \t]*)(\( ( (?>[^()]+) | (?3) )* \))?/x',
+			array( $this, 'compile_statements_cllback' ),
+			$content
+		);
+	}
+
+	/**
+	 * It's need for PHP 5.2
+	 *
+	 * @param  [type] $match array
+	 * @return string
+	 */
+	public function compile_statements_cllback( $match ) {
 		$compiler = $this;
+		if ( method_exists( $compiler, $method = 'compile'.ucfirst( $match[1] ) ) ) {
+			$match[0] = $compiler->$method( Utils::array_get( $match, 3 ) );
+		}
 
-		$callback = function( $match ) use ( $compiler ) {
-
-			if ( method_exists( $compiler, $method = 'compile'.ucfirst( $match[1] ) ) ) {
-				$match[0] = $compiler->$method( Utils::array_get( $match, 3 ) );
-			}
-
-			return isset( $match[3] ) ? $match[0] : $match[0].$match[2];
-		};
-
-		return preg_replace_callback( '/\B@(\w+)([ \t]*)(\( ( (?>[^()]+) | (?3) )* \))?/x', $callback, $content );
+		return isset( $match[3] ) ? $match[0] : $match[0].$match[2];
 	}
 
 	/**

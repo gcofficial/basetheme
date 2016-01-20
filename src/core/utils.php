@@ -87,7 +87,18 @@ class Utils {
 	 * @return array --- array without empty elements
 	 */
 	public static function array_remove_empty( $arr ) {
-		return array_filter( $arr, function( $var ) { return '' != $var; } );
+		return array_filter( $arr, array( __CLASS__, 'array_remove_empty_check' ) );
+	}
+
+	/**
+	 * Check if empty.
+	 * It's need for PHP 5.2.4 version
+	 *
+	 * @param  [type] $var variable.
+	 * @return boolean
+	 */
+	public static function array_remove_empty_check( $var ) {
+		return '' != $var;
 	}
 
 	/**
