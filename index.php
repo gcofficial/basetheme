@@ -25,7 +25,7 @@ if ( is_404() ) {
 			'sidebar_left'   => Sidebar_Settings_Model::getModeLeft(),
 			'sidebar_right'  => Sidebar_Settings_Model::getModeRight(),
 			'breadcrumbs'    => General_Site_Settings_Model::breadcrumbs(),
-			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
+			'paginate_links' => Blog_Settings_Model::get_paginate_links(),
 		)
 	);
 } else if ( is_page() ) {
@@ -51,7 +51,7 @@ if ( is_404() ) {
 	$result = View::make(
 		'pages/index',
 		array(
-			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
+			'paginate_links' => Blog_Settings_Model::get_paginate_links(),
 			'posts'          => $GLOBALS['wp_query']->get_posts(),
 		)
 	);

@@ -153,7 +153,7 @@ class Sidebar_Settings_Model {
 			'lr1'  => 'right',
 			'l1r1' => 'leftright',
 		);
-		if ( ! Blog_Settings_Model::isDefaultLayout() ) {
+		if ( ! Blog_Settings_Model::is_default_layout() ) {
 			$values['l1r1'] = 'left';
 		}
 		return $values[ $key ];

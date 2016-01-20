@@ -27,8 +27,8 @@ class Blog_Settings_Model {
 	 *
 	 * @return string --- blog layout style
 	 */
-	public static function getLayoutStyle() {
-		$allowed_styles = self::getAllowedStyles();
+	public static function get_layout_style() {
+		$allowed_styles = self::get_allowed_styles();
 		$style 			= ( string ) self::get_option( 'layout_style' );
 		if ( in_array( $style, $allowed_styles ) ) {
 			return $style;
@@ -41,7 +41,7 @@ class Blog_Settings_Model {
 	 *
 	 * @return array --- all allowed footer sytles
 	 */
-	public static function getAllowedStyles() {
+	public static function get_allowed_styles() {
 		return array(
 			'default',
 			'grid',
@@ -54,7 +54,7 @@ class Blog_Settings_Model {
 	 *
 	 * @return integer --- layout columns
 	 */
-	public static function getColumns() {
+	public static function get_columns() {
 		$columns = min( 3, self::get_option( 'columns' ) );
 		$columns = max( 2, $columns );
 		return $columns;
@@ -70,20 +70,7 @@ class Blog_Settings_Model {
 			2 => 'col-md-6 col-lg-6',
 			3 => 'col-md-4 col-lg-4',
 		);
-		return $classes[ self::getColumns() ];
-	}
-
-	/**
-	 * Get brick percent width
-	 *
-	 * @return float --- percent width
-	 */
-	public static function getBrickWidth() {
-		$widths = array(
-			2 => 50,
-			3 => 33.333333,
-		);
-		return $widths[ self::getColumns() ];
+		return $classes[ self::get_columns() ];
 	}
 
 	/**
@@ -91,26 +78,8 @@ class Blog_Settings_Model {
 	 *
 	 * @return boolean --- true if succes | false if not
 	 */
-	public static function isDefaultLayout() {
-		return self::getLayoutStyle() == self::LAYOUT_DEFAULT;
-	}
-
-	/**
-	 * Is grid layout ?
-	 *
-	 * @return boolean --- true if succes | false if not
-	 */
-	public static function isGridLayout() {
-		return self::getLayoutStyle() == self::LAYOUT_GRID;
-	}
-
-	/**
-	 * Is masonry layout ?
-	 *
-	 * @return boolean --- true if succes | false if not
-	 */
-	public static function isMasonryLayout() {
-		return self::getLayoutStyle() == self::LAYOUT_MASONRY;
+	public static function is_default_layout() {
+		return self::get_layout_style() == self::LAYOUT_DEFAULT;
 	}
 
 	/**
@@ -118,7 +87,7 @@ class Blog_Settings_Model {
 	 *
 	 * @return string
 	 */
-	public static function getPaginateLinks() {
+	public static function get_paginate_links() {
 		global $wp_query, $wp_rewrite;
 
 		// Don't print empty markup if there's only one page.
@@ -161,7 +130,7 @@ class Blog_Settings_Model {
 	 *
 	 * @return string content template name
 	 */
-	public static function getContentName() {
+	public static function get_content_name() {
 		$post_format = ( string ) get_post_format();
 		return '' == $post_format ? 'content' : $post_format;
 	}
