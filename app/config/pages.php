@@ -10,7 +10,7 @@ return array(
 		__( 'About Photolab', 'photolab' ),
 		'edit_theme_options',
 		'welcome.php',
-		function(){
+		function() {
 			echo View::make( 'pages/about-photolab' );
 		},
 	),
