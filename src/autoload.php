@@ -18,6 +18,7 @@ class Autoload {
 
 	/**
 	 * Autoload class constructor
+	 *
 	 * @param array $folders autoload folders list.
 	 */
 	public function __construct( $folders = array() ) {

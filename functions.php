@@ -1,5 +1,4 @@
-<?php
-/**
+<?php/**
  * Functions file
  *
  * @package photolab
