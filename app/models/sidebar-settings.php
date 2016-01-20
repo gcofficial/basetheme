@@ -67,14 +67,14 @@ class Sidebar_Settings_Model extends Options_Model{
 			foreach ( $arr as $key => $value ) {
 				array_push(
 					$res,
-					[
+					array(
 						'name'          => $value,
 						'id'            => self::getSidebarID( $value ),
 						'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 						'after_widget'  => '</aside>',
 						'before_title'  => '<h3 class="widget-title">',
 						'after_title'   => '</h3>',
-					]
+					)
 				);
 			}
 		}
@@ -97,7 +97,7 @@ class Sidebar_Settings_Model extends Options_Model{
 	 * @return array registered sidebars.
 	 */
 	public static function getSidebarsForSelect() {
-		$result   = [ '' => 'Inherit' ];
+		$result   = array( '' => 'Inherit' );
 		$sidebars = (array) $GLOBALS['wp_registered_sidebars'];
 		if ( count( $sidebars ) ) {
 			foreach ( $sidebars as $sidebar ) {
@@ -147,12 +147,12 @@ class Sidebar_Settings_Model extends Options_Model{
 			self::getModeLeft(),
 			self::getModeRight()
 		);
-		$values = [
+		$values = array(
 			'lr'   => 'hide',
 			'l1r'  => 'left',
 			'lr1'  => 'right',
 			'l1r1' => 'leftright',
-		];
+		);
 		if ( ! Blog_Settings_Model::isDefaultLayout() ) {
 			$values['l1r1'] = 'left';
 		}

@@ -15,7 +15,7 @@ class Main_Model {
 	 * @return array
 	 */
 	public static function main() {
-		return [
+		return array(
 			'TDU'               => get_template_directory_uri(),
 			'search_form'       => View::make( 'blocks/search-form' ),
 			'sidebar_side_type' => Sidebar_Settings_Model::get_sidebar_side_type(),
@@ -33,7 +33,7 @@ class Main_Model {
 			'wp_loginout'  		=> wp_loginout( '', false ),
 			'wp_meta'      		=> Utils::echo_to_var( function() { wp_meta(); } ),
 			'is_show_title_on_header' => Header_Settings_Model::is_show_title_on_header(),
-		];
+		);
 	}
 
 	/**
@@ -51,7 +51,7 @@ class Main_Model {
 	 * @return array
 	 */
 	public static function header_data() {
-		$header = [
+		$header = array(
 			'allowedtags'          => $GLOBALS['allowedtags'],
 			'language_attributes'  => get_language_attributes(),
 			'body_class'           => implode( ' ', get_body_class() ),
@@ -67,10 +67,10 @@ class Main_Model {
 			'logo'                 => General_Site_Settings_Model::getLogo(),
 			'socials'              => View::make(
 				'blocks/socials',
-				[
+				array(
 					'socials' => Social_Settings_Model::get_all_socials(),
 					'where'   => 'header',
-				]
+				)
 			),
 			'socials_show_header'  => Social_Settings_Model::is_show_header(),
 			'disclimer'            => Header_Settings_Model::getDisclimer(),
@@ -84,7 +84,7 @@ class Main_Model {
 			'term_description'     => term_description(),
 			'welcome_message'      => get_option( 'photolab' ),
 			'main_menu'            => wp_nav_menu(
-				[
+				array(
 					'theme_location'  => 'main',
 					'container'       => 'nav',
 					'container_class' => 'main-navigation',
@@ -92,10 +92,10 @@ class Main_Model {
 					'menu_class'      => 'sf-menu',
 					'walker'          => new \Modules\Custom\Photolab_Walker(),
 					'echo'            => false,
-				]
+				)
 			),
 			'top_menu'            => wp_nav_menu(
-				[
+				array(
 					'theme_location'  => 'top',
 					'container'       => 'nav',
 					'container_class' => 'top-navigation',
@@ -103,9 +103,9 @@ class Main_Model {
 					'menu_class'      => 'sf-top-menu',
 					'walker'          => new \Modules\Custom\Photolab_Walker(),
 					'echo'            => false,
-				]
+				)
 			),
-		];
+		);
 
 		$header['alt_mess'] = Utils::array_get( $header['welcome_message'], 'welcome_title', get_bloginfo( 'name' ) );
 
@@ -127,32 +127,32 @@ class Main_Model {
 	 * @return array
 	 */
 	public static function footer_data() {
-		return [
+		return array(
 			'copyright'    => Footer_Settings_Model::getCopyright(),
 			'logo'         => Footer_Settings_Model::getLogo(),
 			'menu'         => wp_nav_menu(
-				[
+				array(
 					'theme_location'  => 'footer',
 					'container'       => '',
 					'container_class' => 'footer-navigation',
 					'container_id'    => 'site-navigation',
 					'menu_class'      => 'sf-footer-menu',
 					'echo'            => false,
-				]
+				)
 			),
 			'socials'              => View::make(
 				'blocks/socials',
-				[
+				array(
 					'socials' => Social_Settings_Model::get_all_socials(),
 					'where'   => 'footer',
-				]
+				)
 			),
 			'socials_show_footer'  => Social_Settings_Model::is_show_footer(),
 			'footer_style' => Footer_Settings_Model::getStyle(),
 			'widgets' 	   => Footer_Settings_Model::getAllFooterWidgetsHTML(),
 			'columns' 	   => Footer_Settings_Model::getColumns(),
 			'css'     	   => Footer_Settings_Model::getColumnsCSSClass(),
-		];
+		);
 	}
 
 	/**
@@ -215,13 +215,13 @@ class Main_Model {
 			$cropped_image = wp_get_attachment_image( $thumb_id , 'fullwidth-thumbnail' );
 		} else {
 			$attachments = get_children(
-				[
+				array(
 					'post_parent'    => get_the_id(),
 					'posts_per_page' => 1,
 					'post_status'    => 'inherit',
 					'post_type'      => 'attachment',
 					'post_mime_type' => 'image',
-				]
+				)
 			);
 			if ( $attachments && is_array( $attachments ) ) {
 				$img_id        = $attachments[0]->ID;
@@ -231,11 +231,10 @@ class Main_Model {
 		}
 		echo View::make(
 			'blocks/image-post',
-			[
+			array(
 				'fullsize_img'  => $fullsize_img,
 				'cropped_image' => $cropped_image,
-
-			]
+			)
 		);
 	}
 }

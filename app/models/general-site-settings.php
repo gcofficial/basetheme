@@ -73,7 +73,7 @@ class General_Site_Settings_Model extends Options_Model{
 	public static function breadcrumbs_data() {
 		global $post, $author;
 		$qo = get_queried_object();
-		$data = [
+		$data = array(
 			'separator'         => '&gt;',
 			'breadcrums_id'     => 'breadcrumbs',
 			'breadcrums_class'  => 'breadcrumbs',
@@ -84,7 +84,7 @@ class General_Site_Settings_Model extends Options_Model{
 			'post_type_archive' => get_post_type_archive_link( get_post_type() ),
 			'category'          => get_the_category(),
 			'post'              => $post,
-		];
+		);
 		if ( null != $qo ) {
 			$data['custom_tax_name'] = $qo->name;
 		}

@@ -43,7 +43,7 @@ class Misc_Model extends Options_Model{
 	 * @return string
 	 */
 	public static function getBlogContent() {
-		$allowed = [ 'excerpt', 'full' ];
+		$allowed = array( 'excerpt', 'full' );
 		$content = (string) self::get_option( 'blog_content' );
 		if ( in_array( $content, $allowed ) ) {
 			return $content;

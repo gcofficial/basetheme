@@ -84,11 +84,11 @@ class Header_Settings_Model extends Options_Model{
 	 * @return array --- all allowed header sytles
 	 */
 	public static function getAllowedHeaderStyles() {
-		return [
+		return array(
 			'default',
 			'minimal',
 			'centered',
-		];
+		);
 	}
 
 	/**
@@ -97,10 +97,10 @@ class Header_Settings_Model extends Options_Model{
 	 * @return string css classes
 	 */
 	public static function getHeaderClass() {
-		$classes = [
+		$classes = array(
 			'page-header',
 			'header-type-' . rand( 1, 8 ),
-		];
+		);
 
 		if ( ! Header_Settings_Model::is_show_title_on_header() ) {
 			array_push( $classes, 'invisibility' );

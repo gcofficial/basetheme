@@ -42,11 +42,11 @@ class Blog_Settings_Model extends Options_Model{
 	 * @return array --- all allowed footer sytles
 	 */
 	public static function getAllowedStyles() {
-		return [
+		return array(
 			'default',
 			'grid',
 			'masonry',
-		];
+		);
 	}
 
 	/**
@@ -66,10 +66,10 @@ class Blog_Settings_Model extends Options_Model{
 	 * @return string --- column CSS class
 	 */
 	public static function getColumnCSSClass() {
-		$classes = [
+		$classes = array(
 			2 => 'col-md-6 col-lg-6',
 			3 => 'col-md-4 col-lg-4',
-		];
+		);
 		return $classes[ self::getColumns() ];
 	}
 
@@ -79,10 +79,10 @@ class Blog_Settings_Model extends Options_Model{
 	 * @return float --- percent width
 	 */
 	public static function getBrickWidth() {
-		$widths = [
+		$widths = array(
 			2 => 50,
 			3 => 33.333333,
-		];
+		);
 		return $widths[ self::getColumns() ];
 	}
 
@@ -128,7 +128,7 @@ class Blog_Settings_Model extends Options_Model{
 
 		$paged        = get_query_var( 'paged' ) ? intval( get_query_var( 'paged' ) ) : 1;
 		$pagenum_link = html_entity_decode( get_pagenum_link() );
-		$query_args   = [];
+		$query_args   = array();
 		$url_parts    = explode( '?', $pagenum_link );
 
 		if ( isset( $url_parts[1] ) ) {
@@ -143,7 +143,7 @@ class Blog_Settings_Model extends Options_Model{
 
 		// Set up paginated links.
 		return paginate_links(
-			[
+			array(
 				'base'      => $pagenum_link,
 				'format'    => $format,
 				'total'     => $wp_query->max_num_pages,
@@ -152,7 +152,7 @@ class Blog_Settings_Model extends Options_Model{
 				'add_args'  => array_map( 'urlencode', $query_args ),
 				'prev_text' => __( '&larr; Previous', 'photolab' ),
 				'next_text' => __( 'Next &rarr;', 'photolab' ),
-			]
+			)
 		);
 	}
 

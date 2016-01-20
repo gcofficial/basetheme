@@ -64,35 +64,35 @@ class Social_Settings_Model extends Options_Model{
 	 * @return array
 	 */
 	public static function get_allowed() {
-		return [
-			'facebook' => [
+		return array(
+			'facebook' => array(
 				'label' => __( 'Facebook', 'photolab' ),
 				'icon'  => 'fa-facebook-official',
-			],
-			'twitter' => [
+			),
+			'twitter' => array(
 				'label' => __( 'Twitter', 'photolab' ),
 				'icon'  => 'fa-twitter',
-			],
-			'google-plus' => [
+			),
+			'google-plus' => array(
 				'label' => __( 'Google+', 'photolab' ),
 				'icon'  => 'fa-google-plus',
-			],
-			'instagram' => [
+			),
+			'instagram' => array(
 				'label' => __( 'Instagram', 'photolab' ),
 				'icon'  => 'fa-instagram',
-			],
-			'linkedin' => [
+			),
+			'linkedin' => array(
 				'label' => __( 'LinkedIn', 'photolab' ),
 				'icon'  => 'fa-linkedin',
-			],
-			'dribbble' => [
+			),
+			'dribbble' => array(
 				'label' => __( 'Dribbble', 'photolab' ),
 				'icon'  => 'fa-dribbble',
-			],
-			'youtube' => [
+			),
+			'youtube' => array(
 				'label' => __( 'YouTube', 'photolab' ),
 				'icon'  => 'fa-youtube',
-			],
-		];
+			),
+		);
 	}
 }

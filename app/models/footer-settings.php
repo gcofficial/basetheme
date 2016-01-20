@@ -83,11 +83,11 @@ class Footer_Settings_Model extends Options_Model{
 	 */
 	public static function getColumnsCSSClass() {
 		$columns_number = self::getColumns();
-		$classes = [
+		$classes = array(
 			2 => 'col-md-6',
 			3 => 'col-md-4',
 			4 => 'col-md-3',
-		];
+		);
 		return $classes[ $columns_number ];
 	}
 
@@ -98,7 +98,7 @@ class Footer_Settings_Model extends Options_Model{
 	 */
 	public static function getAllFooterWidgetsID() {
 		global $_wp_sidebars_widgets;
-		$result = [];
+		$result = array();
 		if ( array_key_exists( 'footer', $_wp_sidebars_widgets ) ) {
 			$result = $_wp_sidebars_widgets['footer'];
 		}
@@ -114,7 +114,7 @@ class Footer_Settings_Model extends Options_Model{
 		global $wp_registered_widgets;
 		$widget_keys = array_keys( $wp_registered_widgets );
 		$ids         = self::getAllFooterWidgetsID();
-		$result 	 = [];
+		$result 	 = array();
 		if ( count( $ids ) ) {
 			foreach ( $ids as $id ) {
 				if ( in_array( $id, $widget_keys ) ) {
@@ -131,12 +131,12 @@ class Footer_Settings_Model extends Options_Model{
 	 * @return array --- all footer widgets HTML in on array
 	 */
 	public static function getAllFooterWidgetsHTML() {
-		$widgets 		= [];
+		$widgets 		= array();
 		$footer_widgets = self::getAllFooterWidgets();
 		if ( count( $footer_widgets ) ) {
 			foreach ( $footer_widgets as $widget ) {
 				$option   = get_option( $widget['callback'][0]->option_name );
-				$instance = [];
+				$instance = array();
 				if ( array_key_exists( $widget['callback'][0]->number, $option ) ) {
 					$instance = $option[ $widget['callback'][0]->number ];
 				}
@@ -145,12 +145,12 @@ class Footer_Settings_Model extends Options_Model{
 				the_widget(
 					get_class( $widget['callback'][0] ),
 					$instance,
-					[
+					array(
 						'before_widget' => '<aside class="widget footer-widget">',
 						'after_widget'  => '</aside>',
 						'before_title'  => '<h3 class="widget-title">',
 						'after_title'   => '</h3>',
-					]
+					)
 				);
 				$widget = ob_get_clean();
 				array_push( $widgets, $widget );
