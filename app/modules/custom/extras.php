@@ -19,11 +19,11 @@ class Extras {
 		// ==============================================================
 		add_filter( 'wp_page_menu_args', array( $this, 'page_menu_args' ) );
 		add_filter( 'body_class', array( $this, 'body_classes' ) );
-		add_filter( 'wp_title', array( $this, 'wp_title' ), 10, ) );
-		add_filter( 'excerpt_length', array( $this, 'excerpt_length' ), 9) );
-		add_filter( 'wp_generate_tag_cloud', array( $this, 'tag_class' ), 1) );
+		add_filter( 'wp_title', array( $this, 'wp_title' ), 10, 2 );
+		add_filter( 'excerpt_length', array( $this, 'excerpt_length' ), 99 );
+		add_filter( 'wp_generate_tag_cloud', array( $this, 'tag_class' ), 10 );
 		add_filter( 'nav_menu_css_class', array( $this, 'nav_class' ) );
-		add_filter( 'upload_mimes', array( $this, 'add_some_mime_types' ), 1, ) );
+		add_filter( 'upload_mimes', array( $this, 'add_some_mime_types' ), 1, 1 );
 		add_filter( 'comment_form_default_fields', array( $this, 'comment_form_fields' ) );
 
 		// ==============================================================
