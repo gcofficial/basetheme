@@ -113,7 +113,7 @@ class Social_Post_Types {
 		// Add an nonce field so we can check for it later.
 		wp_nonce_field( 'social_post_types', 'social_post_types_nonce' );
 
-		echo View::make( 'blocks/social-post-types-metabox', [ 'value' => self::get_social_post_code( $post ) ] );
+		echo View::make( 'blocks/social-post-types-metabox', array( 'value' => self::get_social_post_code( $post ) ) );
 	}
 
 	/**

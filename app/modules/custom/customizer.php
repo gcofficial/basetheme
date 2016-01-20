@@ -256,10 +256,10 @@ class Customizer {
 		 */
 		$wp_customize->add_section(
 			'photolab_misc',
-			[
+			array(
 				'title'    => __( 'Misc', 'photolab' ),
 				'priority' => 200,
-			]
+			)
 		);
 
 		/* featured post label */
@@ -921,7 +921,7 @@ class Customizer {
 				'default'           => '',
 				'type'              => 'option',
 				'sanitize_callback' => 'sanitize_text_field',
-			]
+			)
 		);
 
 		$wp_customize->add_control(

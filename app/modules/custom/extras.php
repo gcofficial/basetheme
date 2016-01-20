@@ -64,7 +64,7 @@ class Extras {
 		$commenter = wp_get_current_commenter();
 		$aria_req  = ( $req ? " aria-required='true'" : '' );
 
-		$fields = [
+		$fields = array(
 			'author' => View::make(
 				'blocks/comment_form_fields/author',
 				array(
@@ -90,7 +90,7 @@ class Extras {
 					'value'       => esc_attr( $commenter['comment_author_url'] ),
 				)
 			),
-		];
+		);
 
 		return $fields;
 	}
