@@ -8,18 +8,18 @@
 /**
  * Blog settings model сlass
  */
-class Blog_Settings_Model extends Options_Model{
+class Blog_Settings_Model {
 	const LAYOUT_DEFAULT = 'default';
 	const LAYOUT_GRID    = 'grid';
 	const LAYOUT_MASONRY = 'masonry';
 
 	/**
-	 * Get all options
+	 * Get single option by key
 	 *
-	 * @return array --- all options
+	 * @return mixed --- option type.
 	 */
-	public static function get_all() {
-		return ( array ) get_option( 'bs' );
+	public static function get_option( $key ) {
+		return Utils::array_get( ( array ) get_option( 'bs' ), $key, '' );
 	}
 
 	/**

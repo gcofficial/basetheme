@@ -6,7 +6,6 @@
  */
 return array(
 	Utils::models_path().'main.php',
-	Utils::models_path().'options.php',
 	Utils::models_path().'general-site-settings.php',
 	Utils::models_path().'main.php',
 	Utils::models_path().'sidebar-settings.php',

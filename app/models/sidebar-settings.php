@@ -8,15 +8,15 @@
 /**
  * Sidebar settings model class
  */
-class Sidebar_Settings_Model extends Options_Model{
+class Sidebar_Settings_Model {
 
 	/**
-	 * Get all options
+	 * Get single option by key
 	 *
-	 * @return array --- all options
+	 * @return mixed --- option type.
 	 */
-	public static function get_all() {
-		return (array) get_option( 'sidebar_settings' );
+	public static function get_option( $key ) {
+		return Utils::array_get( (array) get_option( 'sidebar_settings' ), $key, '' );
 	}
 
 	/**

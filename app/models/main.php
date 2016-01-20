@@ -9,6 +9,7 @@
  * Main model class
  */
 class Main_Model {
+
 	/**
 	 * Main data for view
 	 *
@@ -198,10 +199,10 @@ class Main_Model {
 				$font_families[] = 'Open Sans:300,400,700,400italic,700italic';
 			}
 
-			$query_args = [
+			$query_args = array(
 				'family' => urlencode( implode( '|', $font_families ) ),
 				'subset' => urlencode( 'latin,latin-ext' ),
-			];
+			);
 
 			if ( in_array( $locale, $cyrillic_locales ) ) {
 				$query_args['subset'] = urlencode( 'latin,latin-ext,cyrillic' );

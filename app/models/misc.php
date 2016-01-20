@@ -8,15 +8,15 @@
 /**
  * Mis model class
  */
-class Misc_Model extends Options_Model{
+class Misc_Model {
 
 	/**
-	 * Get all options
+	 * Get single option by key
 	 *
-	 * @return array --- all options
+	 * @return mixed --- option type.
 	 */
-	public static function get_all() {
-		return (array) get_option( 'misc' );
+	public static function get_option( $key ) {
+		return Utils::array_get( (array) get_option( 'misc' ), $key, '' );
 	}
 
 	/**
