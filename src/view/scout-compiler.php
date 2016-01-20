@@ -192,7 +192,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	/**
 	 * It's need for PHP 5.2
 	 *
-	 * @param  [type] $match array.
+	 * @param  [type] $matches array.
 	 * @return string
 	 */
 	public function compile_regular_echos_callback( $matches ) {
@@ -214,7 +214,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	/**
 	 * It's need for PHP 5.2
 	 *
-	 * @param  [type] $match array.
+	 * @param  [type] $matches array.
 	 * @return string
 	 */
 	public function compile_escaped_echos_callback( $matches ) {
