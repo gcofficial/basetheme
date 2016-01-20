@@ -138,7 +138,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	/**
 	 * It's need for PHP 5.2
 	 *
-	 * @param  [type] $match array
+	 * @param  [type] $match array.
 	 * @return string
 	 */
 	public function compile_statements_cllback( $match ) {
