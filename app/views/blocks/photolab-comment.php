@@ -30,14 +30,14 @@
 					get_comment_reply_link(
 						array_merge(
 							$args,
-							[
+							array(
 								'add_below' => 'div-comment',
 								'depth'     => $depth,
 								'max_depth' => $args['max_depth'],
 								'before'    => '<div class="reply">',
 								'after'     => '</div>',
-							] 
-						) 
+							)
+						)
 					)
 				}}
 			</div><!-- .comment-content -->

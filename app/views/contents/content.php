@@ -41,11 +41,11 @@
 					@endif
 					{{ get_the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'photolab' ) ) }}
 					{{ wp_link_pages( 
-						[
+						array(
 							'before' => '<div class="page-links">' . __( 'Pages:', 'photolab' ),
 							'after'  => '</div>',
 							'echo'   => false
-						] 
+						)
 					) }}
 				@endif
 			</div><!-- .entry-content -->
