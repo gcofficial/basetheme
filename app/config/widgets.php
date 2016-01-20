@@ -6,10 +6,10 @@
  *
  * @package photolab
  */
-return [
+return array(
 	'Accordion',
 	'Advertisement',
 	'Flex_Slider',
 	'Google_Plus',
 	'Instagram',
-];
+);

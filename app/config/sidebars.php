@@ -5,8 +5,8 @@
  * @package photolab
  */
 
-return [
-	[
+return array(
+	array(
 		'name'          => __( 'Sidebar', 'photolab' ),
 		'id'            => 'sidebar-1',
 		'description'   => __( 'Allowed only on static pages', 'photolab' ),
@@ -14,8 +14,8 @@ return [
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
-	],
-	[
+	),
+	array(
 		'name'          => __( 'Sidebar second', 'photolab' ),
 		'id'            => 'sidebar-2',
 		'description'   => __( 'Allowed only on static pages', 'photolab' ),
@@ -23,8 +23,8 @@ return [
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
-	],
-	[
+	),
+	array(
 		'name'          => __( 'Footer Widget Area', 'photolab' ),
 		'id'            => 'footer',
 		'description'   => '',
@@ -32,5 +32,5 @@ return [
 		'after_widget'  => '</aside>',
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
-	],
-];
+	),
+);

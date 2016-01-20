@@ -4,7 +4,7 @@
  *
  * @package photolab
  */
-return [
+return array(
 	Utils::models_path().'main.php',
 	Utils::models_path().'options.php',
 	Utils::models_path().'general-site-settings.php',
@@ -16,4 +16,4 @@ return [
 	Utils::models_path().'blog-settings.php',
 	Utils::models_path().'typography-settings.php',
 	Utils::models_path().'social-settings.php',
-];
+);

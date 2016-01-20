@@ -5,28 +5,28 @@
  * @package photolab
  */
 
-return [
+return array(
 	'title-tag',
 	// Add default posts and comments RSS feed links to head.
 	'automatic-feed-links',
 	// Enable support for Post Formats
-	'post-formats' => [ 'aside', 'image', 'gallery', 'video', 'quote', 'link' ],
+	'post-formats' => array( 'aside', 'image', 'gallery', 'video', 'quote', 'link' ),
 	// Setup the WordPress core custom background feature.
 	'custom-background' => apply_filters(
 		'photolab_custom_background_args',
-		[
+		array(
 			'default-color' => 'ffffff',
 			'default-image' => '',
-		]
+		)
 	),
 	// Enable support for HTML5 markup.
-	'html5' => [
+	'html5' => array(
 		'comment-list',
 		'search-form',
 		'comment-form',
 		'gallery',
 		'caption',
-	],
+	),
 
 	/*
 	 * Enable support for Post Thumbnails on posts and pages.
@@ -38,15 +38,15 @@ return [
 	/**
 	 * Jetpack
 	 */
-	'infinite-scroll' => [
+	'infinite-scroll' => array(
 		'container' => 'main',
 		'footer'    => 'page',
-	],
+	),
 
 	/**
 	 * Custom header setup
 	 */
-	'custom-header' => [
+	'custom-header' => array(
 		'default-image'          => Utils::assets_url() . '/images/header.jpg',
 		'random-default'         => false,
 		'width'                  => 1920,
@@ -56,7 +56,7 @@ return [
 		'header-text'            => false,
 		'uploads'                => true,
 		'wp-head-callback'       => '',
-		'admin-head-callback'    => [ '\\Modules\\Custom\\Custom_Header', 'style' ],
-		'admin-preview-callback' => [ '\\Modules\\Custom\\Custom_Header', 'image' ],
-	],
-];
+		'admin-head-callback'    => array( '\\Modules\\Custom\\Custom_Header', 'style' ),
+		'admin-preview-callback' => array( '\\Modules\\Custom\\Custom_Header', 'image' ),
+	),
+);

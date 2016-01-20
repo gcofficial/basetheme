@@ -4,7 +4,7 @@
  *
  * @package photolab
  */
-return [
+return array(
 	'Sidebar_Creator',
 	'Social_Post_Types',
 	'Sidebars_Meta_Box',
@@ -12,4 +12,4 @@ return [
 	'Customizer',
 	'Extras',
 	'Gallery',
-];
+);

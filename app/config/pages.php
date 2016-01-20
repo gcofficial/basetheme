@@ -4,8 +4,8 @@
  *
  * @package photolab
  */
-return [
-	'Upgrade_To_Pro' => [
+return array(
+	'Upgrade_To_Pro' => array(
 		__( 'About Photolab', 'photolab' ),
 		__( 'About Photolab', 'photolab' ),
 		'edit_theme_options',
@@ -13,5 +13,5 @@ return [
 		function(){
 			echo View::make( 'pages/about-photolab' );
 		},
-	],
-];
+	),
+);
