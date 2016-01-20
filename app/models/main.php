@@ -39,8 +39,7 @@ class Main_Model {
 	/**
 	 * It's for php 5.2
 	 */
-	public static function wp_meta()
-	{
+	public static function wp_meta() {
 		wp_meta();
 	}
 
