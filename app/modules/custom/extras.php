@@ -145,7 +145,7 @@ class Extras {
 			return;
 		} elseif ( is_sticky() ) {
 			$photolab_first_sticky = get_the_id();
-			$label = \Misc_Model::getFeaturedLabel();
+			$label = Misc_Model::get_featured_label();
 			if ( $wp_query->is_home() && $wp_query->is_main_query() ) {
 				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) {
 					return;
@@ -156,7 +156,7 @@ class Extras {
 			}
 		} else {
 			$photolab_first_post = get_the_id();
-			$label = \Misc_Model::getBlogLabel();
+			$label = Misc_Model::get_blog_label();
 			if ( $wp_query->is_home() && $wp_query->is_main_query() ) {
 				if ( $wp_query->is_paged && $wp_query->query['paged'] > 1 ) {
 					return;

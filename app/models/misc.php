@@ -24,7 +24,7 @@ class Misc_Model {
 	 *
 	 * @return string
 	 */
-	public static function getFeaturedLabel() {
+	public static function get_featured_label() {
 		return (string) self::get_option( 'featured_label' );
 	}
 
@@ -33,7 +33,7 @@ class Misc_Model {
 	 *
 	 * @return string
 	 */
-	public static function getBlogLabel() {
+	public static function get_blog_label() {
 		return (string) self::get_option( 'blog_label' );
 	}
 
@@ -42,7 +42,7 @@ class Misc_Model {
 	 *
 	 * @return string
 	 */
-	public static function getBlogContent() {
+	public static function get_blog_content() {
 		$allowed = array( 'excerpt', 'full' );
 		$content = (string) self::get_option( 'blog_content' );
 		if ( in_array( $content, $allowed ) ) {
@@ -56,7 +56,7 @@ class Misc_Model {
 	 *
 	 * @return string
 	 */
-	public static function getBlogImage() {
+	public static function get_blog_image() {
 		$blog_image = (string) self::get_option( 'blog_image' );
 		return '' != $blog_image ? $blog_image : 'post-thumbnail';
 	}
@@ -66,7 +66,7 @@ class Misc_Model {
 	 *
 	 * @return string
 	 */
-	public static function getBlogButton() {
+	public static function get_blog_button() {
 		$blog_btn = (string) self::get_option( 'blog_btn' );
 		if ( '' == $blog_btn ) {
 			$blog_btn = __( 'Read More', 'photolab' );
