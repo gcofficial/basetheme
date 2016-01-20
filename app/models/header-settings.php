@@ -24,7 +24,7 @@ class Header_Settings_Model {
 	 *
 	 * @return boolean --- true or false
 	 */
-	public static function getStickupMenu() {
+	public static function get_stickup_menu() {
 		return (bool) self::get_option( 'stickup_menu' );
 	}
 
@@ -42,7 +42,7 @@ class Header_Settings_Model {
 	 *
 	 * @return boolean --- enabled or disabled
 	 */
-	public static function getTitleAttributes() {
+	public static function get_title_attributes() {
 		return (bool) self::get_option( 'title_attributes' );
 	}
 
@@ -51,7 +51,7 @@ class Header_Settings_Model {
 	 *
 	 * @return boolean --- enabled or disabled
 	 */
-	public static function getSearchBox() {
+	public static function get_search_box() {
 		return (bool) self::get_option( 'search_box' );
 	}
 
@@ -60,7 +60,7 @@ class Header_Settings_Model {
 	 *
 	 * @return string --- disclimer text HTML code
 	 */
-	public static function getDisclimer() {
+	public static function get_disclimer() {
 		return (string) self::get_option( 'disclimer_text' );
 	}
 
@@ -69,8 +69,8 @@ class Header_Settings_Model {
 	 *
 	 * @return string --- header style
 	 */
-	public static function getHeaderStyle() {
-		$allowed_header_styles = self::getAllowedHeaderStyles();
+	public static function get_header_style() {
+		$allowed_header_styles = self::get_allowed_header_styles();
 		$header_style = (string) self::get_option( 'header_style' );
 		if ( in_array( $header_style, $allowed_header_styles ) ) {
 			return $header_style;
@@ -83,7 +83,7 @@ class Header_Settings_Model {
 	 *
 	 * @return array --- all allowed header sytles
 	 */
-	public static function getAllowedHeaderStyles() {
+	public static function get_allowed_header_styles() {
 		return array(
 			'default',
 			'minimal',
@@ -96,7 +96,7 @@ class Header_Settings_Model {
 	 *
 	 * @return string css classes
 	 */
-	public static function getHeaderClass() {
+	public static function get_header_class() {
 		$classes = array(
 			'page-header',
 			'header-type-' . rand( 1, 8 ),

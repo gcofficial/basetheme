@@ -152,7 +152,7 @@ class Photolab_Walker extends Walker_Nav_Menu {
 			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
 			$item_output .= '</a>';
 			if ( 0 == $depth  ) {
-				if ( \Header_Settings_Model::getTitleAttributes() ) {
+				if ( Header_Settings_Model::get_title_attributes() ) {
 					$item_output .= sprintf( '<span class="title-attributes">%s</span>', $item->post_excerpt );
 				}
 			}

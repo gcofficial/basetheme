@@ -30,7 +30,7 @@ return array(
 		array(
 			'photolab-custom',
 			'photolab_custom',
-			array( 'stickup_menu' => Header_Settings_Model::getStickupMenu() ),
+			array( 'stickup_menu' => Header_Settings_Model::get_stickup_menu() ),
 		),
 		array(
 			'photolab-layout-ie',
