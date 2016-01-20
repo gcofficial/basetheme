@@ -4,14 +4,16 @@
  *
  * @package photolab
  */
+function conf_get_about_photolab()
+{
+	echo View::make( 'pages/about-photolab' );
+}
 return array(
 	'Upgrade_To_Pro' => array(
 		__( 'About Photolab', 'photolab' ),
 		__( 'About Photolab', 'photolab' ),
 		'edit_theme_options',
 		'welcome.php',
-		function() {
-			echo View::make( 'pages/about-photolab' );
-		},
+		'conf_get_about_photolab',
 	),
 );

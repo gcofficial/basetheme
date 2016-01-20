@@ -31,9 +31,17 @@ class Main_Model {
 			'archive_list'      => wp_get_archives( array( 'type' => 'monthly', 'echo' => false ) ),
 			'wp_register'  		=> wp_register( '<li>', '</li>', false ),
 			'wp_loginout'  		=> wp_loginout( '', false ),
-			'wp_meta'      		=> Utils::echo_to_var( function() { wp_meta(); } ),
+			'wp_meta'      		=> Utils::echo_to_var( array( __CLASS__, 'wp_meta' ) ),
 			'is_show_title_on_header' => Header_Settings_Model::is_show_title_on_header(),
 		);
+	}
+
+	/**
+	 * It's for php 5.2
+	 */
+	public static function wp_meta()
+	{
+		wp_meta();
 	}
 
 	/**
