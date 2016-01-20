@@ -24,7 +24,7 @@ class Footer_Settings_Model {
 	 *
 	 * @return string --- copyright HTML code
 	 */
-	public static function getCopyright() {
+	public static function get_copyright() {
 		return (string) self::get_option( 'copyright' );
 	}
 
@@ -33,7 +33,7 @@ class Footer_Settings_Model {
 	 *
 	 * @return string --- site logo HTML code
 	 */
-	public static function getLogo() {
+	public static function get_logo() {
 		return trim( self::get_option( 'logo' ) );
 	}
 
@@ -42,8 +42,8 @@ class Footer_Settings_Model {
 	 *
 	 * @return string --- footer style
 	 */
-	public static function getStyle() {
-		$allowed_styles = self::getAllowedStyles();
+	public static function get_style() {
+		$allowed_styles = self::get_allowed_styles();
 		$style 			= ( string ) self::get_option( 'footer_style' );
 		if ( in_array( $style, $allowed_styles ) ) {
 			return $style;
@@ -56,7 +56,7 @@ class Footer_Settings_Model {
 	 *
 	 * @return array --- all allowed footer sytles
 	 */
-	public static function getAllowedStyles() {
+	public static function get_allowed_styles() {
 		return array(
 			'default',
 			'minimal',
@@ -69,7 +69,7 @@ class Footer_Settings_Model {
 	 *
 	 * @return integer --- columns number
 	 */
-	public static function getColumns() {
+	public static function get_columns() {
 		$columns = ( int ) self::get_option( 'columns' );
 		$columns = max( 2, $columns );
 		$columns = min( 4, $columns );
@@ -81,8 +81,8 @@ class Footer_Settings_Model {
 	 *
 	 * @return string --- css class
 	 */
-	public static function getColumnsCSSClass() {
-		$columns_number = self::getColumns();
+	public static function get_columns_css_class() {
+		$columns_number = self::get_columns();
 		$classes = array(
 			2 => 'col-md-6',
 			3 => 'col-md-4',
@@ -96,7 +96,7 @@ class Footer_Settings_Model {
 	 *
 	 * @return array --- all footer widgets id
 	 */
-	public static function getAllFooterWidgetsID() {
+	public static function get_all_footer_widgets_id() {
 		global $_wp_sidebars_widgets;
 		$result = array();
 		if ( array_key_exists( 'footer', $_wp_sidebars_widgets ) ) {
@@ -110,10 +110,10 @@ class Footer_Settings_Model {
 	 *
 	 * @return array --- widgets
 	 */
-	public static function getAllFooterWidgets() {
+	public static function get_all_footer_widgets() {
 		global $wp_registered_widgets;
 		$widget_keys = array_keys( $wp_registered_widgets );
-		$ids         = self::getAllFooterWidgetsID();
+		$ids         = self::get_all_footer_widgets_id();
 		$result 	 = array();
 		if ( count( $ids ) ) {
 			foreach ( $ids as $id ) {
@@ -130,9 +130,9 @@ class Footer_Settings_Model {
 	 *
 	 * @return array --- all footer widgets HTML in on array
 	 */
-	public static function getAllFooterWidgetsHTML() {
+	public static function get_all_footer_widgets_html() {
 		$widgets 		= array();
-		$footer_widgets = self::getAllFooterWidgets();
+		$footer_widgets = self::get_all_footer_widgets();
 		if ( count( $footer_widgets ) ) {
 			foreach ( $footer_widgets as $widget ) {
 				$option   = get_option( $widget['callback'][0]->option_name );

@@ -137,8 +137,8 @@ class Main_Model {
 	 */
 	public static function footer_data() {
 		return array(
-			'copyright'    => Footer_Settings_Model::getCopyright(),
-			'logo'         => Footer_Settings_Model::getLogo(),
+			'copyright'    => Footer_Settings_Model::get_copyright(),
+			'logo'         => Footer_Settings_Model::get_logo(),
 			'menu'         => wp_nav_menu(
 				array(
 					'theme_location'  => 'footer',
@@ -157,10 +157,10 @@ class Main_Model {
 				)
 			),
 			'socials_show_footer'  => Social_Settings_Model::is_show_footer(),
-			'footer_style' => Footer_Settings_Model::getStyle(),
-			'widgets' 	   => Footer_Settings_Model::getAllFooterWidgetsHTML(),
-			'columns' 	   => Footer_Settings_Model::getColumns(),
-			'css'     	   => Footer_Settings_Model::getColumnsCSSClass(),
+			'footer_style' => Footer_Settings_Model::get_style(),
+			'widgets' 	   => Footer_Settings_Model::get_all_footer_widgets_html(),
+			'columns' 	   => Footer_Settings_Model::get_columns(),
+			'css'     	   => Footer_Settings_Model::get_columns_css_class(),
 		);
 	}
 

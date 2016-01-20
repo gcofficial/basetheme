@@ -65,7 +65,7 @@ class Blog_Settings_Model {
 	 *
 	 * @return string --- column CSS class
 	 */
-	public static function getColumnCSSClass() {
+	public static function get_column_css_class() {
 		$classes = array(
 			2 => 'col-md-6 col-lg-6',
 			3 => 'col-md-4 col-lg-4',
