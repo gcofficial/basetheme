@@ -1085,7 +1085,7 @@ class Customizer {
 				'section'     => 'typography_settings',
 				'settings'    => 'typography[base_font_family]',
 				'type'        => 'select',
-				'choices'     => Typography_Settings_Model::getFontsOption(),
+				'choices'     => Typography_Settings_Model::get_fonts_option(),
 			)
 		);
 	}

@@ -24,7 +24,7 @@ class Typography_Settings_Model {
 	 *
 	 * @return array all allowed fonts.
 	 */
-	public static function getAllowedFontsWith() {
+	public static function get_allowed_fonts_with() {
 		return array(
 			'open_sans' => array(
 				'name' => 'Open Sans',
@@ -64,8 +64,8 @@ class Typography_Settings_Model {
 	 * @param type $option option key.
 	 * @return font option.
 	 */
-	public static function getFontOption( $font, $option = 'name' ) {
-		$options = self::getFontsOption( $option );
+	public static function get_font_option( $font, $option = 'name' ) {
+		$options = self::get_fonts_option( $option );
 		if ( array_key_exists( $font, $options ) ) {
 			return $options[ $font ];
 		}
@@ -78,9 +78,9 @@ class Typography_Settings_Model {
 	 * @param type $option option key.
 	 * @return string array with font key => option value.
 	 */
-	public static function getFontsOption( $option = 'name' ) {
+	public static function get_fonts_option( $option = 'name' ) {
 		$result = array();
-		$fonts  = self::getAllowedFontsWith();
+		$fonts  = self::get_allowed_fonts_with();
 		foreach ( $fonts as $key => $font ) {
 			$result[ $key ] = $font[ $option ];
 		}
@@ -92,7 +92,7 @@ class Typography_Settings_Model {
 	 *
 	 * @return string text color HEX.
 	 */
-	public static function getTextColor() {
+	public static function get_text_color() {
 		$color = trim( self::get_option( 'color_text' ) );
 		if ( '' == $color ) {
 			$color = '#000';
@@ -106,7 +106,7 @@ class Typography_Settings_Model {
 	 * @param type $num H tag number.
 	 * @return string text H1 color HEX.
 	 */
-	public static function getH( $num ) {
+	public static function get_h( $num ) {
 		$color = trim( self::get_option( 'color_h' . $num ) );
 		if ( '' == $color ) {
 			$color = '#333';
