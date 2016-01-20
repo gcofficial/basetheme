@@ -186,14 +186,18 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	 */
 	protected function compileRegularEchos( $content ) {
 		$pattern = sprintf( '/(@)?%s\s*(.+?)\s*%s(\r?\n)?/s', $this->echo_tags[0], $this->echo_tags[1] );
+		return preg_replace_callback( $pattern, array( $this, 'compile_regular_echos_callback' ), $content );
+	}
 
+	/**
+	 * It's need for PHP 5.2
+	 *
+	 * @param  [type] $match array.
+	 * @return string
+	 */
+	public function compile_regular_echos_callback( $matches ) {
 		$compiler = $this;
-
-		$callback = function( $matches ) use ( $compiler ) {
-			return $matches[1] ? substr( $matches[0], 1 ) : '<?php echo('.$compiler->compileEchoDefaults( $matches[2] ).'); ?>';
-		};
-
-		return preg_replace_callback( $pattern, $callback, $content );
+		return $matches[1] ? substr( $matches[0], 1 ) : '<?php echo('.$compiler->compileEchoDefaults( $matches[2] ).'); ?>';
 	}
 
 	/**
@@ -204,14 +208,18 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	 */
 	protected function compileEscapedEchos( $content ) {
 		$pattern = sprintf( '/%s\s*(.+?)\s*%s(\r?\n)?/s', $this->escaped_tags[0], $this->escaped_tags[1] );
+		return preg_replace_callback( $pattern, array( $this, 'compile_escaped_echos_callback' ), $content );
+	}
 
+	/**
+	 * It's need for PHP 5.2
+	 *
+	 * @param  [type] $match array.
+	 * @return string
+	 */
+	public function compile_escaped_echos_callback( $matches ) {
 		$compiler = $this;
-
-		$callback = function( $matches ) use ( $compiler ) {
-			return '<?php echo e('.$compiler->compileEchoDefaults( $matches[1] ).'); ?>';
-		};
-
-		return preg_replace_callback( $pattern, $callback, $content );
+		return '<?php echo e('.$compiler->compileEchoDefaults( $matches[1] ).'); ?>';
 	}
 
 	/**
