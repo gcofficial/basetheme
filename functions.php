@@ -2,6 +2,10 @@
 /**
  * SOme doc
  */
+
+/**
+ * Some new doc
+ */
 require_once 'src/autoload.php';
 new Autoload(
 	array(
