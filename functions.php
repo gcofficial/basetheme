@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * SOme doc
+ */
 require_once 'src/autoload.php';
 new Autoload(
 	array(
