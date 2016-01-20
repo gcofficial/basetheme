@@ -24,7 +24,7 @@ class Sidebar_Settings_Model {
 	 *
 	 * @return string --- mode left
 	 */
-	public static function getModeLeft() {
+	public static function get_mode_left() {
 		return self::get_option( 'mode_left' );
 	}
 
@@ -33,7 +33,7 @@ class Sidebar_Settings_Model {
 	 *
 	 * @return string --- mode right
 	 */
-	public static function getModeRight() {
+	public static function get_mode_right() {
 		return self::get_option( 'mode_right' );
 	}
 
@@ -42,7 +42,7 @@ class Sidebar_Settings_Model {
 	 *
 	 * @return string --- json string or empty
 	 */
-	public static function getSidebars() {
+	public static function get_sidebars() {
 		return (string) self::get_option( 'sidebars' );
 	}
 
@@ -51,8 +51,8 @@ class Sidebar_Settings_Model {
 	 *
 	 * @return array --- sidebars array
 	 */
-	public static function getSidebarsArray() {
-		return (array) json_decode( self::getSidebars() );
+	public static function get_sidebars_array() {
+		return (array) json_decode( self::get_sidebars() );
 	}
 
 	/**
@@ -60,16 +60,16 @@ class Sidebar_Settings_Model {
 	 *
 	 * @return array --- sidebars with options
 	 */
-	public static function getSidebarsOptions() {
+	public static function get_sidebars_options() {
 		$res = array();
-		$arr = self::getSidebarsArray();
+		$arr = self::get_sidebars_array();
 		if ( count( $arr ) ) {
 			foreach ( $arr as $key => $value ) {
 				array_push(
 					$res,
 					array(
 						'name'          => $value,
-						'id'            => self::getSidebarID( $value ),
+						'id'            => self::get_sidebar_id( $value ),
 						'before_widget' => '<aside id="%1$s" class="widget %2$s">',
 						'after_widget'  => '</aside>',
 						'before_title'  => '<h3 class="widget-title">',
@@ -87,7 +87,7 @@ class Sidebar_Settings_Model {
 	 * @param type $name sidebar name.
 	 * @return string sidebar id.
 	 */
-	public static function getSidebarID( $name ) {
+	public static function get_sidebar_id( $name ) {
 		return str_replace( ' ', '_', strtolower( $name ) );
 	}
 
@@ -96,7 +96,7 @@ class Sidebar_Settings_Model {
 	 *
 	 * @return array registered sidebars.
 	 */
-	public static function getSidebarsForSelect() {
+	public static function get_sidebars_for_select() {
 		$result   = array( '' => 'Inherit' );
 		$sidebars = (array) $GLOBALS['wp_registered_sidebars'];
 		if ( count( $sidebars ) ) {
@@ -112,7 +112,7 @@ class Sidebar_Settings_Model {
 	 *
 	 * @return string left sidebar id.
 	 */
-	public static function getLeftSidebarID() {
+	public static function get_left_sidebar_id() {
 		global $post;
 		$left = trim( (string) get_post_meta( $post->ID, 'sidebar_left', true ) );
 		if ( '' == $left ) {
@@ -127,7 +127,7 @@ class Sidebar_Settings_Model {
 	 *
 	 * @return string --- right sidebar id.
 	 */
-	public static function getRightSidebarID() {
+	public static function get_right_sidebar_id() {
 		global $post;
 		$right = trim( (string) get_post_meta( $post->ID, 'sidebar_right', true ) );
 		if ( '' == $right ) {
@@ -144,8 +144,8 @@ class Sidebar_Settings_Model {
 	public static function get_sidebar_side_type() {
 		$key = sprintf(
 			'l%sr%s',
-			self::getModeLeft(),
-			self::getModeRight()
+			self::get_mode_left(),
+			self::get_mode_right()
 		);
 		$values = array(
 			'lr'   => 'hide',

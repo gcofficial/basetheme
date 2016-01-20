@@ -127,7 +127,7 @@ class Sidebars_Meta_Box {
 								'id'    => 'sidebar_left',
 							)
 						),
-						'values'        => \Sidebar_Settings_Model::getSidebarsForSelect(),
+						'values'        => Sidebar_Settings_Model::get_sidebars_for_select(),
 					)
 				),
 				'right_select' => View::make(
@@ -140,7 +140,7 @@ class Sidebars_Meta_Box {
 								'id'    => 'sidebar_right',
 							)
 						),
-						'values'        => \Sidebar_Settings_Model::getSidebarsForSelect(),
+						'values'        => Sidebar_Settings_Model::get_sidebars_for_select(),
 					)
 				),
 			)

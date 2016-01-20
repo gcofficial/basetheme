@@ -22,8 +22,8 @@ if ( is_404() ) {
 	$result = View::make(
 		'pages/search',
 		array(
-			'sidebar_left'   => Sidebar_Settings_Model::getModeLeft(),
-			'sidebar_right'  => Sidebar_Settings_Model::getModeRight(),
+			'sidebar_left'   => Sidebar_Settings_Model::get_mode_left(),
+			'sidebar_right'  => Sidebar_Settings_Model::get_mode_right(),
 			'breadcrumbs'    => General_Site_Settings_Model::breadcrumbs(),
 			'paginate_links' => Blog_Settings_Model::get_paginate_links(),
 		)
@@ -32,8 +32,8 @@ if ( is_404() ) {
 	$result = View::make(
 		'pages/page',
 		array(
-			'sidebar_left'  => Sidebar_Settings_Model::getModeLeft(),
-			'sidebar_right' => Sidebar_Settings_Model::getModeRight(),
+			'sidebar_left'  => Sidebar_Settings_Model::get_mode_left(),
+			'sidebar_right' => Sidebar_Settings_Model::get_mode_right(),
 			'breadcrumbs'   => General_Site_Settings_Model::breadcrumbs(),
 		)
 	);
@@ -42,8 +42,8 @@ if ( is_404() ) {
 		'pages/single',
 		array(
 			'social_post_code' => Social_Post_Types::get_social_post_code( $post ),
-			'sidebar_left'     => Sidebar_Settings_Model::getModeLeft(),
-			'sidebar_right'    => Sidebar_Settings_Model::getModeRight(),
+			'sidebar_left'     => Sidebar_Settings_Model::get_mode_left(),
+			'sidebar_right'    => Sidebar_Settings_Model::get_mode_right(),
 			'breadcrumbs'      => General_Site_Settings_Model::breadcrumbs(),
 		)
 	);
