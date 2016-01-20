@@ -1,8 +1,12 @@
 <?php
 /**
- * Functions file
+ * Photolab function file
  *
- * @package photolab
+ * @category MyClass
+ * @package  photolab
+ * @author   Guriev Eugen
+ * @license  http://www.gnu.org/copyleft/gpl.html GNU General Public License
+ * @link     http://www.templatemonster.com/
  */
 
 require_once 'src/autoload.php';
