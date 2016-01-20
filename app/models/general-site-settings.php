@@ -24,7 +24,7 @@ class General_Site_Settings_Model {
 	 *
 	 * @return string --- favicon HTML code
 	 */
-	public static function getFavicon() {
+	public static function get_favicon() {
 		$result  = '';
 		$favicon = trim( self::get_option( 'favicon' ) );
 		if ( '' != $favicon ) {
@@ -38,7 +38,7 @@ class General_Site_Settings_Model {
 	 *
 	 * @return string --- touch icon HTML code
 	 */
-	public static function getTouchIcon() {
+	public static function get_touch_icon() {
 		$result = '';
 		$touch_icon = trim( self::get_option( 'touch_icon' ) );
 		if ( '' != $touch_icon ) {
@@ -52,7 +52,7 @@ class General_Site_Settings_Model {
 	 *
 	 * @return string --- site logo HTML code
 	 */
-	public static function getLogo() {
+	public static function get_logo() {
 		return (string) trim( self::get_option( 'logo' ) );
 	}
 
@@ -152,7 +152,7 @@ class General_Site_Settings_Model {
 	 *
 	 * @return string --- color scheme HEX
 	 */
-	public static function getColorScheme() {
+	public static function get_color_scheme() {
 		$color = trim( self::get_option( 'color_scheme' ) );
 		if ( '' == $color ) {
 			$color = '#222';

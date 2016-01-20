@@ -69,11 +69,11 @@ class Main_Model {
 			'name'                 => get_bloginfo( 'name' ),
 			'home_url'    		   => esc_url( home_url( '/' ) ),
 			'description' 		   => get_bloginfo( 'description' ),
-			'favicon'              => General_Site_Settings_Model::getFavicon(),
-			'touch_icon'           => General_Site_Settings_Model::getTouchIcon(),
+			'favicon'              => General_Site_Settings_Model::get_favicon(),
+			'touch_icon'           => General_Site_Settings_Model::get_touch_icon(),
 			'custom_styles'        => '',
 			'is_enabled_preloader' => General_Site_Settings_Model::is_enabled_preloader(),
-			'logo'                 => General_Site_Settings_Model::getLogo(),
+			'logo'                 => General_Site_Settings_Model::get_logo(),
 			'socials'              => View::make(
 				'blocks/socials',
 				array(
