@@ -34,7 +34,6 @@ class Autoload {
 	public static function autoload( $class ) {
 		$class = strtolower( $class );
 		$class = str_replace( '_', '-', $class );
-
 		if ( array_key_exists( $class, self::$classes ) ) {
 			require self::$classes[ $class ];
 		}

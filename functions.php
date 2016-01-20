@@ -1,4 +1,5 @@
-<?php/**
+<?php
+/**
  * Functions file
  *
  * @package photolab
@@ -13,7 +14,6 @@ new Autoload(
 	)
 );
 Configuration::load();
-
 add_action( 'init', 'photolab_init' );
 /**
  * Photolab theme init
@@ -21,6 +21,7 @@ add_action( 'init', 'photolab_init' );
 function photolab_init() {
 	View::add_data( Main_Model::main() );
 }
+
 
 /**
  * Set the content width based on the theme's design and stylesheet.

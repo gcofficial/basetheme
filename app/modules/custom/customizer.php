@@ -431,7 +431,7 @@ class Customizer {
 		);
 
 		$wp_customize->add_control(
-			new \Modules\Custom\Sidebar_Creator(
+			new Sidebar_Creator(
 				$wp_customize,
 				'sidebar_settings_sidebar',
 				[

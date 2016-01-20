@@ -1,9 +1,0 @@
-<?php
-/**
- * Blocks/Excerpt view
- *
- * @package photolab
- */
-?><?php if( has_excerpt() ): ?>
-	<?php echo(get_the_excerpt()); ?><?php else: ?> 
-	<?php echo(wp_trim_words( get_the_content(), 110 )); ?><?php endif; ?>

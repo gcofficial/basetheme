@@ -14,46 +14,46 @@
 if ( is_404() ) {
 	$result = View::make(
 		'pages/404',
-		[
+		array(
 			'breadcrumbs' => General_Site_Settings_Model::breadcrumbs(),
-		]
+		)
 	);
 } else if ( is_search() ) {
 	$result = View::make(
 		'pages/search',
-		[
+		array(
 			'sidebar_left'   => Sidebar_Settings_Model::getModeLeft(),
 			'sidebar_right'  => Sidebar_Settings_Model::getModeRight(),
 			'breadcrumbs'    => General_Site_Settings_Model::breadcrumbs(),
 			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
-		]
+		)
 	);
 } else if ( is_page() ) {
 	$result = View::make(
 		'pages/page',
-		[
+		array(
 			'sidebar_left'  => Sidebar_Settings_Model::getModeLeft(),
 			'sidebar_right' => Sidebar_Settings_Model::getModeRight(),
 			'breadcrumbs'   => General_Site_Settings_Model::breadcrumbs(),
-		]
+		)
 	);
 } else if ( is_single() ) {
 	$result = View::make(
 		'pages/single',
-		[
-			'social_post_code' => \Modules\Custom\Social_Post_Types::get_social_post_code( $post ),
+		array(
+			'social_post_code' => Social_Post_Types::get_social_post_code( $post ),
 			'sidebar_left'     => Sidebar_Settings_Model::getModeLeft(),
 			'sidebar_right'    => Sidebar_Settings_Model::getModeRight(),
 			'breadcrumbs'      => General_Site_Settings_Model::breadcrumbs(),
-		]
+		)
 	);
 } else {
 	$result = View::make(
 		'pages/index',
-		[
+		array(
 			'paginate_links' => Blog_Settings_Model::getPaginateLinks(),
 			'posts'          => $GLOBALS['wp_query']->get_posts(),
-		]
+		)
 	);
 }
 

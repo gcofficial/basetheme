@@ -20,7 +20,7 @@
 
 			
 			<div class="entry-content">
-			<?php \Modules\Custom\Gallery::featured_gallery(); ?>
+			<?php Gallery::featured_gallery(); ?>
 			</div><!-- .entry-content -->
 
 		</div><!-- .entry-wrapper -->

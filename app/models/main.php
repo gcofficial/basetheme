@@ -91,7 +91,7 @@ class Main_Model {
 					'container_class' => 'main-navigation',
 					'container_id'    => 'site-navigation',
 					'menu_class'      => 'sf-menu',
-					'walker'          => new \Modules\Custom\Photolab_Walker(),
+					'walker'          => new Photolab_Walker(),
 					'echo'            => false,
 				)
 			),
@@ -102,7 +102,7 @@ class Main_Model {
 					'container_class' => 'top-navigation',
 					'container_id'    => 'site-navigation',
 					'menu_class'      => 'sf-top-menu',
-					'walker'          => new \Modules\Custom\Photolab_Walker(),
+					'walker'          => new Photolab_Walker(),
 					'echo'            => false,
 				)
 			),
