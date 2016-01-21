@@ -67,8 +67,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	 * Auto create storage folder
 	 */
 	public function create_storage_folder() {
-		if ( false == file_exists( $this->storage ) )
-		{
+		if ( false == file_exists( $this->storage ) ) {
 			wp_mkdir_p( $this->storage );
 		}
 	}
