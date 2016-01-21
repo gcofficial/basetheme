@@ -628,7 +628,7 @@ class Customizer {
 			array(
 				'default'           => '',
 				'type'              => 'option',
-				'sanitize_callback' => [ $this, 'sanitize_img' ],
+				'sanitize_callback' => array( $this, 'sanitize_img' ),
 			)
 		);
 
@@ -649,7 +649,7 @@ class Customizer {
 			array(
 				'default'           => '',
 				'type'              => 'option',
-				'sanitize_callback' => [ $this, 'sanitize_img' ],
+				'sanitize_callback' => array( $this, 'sanitize_img' ),
 			)
 		);
 
