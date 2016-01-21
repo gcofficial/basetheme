@@ -87,7 +87,7 @@ class View {
 	 * @return string Compiled view
 	 */
 	public static function make( $view, $__data = array() ) {
-		$__data = array_merge( static::$data, $__data );
+		$__data = array_merge( self::$data, $__data );
 		$__path = self::get_view_path( $view );
 		$scout_compiler = new Scout_Compiler( self::get_storage_folder_path() );
 		if ( $scout_compiler->is_expired( $__path ) ) {
