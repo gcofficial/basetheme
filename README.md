@@ -1,6 +1,7 @@
 Photolab
 ===
 [![Build Status](https://travis-ci.org/gcofficial/basetheme.svg?branch=master)](https://travis-ci.org/gcofficial/basetheme)
+
 Photolab theme echoes a flat design approach and a modern clean look perfect for creating an engaging blog.
 
 Its layout inspired by the latest trends underlines visual excellence of the theme without distracting from the content. Ideal for blogs that require alluring design. Consisting of a standard set of pages, the theme is centered around its blog section. It's accessible from the Blog page and the front page presenting posts of various types: articles, quotations, photos, videos. Each type of blog content is placed in a separate block marked with a certain color bar and an icon on it.
