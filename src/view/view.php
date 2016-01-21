@@ -42,10 +42,11 @@ class View {
 	 * @return string storage folder path
 	 */
 	public static function get_storage_folder_path() {
+		$upload_dir = wp_upload_dir();
 		return sprintf(
 			'%2$s%1$sapp%1$s%3$s%1$s',
 			DIRECTORY_SEPARATOR,
-			get_template_directory(),
+			Utils::array_get($upload_dir, 'basedir', ''),
 			self::STORAGE_FOLDER
 		);
 	}
@@ -95,7 +96,7 @@ class View {
 		}
 		$storage_view_path = $scout_compiler->get_compiled_path( $__path );
 
-		return self::render_view( $storage_view_path, (array) $__data );
+		return self::render_view( $storage_view_path, (array) $__data, $scout_compiler->get_compiled_content() );
 	}
 
 	/**
@@ -115,21 +116,21 @@ class View {
 	 * @param  array $__data include data.
 	 * @return rendered html
 	 */
-	public static function render_view( $__path, $__data ) {
+	public static function render_view( $__path, $__data, $compiled_content = '' ) {
 		ob_start();
 
 		// Extract view datas.
 		extract( $__data );
-
-		// Compile the view.
-		try {
-			// Include the view.
-			include( $__path );
-		} catch ( Exception $e ) {
-			echo $e;
-			die();
+		if( file_exists( $__path ) ) {
+			// Compile the view.
+			try {
+				// Include the view.
+				include( $__path );
+			} catch ( Exception $e ) {
+				echo $e;
+				die();
+			}
 		}
-
 		// Return the compiled view and terminate the output buffer.
 		return ltrim( ob_get_clean() );
 	}

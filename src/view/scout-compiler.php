@@ -46,6 +46,13 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	protected $wp_filesystem = null;
 
 	/**
+	 * Compiled content
+	 *
+	 * @var string
+	 */
+	protected $compiled_content = '';
+
+	/**
 	 * Construct Scout_Compiler class
 	 *
 	 * @param [type] $storage storage.
@@ -53,6 +60,23 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	public function __construct( $storage = null ) {
 		$this->storage = $storage;
 		$this->wp_filesystem = Utils::get_wp_filesystem();
+		$this->create_storage_folder();
+	}
+
+	public function create_storage_folder(  ) {
+		if ( false == file_exists( $this->storage ) )
+		{
+			wp_mkdir_p( $this->storage );
+		}
+	}
+
+	/**
+	 * Get compiled PHP content
+	 *
+	 * @return string PHP content.
+	 */
+	public function get_compiled_content() {
+		return $this->compiled_content;
 	}
 
 	/**
@@ -75,6 +99,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 			// Store the compiled view.
 			$this->wp_filesystem->put_contents( $this->get_compiled_path( $this->getPath() ), $content );
 		}
+		$this->compiled_content = $content;
 	}
 
 	/**
