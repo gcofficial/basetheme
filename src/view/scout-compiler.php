@@ -39,6 +39,18 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	protected $footer = array();
 
 	/**
+	 * Wordpress filesystem class
+	 *
+	 * @var null
+	 */
+	protected $wp_filesystem = null;
+
+	public function __construct( $storage = null ) {
+		$this->storage = $storage;
+		$this->wp_filesystem = Utils::get_wp_filesystem();
+	}
+
+	/**
 	 * Compile the view at the given path.
 	 *
 	 * @param type $path compile path.
@@ -46,7 +58,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	 */
 	public function compile( $path ) {
 		// Reset footer.
-		$this->footer = array();
+		$this->footer  = array();
 
 		if ( $path ) {
 			$this->setPath( $path );
@@ -54,10 +66,9 @@ class Scout_Compiler extends Compiler implements ICompiler {
 
 		// Compile the view content.
 		$content = $this->compileString( $this->getViewContent( $path ) );
-
 		if ( ! is_null( $this->storage ) ) {
 			// Store the compiled view.
-			file_put_contents( $this->get_compiled_path( $this->getPath() ), $content );
+			$this->wp_filesystem->put_contents( $this->get_compiled_path( $this->getPath() ), $content );
 		}
 	}
 
@@ -494,7 +505,7 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	 */
 	private function getViewContent( $path ) {
 		if ( is_file( $path ) ) {
-			return file_get_contents( $path );
+			return $this->wp_filesystem->get_contents( $path );
 		}
 		echo 'View file does not exists at this location: '.$path;
 		die();

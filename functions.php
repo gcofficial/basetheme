@@ -25,10 +25,14 @@ function photolab_init() {
 	View::add_data( Main_Model::main() );
 }
 
-
 /**
  * Set the content width based on the theme's design and stylesheet.
  */
 if ( ! isset( $content_width ) ) {
 	$content_width = 1140; /* pixels */
 }
+
+/**
+ * Need for theme check
+ */
+add_theme_support( 'automatic-feed-links' );

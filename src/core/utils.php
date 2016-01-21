@@ -210,17 +210,31 @@ class Utils {
 	 * @return string requres data
 	 */
 	public static function get_contents( $url ) {
-		$ch = curl_init();
-
-		curl_setopt( $ch, CURLOPT_AUTOREFERER, true );
-		curl_setopt( $ch, CURLOPT_HEADER, 0 );
-		curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1 );
-		curl_setopt( $ch, CURLOPT_URL, $url );
-		curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
-
-		$data = curl_exec( $ch );
-		curl_close( $ch );
+		$wp_filesystem = sefl::get_wp_filesystem();
+		$wp_filesystem->get_contents( $url );
 
 		return $data;
+	}
+
+	/**
+	 * Get wp_filesystem
+	 *
+	 * @return Object
+	 */
+	public static function get_wp_filesystem()
+	{
+		global $wp_filesystem;
+
+		if ( ! defined('FS_CHMOD_FILE') )
+		{
+			define('FS_CHMOD_FILE', ( fileperms( ABSPATH . 'index.php' ) & 0777 | 0644 ) );
+		}
+
+		if ( empty( $wp_filesystem ) ) {
+			include_once( ABSPATH . '/wp-admin/includes/class-wp-filesystem-base.php' );
+			include_once( ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php' );
+		}
+
+		return new WP_Filesystem_Direct(null);
 	}
 }

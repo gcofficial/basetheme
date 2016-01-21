@@ -7,7 +7,6 @@
 
 return array(
 	'title-tag',
-	// Add default posts and comments RSS feed links to head.
 	'automatic-feed-links',
 	// Enable support for Post Formats
 	'post-formats' => array( 'aside', 'image', 'gallery', 'video', 'quote', 'link' ),

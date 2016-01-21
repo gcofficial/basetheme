@@ -9,7 +9,7 @@
 <head>
 <meta charset="{{ $charset }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{{ wp_title( '|', false, 'right' ) }}</title>
+<title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="{{ $ping_back_url }}">
 {{ $favicon }}

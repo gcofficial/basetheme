@@ -4,6 +4,15 @@
  *
  * @package photolab
  */
+
+/**
+ * Enqueue comment reply
+ */
+function conf_enqueue_comment_reply() {
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+}
 return array(
 	'scripts' => array(
 		array( 'photolab-navigation', Utils::assets_url() . 'js/navigation.js', array(), '20120206', true ),
@@ -38,5 +47,5 @@ return array(
 			'lte IE 8',
 		),
 	),
-	'custom' => array(),
+	'custom' => array( 'conf_enqueue_comment_reply' ),
 );

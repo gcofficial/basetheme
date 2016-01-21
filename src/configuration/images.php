@@ -75,9 +75,9 @@ class Images {
 			// If string, use it as display name.
 			if ( $show ) {
 				if ( is_string( $show ) ) {
-					$new[ $slug ] = __( $show, 'photolab' );
+					$new[ $slug ] = $show;
 				} else {
-					$new[ $slug ] = __( $this->label( $slug ), 'photolab' );
+					$new[ $slug ] = $this->label( $slug );
 				}
 			}
 		}
