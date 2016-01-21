@@ -45,6 +45,11 @@ class Scout_Compiler extends Compiler implements ICompiler {
 	 */
 	protected $wp_filesystem = null;
 
+	/**
+	 * Construct Scout_Compiler class
+	 *
+	 * @param [type] $storage storage.
+	 */
 	public function __construct( $storage = null ) {
 		$this->storage = $storage;
 		$this->wp_filesystem = Utils::get_wp_filesystem();

@@ -221,13 +221,11 @@ class Utils {
 	 *
 	 * @return Object
 	 */
-	public static function get_wp_filesystem()
-	{
+	public static function get_wp_filesystem() {
 		global $wp_filesystem;
 
-		if ( ! defined('FS_CHMOD_FILE') )
-		{
-			define('FS_CHMOD_FILE', ( fileperms( ABSPATH . 'index.php' ) & 0777 | 0644 ) );
+		if ( ! defined( 'FS_CHMOD_FILE' ) ) {
+			define( 'FS_CHMOD_FILE', ( fileperms( ABSPATH . 'index.php' ) & 0777 | 0644 ) );
 		}
 
 		if ( empty( $wp_filesystem ) ) {
@@ -235,6 +233,6 @@ class Utils {
 			include_once( ABSPATH . '/wp-admin/includes/class-wp-filesystem-direct.php' );
 		}
 
-		return new WP_Filesystem_Direct(null);
+		return new WP_Filesystem_Direct( null );
 	}
 }
