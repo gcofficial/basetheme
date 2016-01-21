@@ -31,9 +31,9 @@ class View {
 		}
 
 		if ( is_array( $data ) ) {
-			static::$data = array_merge( static::$data, $data );
+			self::$data = array_merge( self::$data, $data );
 		}
-		return count( static::$data );
+		return count( self::$data );
 	}
 
 	/**
