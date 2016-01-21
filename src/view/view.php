@@ -125,7 +125,7 @@ class View {
 		try {
 			// Include the view.
 			include( $__path );
-		} catch ( \Exception $e ) {
+		} catch ( Exception $e ) {
 			echo $e;
 			die();
 		}

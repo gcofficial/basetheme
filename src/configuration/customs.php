@@ -32,7 +32,7 @@ class Customs {
 	 */
 	public function load() {
 		foreach ( $this->data as $class ) {
-			$class_name = 'Modules\\Custom\\'.$class;
+			$class_name = $class;
 			$path = $this->path( str_replace( '_', '-', $class ) );
 
 			if ( file_exists( $path ) ) {
