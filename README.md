@@ -1,6 +1,4 @@
-Photolab
-===
-[![Build Status](https://travis-ci.org/gcofficial/basetheme.svg?branch=master)](https://travis-ci.org/gcofficial/basetheme)
+Photolab [![Build Status](https://travis-ci.org/gcofficial/basetheme.svg?branch=master)](https://travis-ci.org/gcofficial/basetheme)
 ===
 Photolab theme echoes a flat design approach and a modern clean look perfect for creating an engaging blog.
 
