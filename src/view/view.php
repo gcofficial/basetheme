@@ -46,7 +46,7 @@ class View {
 		return sprintf(
 			'%2$s%1$sapp%1$s%3$s%1$s',
 			DIRECTORY_SEPARATOR,
-			Utils::array_get($upload_dir, 'basedir', ''),
+			Utils::array_get( $upload_dir, 'basedir', '' ),
 			self::STORAGE_FOLDER
 		);
 	}
@@ -121,7 +121,7 @@ class View {
 
 		// Extract view datas.
 		extract( $__data );
-		if( file_exists( $__path ) ) {
+		if ( file_exists( $__path ) ) {
 			// Compile the view.
 			try {
 				// Include the view.
