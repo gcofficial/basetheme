@@ -10,19 +10,22 @@
  */
 ?>
 
-@if ( ! empty( $label ) )
-<label>{{ $label }}</label>
-@endif
-<input  {{ $attributes }}
-	@if( ! empty( $datalist ) )
-	list="{{ $datalist_id }}"
-	@endif
->
+<div {{ $attributes }}>
+	<input type="radio" name="{{ $name }}" id="{{ $name }}-{{ $value_first['key'] }}" value="{{ $value_first['key'] }}" 
+		@if( $value_first['key'] == $default )
+		checked="checked"
+		@endif
+	>
+	<label for="{{ $name }}-{{ $value_second['key'] }}" class="on">
+		{{ $value_first['value'] }}
+	</label>
 
-@if( ! empty( $datalist ) )
-<datalist id="{{ $datalist_id }}">
-	@foreach( $datalist as $dataitem )
-	<option>{{ $dataitem }}</option>
-	@endforeach
-</datalist>
-@endif
+	<input type="radio" name="{{ $name }}" id="{{ $name }}-{{ $value_second['key'] }}" value="{{ $value_second['key'] }}" 
+		@if( $value_second['key'] == $default )
+		checked="checked"
+		@endif
+	>
+	<label for="{{ $name }}-{{ $value_first['key'] }}" class="off">
+		{{ $value_second['value'] }}
+	</label>
+</div>
