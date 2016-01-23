@@ -87,7 +87,7 @@ if ( ! class_exists( 'TM_Categories_Tiles_Widget' ) ) {
 			// Include assets
 			$this->frontend_assets();
 
-			foreach ( $instance[ 'categories' ] as &$category_item ) {
+			foreach ( $instance['categories'] as &$category_item ) {
 				$category_data = get_category( $category_item['category'] );
 				$category_item['count'] = $category_data->category_count;
 				$category_item['name'] = $category_data->name;
