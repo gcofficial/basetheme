@@ -56,12 +56,12 @@ class Customizer {
 			 *
 			 * @var array
 			 */
-			$setting_parameters = array_merge( 
+			$setting_parameters = array_merge(
 				array(
 					'default'           => '',
 					'type'              => 'option',
 					'capability'        => 'manage_options',
-					'sanitize_callback' => 'sanitize_text_field'
+					'sanitize_callback' => 'sanitize_text_field',
 				),
 				(array) $setting_parameters
 			);
@@ -72,12 +72,9 @@ class Customizer {
 		// Add controls
 		$controls = $this->get_controls( $wp_customize );
 		foreach ( $controls as $control_key => $control_parameters ) {
-			if ( $control_parameters instanceof WP_Customize_Control )
-			{
+			if ( $control_parameters instanceof WP_Customize_Control ) {
 				$wp_customize->add_control( $control_parameters );
-			}
-			else
-			{
+			} else {
 				$wp_customize->add_control( $control_key, $control_parameters );
 			}
 		}
@@ -177,8 +174,8 @@ class Customizer {
 	 */
 	public function get_settings() {
 		return array(
-			'blogname'                => array( 'default' => get_option( 'blogname' ), ),
-			'blogdescription'         => array( 'default' => get_option( 'blogdescription' ), ),
+			'blogname'                => array( 'default' => get_option( 'blogname' ) ),
+			'blogdescription'         => array( 'default' => get_option( 'blogdescription' ) ),
 			'gss_lf[logo]'            => array(),
 			'gss_lf[favicon]'         => array(),
 			'gss_lf[enable_retina]'   => array(),
