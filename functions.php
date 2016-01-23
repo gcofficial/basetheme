@@ -11,6 +11,7 @@
 require_once 'src/autoload.php';
 new Autoload(
 	array(
+		'ui',
 		'configuration',
 		'core',
 		'view',

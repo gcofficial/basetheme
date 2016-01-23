@@ -89,7 +89,13 @@ class View {
 	 */
 	public static function make( $view, $__data = array() ) {
 		$__data = array_merge( self::$data, $__data );
-		$__path = self::get_view_path( $view );
+
+		// If find sufix "php", than path is absolute
+		if ( strpos( $view, '.php' ) ) {
+			$__path = $view;
+		} else {
+			$__path = self::get_view_path( $view );
+		}
 		$scout_compiler = new Scout_Compiler( self::get_storage_folder_path() );
 		if ( $scout_compiler->is_expired( $__path ) ) {
 			$scout_compiler->compile( $__path );
