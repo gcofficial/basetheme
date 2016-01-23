@@ -1,0 +1,76 @@
+/*
+* @section Widget form
+*/
+.tm-categories-tiles-form-widget {
+	clear: both;
+	width: 100%;
+	margin-bottom: 10px;
+
+	.show-count {
+		margin: 10px 0 10px 0;
+		display: block;
+		height: 30px;
+		> label {
+			float: left;
+			margin: 3px 20px 0 0;
+		}
+	}
+
+	.category-area {
+		border: #dfdfdf dashed 1px;
+		padding: 5px;
+		margin-bottom: 5px;
+		background-color: white;
+		position: relative;
+
+		.delete-category {
+			cursor: pointer;
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			color: red;
+		}
+
+		.delete-image-url {
+			cursor: pointer;
+			position: absolute;
+			top: 5px;
+			right: 5px;
+			color: red;
+		}
+
+		.upload-image {
+			position: relative;
+			cursor: pointer;
+			margin: 0 auto;
+			width: 128px;
+			img {
+				width: 100%;
+			}
+
+			.delete-image-url {
+				cursor: pointer;
+				position: absolute;
+				top: 5px;
+				right: 5px;
+				color: red;
+			}
+		}
+	}
+
+	.category-new {
+		display: none;
+	}
+
+	.add-category {
+		cursor: pointer;
+		float: right;
+		color: green;
+	}
+}
+
+.wp-customizer {
+	#TB_overlay, #TB_window {
+		z-index: 999999;
+	}
+} 

@@ -24,15 +24,6 @@ if ( ! class_exists( 'TM_About_Author_Widget' ) ) {
 	}
 
 	/**
-	 * Set constant path of text domain.
-	 *
-	 * @since 1.0.0
-	 */
-	if ( ! defined( 'PHOTOLAB_BASE_TM_PATH' ) ) {
-		define( 'PHOTOLAB_BASE_TM_PATH', dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-	}
-
-	/**
 	 * Adds TM_About_Author_Widget widget.
 	 */
 	class TM_About_Author_Widget extends WP_Widget {
@@ -284,13 +275,4 @@ if ( ! class_exists( 'TM_About_Author_Widget' ) ) {
 			return $instance;
 		}
 	}
-
-	/**
-	 * Register widget
-	 */
-	function register_tm_about_author_widget() {
-		register_widget( 'TM_About_Author_Widget' );
-	}
-	add_action( 'widgets_init', 'register_tm_about_author_widget' );
-
 }
