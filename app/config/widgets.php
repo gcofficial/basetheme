@@ -13,4 +13,6 @@ return array(
 	'Google_Plus',
 	'Instagram',
 	'TM_About_Author_Widget',
+	'TM_Categories_Tiles_Widget',
+	'TM_Image_Grid_Widget'
 );

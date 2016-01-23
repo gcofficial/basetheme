@@ -26,7 +26,7 @@ if ( ! defined( 'WPINC' ) ) {
 						>
 						<div class="title">{{ $category['name'] }}</div>
 						@if ( 'true' == $show_count )
-						<div class="count">{{ sprintf( __( '%d posts', PHOTOLAB_BASE_TM_ALIAS ), $category['count'] ); }}</div>
+						<div class="count">{{ sprintf( __( '%d posts', PHOTOLAB_BASE_TM_ALIAS ), $category['count'] ) }}</div>
 						@endif
 					</div>
 				</a>
