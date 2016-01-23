@@ -12,4 +12,5 @@ return array(
 	'Flex_Slider',
 	'Google_Plus',
 	'Instagram',
+	'TM_About_Author_Widget',
 );
