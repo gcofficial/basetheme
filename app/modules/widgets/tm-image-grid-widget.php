@@ -77,12 +77,12 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 			// Include assets
 			$this->frontend_assets();
 
-			$query = new WP_Query( 
-						array( 
+			$query = new WP_Query(
+						array(
 							'posts_per_page'	=> $instance['posts_count'],
 							'offset'			=> $instance['posts_offset'],
 							'cat'				=> $instance['categories'],
-						) 
+						)
 					);
 
 			if ( $query->have_posts() ) {
