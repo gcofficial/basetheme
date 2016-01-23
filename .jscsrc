@@ -18,5 +18,7 @@
 		"app/assets/js/html5.js",
 		"app/assets/js/about-author-widget-admin.min.js",
 		"app/assets/js/about-author-widget-frontend.min.js"
+		"app/assets/js/categories-tiles-widget-admin.min.js",
+		"app/assets/js/categories-tiles-widget-frontend.min.js"
 	]
 }
