@@ -1,13 +1,13 @@
 <?php
 /**
  * Description: Fox ui-elements
- * Version: 0.1.0
+ * Version: 0.2
  * Author: Osadchyi Serhii
  * Author URI: https://github.com/RDSergij
  *
- * @package ui_input_fox
+ * @package ui_switcherfox
  *
- * @since 0.2
+ * @since 0.1.0
  */
 
 if ( ! class_exists( 'UI_Switcher_Fox' ) ) {

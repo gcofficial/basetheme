@@ -69,7 +69,7 @@ if ( ! class_exists( 'TM_About_Author_Widget' ) ) {
 
 		/**
 		 * Include frontend assets
-		 * 
+		 *
 		 * @since 1.0
 		 */
 		public function frontend_assets() {
@@ -87,7 +87,7 @@ if ( ! class_exists( 'TM_About_Author_Widget' ) ) {
 		 *
 		 * @param type $args array.
 		 * @param type $instance array.
-		 * 
+		 *
 		 * @since 1.1
 		 */
 		public function widget( $args, $instance ) {
@@ -130,7 +130,7 @@ if ( ! class_exists( 'TM_About_Author_Widget' ) ) {
 
 		/**
 		 * Include admin assets
-		 * 
+		 *
 		 * @since 1.0
 		 */
 		public function admin_assets() {
