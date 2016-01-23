@@ -12,5 +12,5 @@ app/assets/js/unminified/device.js
 app/assets/js/unminified/jquery.magnific-popup.js
 app/assets/js/unminified/jquery.superfish.js
 app/assets/js/html5.js
-app/assets/js/about-author-widget-admin.min
-app/assets/js/about-author-widget-frontend.min
+app/assets/js/about-author-widget-admin.min.js
+app/assets/js/about-author-widget-frontend.min.js
