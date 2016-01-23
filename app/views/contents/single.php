@@ -12,7 +12,7 @@
 		@if( !$is_show_title_on_header )
 			@include('blocks/title')
 		@endif
-		{{ get_the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'photolab' ) ) }}
+		<?php the_content( __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'photolab' ) ) ?>
 		{{ wp_link_pages( 
 			array(
 				'before' => '<div class="page-links">' . __( 'Pages:', 'photolab' ),

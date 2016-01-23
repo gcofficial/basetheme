@@ -14,20 +14,8 @@ class Customizer {
 	 * Customizer class construct
 	 */
 	public function __construct() {
-		add_action( 'customize_preview_init', array( $this, 'preview_init' ) );
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'scripts_and_styles' ) );
 		add_action( 'customize_register', array( $this, 'register' ) );
-	}
-
-	/**
-	 * Add postMessage support for site title and description for the Theme Customizer.
-	 *
-	 * @param WP_Customize_Manager $wp_customize Theme Customizer object.
-	 */
-	public function preview_init( $wp_customize ) {
-		$wp_customize->get_setting( 'blogname' )->transport         = 'postMessage';
-		$wp_customize->get_setting( 'blogdescription' )->transport  = 'postMessage';
-		$wp_customize->get_setting( 'header_textcolor' )->transport = 'postMessage';
 	}
 
 	/**
@@ -42,1051 +30,312 @@ class Customizer {
 	}
 
 	/**
-	 * Sanitize image input
-	 */
-	public function sanitize_img( $input ) {
-		return esc_url( $input );
-	}
-
-	/**
-	 * Sanitize select input
-	 */
-	function sanitize_select( $input ) {
-		return esc_attr( $input );
-	}
-
-	/**
-	 * Sanitize content for allowed HTML tags for post content.
-	 *
-	 * @param type $input content.
-	 * @return string sanitized content.
-	 */
-	public function sanitize_html( $input ) {
-		return wp_kses_post( $input );
-	}
-
-	/**
 	 * Front End Customizer
 	 *
 	 * @param  WP_Customize_Manager $wp_customize Theme Customizer object.
 	 * @return void
 	 */
 	public function register( $wp_customize ) {
-		$wp_customize->add_setting(
-			'photolab_header_slogan',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-		$wp_customize->add_control(
-			'photolab_header_slogan',
-			array(
-				'label'    => __( 'Header slogan text', 'photolab' ),
-				'section'  => 'header_image',
-				'settings' => 'photolab_header_slogan',
-				'type'     => 'text',
-				'priority' => 4,
-			)
-		);
+		// Add panels
+		$panels = $this->get_panels();
+		foreach ( $panels as $panel_key => $panel_parameters ) {
+			$wp_customize->add_panel( $panel_key, $panel_parameters );
+		}
 
-		/* Socials section */
-		$wp_customize->add_section(
-			'social_settings',
-			array(
-				'title'    => __( 'Socials Settings', 'photolab' ),
-				'priority' => 40,
-			)
-		);
+		// Add sections
+		$sections = $this->get_sections();
+		foreach ( $sections as $section_key => $section_parameters ) {
+			$wp_customize->add_section( $section_key, $section_parameters );
+		}
 
-		/* Socials position */
-		$wp_customize->add_setting(
-			'social_settings[header]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-		$wp_customize->add_setting(
-			'social_settings[footer]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-		$wp_customize->add_control(
-			'social_settings_header',
-			array(
-				'label'    => __( 'Show social links in header', 'photolab' ),
-				'section'  => 'social_settings',
-				'settings' => 'social_settings[header]',
-				'type'     => 'checkbox',
-			)
-		);
-		$wp_customize->add_control(
-			'social_settings_footer',
-			array(
-				'label'    => __( 'Show social links in footer', 'photolab' ),
-				'section'  => 'social_settings',
-				'settings' => 'social_settings[footer]',
-				'type'     => 'checkbox',
-			)
-		);
-
-		/* Social links */
-		foreach ( Social_Settings_Model::get_allowed() as $social_id => $social_data ) {
-			$name  = $social_id . '_url';
-			$label = isset( $social_data['label'] ) ? $social_data['label'] : false;
-
-			$wp_customize->add_setting(
-				'social_settings[' . $name . ']',
+		// Add settings
+		$settings = $this->get_settings();
+		foreach ( $settings as $setting_key => $setting_parameters ) {
+			/**
+			 * Add defaults
+			 *
+			 * @var array
+			 */
+			$setting_parameters = array_merge( 
 				array(
 					'default'           => '',
 					'type'              => 'option',
-					'sanitize_callback' => 'sanitize_text_field',
-				)
+					'capability'        => 'manage_options',
+					'sanitize_callback' => 'sanitize_text_field'
+				),
+				(array) $setting_parameters
 			);
-			$wp_customize->add_control(
-				'photolab_' . $name ,
-				array(
-					'label'    => sprintf( __( '%s url', 'photolab' ), $label ),
-					'section'  => 'social_settings',
-					'settings' => 'social_settings[' . $name . ']',
-					'type'     => 'text',
-				)
-			);
+
+			$wp_customize->add_setting( $setting_key, $setting_parameters );
 		}
 
-		$wp_customize->add_section(
-			'photolab_message',
-			array(
-				'title'    => __( 'Welcome Message', 'photolab' ),
-				'priority' => 50,
-			)
-		);
+		// Add controls
+		$controls = $this->get_controls( $wp_customize );
+		foreach ( $controls as $control_key => $control_parameters ) {
+			if ( $control_parameters instanceof WP_Customize_Control )
+			{
+				$wp_customize->add_control( $control_parameters );
+			}
+			else
+			{
+				$wp_customize->add_control( $control_key, $control_parameters );
+			}
+		}
+	}
 
-		/* welcome label */
-		$wp_customize->add_setting(
-			'photolab[welcome_label]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
+	/**
+	 * Get customize panels
+	 *
+	 * @return array panel list.
+	 */
+	public function get_panels() {
+		return array(
+			'general_site_settings' => array(
+				'title'       => __( 'General site settings', 'photolab' ),
+				'description' => __( 'This is general site settings.', 'photolab' ),
+			),
+			'header_settings' => array(
+				'title'       => __( 'Header settings', 'photolab' ),
+				'description' => __( 'This is header settings panel.', 'photolab' ),
+			),
 		);
+	}
 
-		$wp_customize->add_control(
-			'photolab_welcome_label',
-			array(
-				'label'    => __( 'Welcome message label', 'photolab' ),
-				'section'  => 'photolab_message',
-				'settings' => 'photolab[welcome_label]',
-				'type'     => 'text',
-				'priority' => 4,
-			)
+	/**
+	 * Get customize sections
+	 *
+	 * @return array panel list.
+	 */
+	public function get_sections() {
+		return array(
+			'site_title_and_tageline' => array(
+				'title'       => __( 'Site title & tagline', 'photolab' ),
+				'description' => __( 'This is a Site Title & Tagline section.', 'photolab' ),
+				'panel'       => 'general_site_settings',
+			),
+			'logo_and_favicon' => array(
+				'title' => __( 'Logo & favicon', 'photolab' ),
+				'panel' => 'general_site_settings',
+			),
+			'breadcrumbs' => array(
+				'title' => __( 'Breadcrumbs', 'photolab' ),
+				'panel' => 'general_site_settings',
+			),
+			'color_scheme' => array(
+				'title' => __( 'Color scheme', 'photolab' ),
+				'panel' => 'general_site_settings',
+			),
+			'typography_settings' => array(
+				'title' => __( 'Typography settings', 'photolab' ),
+				'panel' => 'general_site_settings',
+			),
+			'social_links' => array(
+				'title' => __( 'Social links', 'photolab' ),
+				'panel' => 'general_site_settings',
+			),
+			'page_layout_settings' => array(
+				'title' => __( 'Page layout settings', 'photolab' ),
+				'panel' => 'general_site_settings',
+			),
+			'header_styles' => array(
+				'title' => __( 'Header styles', 'photolab' ),
+				'panel' => 'header_settings',
+			),
+			'top_panel_settings' => array(
+				'title' => __( 'Top panel settings', 'photolab' ),
+				'panel' => 'header_settings',
+			),
+			'main_menu_settings' => array(
+				'title' => __( 'Main menu settings', 'photolab' ),
+				'panel' => 'header_settings',
+			),
+			'menu_settings' => array(
+				'title' => __( 'Menu settings', 'photolab' ),
+			),
+			'sidebar_settings' => array(
+				'title' => __( 'Sidebar settings', 'photolab' ),
+			),
+			'footer_settings' => array(
+				'title' => __( 'Footer settings', 'photolab' ),
+			),
+			'blog_settings' => array(
+				'title' => __( 'Blog settings', 'photolab' ),
+			),
+			'static_front_page' => array(
+				'title' => __( 'Static front page', 'photolab' ),
+			),
+			'misc' => array(
+				'title' => __( 'Misc', 'photolab' ),
+			),
 		);
+	}
 
-		/* welcome image */
-		$wp_customize->add_setting(
-			'photolab[welcome_img]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_img' ),
-			)
+	/**
+	 * Get customize Settings
+	 *
+	 * @return array settings list.
+	 */
+	public function get_settings() {
+		return array(
+			'blogname'                => array( 'default' => get_option( 'blogname' ), ),
+			'blogdescription'         => array( 'default' => get_option( 'blogdescription' ), ),
+			'gss_lf[logo]'            => array(),
+			'gss_lf[favicon]'         => array(),
+			'gss_lf[enable_retina]'   => array(),
+			'gss_lf[show_preloader]'  => array(),
+			'gss_b[show_page_title]'  => array(),
+			'gss_b[show_breadcrubs]'  => array(),
+			'gss_b[full_minifide]'    => array(),
+			'gss_sl[show_in_header]'  => array(),
+			'gss_sl[show_in_footer]'  => array(),
+			'gss_sl[show_in_posts]'   => array(),
+			'gss_sl[show_in_post]'    => array(),
+			'gss_sl[rss_feed]'        => array(),
+			'gss_sl[facebook]'        => array(),
+			'gss_sl[twitter]'         => array(),
+			'gss_sl[google_plus]'     => array(),
+			'gss_sl[instagram]'       => array(),
+			'gss_sl[linked_in]'       => array(),
+			'gss_sl[dribble]'         => array(),
+			'gss_sl[youtube]'         => array(),
 		);
-		$wp_customize->add_control(
+	}
+
+	/**
+	 * Get customize controls
+	 *
+	 * @return array controls list.
+	 */
+	public function get_controls( $wp_customize = null ) {
+		return array(
+			'blogname' => array(
+				'label'      => __( 'Site Title' ),
+				'section'    => 'site_title_and_tageline',
+			),
+			'blogdescription' => array(
+				'label'      => __( 'Tagline' ),
+				'section'    => 'site_title_and_tageline',
+			),
 			new WP_Customize_Image_Control(
 				$wp_customize,
-				'welcome_img',
-				array(
-					'label'    => __( 'Welcome message image', 'photolab' ),
-					'section'  => 'photolab_message',
-					'settings' => 'photolab[welcome_img]',
-					'priority' => 5,
-				)
-			)
-		);
-
-		/* welcome title */
-		$wp_customize->add_setting(
-			'photolab[welcome_title]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-		$wp_customize->add_control(
-			'photolab_welcome_title',
-			array(
-				'label'    => __( 'Welcome message title', 'photolab' ),
-				'section'  => 'photolab_message',
-				'settings' => 'photolab[welcome_title]',
-				'type'     => 'text',
-				'priority' => 6,
-			)
-		);
-
-		/* welcome title */
-		$wp_customize->add_setting(
-			'photolab[welcome_message]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-		$wp_customize->add_control(
-			'photolab_welcome_message',
-			array(
-				'label'    => __( 'Welcome message text', 'photolab' ),
-				'section'  => 'photolab_message',
-				'settings' => 'photolab[welcome_message]',
-				'type'     => 'text',
-				'priority' => 7,
-			)
-		);
-
-		/**
-		 * Misc section
-		 */
-		$wp_customize->add_section(
-			'photolab_misc',
-			array(
-				'title'    => __( 'Misc', 'photolab' ),
-				'priority' => 200,
-			)
-		);
-
-		/* featured post label */
-		$wp_customize->add_setting(
-			'misc[featured_label]',
-			array(
-				'default'           => __( 'Featured', 'photolab' ),
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'photolab_featured_label',
-			array(
-				'label'    => __( 'Featured Post Label', 'photolab' ),
-				'section'  => 'photolab_misc',
-				'settings' => 'misc[featured_label]',
-				'type'     => 'text',
-				'priority' => 6,
-			)
-		);
-
-		/* blog posts label */
-		$wp_customize->add_setting(
-			'misc[blog_label]',
-			array(
-				'default'           => __( 'My Blog', 'photolab' ),
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-		$wp_customize->add_control(
-			'photolab_blog_label',
-			array(
-				'label'    => __( 'Blog Label', 'photolab' ),
-				'section'  => 'photolab_misc',
-				'settings' => 'misc[blog_label]',
-				'type'     => 'text',
-				'priority' => 7,
-			)
-		);
-
-		/* blog posts label */
-		$wp_customize->add_setting(
-			'misc[blog_content]',
-			array(
-				'default'           => 'excerpt',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-		$wp_customize->add_control(
-			'photolab_blog_content',
-			array(
-				'label'    => __( 'Post content on blog page', 'photolab' ),
-				'section'  => 'photolab_misc',
-				'settings' => 'misc[blog_content]',
-				'type'     => 'select',
-				'choices'  => array(
-					'excerpt' => __( 'Only Excerpt', 'photolab' ),
-					'full'    => __( 'Full Content', 'photolab' ),
-				),
-				'priority' => 8,
-			)
-		);
-
-		/* featured image */
-		$wp_customize->add_setting(
-			'misc[blog_image]',
-			array(
-				'default'           => 'post-thumbnail',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-		$wp_customize->add_control(
-			'photolab_blog_image',
-			array(
-				'label'    => __( 'Featured image on blog page', 'photolab' ),
-				'section'  => 'photolab_misc',
-				'settings' => 'misc[blog_image]',
-				'type'     => 'select',
-				'choices'  => array(
-					'post-thumbnail'      => __( 'Small', 'photolab' ),
-					'fullwidth-thumbnail' => __( 'Fullwidth', 'photolab' ),
-				),
-				'priority' => 9,
-			)
-		);
-
-		/* blog read more button text */
-		$wp_customize->add_setting(
-			'misc[blog_btn]',
-			array(
-				'default'           => __( 'Read More', 'photolab' ),
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-		$wp_customize->add_control(
-			'photolab_blog_btn',
-			array(
-				'label'    => __( 'Blog "Read More" button text', 'photolab' ),
-				'section'  => 'photolab_misc',
-				'settings' => 'misc[blog_btn]',
-				'type'     => 'select',
-				'type'     => 'text',
-				'priority' => 10,
-			)
-		);
-
-		/**
-		 * Sidebars
-		 */
-		$wp_customize->add_section(
-			'photolab_sidebars',
-			array(
-				'title'    => __( 'Sidebar Settings', 'photolab' ),
-				'priority' => 40,
-			)
-		);
-
-		$wp_customize->add_setting(
-			'sidebar_settings[mode_left]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			'sidebar_settings_mode_left',
-			array(
-				'label'    => __( 'Show sidebar on left side', 'photolab' ),
-				'section'  => 'photolab_sidebars',
-				'settings' => 'sidebar_settings[mode_left]',
-				'type'     => 'checkbox',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'sidebar_settings[mode_right]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			'sidebar_settings_mode_right',
-			array(
-				'label'    => __( 'Show sidebar on right side', 'photolab' ),
-				'section'  => 'photolab_sidebars',
-				'settings' => 'sidebar_settings[mode_right]',
-				'type'     => 'checkbox',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'sidebar_settings[sidebars]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new Sidebar_Creator(
-				$wp_customize,
-				'sidebar_settings_sidebar',
-				array(
-					'label'    => __( 'Custom sidebars', 'photolab' ),
-					'section'  => 'photolab_sidebars',
-					'settings' => 'sidebar_settings[sidebars]',
-				)
-			)
-		);
-
-		// ==============================================================
-		// Header settings
-		// ==============================================================
-		$wp_customize->get_section( 'header_image' )->title = __( 'Header Settings', 'photolab' );
-
-		$wp_customize->get_control( 'background_image' )->section = 'header_image';
-
-		$wp_customize->add_setting(
-			'header_settings[stickup_menu]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'stickup_menu',
-			array(
-				'label'    => __( 'Enable/Disable stickup menu', 'photolab' ),
-				'section'  => 'header_image',
-				'settings' => 'header_settings[stickup_menu]',
-				'type'     => 'checkbox',
-				'std'      => '1',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'header_settings[title_attributes]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'title_attributes',
-			array(
-				'label'    => __( 'Enable/Disable title attributes', 'photolab' ),
-				'section'  => 'header_image',
-				'settings' => 'header_settings[title_attributes]',
-				'type'     => 'checkbox',
-				'std'      => '1',
-			)
-		);
-
-		/* Show titel on header image */
-		$wp_customize->add_setting(
-			'header_settings[show_title_on_header]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-		$wp_customize->add_control(
-			'show_title_on_header',
-			array(
-				'label'    => __( 'Show title on header image?', 'photolab' ),
-				'section'  => 'header_image',
-				'settings' => 'header_settings[show_title_on_header]',
-				'type'     => 'checkbox',
-				'priority' => 4,
-				'std'	   => '1',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'header_settings[search_box]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'search_box',
-			array(
-				'label'    => __( 'Enable/Disable search box', 'photolab' ),
-				'section'  => 'header_image',
-				'settings' => 'header_settings[search_box]',
-				'type'     => 'checkbox',
-				'std'    => '1',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'header_settings[disclimer_text]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_html' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			'disclimer_text',
-			array(
-				'label'    => __( 'Disclaimer text', 'photolab' ),
-				'section'  => 'header_image',
-				'settings' => 'header_settings[disclimer_text]',
-				'type'     => 'textarea',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'header_settings[header_style]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'header_style',
-			array(
-				'label'    => __( 'Header style', 'photolab' ),
-				'section'  => 'header_image',
-				'settings' => 'header_settings[header_style]',
-				'type'     => 'select',
-				'choices'  => array(
-					'default'  => __( 'Default', 'photolab' ),
-					'minimal'  => __( 'Minimal', 'photolab' ),
-					'centered' => __( 'Centered', 'photolab' ),
-				),
-			)
-		);
-
-		// ==============================================================
-		// General Site Settings
-		// ==============================================================
-		$wp_customize->add_section(
-			'general_site_settings',
-			array(
-				'title'    => __( 'General Site Settings', 'photolab' ),
-				'priority' => 10,
-			)
-		);
-
-		$wp_customize->get_control( 'background_color' )->section = 'general_site_settings';
-
-		$wp_customize->add_setting(
-			'gss[color_scheme]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'color_scheme',
-				array(
-					'label'      => __( 'Color Scheme', 'photolab' ),
-					'section'    => 'general_site_settings',
-					'settings'   => 'gss[color_scheme]',
-				)
-			)
-		);
-
-		$wp_customize->add_control(
-			'blogname',
-			array(
-				'label'      => __( 'Site Title', 'photolab' ),
-				'section'    => 'general_site_settings',
-			)
-		);
-
-		$wp_customize->add_control(
-			'blogdescription',
-			array(
-				'label'      => __( 'Tagline', 'photolab' ),
-				'section'    => 'general_site_settings',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'gss[favicon]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_img' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Image_Control(
-				$wp_customize,
-				'favicon',
-				array(
-					'label'      => __( 'Upload a favicon', 'photolab' ),
-					'section'    => 'general_site_settings',
-					'settings'   => 'gss[favicon]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'gss[touch_icon]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_img' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Image_Control(
-				$wp_customize,
-				'touch_icon',
-				array(
-					'label'      => __( 'Upload a touch icon (57x57)', 'photolab' ),
-					'section'    => 'general_site_settings',
-					'settings'   => 'gss[touch_icon]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'gss[logo]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_img' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Image_Control(
-				$wp_customize,
-				'logo',
+				'gss_lf_logo',
 				array(
 					'label'      => __( 'Upload a logo', 'photolab' ),
-					'section'    => 'general_site_settings',
-					'settings'   => 'gss[logo]',
+					'section'    => 'logo_and_favicon',
+					'settings'   => 'gss_lf[logo]',
 				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'gss[page_preloader]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			'page_preloader',
-			array(
-				'label'    => __( 'Enable/Disable page preloader', 'photolab' ),
-				'section'  => 'general_site_settings',
-				'settings' => 'gss[page_preloader]',
-				'type'     => 'checkbox',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'gss[retina_optimisation]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			'retina_optimisation',
-			array(
-				'label'    => __( 'Enable/Disable retina optimisation', 'photolab' ),
-				'section'  => 'general_site_settings',
-				'settings' => 'gss[retina_optimisation]',
-				'type'     => 'checkbox',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'gss[breadcrumbs]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_select' ),
-			)
-		);
-
-		$wp_customize->add_control(
-			'breadcrumbs',
-			array(
-				'label'    => __( 'Enable/Disable Breadcrumbs', 'photolab' ),
-				'section'  => 'general_site_settings',
-				'settings' => 'gss[breadcrumbs]',
-				'type'     => 'checkbox',
-			)
-		);
-
-		// ==============================================================
-		// Footer Settings
-		// ==============================================================
-		$wp_customize->add_section(
-			'footer_settings',
-			array(
-				'title'    => __( 'Footer Settings', 'photolab' ),
-				'priority' => 100,
-			)
-		);
-
-		$wp_customize->add_setting(
-			'fs[footer_style]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'footer_style',
-			array(
-				'label'    => __( 'Style', 'photolab' ),
-				'section'  => 'footer_settings',
-				'settings' => 'fs[footer_style]',
-				'type'     => 'select',
-				'choices'  => array(
-					'default'  => __( 'Default', 'photolab' ),
-					'minimal'  => __( 'Minimal', 'photolab' ),
-					'centered' => __( 'Centered', 'photolab' ),
-				),
-			)
-		);
-
-		$wp_customize->add_setting(
-			'fs[copyright]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'copyright',
-			array(
-				'label'    => __( 'Copyright text', 'photolab' ),
-				'section'  => 'footer_settings',
-				'settings' => 'fs[copyright]',
-				'type'     => 'text',
-			)
-		);
-
-		$wp_customize->add_setting(
-			'fs[columns]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'footer_columns',
-			array(
-				'label'       => __( 'Columns number', 'photolab' ),
-				'section'     => 'footer_settings',
-				'settings'    => 'fs[columns]',
-				'type'        => 'select',
-				'choices'     => array(
-					'2' => 2,
-					'3' => 3,
-					'4' => 4,
-				),
-			)
-		);
-
-		$wp_customize->add_setting(
-			'fs[logo]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => array( $this, 'sanitize_img' ),
-			)
-		);
-
-		$wp_customize->add_control(
+			),
 			new WP_Customize_Image_Control(
 				$wp_customize,
-				'footer_logo',
+				'gss_lf_favicon',
 				array(
-					'label'      => __( 'Upload a footer logo', 'photolab' ),
-					'section'    => 'footer_settings',
-					'settings'   => 'fs[logo]',
+					'label'      => __( 'Upload a favicon', 'photolab' ),
+					'section'    => 'logo_and_favicon',
+					'settings'   => 'gss_lf[favicon]',
 				)
-			)
-		);
-
-		// ==============================================================
-		// Remove some sections
-		// ==============================================================
-		$wp_customize->remove_section( 'title_tagline' );
-		$wp_customize->remove_section( 'background_image' );
-		$wp_customize->remove_section( 'static_front_page' );
-		$wp_customize->remove_section( 'colors' );
-
-		// ==============================================================
-		// Blog settings
-		// ==============================================================
-		$wp_customize->add_section(
-			'blog_settings',
-			array(
-				'title'    => __( 'Blog Settings', 'photolab' ),
-				'priority' => 100,
-			)
-		);
-
-		$wp_customize->get_control( 'show_on_front' )->section = 'blog_settings';
-
-		$wp_customize->add_setting(
-			'bs[layout_style]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'layout_style',
-			array(
-				'label'       => __( 'Layout style', 'photolab' ),
-				'section'     => 'blog_settings',
-				'settings'    => 'bs[layout_style]',
-				'type'        => 'select',
-				'description' => __( 'If you select a non-default double sidebar will be disabled', 'photolab' ),
-				'choices'     => array(
-					'default' => __( 'Default', 'photolab' ),
-					'grid'    => __( 'Grid', 'photolab' ),
-					'masonry' => __( 'Masonry', 'photolab' ),
-				),
-			)
-		);
-
-		$wp_customize->add_setting(
-			'bs[columns]',
-			array(
-				'default'           => '2',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-				'transport'         => 'postMessage',
-			)
-		);
-
-		$wp_customize->add_control(
-			'columns',
-			array(
-				'label'       => __( 'Columns', 'photolab' ),
-				'section'     => 'blog_settings',
-				'settings'    => 'bs[columns]',
-				'type'        => 'select',
-				'choices'     => array(
-					'2' => __( '2', 'photolab' ),
-					'3' => __( '3', 'photolab' ),
-				),
-			)
-		);
-
-		// ==============================================================
-		// Typography settings
-		// ==============================================================
-		$wp_customize->add_setting(
-			'typography[color_text]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'text_color',
-				array(
-					'label'      => __( 'Text Color', 'photolab' ),
-					'section'    => 'typography_settings',
-					'settings'   => 'typography[color_text]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'typography[color_h1]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'color_h1',
-				array(
-					'label'      => __( 'Color h1', 'photolab' ),
-					'section'    => 'typography_settings',
-					'settings'   => 'typography[color_h1]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'typography[color_h2]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'color_h2',
-				array(
-					'label'      => __( 'Color h2', 'photolab' ),
-					'section'    => 'typography_settings',
-					'settings'   => 'typography[color_h2]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'typography[color_h3]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'color_h3',
-				array(
-					'label'      => __( 'Color h3', 'photolab' ),
-					'section'    => 'typography_settings',
-					'settings'   => 'typography[color_h3]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'typography[color_h4]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'color_h4',
-				array(
-					'label'      => __( 'Color h4', 'photolab' ),
-					'section'    => 'typography_settings',
-					'settings'   => 'typography[color_h4]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'typography[color_h5]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'color_h5',
-				array(
-					'label'      => __( 'Color h5', 'photolab' ),
-					'section'    => 'typography_settings',
-					'settings'   => 'typography[color_h5]',
-				)
-			)
-		);
-
-		$wp_customize->add_setting(
-			'typography[color_h6]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			new WP_Customize_Color_Control(
-				$wp_customize,
-				'color_h6',
-				array(
-					'label'      => __( 'Color h6', 'photolab' ),
-					'section'    => 'typography_settings',
-					'settings'   => 'typography[color_h6]',
-				)
-			)
-		);
-		$wp_customize->add_section(
-			'typography_settings',
-			array(
-				'title'    => __( 'Typography settings', 'photolab' ),
-				'priority' => 100,
-			)
-		);
-
-		$wp_customize->add_setting(
-			'typography[base_font_family]',
-			array(
-				'default'           => '',
-				'type'              => 'option',
-				'sanitize_callback' => 'sanitize_text_field',
-			)
-		);
-
-		$wp_customize->add_control(
-			'typography_base_font_family',
-			array(
-				'label'       => __( 'Base font family', 'photolab' ),
-				'section'     => 'typography_settings',
-				'settings'    => 'typography[base_font_family]',
-				'type'        => 'select',
-				'choices'     => Typography_Settings_Model::get_fonts_option(),
-			)
+			),
+			'gss_lf_enable_retina' => array(
+				'label'    => __( 'Enable / Disable retina optimisation', 'photolab' ),
+				'section'  => 'logo_and_favicon',
+				'settings' => 'gss_lf[enable_retina]',
+				'type'     => 'checkbox',
+			),
+			'gss_lf_show_preloader' => array(
+				'label'    => __( 'Enable / Disable page preloader', 'photolab' ),
+				'section'  => 'logo_and_favicon',
+				'settings' => 'gss_lf[show_preloader]',
+				'type'     => 'checkbox',
+			),
+			'gss_b_show_page_title' => array(
+				'label'    => __( 'Enable / Disable page title in breadcrumbs area', 'photolab' ),
+				'section'  => 'breadcrumbs',
+				'settings' => 'gss_b[show_page_title]',
+				'type'     => 'checkbox',
+			),
+			'gss_b_show_breadcrubs' => array(
+				'label'    => __( 'Enable / Disable breadcrumbs', 'photolab' ),
+				'section'  => 'breadcrumbs',
+				'settings' => 'gss_b[show_breadcrubs]',
+				'type'     => 'checkbox',
+			),
+			'gss_b_full_minifide' => array(
+				'label'    => __( 'Show full / Minified breadcrumbs path', 'photolab' ),
+				'section'  => 'breadcrumbs',
+				'settings' => 'gss_b[full_minifide]',
+				'type'     => 'checkbox',
+			),
+			'gss_sl_show_in_header' => array(
+				'label'    => __( 'Show social links in header', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[show_in_header]',
+				'type'     => 'checkbox',
+			),
+			'gss_sl_show_in_footer' => array(
+				'label'    => __( 'Show social links in footer', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[show_in_footer]',
+				'type'     => 'checkbox',
+			),
+			'gss_sl_show_in_posts' => array(
+				'label'    => __( 'Add social sharing to blog posts', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[show_in_posts]',
+				'type'     => 'checkbox',
+			),
+			'gss_sl_show_in_post' => array(
+				'label'    => __( 'Add social sharing to single blog post', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[show_in_post]',
+				'type'     => 'checkbox',
+			),
+			'gss_sl_rss_feed' => array(
+				'label'    => __( 'RSS Feed link', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[rss_feed]',
+				'type'     => 'text',
+			),
+			'gss_sl_facebook' => array(
+				'label'    => __( 'Facebook URL', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[facebook]',
+				'type'     => 'text',
+			),
+			'gss_sl_twitter' => array(
+				'label'    => __( 'Twitter URL', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[twitter]',
+				'type'     => 'text',
+			),
+			'gss_sl_google_plus' => array(
+				'label'    => __( 'Google+ URL', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[google_plus]',
+				'type'     => 'text',
+			),
+			'gss_sl_instagram' => array(
+				'label'    => __( 'Instagram URL', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[instagram]',
+				'type'     => 'text',
+			),
+			'gss_sl_linked_in' => array(
+				'label'    => __( 'LinkedIn URL', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[linked_in]',
+				'type'     => 'text',
+			),
+			'gss_sl_dribble' => array(
+				'label'    => __( 'Dribble URL', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[dribble]',
+				'type'     => 'text',
+			),
+			'gss_sl_youtube' => array(
+				'label'    => __( 'Youtube URL', 'photolab' ),
+				'section'  => 'social_links',
+				'settings' => 'gss_sl[youtube]',
+				'type'     => 'text',
+			),
 		);
 	}
 }
