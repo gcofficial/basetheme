@@ -81,7 +81,7 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 
 		/**
 		 * Get posts by parameter
-		 * 
+		 *
 		 * @since 1.0
 		 */
 		private function get_posts( $instance ) {
@@ -101,7 +101,7 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 						$post->image = Utils::assets_url() . '/images/default-image.jpg';
 					}
 
-					if( $instance['length'] < mb_strlen( $post->post_excerpt, 'UTF-8' ) ) {
+					if ( $instance['length'] < mb_strlen( $post->post_excerpt, 'UTF-8' ) ) {
 						$post->post_excerpt = substr( esc_attr( $post->post_excerpt ), 0, $instance['length'] ) . '...';
 					}
 				}
@@ -121,7 +121,7 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 			}
 
 			// Include assets
-			$this->frontend_assets($instance);
+			$this->frontend_assets( $instance );
 
 			echo View::make(
 				'/widgets/front-end/posts-carousel',

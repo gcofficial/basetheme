@@ -91,12 +91,12 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 					'posts'			=> $this->get_posts( $instance, $instance['title_length'] ),
 				)
 			);
-			
+
 		}
 
 		/**
 		 * Get posts by parameter
-		 * 
+		 *
 		 * @since 1.0
 		 */
 		private function get_posts( $instance ) {
@@ -117,7 +117,7 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 						$post->image = Utils::assets_url() . '/images/default-image.jpg';
 					}
 
-					if( $instance['title_length'] < mb_strlen( $post->post_title, 'UTF-8' ) ) {
+					if ( $instance['title_length'] < mb_strlen( $post->post_title, 'UTF-8' ) ) {
 						$post->post_title = substr( esc_attr( $post->post_title ), 0, $instance['title_length'] ) . '...';
 					}
 				}

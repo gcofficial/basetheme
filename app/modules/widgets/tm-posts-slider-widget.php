@@ -88,7 +88,7 @@ if ( ! class_exists( 'TM_Posts_Slider_Widget' ) ) {
 
 		/**
 		 * Get posts by parameter
-		 * 
+		 *
 		 * @since 1.0
 		 */
 		private function get_posts( $instance ) {
@@ -117,7 +117,7 @@ if ( ! class_exists( 'TM_Posts_Slider_Widget' ) ) {
 		 *
 		 * @param type $args array.
 		 * @param type $instance array.
-		 * 
+		 *
 		 * @since 1.1
 		 */
 		public function widget( $args, $instance ) {
