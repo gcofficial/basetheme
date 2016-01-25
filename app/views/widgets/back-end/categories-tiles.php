@@ -23,25 +23,29 @@
 
 	<div class="categories" count="{{ count( $tiles_items ) }}">
 		@if( is_array( $tiles_items ) && count( $tiles_items ) > 0 )
-		@foreach ( $tiles_items as $key => $tile_item )
-		<div class="category-area">
-			<i class="fa fa-times delete-category"></i>
-			<h3>{{ __( 'Category', PHOTOLAB_BASE_TM_ALIAS ) }} <span>{{ $key + 1 }}</span></h3>
-			<p>
-				{{ $tile_item['category'] }}
-			</p>
+			@foreach( $tiles_items as $key => $tile_item )
+			<div class="category-area">
+				<i class="fa fa-times delete-category"></i>
+				<h3>{{ __( 'Category', PHOTOLAB_BASE_TM_ALIAS ) }} <span>{{ ($key + 1) }}</span></h3>
+				<p>
+					{{ $tile_item['category'] }}
+				</p>
 
-			<p>
-				<label>{{ __( 'Category image', PHOTOLAB_BASE_TM_ALIAS ) }}</label><br/>
-				{{ $tile_item['image'] }}
-			</p>
+				<p>
+					<label>{{ __( 'Category image', PHOTOLAB_BASE_TM_ALIAS ) }}</label><br/>
+					{{ $tile_item['image'] }}
+				</p>
 
-			<div class="upload-image">
-				<i class="fa fa-times delete-image-url"></i>
-				<img default_image="{{ $default_image }}" src="{{{ $tile_item['src'] or $default_image }}}">
+				<div class="upload-image">
+					<i class="fa fa-times delete-image-url"></i>
+					@if( ! empty( $tile_item['src'] ) )
+					<img default_image="{{ $default_image }}" src="{{ $tile_item['src'] }}">
+					@else
+					<img default_image="{{ $default_image }}" src="{{ $default_image }}">
+					@endif
+				</div>
 			</div>
-		</div>
-		@endforeach
+			@endforeach
 		@endif
 		<div class="category-new">
 			<i class="fa fa-times delete-category"></i>

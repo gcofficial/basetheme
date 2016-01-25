@@ -17,7 +17,7 @@ if ( ! class_exists( 'TM_Categories_Tiles_Widget' ) ) {
 	/**
 	 * Set constant text domain.
 	 *
-	 * @since 1.0.0
+	 * @since 1.1
 	 */
 	if ( ! defined( 'PHOTOLAB_BASE_TM_ALIAS' ) ) {
 		define( 'PHOTOLAB_BASE_TM_ALIAS', 'photolab' );
@@ -87,14 +87,16 @@ if ( ! class_exists( 'TM_Categories_Tiles_Widget' ) ) {
 			// Include assets
 			$this->frontend_assets();
 
-			foreach ( $instance['categories'] as &$category_item ) {
-				$category_data = get_category( $category_item['category'] );
-				$category_item['count'] = $category_data->category_count;
-				$category_item['name'] = $category_data->name;
-				$category_item['url'] = get_category_link( $category_data->term_id );
+			if ( ! empty( $instance['categories'] ) ) {
+				foreach ( $instance['categories'] as &$category_item ) {
+					$category_data = get_category( $category_item['category'] );
+					$category_item['count'] = $category_data->category_count;
+					$category_item['name'] = $category_data->name;
+					$category_item['url'] = get_category_link( $category_data->term_id );
+				}
 			}
 
-			$view = __DIR__ . '/widgets/front-end/about-author/' . $this->themes[ Utils::array_get( $instance, 'theme' ) ];
+			$view = '/widgets/front-end/categories-tiles/' . $this->themes[ Utils::array_get( $instance, 'theme' ) ];
 
 			echo View::make(
 				$view,
@@ -129,7 +131,7 @@ if ( ! class_exists( 'TM_Categories_Tiles_Widget' ) ) {
 			wp_enqueue_style( 'font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css' );
 
 			// Custom script
-			wp_register_script( 'tm-categories-tiles-admin', Utils::assets_url() . '/js/categories-tilescategories-tiles-widget-admin.min.js', array( 'jquery' ) );
+			wp_register_script( 'tm-categories-tiles-admin', Utils::assets_url() . '/js/categories-tiles-widget-admin.min.js', array( 'jquery' ) );
 			wp_localize_script( 'tm-categories-tiles-admin', 'TMAboutAuthorWidgetParam', array( 'image' => $this->get_field_id( 'image' ), 'avatar' => $this->get_field_id( 'avatar' ) ) );
 			wp_enqueue_script( 'tm-categories-tiles-admin' );
 
@@ -185,7 +187,7 @@ if ( ! class_exists( 'TM_Categories_Tiles_Widget' ) ) {
 			}
 
 			// Universal
-			$default_image = Utils::assets_url() . '/images/default-image.png';
+			$default_image = Utils::assets_url() . '/images/default-image.jpg';
 
 			$categories = Utils::array_get( $instance, 'categories' );
 			$tiles_items = array();
@@ -236,11 +238,11 @@ if ( ! class_exists( 'TM_Categories_Tiles_Widget' ) ) {
 				'widgets/back-end/categories-tiles',
 				array(
 					'title_html'		=> $title_html,
-					'title_html'		=> $theme_html,
-					'title_html'		=> $show_count_html,
-					'title_html'		=> $tiles_items,
-					'title_html'		=> $default_image,
-					'title_html'		=> $tile_new,
+					'theme_html'		=> $theme_html,
+					'show_count_html'	=> $show_count_html,
+					'tiles_items'		=> $tiles_items,
+					'default_image'		=> $default_image,
+					'tile_new'			=> $tile_new,
 				)
 			);
 		}

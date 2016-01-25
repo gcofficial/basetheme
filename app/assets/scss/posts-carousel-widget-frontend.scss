@@ -1,0 +1,27 @@
+/*
+* @section Slider
+*/
+.tm-post-carousel-widget {
+	padding: 10px;
+	text-align: center;
+
+	.swiper-slide {
+		background-size: cover;
+	}
+
+	a {
+		color: black;
+		text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+		&:hover {
+			color: black;
+			 text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+		}
+	}
+
+	.slider-description {
+		font-family: Verdana, sans-serif;
+		font-size: 12px;
+		text-align: center;
+	}
+
+}
