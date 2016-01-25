@@ -54,8 +54,8 @@ class Widgets {
 	 */
 	public function class_name( $path ) {
 		$file_name = basename( $path, '.php' );
-		$class_name_elements = explode('-', $file_name);
-		foreach ($class_name_elements as $key => &$el) {
+		$class_name_elements = explode( '-', $file_name );
+		foreach ( $class_name_elements as $key => &$el ) {
 			$el = ucwords( $el );
 		}
 		return implode( '_', $class_name_elements );
