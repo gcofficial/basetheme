@@ -170,7 +170,7 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 			foreach ( $this->instance_default as $key => $value ) {
 				$instance[ $key ] = ! empty( $instance[ $key ] ) ? $instance[ $key ] : $value;
 			}
-=
+
 			$this->admin_assets();
 
 			$title_field = new UI_Input_Fox(
