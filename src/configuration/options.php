@@ -166,7 +166,7 @@ class Options {
 	 *
 	 * @param [type] $customizer     $wp_customize object.
 	 * @param [type] $settings       settings list.
-	 * @param string $prefix         setting prefix.
+	 * @param [type] $prefix         setting prefix.
 	 */
 	public function add_settings( $customizer, $settings, $prefix = '' ) {
 		$settings = (array) $settings;
@@ -237,7 +237,7 @@ class Options {
 	 * @param [type] $customizer $wp_cutomize object.
 	 * @param [type] $controls   controls list.
 	 * @param [type] $section_name section name.
-	 * @param string $prefix     controls prefix.
+	 * @param [type] $prefix     controls prefix.
 	 */
 	public function add_controls( $customizer, $controls, $section_name, $prefix = '' ) {
 		foreach ( $controls as $key => $parameters ) {
