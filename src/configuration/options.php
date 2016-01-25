@@ -164,22 +164,21 @@ class Options {
 	/**
 	 * Add settings to customizer
 	 *
-	 * @param [type] $customizer     $wp_customize object
+	 * @param [type] $customizer     $wp_customize object.
 	 * @param [type] $settings       settings list.
-	 * @param string $prefix         setting prefix.
+	 * @param [type] $prefix         setting prefix.
 	 */
 	public function add_settings( $customizer, $settings, $prefix = '' ) {
 		$settings = (array) $settings;
-		if ( ! count( $settings ) )
-		{
+		if ( ! count( $settings ) ) {
 			return false;
 		}
-		foreach ($settings as $key => $value) {
+		foreach ( $settings as $key => $value ) {
 			if ( is_int( $key ) ) {
-				$setting_key = $this->get_setting_name($prefix, $value);
-				$this->add_setting( $customizer, $setting_key);
+				$setting_key = $this->get_setting_name( $prefix, $value );
+				$this->add_setting( $customizer, $setting_key );
 			} else {
-				$setting_key = $this->get_setting_name($prefix, $key);
+				$setting_key = $this->get_setting_name( $prefix, $key );
 				$this->add_setting( $customizer, $setting_key, $value );
 			}
 		}
@@ -206,7 +205,8 @@ class Options {
 
 	/**
 	 * Is setting added?
-	 * @param  [type]  $setting_key setting key.
+	 *
+	 * @param  [type] $setting_key setting key.
 	 * @return boolean true if success false if not.
 	 */
 	private function is_setting_added( $setting_key ) {
@@ -215,6 +215,7 @@ class Options {
 
 	/**
 	 * Get setting name
+	 *
 	 * @param  [type] $prefix setting prefix.
 	 * @param  [type] $setting_name   setting name.
 	 * @return setting name like: $prefix[ $setting_name ]
@@ -235,11 +236,12 @@ class Options {
 	 *
 	 * @param [type] $customizer $wp_cutomize object.
 	 * @param [type] $controls   controls list.
-	 * @param string $prefix     controls prefix.
+	 * @param [type] $section_name section name.
+	 * @param [type] $prefix     controls prefix.
 	 */
 	public function add_controls( $customizer, $controls, $section_name, $prefix = '' ) {
-		foreach ($controls as $key => $parameters) {
-			$setting  = $this->get_setting_name($prefix, $key);
+		foreach ( $controls as $key => $parameters ) {
+			$setting  = $this->get_setting_name( $prefix, $key );
 			$defaults = array(
 				'settings' => $setting,
 				'section'  => $section_name,

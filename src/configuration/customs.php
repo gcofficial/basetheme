@@ -9,49 +9,30 @@
  * Customs class
  */
 class Customs {
-
 	/**
-	 * The image sizes.
-	 *
-	 * @var array
+	 * Customs class constructor
 	 */
-	protected $data = array();
-
-	/**
-	 * Widgets class constructor
-	 *
-	 * @param array $data engine data.
-	 */
-	public function __construct( array $data ) {
-		$this->data = $data;
-		$this->load();
-	}
-
-	/**
-	 * Load classes
-	 */
-	public function load() {
-		foreach ( $this->data as $class ) {
-			$class_name = $class;
-			$path = $this->path( str_replace( '_', '-', $class ) );
-
-			if ( file_exists( $path ) ) {
-				require_once( $path );
+	public function __construct() {
+		$paths = self::get_all_paths();
+		if ( count( $paths ) ) {
+			foreach ( $paths as $path ) {
+				if ( file_exists( $path ) ) {
+					require_once( $path );
+				}
 			}
 		}
 	}
 
 	/**
-	 * Get class path
+	 * Get all paths to classes
 	 *
-	 * @param type $class class name.
-	 * @return string widget path
+	 * @return array
 	 */
-	public function path( $class ) {
-		return sprintf(
-			'%s/app/modules/custom/%s.php',
-			get_template_directory(),
-			strtolower( $class )
+	public static function get_all_paths() {
+		$pattern = sprintf(
+			'%s/app/modules/custom/*.php',
+			get_template_directory()
 		);
+		return (array) glob( $pattern );
 	}
 }

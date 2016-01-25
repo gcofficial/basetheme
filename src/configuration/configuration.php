@@ -20,6 +20,8 @@ class Configuration {
 
 			if ( file_exists( $path ) ) {
 				new $class_name( include( $path ) );
+			} else {
+				new $class_name();
 			}
 		}
 	}

@@ -133,7 +133,7 @@ class Utils {
 		$right_keys = (array) $right_keys;
 		$array      = (array) $array;
 
-		if ( count($right_keys) ) {
+		if ( count( $right_keys ) ) {
 			foreach ( $right_keys as $key ) {
 				if ( array_key_exists( $key, $array ) ) {
 					unset( $array[ $key ] );
