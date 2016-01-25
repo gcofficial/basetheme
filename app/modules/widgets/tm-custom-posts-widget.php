@@ -98,7 +98,7 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 						$post->image = Utils::assets_url() . '/images/default-image.jpg';
 					}
 
-					if ( empty ( $post->post_excerpt ) ) {
+					if ( empty( $post->post_excerpt ) ) {
 						$post->post_excerpt = strip_tags( $post->post_content );
 					}
 
@@ -158,7 +158,7 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 			wp_register_style( 'tm-custom-posts-admin', Utils::assets_url() . '/css/custom-posts-widget-admin.min.css' );
 			wp_enqueue_style( 'tm-custom-posts-admin' );
 
-		=}
+		}
 
 
 		/**
