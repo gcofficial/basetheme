@@ -47,6 +47,7 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 			$this->instance_default = array(
 				'title'				=> __( 'List', PHOTOLAB_BASE_TM_ALIAS ),
 				'categories'		=> 0,
+				'tags'				=> 0,
 				'cols_count'		=> 3,
 				'posts_count'		=> 6,
 				'posts_offset'		=> 0,
@@ -74,6 +75,10 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 		 */
 		public function widget( $args, $instance ) {
 
+			foreach ( $this->instance_default as $key => $value ) {
+				$instance[ $key ] = ! empty( $instance[ $key ] ) ? $instance[ $key ] : $value;
+			}
+
 			// Include assets
 			$this->frontend_assets();
 
@@ -88,7 +93,7 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 					'cols_count'    => $instance['cols_count'],
 					'padding'		=> $instance['padding'],
 					'index'			=> 0,
-					'posts'			=> $this->get_posts( $instance, $instance['title_length'] ),
+					'posts'			=> $this->get_posts( $instance ),
 				)
 			);
 
@@ -105,6 +110,7 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 					'posts_per_page'	=> $instance['posts_count'],
 					'offset'			=> $instance['posts_offset'],
 					'cat'				=> $instance['categories'],
+					'tag_id'			=> $instance['tags'],
 				)
 			);
 
@@ -173,6 +179,22 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 						);
 			$categories_html = $category_field->output();
 
+			$tags_list = get_tags( array( 'hide_empty' => 0 ) );
+			$tags_array = array( '0' => 'not selected' );
+			foreach ( $tags_list as $tag_item ) {
+				$tags_array[ $tag_item->term_id ] = $tag_item->name;
+			}
+
+			$tag_field = new UI_Select_Fox(
+							array(
+								'id'				=> $this->get_field_id( 'tags' ),
+								'name'				=> $this->get_field_name( 'tags' ),
+								'default'			=> Utils::array_get( $instance, 'tags' ),
+								'options'			=> $tags_array,
+							)
+						);
+			$tags_html = $tag_field->output();
+
 			$cols_count_field = new UI_Select_Fox(
 							array(
 								'id'				=> $this->get_field_id( 'cols_count' ),
@@ -233,6 +255,7 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 				array(
 					'title_html'			=> $title_html,
 					'categories_html'		=> $categories_html,
+					'tags_html'				=> $tags_html,
 					'cols_count_html'		=> $cols_count_html,
 					'posts_count_html'		=> $posts_count_html,
 					'posts_offset_html'		=> $posts_offset_html,

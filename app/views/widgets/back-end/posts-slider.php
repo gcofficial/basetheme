@@ -17,6 +17,11 @@
 	</p>
 
 	<p>
+		<label for="tags">{{ __( 'Tag', PHOTOLAB_BASE_TM_ALIAS ) }}</label>
+		{{ $tags_html }}
+	</p>
+
+	<p>
 		{{ $count_html }}
 	</p>
 

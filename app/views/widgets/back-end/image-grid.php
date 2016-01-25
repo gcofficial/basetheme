@@ -15,6 +15,11 @@
 		<label for="categories">{{ __( 'Category', PHOTOLAB_BASE_TM_ALIAS ) }}</label>
 		{{ $categories_html }}
 	</p>
+
+	<p>
+		<label for="tags">{{ __( 'Tag', PHOTOLAB_BASE_TM_ALIAS ) }}</label>
+		{{ $tags_html }}
+	</p>
 	
 	<p>
 		<label for="cols_count">{{ __( 'Count of columns', PHOTOLAB_BASE_TM_ALIAS ) }}</label>

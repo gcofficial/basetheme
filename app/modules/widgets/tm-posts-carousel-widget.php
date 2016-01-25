@@ -47,6 +47,7 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 			$this->instance_default = array(
 				'title'				=> __( 'List', PHOTOLAB_BASE_TM_ALIAS ),
 				'categories'		=> 0,
+				'tags'				=> 0,
 				'count'				=> 4,
 				'slides_per_view'	=> 2,
 				'length'			=> 15,
@@ -89,6 +90,7 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 				array(
 					'posts_per_page'	=> $instance['count'],
 					'cat'				=> $instance['categories'],
+					'tag_id'			=> $instance['tags'],
 				)
 			);
 
@@ -185,6 +187,22 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 							);
 			$categories_html = $category_field->output();
 
+			$tags_list = get_tags( array( 'hide_empty' => 0 ) );
+			$tags_array = array( '0' => 'not selected' );
+			foreach ( $tags_list as $tag_item ) {
+				$tags_array[ $tag_item->term_id ] = $tag_item->name;
+			}
+
+			$tag_field = new UI_Select_Fox(
+								array(
+									'id'				=> $this->get_field_id( 'tags' ),
+									'name'				=> $this->get_field_name( 'tags' ),
+									'default'			=> Utils::array_get( $instance, 'tags' ),
+									'options'			=> $tags_array,
+								)
+							);
+			$tags_html = $tag_field->output();
+
 			$count_field = new UI_Input_Fox(
 					array(
 						'id'			=> $this->get_field_id( 'count' ),
@@ -224,6 +242,7 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 				array(
 					'title_html'			=> $title_html,
 					'categories_html'		=> $categories_html,
+					'tags_html'				=> $tags_html,
 					'count_html'			=> $count_html,
 					'slides_per_view_html'	=> $slides_per_view_html,
 					'length_html'			=> $length_html,
