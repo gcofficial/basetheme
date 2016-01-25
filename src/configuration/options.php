@@ -215,6 +215,7 @@ class Options {
 
 	/**
 	 * Get setting name
+	 *
 	 * @param  [type] $prefix setting prefix.
 	 * @param  [type] $setting_name   setting name.
 	 * @return setting name like: $prefix[ $setting_name ]
