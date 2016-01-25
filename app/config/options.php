@@ -21,8 +21,8 @@ return array(
 					'blogdescription' => array( 'default' => get_option( 'blogdescription' ) ),
 				),
 				'__CONTROLS__'    => array(
-					'blogname' => array( 'label'      => __( 'Site Title' ) ),
-					'blogdescription' => array( 'label'      => __( 'Tagline' ) ),
+					'blogname' => array( 'label' => __( 'Site Title' ) ),
+					'blogdescription' => array( 'label' => __( 'Tagline' ) ),
 				),
 			),
 
@@ -133,10 +133,10 @@ return array(
 			'regular' => array(
 				'title' => __( 'Regular', 'photolab' ),
 				'__CONTROLS__' => array(
-					'accent'     => array( 'label'    => __( 'Accent', 'photolab' ) ),
-					'text'       => array( 'label'    => __( 'Text', 'photolab' ) ),
-					'link_hover' => array( 'label'    => __( 'Link hover', 'photolab' ) ),
-					'heading'    => array( 'label'    => __( 'Heading ( H1 - H6 )', 'photolab' ) ),
+					'accent'     => array( 'label' => __( 'Accent', 'photolab' ) ),
+					'text'       => array( 'label' => __( 'Text', 'photolab' ) ),
+					'link_hover' => array( 'label' => __( 'Link hover', 'photolab' ) ),
+					'heading'    => array( 'label' => __( 'Heading ( H1 - H6 )', 'photolab' ) ),
 				),
 			),
 
@@ -144,10 +144,10 @@ return array(
 			'invert' => array(
 				'title' => __( 'Invert', 'photolab' ),
 				'__CONTROLS__' => array(
-					'accent'     => array( 'label'    => __( 'Accent', 'photolab' ) ),
-					'text'       => array( 'label'    => __( 'Text', 'photolab' ) ),
-					'link_hover' => array( 'label'    => __( 'Link hover', 'photolab' ) ),
-					'heading'    => array( 'label'    => __( 'Heading ( H1 - H6 )', 'photolab' ) ),
+					'accent'     => array( 'label' => __( 'Accent', 'photolab' ) ),
+					'text'       => array( 'label' => __( 'Text', 'photolab' ) ),
+					'link_hover' => array( 'label' => __( 'Link hover', 'photolab' ) ),
+					'heading'    => array( 'label' => __( 'Heading ( H1 - H6 )', 'photolab' ) ),
 				),
 			),
 		),
@@ -273,7 +273,7 @@ return array(
 					'image_repeat' => array( 'label' => __( 'Image repeat', 'photolab' ) ),
 					'background_scroll' => array( 'label' => __( 'Background scroll', 'photolab' ) ),
 					'background_color' => array( 'label' => __( 'Background color', 'photolab' ) ),
-					'header_layout' => array( 
+					'header_layout' => array(
 						'label' => __( 'Header layout', 'photolab' ),
 						'type'  => 'select',
 						'choices' => array(
@@ -379,7 +379,7 @@ return array(
 				'exclude_categories_from_blog' => array( 'label' => __( 'Exclude categories from blog', 'photolab' ) ),
 				'blog_label' => array( 'label' => __( 'Blog label', 'photolab' ) ),
 				'read_more_button_text' => array( 'label' => __( 'Read more button text', 'photolab' ) ),
-				'hide_additional_info_in_single' => array( 
+				'hide_additional_info_in_single' => array(
 					'label' => __( 'Hide additional info ( post author, publish date, category, tags) in single post', 'photolab' ),
 					'type' => 'checkbox',
 				),
