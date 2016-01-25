@@ -77,30 +77,52 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 			// Include assets
 			$this->frontend_assets();
 
-			$query = new WP_Query(
-						array(
-							'posts_per_page'	=> $instance['posts_count'],
-							'offset'			=> $instance['posts_offset'],
-							'cat'				=> $instance['categories'],
-						)
-					);
+			echo View::make(
+				'/widgets/front-end/image-grid',
+				array(
+					'before_widget' => $args['before_widget'],
+					'before_title'  => $args['before_widget'],
+					'after_title'   => $args['after_title'],
+					'after_widget'  => $args['after_widget'],
+					'title'         => Utils::array_get( $instance, 'title' ),
+					'cols_count'    => $instance['cols_count'],
+					'padding'		=> $instance['padding'],
+					'index'			=> 0,
+					'posts'			=> $this->get_posts( $instance, $instance['title_length'] ),
+				)
+			);
+			
+		}
 
-			if ( $query->have_posts() ) {
-				echo View::make(
-					'/widgets/front-end/image-grid',
-					array(
-						'before_widget' => $args['before_widget'],
-						'before_title'  => $args['before_widget'],
-						'after_title'   => $args['after_title'],
-						'after_widget'  => $args['after_widget'],
-						'title'         => Utils::array_get( $instance, 'title' ),
-						'cols_count'    => $instance['cols_count'],
-						'title_length'  => $instance['title_length'],
-						'padding'		=> $instance['padding'],
-						'index'			=> 0,
-					)
-				);
+		/**
+		 * Get posts by parameter
+		 * 
+		 * @since 1.0
+		 */
+		private function get_posts( $instance ) {
+			$posts = get_posts(
+				array(
+					'posts_per_page'	=> $instance['posts_count'],
+					'offset'			=> $instance['posts_offset'],
+					'cat'				=> $instance['categories'],
+				)
+			);
+
+			if ( count( $posts ) ) {
+				foreach ( $posts as &$post ) {
+					if ( has_post_thumbnail( $post->ID ) ) {
+						$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'medium' );
+						$post->image = $image[0];
+					} else {
+						$post->image = Utils::assets_url() . '/images/default-image.jpg';
+					}
+
+					if( $instance['title_length'] < mb_strlen( $post->post_title, 'UTF-8' ) ) {
+						$post->post_title = substr( esc_attr( $post->post_title ), 0, $instance['title_length'] ) . '...';
+					}
+				}
 			}
+			return $posts;
 		}
 
 		/**

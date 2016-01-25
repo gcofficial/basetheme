@@ -13,23 +13,19 @@
 <div class="tm-image-grid-widget">
 	<!-- Grid area -->
 	<div class="grid grid-{{ $cols_count }}">
-		@loop
-		<a href="{{ get_the_permalink() }}" style="
-				{{ ( $images = wp_get_attachment_image_src( get_post_thumbnail_id( get_the_ID() ), 'medium' ) ) ? 'background-image: url(' . $images[0] . ');' : '' }}
+		@foreach( $posts as $post )
+		<a href="{{ get_permalink( $post->ID ) }}" style="
+				{{ ! empty ( $post->image ) ? 'background-image: url(' . $post->image . ');' : '' }}
 				margin: {{ $padding }}px;
 		">
 			<h4>
-				@if( $title_length < mb_strlen( get_the_title(), 'UTF-8' ) )
-				{{ substr( get_the_title(), 0, $title_length ) . '...' }}
-				@else
-				{{ get_the_title() }}
-				@endif
+				{{ $post->post_title }}
 			</h4>
 		</a>
 		@if( ++$index % $cols_count )
 		<div class="clear"></div>
 		@endif
-		@endloop
+		@endforeach
 	</div>
 	<!-- End grid area -->
 </div>
