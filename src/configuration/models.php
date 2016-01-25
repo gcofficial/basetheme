@@ -11,30 +11,29 @@
 class Models {
 
 	/**
-	 * The image sizes.
-	 *
-	 * @var array
-	 */
-	protected $data = array();
-
-	/**
 	 * Models class constructor
-	 *
-	 * @param array $data engine data.
 	 */
-	public function __construct( array $data ) {
-		$this->data = $data;
-		$this->load();
+	public function __construct() {
+		$paths = self::get_all_paths();
+		if ( count( $paths ) ) {
+			foreach ( $paths as $path ) {
+				if ( file_exists( $path ) ) {
+					require_once( $path );
+				}
+			}
+		}
 	}
 
 	/**
-	 * Load classes
+	 * Get all paths to classes
+	 *
+	 * @return array
 	 */
-	public function load() {
-		foreach ( $this->data as $path ) {
-			if ( file_exists( $path ) ) {
-				require_once( $path );
-			}
-		}
+	public static function get_all_paths() {
+		$pattern = sprintf(
+			'%s/app/models/*.php',
+			get_template_directory()
+		);
+		return (array) glob( $pattern );
 	}
 }
