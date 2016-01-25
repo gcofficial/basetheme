@@ -67,7 +67,7 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 		 *
 		 * @since 1.0
 		 */
-		public function frontend_assets( $instance ) {
+		public function frontend_assets() {
 
 			// Custom styles
 			wp_register_style( 'tm-custom-posts-frontend', Utils::assets_url() . '/css/custom-posts-widget-frontend.min.css' );
@@ -126,7 +126,7 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 			}
 
 			// Include assets
-			$this->frontend_assets( $instance );
+			$this->frontend_assets();
 
 			echo View::make(
 				'/widgets/front-end/custom-posts',
@@ -153,10 +153,12 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 		 * @since 1.0
 		 */
 		public function admin_assets() {
+
 			// Custom styles
 			wp_register_style( 'tm-custom-posts-admin', Utils::assets_url() . '/css/custom-posts-widget-admin.min.css' );
 			wp_enqueue_style( 'tm-custom-posts-admin' );
-		}
+
+		=}
 
 
 		/**
@@ -168,6 +170,8 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 			foreach ( $this->instance_default as $key => $value ) {
 				$instance[ $key ] = ! empty( $instance[ $key ] ) ? $instance[ $key ] : $value;
 			}
+=
+			$this->admin_assets();
 
 			$title_field = new UI_Input_Fox(
 					array(
