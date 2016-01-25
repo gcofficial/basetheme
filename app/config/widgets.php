@@ -17,4 +17,5 @@ return array(
 	'TM_Image_Grid_Widget',
 	'TM_Posts_Carousel_Widget',
 	'TM_Posts_Slider_Widget',
+	'TM_Custom_Posts_Widget',
 );
