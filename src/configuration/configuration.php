@@ -40,6 +40,7 @@ class Configuration {
 			'Pages',
 			'Customs',
 			'Assets',
+			'Options',
 		);
 	}
 

@@ -9,7 +9,7 @@ return array(
 	'Social_Post_Types',
 	'Sidebars_Meta_Box',
 	'Photolab_Walker',
-	'Customizer',
+	//'Customizer',
 	'Extras',
 	'Gallery',
 );

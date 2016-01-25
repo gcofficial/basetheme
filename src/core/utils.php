@@ -123,6 +123,27 @@ class Utils {
 	}
 
 	/**
+	 * Remove some keys form array
+	 *
+	 * @param  [type] $right_keys keys to remove.
+	 * @param  [type] $array      where we want remove this keys.
+	 * @return array without keys
+	 */
+	public static function array_remove_right_keys( $right_keys, $array ) {
+		$right_keys = (array) $right_keys;
+		$array      = (array) $array;
+
+		if ( count($right_keys) ) {
+			foreach ( $right_keys as $key ) {
+				if ( array_key_exists( $key, $array ) ) {
+					unset( $array[ $key ] );
+				}
+			}
+		}
+		return $array;
+	}
+
+	/**
 	 * Determine if a given string starts with a given substring.
 	 *
 	 * @param type       $haystack haystack.
