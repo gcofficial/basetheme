@@ -11,8 +11,6 @@
 class Widgets {
 	/**
 	 * Widgets class constructor
-	 *
-	 * @param array $data engine data.
 	 */
 	public function __construct() {
 		$this->data = self::get_all_paths();
@@ -58,7 +56,7 @@ class Widgets {
 		$file_name = basename( $path, '.php' );
 		$class_name_elements = explode('-', $file_name);
 		foreach ($class_name_elements as $key => &$el) {
-			$el = ucwords($el);
+			$el = ucwords( $el );
 		}
 		return implode( '_', $class_name_elements );
 	}
