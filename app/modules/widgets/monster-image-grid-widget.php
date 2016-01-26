@@ -26,7 +26,7 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 	/**
 	 * Adds register_tm_image_grid widget.
 	 */
-	class TM_Image_Grid_Widget extends WP_Widget {
+	class Monster_Image_Grid_Widget extends WP_Widget {
 
 		/**
 		 * Default settings
@@ -39,8 +39,8 @@ if ( ! class_exists( 'TM_Image_Grid_Widget' ) ) {
 		 */
 		function __construct() {
 			parent::__construct(
-				'TM_Image_Grid_Widget', // Base ID
-				__( 'TM Image Grid Widget', PHOTOLAB_BASE_TM_ALIAS ),
+				'Monster_Image_Grid_Widget', // Base ID
+				__( 'Monster Image Grid Widget', PHOTOLAB_BASE_TM_ALIAS ),
 				array( 'description' => __( 'Image grid widget', PHOTOLAB_BASE_TM_ALIAS ) )
 			);
 			// Set default settings

@@ -26,7 +26,7 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 	/**
 	 * Adds register_tm_posts_widget widget.
 	 */
-	class TM_Posts_Carousel_Widget extends WP_Widget {
+	class Monster_Posts_Carousel_Widget extends WP_Widget {
 
 		/**
 		 * Default settings
@@ -39,8 +39,8 @@ if ( ! class_exists( 'TM_Posts_Carousel_Widget' ) ) {
 		 */
 		function __construct() {
 			parent::__construct(
-				'TM_Posts_Carousel_Widget', // Base ID
-				__( 'TM Posts Carousel Widget', PHOTOLAB_BASE_TM_ALIAS ),
+				'Monster_Posts_Carousel_Widget', // Base ID
+				__( 'Monster Posts Carousel Widget', PHOTOLAB_BASE_TM_ALIAS ),
 				array( 'description' => __( 'Posts carousel widget', PHOTOLAB_BASE_TM_ALIAS ) )
 			);
 			// Set default settings
