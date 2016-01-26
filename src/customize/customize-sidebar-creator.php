@@ -42,19 +42,5 @@ class Customize_Sidebar_Creator extends WP_Customize_Control {
 			)
 		);
 	}
-
-	/**
-	 * Register widget area.
-	 */
-	public static function widgets_init() {
-		$sidebar_creator = Sidebar_Settings_Model::get_sidebars_options();
-		if ( count( $sidebar_creator ) && is_array( $sidebar_creator ) ) {
-			foreach ( $sidebar_creator as $sidebar ) {
-				register_sidebar( $sidebar );
-			}
-		}
-	}
 }
-
-add_action( 'widgets_init', array( 'Customize_Sidebar_Creator', 'widgets_init' ) );
 endif;
