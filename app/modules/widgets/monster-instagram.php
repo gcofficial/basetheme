@@ -8,7 +8,7 @@
 /**
  * Instagram widget class
  */
-class TM_Instagram extends WP_Widget{
+class Monster_Instagram extends WP_Widget{
 
 	const CLIENT_ID = '1515b124cf42481db64cacfb96132345';
 	/**
@@ -16,7 +16,7 @@ class TM_Instagram extends WP_Widget{
 	 */
 	public function __construct() {
 		parent::__construct(
-			'tm_instagram_widget',
+			'monster_instagram_widget',
 			__( 'Instagram widget', 'photolab' ),
 			array( 'description' => __( 'Instagram recent photos Widget', 'photolab' ) )
 		);

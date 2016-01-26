@@ -13,7 +13,7 @@
  * @since 1.1
  */
 
-if ( ! class_exists( 'TM_Twitter_Timeline_Widget' ) ) {
+if ( ! class_exists( 'Monster_Twitter_Timeline_Widget' ) ) {
 	/**
 	 * Set constant text domain.
 	 *
@@ -23,17 +23,39 @@ if ( ! class_exists( 'TM_Twitter_Timeline_Widget' ) ) {
 		define( 'PHOTOLAB_BASE_TM_ALIAS', 'photolab' );
 	}
 
-	class TM_Twitter_Timeline_Widget extends WP_Widget{
+	class Monster_Twitter_Timeline_Widget extends WP_Widget{
 
 		/**
 		 * Register widget with WordPress.
 		 */
 		public function __construct() {
 			parent::__construct(
-				'tm_twitter_timeline_widget',
+				'monster_twitter_timeline_widget',
 				__( 'Twitter timeline widget', 'photolab' ),
 				array( 'description' => __( 'Twitter timeline Widget', 'photolab' ) )
 			);
+		}
+
+		/**
+		 * Include frontend assets
+		 *
+		 * @since 1.0
+		 */
+		public function frontend_assets( $instance ) {
+
+			// Swiper js
+			wp_register_script( 'twitter-widget', Utils::assets_url() . '/js/twitter-widget.js', '', '', true );
+			wp_enqueue_script( 'twitter-widget' );
+
+			// Custom js
+			//wp_register_script( 'tm-twitter-timeline-script-frontend', Utils::assets_url() . '/js/twitter-timeline-widget-frontend.js', '', '', true );
+			//wp_localize_script( 'tm-twitter-timeline-script-frontend', 'TMTwitterTimelineParam', array( 'widget_id' => $instance['widget_id'], 'screen_name' => $instance['screen_name'] ) );
+			//wp_enqueue_script( 'tm-twitter-timeline-script-frontend' );
+
+			// Custom styles
+			//wp_register_style( 'tm-twitter-timeline-frontend', Utils::assets_url() . '/css/posts-carousel-widget-frontend.min.css' );
+			//wp_enqueue_style( 'tm-twitter-timeline-frontend' );
+
 		}
 
 		/**
@@ -43,6 +65,9 @@ if ( ! class_exists( 'TM_Twitter_Timeline_Widget' ) ) {
 		 * @param type $instance array.
 		 */
 		public function widget( $args, $instance ) {
+
+			$this->frontend_assets( $instance );
+
 			echo View::make(
 				'widgets/front-end/twitter-timeline',
 				array(

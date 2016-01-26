@@ -1,41 +1,23 @@
 <?php
 /**
- * Advertisement widget module file
+ * Google plus widget module file
  *
  * @package photolab
  */
 
 /**
- * Advertisement widget module class
+ * Google plus class
  */
-class TM_Advertisement extends WP_Widget{
+class Monster_Google_Plus extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
-			'tm_advertisement_widget',
-			__( 'Advertisement widget', 'photolab' ),
-			array( 'description' => __( 'Advertisement Widget', 'photolab' ) )
-		);
-
-		// ==============================================================
-		// Actions
-		// ==============================================================
-		add_action( 'admin_enqueue_scripts', array( $this, 'uploadScripts' ) );
-		add_action( 'customize_controls_enqueue_scripts', array( $this, 'uploadScripts' ) );
-	}
-
-	/**
-	 * Upload some scripts to admin and customize
-	 */
-	public function uploadScripts() {
-		wp_enqueue_media();
-		wp_enqueue_script(
-			'upload_media_widget',
-			Utils::assets_url().'/js/advertisement.js',
-			array( 'jquery' )
+			'monster_google_plus_widget',
+			__( 'Google plus widget', 'photolab' ),
+			array( 'description' => __( 'Google plus Widget', 'photolab' ) )
 		);
 	}
 
@@ -49,14 +31,14 @@ class TM_Advertisement extends WP_Widget{
 	 */
 	public function widget( $args, $instance ) {
 		echo View::make(
-			'widgets/front-end/advertisement',
+			'widgets/front-end/google-plus',
 			array(
-				'image' => Utils::array_get( $instance, 'image' ),
 				'before_widget' => $args['before_widget'],
 				'before_title'  => $args['before_widget'],
 				'after_title'   => $args['after_title'],
 				'after_widget'  => $args['after_widget'],
 				'title'         => Utils::array_get( $instance, 'title' ),
+				'page_id'       => Utils::array_get( $instance, 'page_id' ),
 			)
 		);
 	}
@@ -70,14 +52,14 @@ class TM_Advertisement extends WP_Widget{
 	 */
 	public function form( $instance ) {
 		echo View::make(
-			'widgets/back-end/advertisement',
+			'widgets/back-end/google-plus',
 			array(
-				'title' 			  => Utils::array_get( $instance, 'title', __( 'Widget Image', 'photolab' ) ),
-				'image' 			  => Utils::array_get( $instance, 'image' ),
-				'field_id_title'      => $this->get_field_id( 'title' ),
-				'field_name_title'    => $this->get_field_name( 'title' ),
-				'field_id_image'      => $this->get_field_id( 'image' ),
-				'field_name_image'    => $this->get_field_name( 'image' ),
+				'title'              => Utils::array_get( $instance, 'title' ),
+				'page_id'            => Utils::array_get( $instance, 'page_id' ),
+				'field_id_title'     => $this->get_field_id( 'title' ),
+				'field_name_title'   => $this->get_field_name( 'title' ),
+				'field_id_page_id'   => $this->get_field_id( 'page_id' ),
+				'field_name_page_id' => $this->get_field_name( 'page_id' ),
 			)
 		);
 	}
@@ -95,7 +77,7 @@ class TM_Advertisement extends WP_Widget{
 	public function update( $new_instance, $old_instance ) {
 		$instance            = array();
 		$instance['title']   = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-		$instance['image'] = $new_instance['image'];
+		$instance['page_id'] = $new_instance['page_id'];
 
 		return $instance;
 	}
