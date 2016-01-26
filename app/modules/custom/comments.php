@@ -21,7 +21,7 @@ class Comments {
 	/**
 	 * Custom comments template
 	 *
-	 * @param [type] comment comment.
+	 * @param [type] $comment comment.
 	 * @param [type] $args arguments.
 	 * @param [type] $depth depth.
 	 */
