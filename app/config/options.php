@@ -135,10 +135,22 @@ return array(
 			'regular' => array(
 				'title' => __( 'Regular', 'photolab' ),
 				'__CONTROLS__' => array(
-					'accent'     => array( 'label' => __( 'Accent', 'photolab' ) ),
-					'text'       => array( 'label' => __( 'Text', 'photolab' ) ),
-					'link_hover' => array( 'label' => __( 'Link hover', 'photolab' ) ),
-					'heading'    => array( 'label' => __( 'Heading ( H1 - H6 )', 'photolab' ) ),
+					'accent' => array( 
+						'label' => __( 'Accent', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
+					'text' => array(
+						'label' => __( 'Text', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
+					'link_hover' => array(
+						'label' => __( 'Link hover', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
+					'heading' => array(
+						'label' => __( 'Heading ( H1 - H6 )', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
 				),
 			),
 
@@ -146,10 +158,22 @@ return array(
 			'invert' => array(
 				'title' => __( 'Invert', 'photolab' ),
 				'__CONTROLS__' => array(
-					'accent'     => array( 'label' => __( 'Accent', 'photolab' ) ),
-					'text'       => array( 'label' => __( 'Text', 'photolab' ) ),
-					'link_hover' => array( 'label' => __( 'Link hover', 'photolab' ) ),
-					'heading'    => array( 'label' => __( 'Heading ( H1 - H6 )', 'photolab' ) ),
+					'accent' => array( 
+						'label' => __( 'Accent', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
+					'text' => array(
+						'label' => __( 'Text', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
+					'link_hover' => array(
+						'label' => __( 'Link hover', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
+					'heading' => array(
+						'label' => __( 'Heading ( H1 - H6 )', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
 				),
 			),
 		),
@@ -276,7 +300,10 @@ return array(
 					'image_position' => array( 'label' => __( 'Image position', 'photolab' ) ),
 					'image_repeat' => array( 'label' => __( 'Image repeat', 'photolab' ) ),
 					'background_scroll' => array( 'label' => __( 'Background scroll', 'photolab' ) ),
-					'background_color' => array( 'label' => __( 'Background color', 'photolab' ) ),
+					'background_color' => array(
+						'label' => __( 'Background color', 'photolab' ),
+						'__CLASS__' => 'WP_Customize_Color_Control',
+					),
 					'header_layout' => array(
 						'label' => __( 'Header layout', 'photolab' ),
 						'type'  => 'select',
@@ -366,8 +393,14 @@ return array(
 						'default' => 'Default',
 					),
 				),
-				'widget_area_bg_color' => array( 'label' => __( 'Widget area BG color', 'photolab' ) ),
-				'bg_color' => array( 'label' => __( 'BG color', 'photolab' ) ),
+				'widget_area_bg_color' => array(
+					'label' => __( 'Widget area BG color', 'photolab' ),
+					'__CLASS__' => 'WP_Customize_Color_Control',
+				),
+				'bg_color' => array(
+					'label' => __( 'BG color', 'photolab' ),
+					'__CLASS__' => 'WP_Customize_Color_Control',
+				),
 			),
 		),
 		'blog_settings' => array(

@@ -1,4 +1,4 @@
-<span class="customize-control-title">{{ __( 'Import theme settings') }}</span>
+<span class="customize-control-title">{{ __( 'Import theme settings and content') }}</span>
 <label>
 	<input type="radio" value="append_to_existing" name="import_type" checked="checked">
 	Append to existing<br>

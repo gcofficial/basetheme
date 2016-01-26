@@ -18,7 +18,7 @@ class Customize_Export_Settings extends WP_Customize_Control {
 		echo View::make(
 			dirname( __FILE__ ).'/views/button.php',
 			array(
-				'title' => 'Export theme settings',
+				'title' => __( 'Export theme settings and content', 'photolab' ),
 				'attributes' => Utils::array_join( $this->get_button_attributes() ),
 			)
 		);
