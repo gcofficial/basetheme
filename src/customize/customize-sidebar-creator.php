@@ -8,9 +8,9 @@
 if ( class_exists( 'WP_Customize_Control' ) ) :
 
 /**
- * Sidebar_Creator module class
+ * Customize_Sidebar_Creator module class
  */
-class Sidebar_Creator extends WP_Customize_Control {
+class Customize_Sidebar_Creator extends WP_Customize_Control {
 
 	/**
 	 * Add scripts and styles
@@ -18,12 +18,12 @@ class Sidebar_Creator extends WP_Customize_Control {
 	public function enqueue() {
 		wp_enqueue_script(
 			'sidebar-creator',
-			Utils::assets_url().'/js/sidebar-creator.js',
+			Utils::core_url().'/customize/assets/js/sidebar-creator.js',
 			array( 'jquery', 'underscore' )
 		);
 		wp_enqueue_style(
 			'sidebar-creator',
-			Utils::assets_url() . '/css/sidebar-creator.css'
+			Utils::core_url() . '/customize/assets/css/sidebar-creator.css'
 		);
 	}
 
@@ -32,7 +32,7 @@ class Sidebar_Creator extends WP_Customize_Control {
 	 */
 	public function render_content() {
 		echo View::make(
-			'blocks/sidebar-creator',
+			dirname( __FILE__ ).'/views/customize-sidebar-creator.php',
 			array(
 				'id'    => 'customize-control-' . str_replace( array( '[', ']' ), array( '-', '' ), $this->id ),
 				'class' => 'customize-control customize-control-' . $this->type,
@@ -56,5 +56,5 @@ class Sidebar_Creator extends WP_Customize_Control {
 	}
 }
 
-add_action( 'widgets_init', array( 'Sidebar_Creator', 'widgets_init' ) );
+add_action( 'widgets_init', array( 'Customize_Sidebar_Creator', 'widgets_init' ) );
 endif;

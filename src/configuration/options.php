@@ -249,13 +249,14 @@ class Options {
 			$control_key = $prefix.'_'.$key;
 			$control_parameters = array_merge( $defaults, $parameters );
 
+			// If setting not added then add setting
 			if ( ! $this->is_setting_added( $setting ) ) {
 				$this->add_setting( $customizer, $setting );
 			}
 
 			if ( array_key_exists( self::CUSTOM_CLASS, $parameters ) ) {
 				$custom_class = $parameters[ self::CUSTOM_CLASS ];
-				if ( class_exists( $custom_class, false ) ) {
+				if ( class_exists( $custom_class ) ) {
 					$customizer->add_control(
 						new $custom_class( $customizer, $control_key, $control_parameters )
 					);
