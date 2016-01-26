@@ -225,6 +225,18 @@ class Utils {
 	}
 
 	/**
+	 * Core URL
+	 *
+	 * @return string
+	 */
+	public static function core_url() {
+		return sprintf(
+			'%s/src/',
+			get_template_directory_uri()
+		);
+	}
+
+	/**
 	 * Instead $GLOBALS['wp_filesystem']->get_contents( $file )
 	 *
 	 * @param type $url host url.

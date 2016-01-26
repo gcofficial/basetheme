@@ -319,7 +319,7 @@ return array(
 			'__CONTROLS__' => array(
 				'add_widget_area' => array(
 					'label' => __( 'Add widget area', 'photolab' ),
-					'__CLASS__' => 'Sidebar_Creator',
+					'__CLASS__' => 'Customize_Sidebar_Creator',
 				),
 				'show_left' => array(
 					'label' => __( 'Show / Hide on left side', 'photolab' ),

@@ -15,6 +15,7 @@ new Autoload(
 		'configuration',
 		'core',
 		'view',
+		'customize',
 	)
 );
 Configuration::load();
