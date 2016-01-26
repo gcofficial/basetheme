@@ -9,6 +9,6 @@
 	<?php the_post(); ?>
 	@include( 'contents/single' )
 	@if ( comments_open() || get_comments_number() != '0' )
-		<?php comments_template( '/app/modules/custom/comments.php' ); ?>
+		<?php comments_template(); ?>
 	@endif
 @endwhile

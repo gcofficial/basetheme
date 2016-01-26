@@ -12,7 +12,6 @@
  * initializing wp_query->have_comments
  * and have_comments() doesn't work without call comments_template()
  */
-echo View::make( 'blocks/comments' );
 
 /**
  * Comments module class
@@ -21,6 +20,8 @@ class Comments {
 
 	/**
 	 * Custom comments template
+	 * 
+	 * @param [type] comment some description.
 	 */
 	public static function comment( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
