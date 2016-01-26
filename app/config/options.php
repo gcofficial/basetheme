@@ -413,6 +413,10 @@ return array(
 						'full_width' => 'Full width',
 					),
 				),
+				'export' => array(
+					'label' => __( 'Featured post label', 'photolab' ),
+					'typ'   => 'button',
+				),
 			),
 		),
 	),
