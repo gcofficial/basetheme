@@ -26,7 +26,7 @@ if ( ! class_exists( 'TM_About_Author_Widget' ) ) {
 	/**
 	 * Adds TM_About_Author_Widget widget.
 	 */
-	class TM_About_Author_Widget extends WP_Widget {
+	class Monster_About_Author_Widget extends WP_Widget {
 
 		/**
 		 * Default settings
@@ -39,8 +39,8 @@ if ( ! class_exists( 'TM_About_Author_Widget' ) ) {
 		 */
 		function __construct() {
 			parent::__construct(
-				'tm_about_author_widget', // Base ID
-				__( 'TM About Author Widget', PHOTOLAB_BASE_TM_ALIAS ),
+				'monster_about_author_widget', // Base ID
+				__( 'Monster About Author Widget', PHOTOLAB_BASE_TM_ALIAS ),
 				array( 'description' => __( 'About author widget', PHOTOLAB_BASE_TM_ALIAS ) )
 			);
 			// Set default settings

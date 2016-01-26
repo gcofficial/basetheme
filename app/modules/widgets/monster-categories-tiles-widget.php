@@ -24,9 +24,9 @@ if ( ! class_exists( 'TM_Categories_Tiles_Widget' ) ) {
 	}
 
 	/**
-	 * Adds TM_Categories_Tiles_Widget widget.
+	 * Adds Monster_Categories_Tiles_Widget widget.
 	 */
-	class TM_Categories_Tiles_Widget extends WP_Widget {
+	class Monster_Categories_Tiles_Widget extends WP_Widget {
 
 		/**
 		 * Default settings
@@ -45,8 +45,8 @@ if ( ! class_exists( 'TM_Categories_Tiles_Widget' ) ) {
 		 */
 		function __construct() {
 			parent::__construct(
-				'TM_Categories_Tiles_Widget', // Base ID
-				__( 'TM Categories Tiles Widget', PHOTOLAB_BASE_TM_ALIAS ),
+				'Monster_Categories_Tiles_Widget', // Base ID
+				__( 'Monster Categories Tiles Widget', PHOTOLAB_BASE_TM_ALIAS ),
 				array( 'description' => __( 'Categories Tiles widget', PHOTOLAB_BASE_TM_ALIAS ) )
 			);
 			// Set default settings

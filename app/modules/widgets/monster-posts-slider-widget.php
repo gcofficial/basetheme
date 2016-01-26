@@ -26,7 +26,7 @@ if ( ! class_exists( 'TM_Posts_Slider_Widget' ) ) {
 	/**
 	 * Adds register_tm_posts_widget widget.
 	 */
-	class TM_Posts_Slider_Widget extends WP_Widget {
+	class Monster_Posts_Slider_Widget extends WP_Widget {
 
 		/**
 		 * Default settings
@@ -39,8 +39,8 @@ if ( ! class_exists( 'TM_Posts_Slider_Widget' ) ) {
 		 */
 		function __construct() {
 			parent::__construct(
-				'TM_Posts_Slider_Widget', // Base ID
-				__( 'TM Posts Slider Widget', PHOTOLAB_BASE_TM_ALIAS ),
+				'Monster_Posts_Slider_Widget', // Base ID
+				__( 'Monster Posts Slider Widget', PHOTOLAB_BASE_TM_ALIAS ),
 				array( 'description' => __( 'Posts slider widget', PHOTOLAB_BASE_TM_ALIAS ) )
 			);
 			// Set default settings

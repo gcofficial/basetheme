@@ -24,9 +24,9 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 	}
 
 	/**
-	 * Adds register_tm_posts_widget widget.
+	 * Adds register_Monster_posts_widget widget.
 	 */
-	class TM_Custom_Posts_Widget extends WP_Widget {
+	class Monster_Custom_Posts_Widget extends WP_Widget {
 
 		/**
 		 * Default settings
@@ -39,8 +39,8 @@ if ( ! class_exists( 'TM_Custom_Posts_Widget' ) ) {
 		 */
 		function __construct() {
 			parent::__construct(
-				'TM_Custom_Posts_Widget', // Base ID
-				__( 'TM Custom Posts Widget', PHOTOLAB_BASE_TM_ALIAS ),
+				'Monster_Custom_Posts_Widget', // Base ID
+				__( 'Monster Custom Posts Widget', PHOTOLAB_BASE_TM_ALIAS ),
 				array( 'description' => __( 'Show custom posts', PHOTOLAB_BASE_TM_ALIAS ) )
 			);
 			// Set default settings
