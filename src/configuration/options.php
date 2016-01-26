@@ -13,11 +13,12 @@ class Options {
 	/**
 	 * Options array control
 	 */
-	const WITHOUT_PANEL = '__WITHOUT_PANEL__';
-	const SECTIONS      = '__SECTIONS__';
-	const SETTINGS      = '__SETTINGS__';
-	const CONTROLS      = '__CONTROLS__';
-	const CUSTOM_CLASS  = '__CLASS__';
+	const WITHOUT_PANEL   = '__WITHOUT_PANEL__';
+	const SECTIONS        = '__SECTIONS__';
+	const SETTINGS        = '__SETTINGS__';
+	const CONTROLS        = '__CONTROLS__';
+	const CUSTOM_CLASS    = '__CLASS__';
+	const REMOVE_SECTIONS = '__REMOVE_SECTIONS__';
 
 	/**
 	 * All settings
@@ -73,8 +74,15 @@ class Options {
 	 * @return void
 	 */
 	public function register( $wp_customize ) {
-		$data = Utils::array_remove_right_keys( array( self::WITHOUT_PANEL ), $this->data );
+		$data = Utils::array_remove_right_keys(
+			array(
+				self::WITHOUT_PANEL,
+				self::REMOVE_SECTIONS,
+			),
+			$this->data
+		);
 		$only_sections = Utils::array_get( $this->data, self::WITHOUT_PANEL, array() );
+		$remove_sections = Utils::array_get( $this->data, self::REMOVE_SECTIONS, array() );
 
 		// Add with panels
 		if ( is_array( $data ) && count( $data ) ) {
@@ -84,6 +92,11 @@ class Options {
 		// Add sections withou panels
 		if ( is_array( $only_sections ) && count( $only_sections ) ) {
 			$this->add_sections( $wp_customize, '', $only_sections );
+		}
+
+		// Remove some sections usually this is default sections
+		if ( is_array( $remove_sections ) && count( $remove_sections ) ) {
+			$this->remove_sections( $wp_customize, $remove_sections );
 		}
 	}
 
@@ -159,6 +172,22 @@ class Options {
 			$parameters
 		);
 		$customizer->add_section( $section_key, $parameters );
+	}
+
+	/**
+	 * Remove some sections
+	 * usually this is default sections like:
+	 * title_tagline, background_image, static_front_page, colors.
+	 *
+	 * @param  [type] $customizer $wp_customize object.
+	 * @param  array  $sections   section list.
+	 */
+	public function remove_sections( $customizer, $sections = array() ) {
+		if ( count( $sections ) ) {
+			foreach ($sections as $section) {
+				$customizer->remove_section( $section );
+			}
+		}
 	}
 
 	/**

@@ -10,6 +10,7 @@ return array(
 	'general_site_settings' => array(
 		'title'       => __( 'General site settings', 'photolab' ),
 		'description' => __( 'This is general site settings.', 'photolab' ),
+		'priority'    => 10,
 		'__SECTIONS__'    => array(
 
 			// Site title & Tagline SECTION
@@ -125,6 +126,7 @@ return array(
 		),
 	),
 	'color_scheme' => array(
+		'priority'    => 11,
 		'title'       => __( 'Color scheme', 'photolab' ),
 		'description' => '',
 		'__SECTIONS__'    => array(
@@ -153,6 +155,7 @@ return array(
 		),
 	),
 	'typography_settings' => array(
+		'priority'    => 12,
 		'title'       => __( 'Typography settings', 'photolab' ),
 		'description' => '',
 		'__SECTIONS__'    => array(
@@ -263,6 +266,7 @@ return array(
 		),
 	),
 	'header_settings' => array(
+		'priority'    => 13,
 		'title'       => __( 'Header settings', 'photolab' ),
 		'description' => __( 'This is header settings panel.', 'photolab' ),
 		'__SECTIONS__'    => array(
@@ -315,6 +319,7 @@ return array(
 	),
 	'__WITHOUT_PANEL__' => array(
 		'sidebar_settings' => array(
+			'priority'    => 100,
 			'title' => __( 'Sidebar settings', 'photolab' ),
 			'__CONTROLS__' => array(
 				'add_widget_area' => array(
@@ -332,6 +337,7 @@ return array(
 			),
 		),
 		'footer_settings' => array(
+			'priority'    => 101,
 			'title' => __( 'Footer settings', 'photolab' ),
 			'__CONTROLS__' => array(
 				'logo' => array(
@@ -365,6 +371,7 @@ return array(
 			),
 		),
 		'blog_settings' => array(
+			'priority'    => 102,
 			'title' => __( 'Blog settings', 'photolab' ),
 			'__CONTROLS__' => array(
 				'layout' => array(
@@ -415,9 +422,19 @@ return array(
 				),
 				'export' => array(
 					'label' => __( 'Featured post label', 'photolab' ),
-					'typ'   => 'button',
+					'__CLASS__' => 'Customize_Export_Settings',
+				),
+				'some_shit' => array(
+					'label' => __( 'Some radio shit', 'photolab' ),
+					'__CLASS__' => 'Customize_Import_Settings',
 				),
 			),
 		),
+	),
+	'__REMOVE_SECTIONS__' => array(
+		'title_tagline',
+		'colors',
+		'header_image',
+		'background_image',
 	),
 );
