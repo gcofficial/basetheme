@@ -184,7 +184,7 @@ class Options {
 	 */
 	public function remove_sections( $customizer, $sections = array() ) {
 		if ( count( $sections ) ) {
-			foreach ($sections as $section) {
+			foreach ( $sections as $section ) {
 				$customizer->remove_section( $section );
 			}
 		}

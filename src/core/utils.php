@@ -147,7 +147,7 @@ class Utils {
 	 * Push some values in to end of the array
 	 *
 	 * @param  [type] $array list where we want push.
-	 * @param  [type] $values values to push
+	 * @param  [type] $values values to push.
 	 * @return array with new values
 	 */
 	public static function array_push_values( &$array, $values ) {
@@ -155,7 +155,7 @@ class Utils {
 		$values = (array) $values;
 
 		if ( count( $values ) ) {
-			foreach ($values as $value) {
+			foreach ( $values as $value ) {
 				$array[] = $value;
 			}
 		}
