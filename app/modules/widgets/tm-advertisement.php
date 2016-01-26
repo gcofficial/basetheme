@@ -8,14 +8,14 @@
 /**
  * Advertisement widget module class
  */
-class Advertisement extends WP_Widget{
+class TM_Advertisement extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
-			'advertisement_widget',
+			'tm_advertisement_widget',
 			__( 'Advertisement widget', 'photolab' ),
 			array( 'description' => __( 'Advertisement Widget', 'photolab' ) )
 		);

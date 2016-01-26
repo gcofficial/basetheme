@@ -6,7 +6,7 @@
  * Version: 1.0
  * Author: Osadchyi Serhii
  * Author URI: https://github.com/RDSergij
- * Text Domain: photolab-base-tm
+ * Text Domain: photolab
  *
  * @package TM_Custom_Posts_Widget
  *

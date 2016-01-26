@@ -1,23 +1,23 @@
 <?php
 /**
- * Flex slider widget module file
+ * Accordion widget module file
  *
  * @package photolab
  */
 
 /**
- * Flex_Slider module class
+ * Accordion widget class
  */
-class Flex_Slider extends WP_Widget{
+class TM_Accordion extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
-			'flex_slider_widget',
-			__( 'Flex slider widget', 'photolab' ),
-			array( 'description' => __( 'Flex Slider Widget', 'photolab' ) )
+			'tm_accordion_widget',
+			__( 'Accordion widget', 'photolab' ),
+			array( 'description' => __( 'Accordion Widget', 'photolab' ) )
 		);
 
 		// ==============================================================
@@ -34,14 +34,8 @@ class Flex_Slider extends WP_Widget{
 		 * Add scripts
 		 */
 		wp_enqueue_script(
-			'flex-slider',
-			Utils::assets_url().'js/jquery.flexslider-min.js',
-			array( 'jquery' )
-		);
-
-		wp_enqueue_script(
-			'flex-slider-widget',
-			Utils::assets_url().'js/flex-slider-widget.js',
+			'accordion-widget',
+			Utils::assets_url().'/js/accordion-widget.js',
 			array( 'jquery' )
 		);
 
@@ -49,8 +43,8 @@ class Flex_Slider extends WP_Widget{
 		 * Add styles
 		 */
 		wp_enqueue_style(
-			'flex-slider',
-			Utils::assets_url().'css/flexslider.css'
+			'accordion',
+			Utils::assets_url().'/css/accordion.css'
 		);
 	}
 
@@ -62,7 +56,7 @@ class Flex_Slider extends WP_Widget{
 	 * @return array --- posts with thumbnails $post->image
 	 */
 	public function getPosts( $post_ids, $category ) {
-		$posts = get_posts(
+		return get_posts(
 			array(
 				'numberposts'     => -1,
 				'include'         => $post_ids,
@@ -71,23 +65,6 @@ class Flex_Slider extends WP_Widget{
 				'post_status'     => 'publish',
 			)
 		);
-
-		if ( count( $posts ) ) {
-			foreach ( $posts as &$p ) {
-				if ( has_post_thumbnail( $p->ID ) ) {
-					$thumb = wp_get_attachment_image_src(
-						get_post_thumbnail_id( $p->ID ),
-						'medium'
-					);
-					$p->image = $thumb[0];
-				}
-
-				if ( '' == trim( $p->image ) ) {
-					$p->image = 'http://placehold.it/300x300';
-				}
-			}
-		}
-		return $posts;
 	}
 
 	/**
@@ -100,7 +77,7 @@ class Flex_Slider extends WP_Widget{
 	 */
 	public function widget( $args, $instance ) {
 		echo View::make(
-			'widgets/front-end/flex-slider',
+			'widgets/front-end/accordion',
 			array(
 				'before_widget' => $args['before_widget'],
 				'before_title'  => $args['before_widget'],
@@ -124,7 +101,7 @@ class Flex_Slider extends WP_Widget{
 	 */
 	public function form( $instance ) {
 		echo View::make(
-			'widgets/back-end/flex-slider',
+			'widgets/back-end/accordion',
 			array(
 				'title'               => Utils::array_get( $instance, 'title' ),
 				'post_ids'            => Utils::array_get( $instance, 'post_ids' ),
@@ -174,10 +151,10 @@ class Flex_Slider extends WP_Widget{
 	 * @return array Updated safe values to be saved.
 	 */
 	public function update( $new_instance, $old_instance ) {
-		$instance                 = array();
-		$instance['title']        = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-		$instance['post_ids'] 	  = esc_attr( $new_instance['post_ids'] );
-		$instance['category'] 	  = esc_attr( $new_instance['category'] );
+		$instance             = array();
+		$instance['title']    = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+		$instance['post_ids'] = esc_attr( $new_instance['post_ids'] );
+		$instance['category'] = esc_attr( $new_instance['category'] );
 
 		return $instance;
 	}

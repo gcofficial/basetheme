@@ -8,14 +8,14 @@
 /**
  * Google plus class
  */
-class Google_Plus extends WP_Widget{
+class TM_Google_Plus extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
-			'google_plus_widget',
+			'tm_google_plus_widget',
 			__( 'Google plus widget', 'photolab' ),
 			array( 'description' => __( 'Google plus Widget', 'photolab' ) )
 		);
