@@ -135,7 +135,7 @@ return array(
 			'regular' => array(
 				'title' => __( 'Regular', 'photolab' ),
 				'__CONTROLS__' => array(
-					'accent' => array( 
+					'accent' => array(
 						'label' => __( 'Accent', 'photolab' ),
 						'__CLASS__' => 'WP_Customize_Color_Control',
 					),
@@ -158,7 +158,7 @@ return array(
 			'invert' => array(
 				'title' => __( 'Invert', 'photolab' ),
 				'__CONTROLS__' => array(
-					'accent' => array( 
+					'accent' => array(
 						'label' => __( 'Accent', 'photolab' ),
 						'__CLASS__' => 'WP_Customize_Color_Control',
 					),
