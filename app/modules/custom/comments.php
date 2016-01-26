@@ -20,8 +20,10 @@ class Comments {
 
 	/**
 	 * Custom comments template
-	 * 
-	 * @param [type] comment some description.
+	 *
+	 * @param [type] comment comment.
+	 * @param [type] $args arguments.
+	 * @param [type] $depth depth.
 	 */
 	public static function comment( $comment, $args, $depth ) {
 		$GLOBALS['comment'] = $comment;
