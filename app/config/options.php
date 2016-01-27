@@ -457,8 +457,8 @@ return array(
 					'label' => __( 'Featured post label', 'photolab' ),
 					'__CLASS__' => 'Customize_Export_Settings',
 				),
-				'some_shit' => array(
-					'label' => __( 'Some radio shit', 'photolab' ),
+				'import' => array(
+					'label' => __( 'Import', 'photolab' ),
 					'__CLASS__' => 'Customize_Import_Settings',
 				),
 			),
