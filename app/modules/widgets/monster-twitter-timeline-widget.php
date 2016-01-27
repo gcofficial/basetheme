@@ -43,7 +43,7 @@ if ( ! class_exists( 'Monster_Twitter_Timeline_Widget' ) ) {
 		 */
 		public function frontend_assets( $instance ) {
 
-			// Swiper js
+			// twitter widget js
 			wp_register_script( 'twitter-widget', Utils::assets_url() . '/js/twitter-widget.js', '', '', true );
 			wp_enqueue_script( 'twitter-widget' );
 
@@ -142,9 +142,11 @@ if ( ! class_exists( 'Monster_Twitter_Timeline_Widget' ) ) {
 		 */
 		public function update( $new_instance, $old_instance ) {
 			$instance            = array();
-			$instance['title']   = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-			$instance['widget_id'] = $new_instance['widget_id'];
-			$instance['screen_name'] = $new_instance['screen_name'];
+			foreach ( $new_instance['category'] as $key => $category ) {
+				if ( ! empty( $category ) ) {
+					$instance['categories'][] = array( 'category' => $category, 'image' => $new_instance['image'][ $key ] );
+				}
+			}
 
 			return $instance;
 		}

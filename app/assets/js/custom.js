@@ -2,7 +2,7 @@
  * Photolab custom JS function
  * lincensed under GNU General Public License v3
  */
-function getWindowHeight() {
+function getWindowHeight() {    
     var myHeight = 0;
     if ( 'number' === typeof( window.innerWidth ) )
     {
