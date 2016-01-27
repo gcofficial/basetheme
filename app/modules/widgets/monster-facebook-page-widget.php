@@ -30,6 +30,8 @@ if ( ! class_exists( 'Monster_Facebook_Page_Widget' ) ) {
 
 		/**
 		 * App id
+		 *
+		 * @var type integer
 		 */
 		var $app_id;
 
