@@ -23,6 +23,9 @@ if ( ! class_exists( 'Monster_Facebook_Page_Widget' ) ) {
 		define( 'PHOTOLAB_BASE_TM_ALIAS', 'photolab' );
 	}
 
+	/**
+	 * Adds Monster_Facebook_Page_Widget widget.
+	 */
 	class Monster_Facebook_Page_Widget extends WP_Widget{
 
 		/*
@@ -69,7 +72,7 @@ if ( ! class_exists( 'Monster_Facebook_Page_Widget' ) ) {
 				'freinds_face'		=> 'true',
 			);
 
-			$this->tabs = array( 'none'=>'none', 'timeline' => 'timeline', 'messages' => 'messages', 'events' => 'events' );
+			$this->tabs = array( 'none' => 'none', 'timeline' => 'timeline', 'messages' => 'messages', 'events' => 'events' );
 		}
 
 		/**
@@ -78,10 +81,6 @@ if ( ! class_exists( 'Monster_Facebook_Page_Widget' ) ) {
 		 * @since 1.0
 		 */
 		public function frontend_assets( $instance ) {
-
-			// Custom styles
-			//wp_register_style( 'tm-facebook-page-frontend', Utils::assets_url() . '/css/facebook-page-widget-frontend.min.css' );
-			//wp_enqueue_style( 'tm-facebook-page-frontend' );
 
 		}
 
@@ -137,7 +136,6 @@ if ( ! class_exists( 'Monster_Facebook_Page_Widget' ) ) {
 		/**
 		 * Admin view
 		 *
-		 * @param type $args array.
 		 * @param type $instance array.
 		 */
 		public function form( $instance ) {

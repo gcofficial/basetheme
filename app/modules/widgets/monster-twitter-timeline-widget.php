@@ -47,15 +47,6 @@ if ( ! class_exists( 'Monster_Twitter_Timeline_Widget' ) ) {
 			wp_register_script( 'twitter-widget', Utils::assets_url() . '/js/twitter-widget.js', '', '', true );
 			wp_enqueue_script( 'twitter-widget' );
 
-			// Custom js
-			//wp_register_script( 'tm-twitter-timeline-script-frontend', Utils::assets_url() . '/js/twitter-timeline-widget-frontend.js', '', '', true );
-			//wp_localize_script( 'tm-twitter-timeline-script-frontend', 'TMTwitterTimelineParam', array( 'widget_id' => $instance['widget_id'], 'screen_name' => $instance['screen_name'] ) );
-			//wp_enqueue_script( 'tm-twitter-timeline-script-frontend' );
-
-			// Custom styles
-			//wp_register_style( 'tm-twitter-timeline-frontend', Utils::assets_url() . '/css/posts-carousel-widget-frontend.min.css' );
-			//wp_enqueue_style( 'tm-twitter-timeline-frontend' );
-
 		}
 
 		/**
@@ -85,7 +76,6 @@ if ( ! class_exists( 'Monster_Twitter_Timeline_Widget' ) ) {
 		/**
 		 * Admin view
 		 *
-		 * @param type $args array.
 		 * @param type $instance array.
 		 */
 		public function form( $instance ) {
