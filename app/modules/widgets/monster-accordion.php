@@ -8,14 +8,14 @@
 /**
  * Accordion widget class
  */
-class Accordion extends WP_Widget{
+class Monster_Accordion extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
-			'accordion_widget',
+			'Monster_accordion_widget',
 			__( 'Accordion widget', 'photolab' ),
 			array( 'description' => __( 'Accordion Widget', 'photolab' ) )
 		);

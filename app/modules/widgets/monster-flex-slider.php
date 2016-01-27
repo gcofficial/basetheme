@@ -8,14 +8,14 @@
 /**
  * Flex_Slider module class
  */
-class Flex_Slider extends WP_Widget{
+class Monster_Flex_Slider extends WP_Widget{
 
 	/**
 	 * Register widget with WordPress.
 	 */
 	public function __construct() {
 		parent::__construct(
-			'flex_slider_widget',
+			'monster_flex_slider_widget',
 			__( 'Flex slider widget', 'photolab' ),
 			array( 'description' => __( 'Flex Slider Widget', 'photolab' ) )
 		);

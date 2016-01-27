@@ -1,6 +1,6 @@
 <?php
 /**
- * Акщте view
+ * Frontend view
  *
  * @package TM_Custom_Posts_Widget
  */
