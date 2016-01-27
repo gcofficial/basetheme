@@ -5,7 +5,7 @@
  * @package photolab
  */
 
-return array(
+$config_sidebars = array(
 	array(
 		'name'          => __( 'Sidebar', 'photolab' ),
 		'id'            => 'sidebar-1',
@@ -34,3 +34,4 @@ return array(
 		'after_title'   => '</h3>',
 	),
 );
+return Utils::array_push_values( $config_sidebars, Sidebar_Settings_Model::get_sidebars_options() );

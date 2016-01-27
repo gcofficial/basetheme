@@ -144,6 +144,25 @@ class Utils {
 	}
 
 	/**
+	 * Push some values in to end of the array
+	 *
+	 * @param  [type] $array list where we want push.
+	 * @param  [type] $values values to push.
+	 * @return array with new values
+	 */
+	public static function array_push_values( &$array, $values ) {
+		$array  = (array) $array;
+		$values = (array) $values;
+
+		if ( count( $values ) ) {
+			foreach ( $values as $value ) {
+				$array[] = $value;
+			}
+		}
+		return $array;
+	}
+
+	/**
 	 * Determine if a given string starts with a given substring.
 	 *
 	 * @param type       $haystack haystack.
