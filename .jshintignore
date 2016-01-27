@@ -24,3 +24,5 @@ app/assets/js/posts-carousel-widget-admin.min.js
 app/assets/js/posts-slider-widget-frontend.min.js
 app/assets/js/posts-slider-widget-admin.min.js
 app/assets/js/twitter-widget.js
+app/assets/js/subscribe-and-social-widget-admin.min.js
+app/assets/js/subscribe-and-social-frontend.min.js
