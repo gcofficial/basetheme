@@ -29,6 +29,6 @@
 		"app/assets/js/posts-slider-widget-admin.min.js",
 		"app/assets/js/twitter-widget.js",
 		"app/assets/js/subscribe-and-social-widget-admin.min.js",
-		"app/assets/js/subscribe-and-social-frontend.min.js",
+		"app/assets/js/subscribe-and-social-widget-frontend.min.js",
 	]
 }
