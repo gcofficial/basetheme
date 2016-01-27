@@ -23,6 +23,9 @@ if ( ! class_exists( 'Monster_Twitter_Timeline_Widget' ) ) {
 		define( 'PHOTOLAB_BASE_TM_ALIAS', 'photolab' );
 	}
 
+	/**
+	 * Adds Monster_Twitter_Timeline_Widget widget.
+	 */
 	class Monster_Twitter_Timeline_Widget extends WP_Widget{
 
 		/**

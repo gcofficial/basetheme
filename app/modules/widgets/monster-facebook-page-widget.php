@@ -28,7 +28,7 @@ if ( ! class_exists( 'Monster_Facebook_Page_Widget' ) ) {
 	 */
 	class Monster_Facebook_Page_Widget extends WP_Widget{
 
-		/*
+		/**
 		 * App id
 		 */
 		var $app_id;
