@@ -11,21 +11,26 @@
 class Options {
 
 	/**
-	 * Options array control
+	 *   _________  ____  _____/ /_____ _____  / /______
+	 *  / ___/ __ \/ __ \/ ___/ __/ __ `/ __ \/ __/ ___/
+	 * / /__/ /_/ / / / (__  ) /_/ /_/ / / / / /_(__  )
+	 * \___/\____/_/ /_/____/\__/\__,_/_/ /_/\__/____/
 	 */
+
 	const WITHOUT_PANEL   = '__WITHOUT_PANEL__';
 	const SECTIONS        = '__SECTIONS__';
 	const SETTINGS        = '__SETTINGS__';
 	const CONTROLS        = '__CONTROLS__';
 	const CUSTOM_CLASS    = '__CLASS__';
 	const REMOVE_SECTIONS = '__REMOVE_SECTIONS__';
+	const OFF_SMART_NAME  = '__OFF_SMART_NAME__';
 
 	/**
-	 * All settings
+	 * $wp_customize object
 	 *
-	 * @var array
+	 * @var null
 	 */
-	private $settings = array();
+	private $customize = null;
 
 	/**
 	 * The image sizes.
@@ -41,19 +46,8 @@ class Options {
 	 */
 	public function __construct( array $data ) {
 		$this->data = $data;
-		$this->make();
-	}
-
-	/**
-	 * Add custom image sizes.
-	 *
-	 * @return \Themosis\Configuration\Images
-	 */
-	public function make() {
 		add_action( 'customize_controls_enqueue_scripts', array( $this, 'scripts_and_styles' ) );
 		add_action( 'customize_register', array( $this, 'register' ) );
-
-		return $this;
 	}
 
 	/**
@@ -68,12 +62,14 @@ class Options {
 	}
 
 	/**
-	 * Front End Customizer
+	 * Front End Customizer.
+	 * Load setting tree.
 	 *
 	 * @param  WP_Customize_Manager $wp_customize Theme Customizer object.
 	 * @return void
 	 */
 	public function register( $wp_customize ) {
+		$this->customize = $wp_customize;
 		$data = Utils::array_remove_right_keys(
 			array(
 				self::WITHOUT_PANEL,
@@ -86,34 +82,34 @@ class Options {
 
 		// Add with panels
 		if ( is_array( $data ) && count( $data ) ) {
-			$this->add_panels( $wp_customize, $data );
+			$this->add_panels( $data );
 		}
 
 		// Add sections withou panels
 		if ( is_array( $only_sections ) && count( $only_sections ) ) {
-			$this->add_sections( $wp_customize, '', $only_sections );
+			$this->add_sections( '', $only_sections );
 		}
 
 		// Remove some sections usually this is default sections
 		if ( is_array( $remove_sections ) && count( $remove_sections ) ) {
-			$this->remove_sections( $wp_customize, $remove_sections );
+			$this->remove_sections( $remove_sections );
 		}
+
 	}
 
 	/**
 	 * Add panels to customizer
 	 *
-	 * @param [type] $customizer $wp_customize object.
-	 * @param [type] $panels     panels list.
+	 * @param [type] $panels panels list.
 	 */
-	public function add_panels( $customizer, $panels ) {
+	private function add_panels( $panels ) {
 		if ( is_array( $panels ) && count( $panels ) ) {
 			foreach ( $panels as $panel_key => $parameters ) {
-				$this->add_panel( $customizer, $panel_key, $parameters );
+				$this->add_panel( $panel_key, $parameters );
 				if ( array_key_exists( self::SECTIONS, $parameters ) ) {
 					$sections = $parameters[ self::SECTIONS ];
 					if ( is_array( $sections ) && count( $sections ) ) {
-						$this->add_sections( $customizer, $panel_key, $sections );
+						$this->add_sections( $panel_key, $sections );
 					}
 				}
 			}
@@ -123,34 +119,31 @@ class Options {
 	/**
 	 * Add panel to customizer
 	 *
-	 * @param [type] $customizer $wp_customize object.
 	 * @param [type] $panel      panel key.
 	 * @param [type] $parameters panel parameters.
 	 */
-	public function add_panel( $customizer, $panel, $parameters ) {
+	private function add_panel( $panel, $parameters ) {
 		$parameters = Utils::array_remove_right_keys( array( self::SECTIONS ), $parameters );
-		$customizer->add_panel( $panel, $parameters );
+		$this->customize->add_panel( $panel, $parameters );
 	}
 
 	/**
 	 * Add sections to customizer
 	 *
-	 * @param [type] $customizer $wp_customize object.
 	 * @param [type] $panel_key  Panel.
 	 * @param [type] $sections Panel sections list.
 	 */
-	public function add_sections( $customizer, $panel_key, $sections ) {
+	private function add_sections( $panel_key, $sections ) {
 		foreach ( $sections as $section_key => $parameters ) {
 			$parameters['panel'] = $panel_key;
-			$this->add_section( $customizer, $section_key, $parameters );
+			$this->add_section( $section_key, $parameters );
 			if ( array_key_exists( self::CONTROLS, $parameters ) ) {
 				$settings = Utils::array_get( $parameters, self::SETTINGS, array() );
 				$controls = $parameters[ self::CONTROLS ];
 
 				if ( is_array( $controls ) && count( $controls ) ) {
-					$prefix = sprintf( '%s_%s', $panel_key, $section_key );
-					$this->add_settings( $customizer, $settings, $prefix );
-					$this->add_controls( $customizer, $controls, $section_key, $prefix );
+					$this->add_settings( $settings, $panel_key, $section_key );
+					$this->add_controls( $controls, $panel_key, $section_key );
 				}
 			}
 		}
@@ -159,11 +152,10 @@ class Options {
 	/**
 	 * Add section to customizer
 	 *
-	 * @param [type] $customizer  $wp_customize object.
 	 * @param [type] $section_key section key.
 	 * @param [type] $parameters  section parameters.
 	 */
-	public function add_section( $customizer, $section_key, $parameters ) {
+	private function add_section( $section_key, $parameters ) {
 		$parameters = Utils::array_remove_right_keys(
 			array(
 				self::SETTINGS,
@@ -171,7 +163,7 @@ class Options {
 			),
 			$parameters
 		);
-		$customizer->add_section( $section_key, $parameters );
+		$this->customize->add_section( $section_key, $parameters );
 	}
 
 	/**
@@ -179,13 +171,12 @@ class Options {
 	 * usually this is default sections like:
 	 * title_tagline, background_image, static_front_page, colors.
 	 *
-	 * @param  [type] $customizer $wp_customize object.
-	 * @param  array  $sections   section list.
+	 * @param  array $sections   section list.
 	 */
-	public function remove_sections( $customizer, $sections = array() ) {
+	private function remove_sections( $sections = array() ) {
 		if ( count( $sections ) ) {
 			foreach ( $sections as $section ) {
-				$customizer->remove_section( $section );
+				$this->customize->remove_section( $section );
 			}
 		}
 	}
@@ -193,22 +184,20 @@ class Options {
 	/**
 	 * Add settings to customizer
 	 *
-	 * @param [type] $customizer     $wp_customize object.
-	 * @param [type] $settings       settings list.
-	 * @param [type] $prefix         setting prefix.
+	 * @param [type] $settings settings list.
+	 * @param [type] $panel_key panel name.
+	 * @param [type] $section_key section name.
 	 */
-	public function add_settings( $customizer, $settings, $prefix = '' ) {
+	private function add_settings( $settings, $panel_key = '', $section_key = '' ) {
 		$settings = (array) $settings;
 		if ( ! count( $settings ) ) {
 			return false;
 		}
 		foreach ( $settings as $key => $value ) {
 			if ( is_int( $key ) ) {
-				$setting_key = $this->get_setting_name( $prefix, $value );
-				$this->add_setting( $customizer, $setting_key );
+				$this->add_setting( $value, array(), $panel_key, $section_key );
 			} else {
-				$setting_key = $this->get_setting_name( $prefix, $key );
-				$this->add_setting( $customizer, $setting_key, $value );
+				$this->add_setting( $key, $value, $panel_key, $section_key );
 			}
 		}
 	}
@@ -216,12 +205,12 @@ class Options {
 	/**
 	 * Add setting to customizer
 	 *
-	 * @param [type] $customizer         $wp_cutomize object.
 	 * @param [type] $setting_key        setting key.
 	 * @param array  $setting_parameters setting parameters.
 	 */
-	public function add_setting( $customizer, $setting_key, $setting_parameters = array() ) {
-		$this->settings[ $setting_key ] = true;
+	private function add_setting( $setting_key, $setting_parameters = array(), $panel_key, $section_key ) {
+		$setting_name = $this->get_setting_name( $panel_key, $section_key, $setting_key );
+
 		$defaults = array(
 			'default'           => '',
 			'type'              => 'option',
@@ -229,70 +218,126 @@ class Options {
 			'sanitize_callback' => 'sanitize_text_field',
 		);
 		$setting_parameters = array_merge( $defaults, $setting_parameters );
-		$customizer->add_setting( $setting_key, $setting_parameters );
-	}
-
-	/**
-	 * Is setting added?
-	 *
-	 * @param  [type] $setting_key setting key.
-	 * @return boolean true if success false if not.
-	 */
-	private function is_setting_added( $setting_key ) {
-		return array_key_exists( $setting_key, $this->settings );
+		$this->customize->add_setting( $setting_name, $setting_parameters );
 	}
 
 	/**
 	 * Get setting name
 	 *
-	 * @param  [type] $prefix setting prefix.
-	 * @param  [type] $setting_name   setting name.
-	 * @return setting name like: $prefix[ $setting_name ]
+	 * @param  [type] $panel panel name.
+	 * @param  [type] $section section name.
+	 * @param  [type] $setting setting name.
+	 * @return setting name like: $panel[ $section ][ $setting ]
 	 */
-	public function get_setting_name( $prefix, $setting_name ) {
-		$prefix       = trim( $prefix );
-		$setting_name = trim( $setting_name );
-		$result       = $setting_name;
-
-		if ( '' != $prefix ) {
-			$result = sprintf( '%s[%s]', $prefix, $setting_name );
+	private function get_setting_name( $panel = '', $section, $setting ) {
+		if ( ! $this->is_off_smart_name( $panel, $section, $setting ) ) {
+			if ( '' == $panel ) {
+				return sprintf(
+					'%s[%s]',
+					trim( $section ),
+					trim( $setting )
+				);
+			}
+			return sprintf(
+				'%s[%s][%s]',
+				trim( $panel ),
+				trim( $section ),
+				trim( $setting )
+			);
 		}
-		return $result;
+		return $setting;
+	}
+
+	/**
+	 * Get control name
+	 *
+	 * @param  [type] $panel    panel name.
+	 * @param  [type] $section section name.
+	 * @param  [type] $setting setting name.
+	 * @return Control name like: $panel_$section_$setting
+	 */
+	private function get_control_name( $panel = '', $section, $setting ) {
+		if ( '' == $panel ) {
+			return sprintf(
+				'%s_%s',
+				trim( $section ),
+				trim( $setting )
+			);
+		}
+		return sprintf(
+			'%s_%s_%s',
+			trim( $panel ),
+			trim( $section ),
+			trim( $setting )
+		);
 	}
 
 	/**
 	 * Add controls to customizer
 	 *
-	 * @param [type] $customizer $wp_cutomize object.
 	 * @param [type] $controls   controls list.
-	 * @param [type] $section_name section name.
-	 * @param [type] $prefix     controls prefix.
+	 * @param [type] $panel_key panel name.
+	 * @param [type] $section_key section name.
 	 */
-	public function add_controls( $customizer, $controls, $section_name, $prefix = '' ) {
+	private function add_controls( $controls, $panel_key = '', $section_key = '' ) {
 		foreach ( $controls as $key => $parameters ) {
-			$setting  = $this->get_setting_name( $prefix, $key );
+			$setting  = $this->get_setting_name( $panel_key, $section_key, $key );
 			$defaults = array(
 				'settings' => $setting,
-				'section'  => $section_name,
+				'section'  => $section_key,
 			);
-			$control_key = $prefix.'_'.$key;
+			$control_key = $this->get_control_name( $panel_key, $section_key, $key );
 			$control_parameters = array_merge( $defaults, $parameters );
 
 			// If setting not added then add setting
-			if ( ! $this->is_setting_added( $setting ) ) {
-				$this->add_setting( $customizer, $setting );
+			if ( null === $this->customize->get_setting( $setting ) ) {
+				$this->add_setting( $key, array(), $panel_key, $section_key );
 			}
 
 			if ( array_key_exists( self::CUSTOM_CLASS, $parameters ) ) {
 				$custom_class = $parameters[ self::CUSTOM_CLASS ];
 				if ( class_exists( $custom_class ) ) {
-					$customizer->add_control(
-						new $custom_class( $customizer, $control_key, $control_parameters )
+					$this->customize->add_control(
+						new $custom_class(
+							$this->customize,
+							$control_key,
+							$control_parameters
+						)
 					);
 				}
 			} else {
-				$customizer->add_control( $control_key, $control_parameters );
+				$this->customize->add_control( $control_key, $control_parameters );
 			}
 		}
+	}
+
+	/**
+	 * Is off smart name
+	 *
+	 * @param  [type] $panel_key   panel name.
+	 * @param  [type] $section_key section name.
+	 * @param  [type] $setting_key setting name.
+	 * @return boolean              true if OFF | false if ON
+	 */
+	private function is_off_smart_name( $panel_key, $section_key, $setting_key ) {
+		if ( array_key_exists( $panel_key, $this->data ) ) {
+			$panels = $this->data[ $panel_key ];
+			if ( array_key_exists( self::SECTIONS, $panels ) ) {
+				$sections = $panels[ self::SECTIONS ];
+				if ( array_key_exists( $section_key, $sections ) ) {
+					$section = $sections[ $section_key ];
+					if ( array_key_exists( self::SETTINGS, $section ) ) {
+						$settings = $section[ self::SETTINGS ];
+						if ( array_key_exists( $setting_key, $settings ) ) {
+							$setting = $settings[ $setting_key ];
+							if ( array_key_exists( self::OFF_SMART_NAME, $setting ) ) {
+								return true;
+							}
+						}
+					}
+				}
+			}
+		}
+		return false;
 	}
 }
