@@ -8,7 +8,7 @@
 /**
  * Logo & Favicon MODEL
  */
-class Model_Logo_And_Favicon{
+class Model_Logo_And_Favicon {
 	/**
 	 * Get single option by key
 	 *
