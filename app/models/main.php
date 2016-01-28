@@ -60,10 +60,14 @@ class Main_Model {
 	 */
 	public static function header_data() {
 		$header_image = get_header_image();
+		$page_layout_class = ' .page-layout-' . Model_Page_Layout_Settings::get_layout()
+							. ' .page-layout-width-' . Model_Page_Layout_Settings::get_width()
+							. ' .page-layout-sidebar-width-' . Model_Page_Layout_Settings::get_sidebar_width();
+
 		$header = array(
 			'allowedtags'          => $GLOBALS['allowedtags'],
 			'language_attributes'  => get_language_attributes(),
-			'body_class'           => implode( ' ', get_body_class() ),
+			'body_class'           => implode( ' ', get_body_class() ) . $page_layout_class,
 			'charset'              => get_bloginfo( 'charset' ),
 			'ping_back_url'        => get_bloginfo( 'pingback_url' ),
 			'name'                 => get_bloginfo( 'name' ),
