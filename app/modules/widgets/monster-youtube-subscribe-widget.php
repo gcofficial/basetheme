@@ -63,20 +63,10 @@ if ( ! class_exists( 'Monster_Youtube_Subscribe_Widget' ) ) {
 
 			if ( function_exists( 'curl_init' ) && function_exists( 'curl_setopt' ) ) {
 				$ch = curl_init();
-//				$headers=array(
-//						'User-Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.9.2.12) Gecko/20101026 Firefox/3.6.12',
-//						'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-//						'Accept-Language: en-us,en;q=0.5',
-//						'Accept-Encoding: gzip,deflate',
-//						'Keep-Alive: 115',
-//						'Connection: keep-alive',
-//					);
 				curl_setopt( $ch, CURLOPT_URL, $url );
-				//curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
 				curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 				curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
 				curl_setopt( $ch, CURLOPT_POST, false );
-				//curl_setopt( $ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_0 );
 				$result = curl_exec( $ch );
 				curl_close( $ch );
 			} else {
