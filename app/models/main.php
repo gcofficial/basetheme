@@ -72,7 +72,7 @@ class Main_Model {
 			'favicon'              => General_Site_Settings_Model::get_favicon(),
 			'touch_icon'           => General_Site_Settings_Model::get_touch_icon(),
 			'custom_styles'        => '',
-			'is_enabled_preloader' => General_Site_Settings_Model::is_enabled_preloader(),
+			'is_enabled_preloader' => Model_Logo_And_Favicon::is_enable_page_preloader(),
 			'logo'                 => General_Site_Settings_Model::get_logo(),
 			'socials'              => View::make(
 				'blocks/socials',
