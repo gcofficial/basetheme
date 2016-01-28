@@ -6,7 +6,7 @@
  */
 
 /**
- * Blog settings model сlass
+ * Blog settings model class
  */
 class Blog_Settings_Model {
 	const LAYOUT_DEFAULT = 'default';

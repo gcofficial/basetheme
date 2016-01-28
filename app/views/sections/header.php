@@ -21,7 +21,7 @@
 <?php wp_head(); ?>
 </head>
 {{ $custom_styles }}
-<body {{ $body_class }}>
+<body class="{{ $body_class }}">
 @if($is_enabled_preloader)
 	@include('blocks/loader')
 @endif
