@@ -34,7 +34,7 @@ if ( ! class_exists( 'Monster_Twitter_Timeline_Widget' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'monster_twitter_timeline_widget',
-				__( 'Twitter timeline widget', 'photolab' ),
+				__( 'Monster Twitter timeline widget', 'photolab' ),
 				array( 'description' => __( 'Twitter timeline Widget', 'photolab' ) )
 			);
 		}
@@ -134,12 +134,10 @@ if ( ! class_exists( 'Monster_Twitter_Timeline_Widget' ) ) {
 		 * @return type array
 		 */
 		public function update( $new_instance, $old_instance ) {
-			$instance            = array();
-			foreach ( $new_instance['category'] as $key => $category ) {
-				if ( ! empty( $category ) ) {
-					$instance['categories'][] = array( 'category' => $category, 'image' => $new_instance['image'][ $key ] );
-				}
-			}
+			$instance					= array();
+			$instance['title']			= ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
+			$instance['widget_id']		= esc_attr( $new_instance['widget_id'] );
+			$instance['screen_name']	= esc_attr( $new_instance['screen_name'] );
 
 			return $instance;
 		}

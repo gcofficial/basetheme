@@ -220,6 +220,18 @@ class Utils {
 	}
 
 	/**
+	 * Widgets path
+	 *
+	 * @return string
+	 */
+	public static function api_path() {
+		return sprintf(
+			'%s/src/api/',
+			get_template_directory()
+		);
+	}
+
+	/**
 	 * Pages path
 	 *
 	 * @return string
