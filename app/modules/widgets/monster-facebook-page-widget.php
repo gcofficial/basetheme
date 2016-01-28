@@ -55,7 +55,7 @@ if ( ! class_exists( 'Monster_Facebook_Page_Widget' ) ) {
 		public function __construct() {
 			parent::__construct(
 				'monster_facebook_page_widget',
-				__( 'Facebook page widget', 'photolab' ),
+				__( 'Monster Facebook page widget', 'photolab' ),
 				array( 'description' => __( 'Facebook page Widget', 'photolab' ) )
 			);
 

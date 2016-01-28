@@ -1,0 +1,9 @@
+.tm-youtube-channel-widget .info { min-height: 80px; }
+.tm-youtube-channel-widget .info i.youtube-icon { color: #C5161C; width: 8%; }
+.tm-youtube-channel-widget .info .name { color: #FE693D; font-style: italic; font-weight: bold; font-size: 18px; width: 80%; float: left; }
+.tm-youtube-channel-widget .info .count { width: 80%; float: left; }
+.tm-youtube-channel-widget .info:after { content: '.'; visibility: hidden; height: 0; width: 100%; }
+.tm-youtube-channel-widget .subscribe .title { background: #FE693D; font-style: italic; font-weight: bold; padding: 10px; width: 50%; float: left; }
+.tm-youtube-channel-widget .subscribe .title a { color: #FFF; text-decoration: none; }
+.tm-youtube-channel-widget .subscribe .title a:hover, .tm-youtube-channel-widget .subscribe .title a:link { color: #FFF; text-decoration: none; }
+.tm-youtube-channel-widget .subscribe .count { width: 10%; background: #F1F1F1; font-size: 14px; text-align: center; padding: 10px; margin-right: 25px; }
