@@ -18,8 +18,14 @@ return array(
 				'title'       => __( 'Site title & Tagline', 'photolab' ),
 				'description' => __( 'This is a Site Title & Tagline section.', 'photolab' ),
 				'__SETTINGS__'    => array(
-					'blogname' => array( 'default' => get_option( 'blogname' ) ),
-					'blogdescription' => array( 'default' => get_option( 'blogdescription' ) ),
+					'blogname' => array(
+						'default' => get_option( 'blogname' ),
+						'__OFF_SMART_NAME__' => true,
+					),
+					'blogdescription' => array(
+						'default' => get_option( 'blogdescription' ),
+						'__OFF_SMART_NAME__' => true,
+					),
 				),
 				'__CONTROLS__'    => array(
 					'blogname' => array( 'label' => __( 'Site Title' ) ),
