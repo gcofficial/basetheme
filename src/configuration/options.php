@@ -250,7 +250,8 @@ class Options {
 
 	/**
 	 * Get control name
-	 * @param  string $panel    panel name.
+	 *
+	 * @param  [type] $panel    panel name.
 	 * @param  [type] $section section name.
 	 * @param  [type] $setting setting name.
 	 * @return Control name like: $panel_$section_$setting
@@ -312,6 +313,7 @@ class Options {
 
 	/**
 	 * Is off smart name
+	 *
 	 * @param  [type] $panel_key   panel name.
 	 * @param  [type] $section_key section name.
 	 * @param  [type] $setting_key setting name.
